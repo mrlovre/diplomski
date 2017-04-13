@@ -270,6 +270,7 @@ def calculate_preference_flow(pairs, weights=None, scale=False):
     return {node: X[index, 0] for index, node in enumerate(nodes)}
 
 def trade_single(log_prices, t, i, inv=False):
+    'inv: False ako shortamo, True ako prodajemo.'
     return (1 - 2 * inv) * (log_prices[t, i - 1] - log_prices[t + 1, i - 1])
 
 def trade_singles(log_prices, ts, iss, inv=False):
