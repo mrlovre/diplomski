@@ -224,7 +224,7 @@ def partition_as(days, pairs, weights=None):
     n = len(pairs)
     while i != n:
         if weights is not None:
-            yield days[i], pairs[i:i + lens[j], ...], weights[i:: + lens[j], ...]
+            yield days[i], pairs[i:i + lens[j], ...], weights[i:i + lens[j], ...]
         else:
             yield days[i], pairs[i:i + lens[j], ...]
         i += lens[j]
