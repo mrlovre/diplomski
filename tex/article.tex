@@ -1,0 +1,171 @@
+\documentclass[letterpaper, 10 pt, conference]{ieeeconf}
+\overrideIEEEmargins
+
+% The following packages can be found on http:\\www.ctan.org
+\usepackage{graphics} % for pdf, bitmapped graphics files
+\usepackage{epsfig} % for postscript graphics files
+\usepackage{mathptmx} % assumes new font selection scheme installed
+\usepackage{times} % assumes new font selection scheme installed
+\usepackage{amsmath} % assumes amsmath package installed
+\usepackage{amssymb} % assumes amsmath package installed
+\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype} % nicer typesetting
+
+\usepackage{array}
+\newcolumntype{C}{>{$}c<{$}}
+
+\title{\LARGE \bf Portfolio Optimization Based on a Complex Networks Model\\TODO: propose a better title}
+
+\author{Lovre Mr\v{c}ela et al.}
+
+\begin{document}
+
+  \maketitle
+  \thispagestyle{empty}
+  \pagestyle{empty}
+    
+  \begin{abstract}
+    
+  A new portfolio optimization algorithm is presented that is based on statistical arbitrage and potential method for determining the preference flow.
+  At each time step a graph that represents preference relations among financial assets (i.e., if connection exists from asset A to asset B then A is preferred over B) is constructed, using the modified version of statistical arbitrage.
+  Then, the preference flow is calculated, using the potential method\cite{caklovic}, from which preferred assets are selected into the portfolio for that time step.
+  
+  Method has been tested on dataset XY and... (TODO: what happened)
+  
+  \end{abstract}
+  
+  \section{INTRODUCTION}
+  
+  The task of portfolio optimization is to try to enhance various criteria, which most of the time include maximization of expected return and minimization of deviation...
+  
+  The approach in this paper relies on abrupt deviations in relations between prices in some observed set of assets, so in general it performs better where there is larger number of assets.
+  
+  
+%  Approach taken in this paper relies on statistical anomalies which are detected by observing past windows of time at each time step.
+%  In this paper, approach was to create a portfolio using a large number of assets among which exist pairs that behave similarly during certain period.
+%  At each time step, a past window of time is observed for finding pairs that abruptly stop behaving similarly.
+  
+  \section{KEY COMPONENTS}
+  
+  Following are the descriptions of two key components in the algorithm: creating the graph, and choosing assets for the portfolio...
+    
+  \section{ALGORITHM} 
+  
+  Parameters of the algorithm are: $T$ - number of days, and $p$ - deviation threshold.
+  
+  Let there be total of $N$ assets in $D$ days.
+  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in 1..N$ and $t \in 0..D-1$.
+  The log prices $b_i^{(t)}$, log price differences $c_{i,j}^{(t)}$ between assets $i$ and $j$, and rolling means $m_{i,j}^{(t)}$ and standard deviations $d_{i,j}^{(t)}$ of log price differences over past time window of size $T$ are obtained as follows:
+  
+  \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right), \end{equation}
+  \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
+  \begin{equation} m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau=t-T+1}^{t} c_{i,j}^{(\tau)} \label{eq:m}, \end{equation}
+  \begin{equation} d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=t-T+1}^{t} \left(c_{i,j}^{(\tau)} - m_{i,j}^{(t)} \right)^2} \label{eq:d}. \end{equation}
+  
+  Note that calculating means and standard deviations of log price differences separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
+  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
+  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
+  \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
+  and decoded from $k$ as:
+  \begin{equation} i = \left\lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \right\rfloor, \end{equation}
+  \begin{equation} j = k + i \cdot \left.(i + 1) \middle/ 2\right. - N \cdot (i - 1) + 1. \end{equation}
+  An example of proposed coding is shown on figure \ref{fig:coding}.
+  
+  \begin{figure}[htb]
+    \centering
+    \begin{tabular}{C|CCCCC}
+      i/j & 1 & 2 & 3 & 4 & 5 \\ \hline
+      1 & \cdot & 0 & 1 & 2 & 3 \\
+      2 & \cdot & \cdot & 4 & 5 & 6 \\
+      3 & \cdot & \cdot & \cdot & 7 & 8 \\
+      4 & \cdot & \cdot & \cdot & \cdot & 9 \\
+      5 & \cdot & \cdot & \cdot & \cdot & \cdot
+    \end{tabular}
+    \hspace{0.8cm}
+    \begin{tabular}{C|CC}
+    k & i & j \\ \hline
+    0 & 1 & 2 \\
+    1 & 1 & 3 \\
+    2 & 1 & 4 \\
+    3 & 1 & 5 \\
+    4 & 2 & 3 \\
+    5 & 2 & 4 \\
+    6 & 2 & 5 \\
+    7 & 3 & 4 \\
+    8 & 3 & 5 \\
+    9 & 4 & 5 \\
+    \end{tabular}
+    \caption{Example of the proposed coding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.}
+    \label{fig:coding}
+  \end{figure}
+  
+  \subsection{Creating the graph}
+  
+  Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference relations between assets for each time step $t$.
+  Considering the time step $t$, we find all such pairs of assets $(i,j)$ for which holds:
+  
+  \begin{equation}
+    \label{eq:thresh}
+    \left| c_{i,j}^{(t)} - m_{i,j}^{(t-1)} \right| > p \cdot d_{i,j}^{(t - 1)},
+  \end{equation}
+  i.e. current log price difference is at least $p$ deviations distant from mean value of the past time window.
+
+  Afterwards, for each observed pair $(i,j)$ that breaks the threshold we add into graph vertices $i$ and $j$, and a weighed link going from $i$ to $j$, with weight $w_{i,j}^{(t)}$ obtained as:
+  
+  \begin{equation}
+    \label{eq:weight}
+    w_{i,j}^{(t)} = \left(c_{i,j}^{(t)} - \left. m_{i,j}^{(t-1)}\right) \middle/ d_{i,j}^{(t-1)} \right..
+  \end{equation}
+  
+  Thus, it is possible to create a relatively sparse graph for each time step $t \in T..D-1$.
+  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
+  Lower values of parameter $p$ yield denser graphs.
+  
+  \subsection{Choosing assets from graph}
+    
+  \section{RESULTS}
+  
+  \verb|TODO|
+
+  \section{CONCLUSIONS}
+  
+  \verb|TODO|
+    
+  % \addtolength{\textheight}{-12cm} % This command serves to balance the column lengths
+  % on the last page of the document manually. It shortens
+  % the textheight of the last page by a suitable amount.
+  % This command does not take effect until the next page
+  % so it should come on the page before the last. Make
+  % sure that you do not shorten the textheight too much.
+  
+  \section*{APPENDIX}
+  
+  \subsection{Rolling mean and variance algorithm}
+  \label{sub:rolling}
+  
+  \verb|TODO|
+
+  \begin{thebibliography}{9} % mind the label-width
+    
+  \bibitem{caklovic} L. \v{C}aklovi\'{c}, Decision Making by Potential Method
+%    \bibitem{c2} W.-K. Chen, Linear Networks and Systems (Book style).	Belmont, CA: Wadsworth, 1993, pp. 123Ð135.
+%    \bibitem{c3} H. Poor, An Introduction to Signal Detection and Estimation.   New York: Springer-Verlag, 1985, ch. 4.
+%    \bibitem{c4} B. Smith, ÒAn approach to graphs of linear forms (Unpublished work style),Ó unpublished.
+%    \bibitem{c5} E. H. Miller, ÒA note on reflector arrays (Periodical styleÑAccepted for publication),Ó IEEE Trans. Antennas Propagat., to be publised.
+%    \bibitem{c6} J. Wang, ÒFundamentals of erbium-doped fiber amplifiers arrays (Periodical styleÑSubmitted for publication),Ó IEEE J. Quantum Electron., submitted for publication.
+%    \bibitem{c7} C. J. Kaufman, Rocky Mountain Research Lab., Boulder, CO, private communication, May 1995.
+%    \bibitem{c8} Y. Yorozu, M. Hirano, K. Oka, and Y. Tagawa, ÒElectron spectroscopy studies on magneto-optical media and plastic substrate interfaces(Translation Journals style),Ó IEEE Transl. J. Magn.Jpn., vol. 2, Aug. 1987, pp. 740Ð741 [Dig. 9th Annu. Conf. Magnetics Japan, 1982, p. 301].
+%    \bibitem{c9} M. Young, The Techincal Writers Handbook.  Mill Valley, CA: University Science, 1989.
+%    \bibitem{c10} J. U. Duncombe, ÒInfrared navigationÑPart I: An assessment of feasibility (Periodical style),Ó IEEE Trans. Electron Devices, vol. ED-11, pp. 34Ð39, Jan. 1959.
+%    \bibitem{c11} S. Chen, B. Mulgrew, and P. M. Grant, ÒA clustering technique for digital communications channel equalization using radial basis function networks,Ó IEEE Trans. Neural Networks, vol. 4, pp. 570Ð578, July 1993.
+%    \bibitem{c12} R. W. Lucky, ÒAutomatic equalization for digital communication,Ó Bell Syst. Tech. J., vol. 44, no. 4, pp. 547Ð588, Apr. 1965.
+%    \bibitem{c13} S. P. Bingulac, ÒOn the compatibility of adaptive controllers (Published Conference Proceedings style),Ó in Proc. 4th Annu. Allerton Conf. Circuits and Systems Theory, New York, 1994, pp. 8Ð16.
+%    \bibitem{c14} G. R. Faulhaber, ÒDesign of service systems with priority reservation,Ó in Conf. Rec. 1995 IEEE Int. Conf. Communications, pp. 3Ð8.
+%    \bibitem{c15} W. D. Doyle, ÒMagnetization reversal in films with biaxial anisotropy,Ó in 1987 Proc. INTERMAG Conf., pp. 2.2-1Ð2.2-6.
+%    \bibitem{c16} G. W. Juette and L. E. Zeffanella, ÒRadio noise currents n short sections on bundle conductors (Presented Conference Paper style),Ó presented at the IEEE Summer power Meeting, Dallas, TX, June 22Ð27, 1990, Paper 90 SM 690-0 PWRS.
+%    \bibitem{c17} J. G. Kreifeldt, ÒAn analysis of surface-detected EMG as an amplitude-modulated noise,Ó presented at the 1989 Int. Conf. Medicine and Biological Engineering, Chicago, IL.
+%    \bibitem{c18} J. Williams, ÒNarrow-band analyzer (Thesis or Dissertation style),Ó Ph.D. dissertation, Dept. Elect. Eng., Harvard Univ., Cambridge, MA, 1993. 
+%    \bibitem{c19} N. Kawasaki, ÒParametric study of thermal and chemical nonequilibrium nozzle flow,Ó M.S. thesis, Dept. Electron. Eng., Osaka Univ., Osaka, Japan, 1993.
+%    \bibitem{c20} J. P. Wilkinson, ÒNonlinear resonant circuit devicesize (Patent style),Ó U.S. Patent 3 624 12, July 16, 1990. 
+
+  \end{thebibliography}
+\end{document}
