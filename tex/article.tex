@@ -13,7 +13,8 @@
 \usepackage{array}
 \newcolumntype{C}{>{$}c<{$}}
 
-\title{\LARGE \bf Portfolio Optimization Based on a Complex Networks Model\\TODO: propose a better title}
+\title{\LARGE \bf Portfolio Optimization Based on a Complex Networks Model\\
+  \normalsize TODO: propose a better title}
 
 \author{Lovre Mr\v{c}ela et al.}
 
@@ -46,7 +47,32 @@
   
   \section{KEY COMPONENTS}
   
-  Following are the descriptions of two key components in the algorithm: creating the graph, and choosing assets for the portfolio...
+  Following are the descriptions of two key components in the algorithm: graph of preference relations, and choosing assets for the portfolio...
+  
+  \subsection{Graph of preference relations}
+  
+  This is a graph whose vertices represent assets and edges represent how much more is one asset preferred over the other.
+  An example is shown on the Fig. \ref{fig:graph}.
+  The measure of this preference is determined by a statistical arbitrage algorithm, and it corresponds to the magnitude of two assets' price ratio going out of what is statistically considered `normal' range.
+  This is illustrated on Fig. \ref{fig:devmag}.
+  
+  \begin{figure}[htb]
+    \centering
+    \includegraphics[width=\columnwidth]{graphics/output_0573.pdf}
+    \caption{TODO: put image with weights on edges}
+    \label{fig:graph}
+  \end{figure}
+    
+  \begin{figure}[htb]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.png}
+    \caption{TODO: put a better image, this is just for a placeholder}
+    \label{fig:devmag}
+  \end{figure}
+
+  \subsection{Preference flow}
+  
+  \verb|TODO|
     
   \section{ALGORITHM} 
   
@@ -109,7 +135,7 @@
   \end{equation}
   i.e. current log price difference is at least $p$ deviations distant from mean value of the past time window.
 
-  Afterwards, for each observed pair $(i,j)$ that breaks the threshold we add into graph vertices $i$ and $j$, and a weighed link going from $i$ to $j$, with weight $w_{i,j}^{(t)}$ obtained as:
+  Afterwards, for each observed pair $(i,j)$ that breaks the threshold we add into graph vertices $i$ and $j$, and a weighed edge going from $i$ to $j$, with weight $w_{i,j}^{(t)}$ obtained as:
   
   \begin{equation}
     \label{eq:weight}
@@ -121,7 +147,12 @@
   Lower values of parameter $p$ yield denser graphs.
   
   \subsection{Choosing assets from graph}
-    
+  
+  From previously obtained graph it is possible to tell which pair has the highest preference.
+  However it is still not possible to tell which asset is the most preferable one, or obtain the measure of preference for individual assets, directly.
+  For this we need to calculate some sort of preference flow, as if it were water going through pipes of widths corresponding to edge weights, from one asset to another.
+  A quick way to do this is by using the potential method as described in \cite{caklovic}.
+      
   \section{RESULTS}
   
   \verb|TODO|
