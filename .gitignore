@@ -1,1 +1,14 @@
 graphs/
+
+## Core latex/pdflatex auxiliary files:
+tex/*.aux
+tex/*.lof
+tex/*.log
+tex/*.lot
+tex/*.fls
+tex/*.out
+tex/*.toc
+tex/*.fmt
+tex/*.fot
+tex/*.cb
+tex/*.cb2
