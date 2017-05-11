@@ -8,10 +8,12 @@
 \usepackage{times} % assumes new font selection scheme installed
 \usepackage{amsmath} % assumes amsmath package installed
 \usepackage{amssymb} % assumes amsmath package installed
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype} % nicer typesetting
+\usepackage[activate={true}, final, tracking=true, kerning=true, spacing=true, factor=1100, stretch=5, shrink=5]{microtype} % nicer typesetting
 
 \usepackage{array}
+\usepackage{multirow}
 \newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{R}{>{$}r<{$}}
 
 \title{\LARGE \bf Portfolio Optimization Based on a Complex Networks Model\\
   \normalsize TODO: propose a better title}
@@ -27,10 +29,11 @@
   \begin{abstract}
     
   A new algorithm for portfolio optimization is presented which is based on statistical arbitrage, with potential method used to obtain the most preferred assets.
-  A graph that represents preference relations among financial assets (i.e., if an edge exists going from asset A to asset B, then A is preferred over B) is constructed at each time step a, using the modified version of statistical arbitrage.
-  Then, the preference flow of each asset is calculated, using the potential method\cite{caklovic}, from which the most preferred assets are selected into the portfolio for each time step.
+  A graph that represents preference flow among financial assets (i.e., if an edge exists going from asset A to asset B, then A is preferred over B) is constructed at each time step a, using the modified version of statistical arbitrage.
+  Then, the preference of each asset is calculated, using the potential method\cite{caklovic}, from which the most preferred assets are selected into the portfolio for each time step.
   
-  Method has been tested on dataset XY, and\dots (TODO: what happened)
+  Method has been tested on dataset (TODO: which dataset), by simulating the portfolio obtained by the algorithm, including the trading cost of 0.1\%.
+  Sharpe ratios over 1.0 were recorded.
   
   \end{abstract}
   
@@ -39,7 +42,7 @@
   The task of portfolio optimization is to try to enhance various criteria, which most of the time include maximization of expected return and minimization of deviation\dots
   
   The approach that is taken in this paper relies on finding abrupt deviations of price relations between in the observed set of assets.
-  Algorithm works on pairs of assets, looking for such uncommon deviations, so generally it is expected to perform better where there is larger number of assets.
+  
 %  Each asset is compared to all other assets while looking for such specific deviations, so, in general, this algorithm performs better where there is larger number of assets.
   
   
@@ -47,43 +50,130 @@
 %  In this paper, approach was to create a portfolio using a large number of assets among which exist pairs that behave similarly during certain period.
 %  At each time step, a past window of time is observed for finding pairs that abruptly stop behaving similarly.
   
-  \section{KEY COMPONENTS}
+  \section{CONCEPTS AND METHODS}
   
-  Following are the descriptions of two key components in the algorithm: graph of preference relations, and choosing assets for the portfolio...
+  Following are descriptions of the key components in the algorithm: graph of preference flow, and choosing assets for the portfolio...
   
-  \subsection{Graph of preference relations}
+  \subsection{Preference relation}
   
-  This is a graph whose vertices represent assets and edges represent how much more is one asset preferred over the other.
-  An example is shown on the Fig. \ref{fig:graph}.
-  The measure of this preference is determined by a statistical arbitrage algorithm, and it corresponds to the magnitude of two assets' price ratio going out of what is statistically considered `normal' range.
-  This is illustrated on Fig. \ref{fig:devmag}.
+  Preference relation is a \textit{strict weak ordering} that corresponds to the way humans prefer some entity over another.
+  This relation is specific in that it is:
+  \begin{itemize}
+    \item \textit{irreflexive} --- every entity is not preferrable over itself,
+    \item \textit{asymmetrical} --- if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$,
+    \item \textit{transitive} --- if $x$ is preferrable over $y$, and $y$ is preferrable over $z$, then $x$ is also preferrable over $z$,
+    \item \textit{transitive in incomparability} --- noting that $x$ and $y$ may be incomparable (i.e., neither $x$ is preferrable over $y$, nor $y$ is preferrable over $x$): if $x$ is incomparable with $y$, and $y$ is incomparable with $z$, then $x$ is also incomparable with $z$.
+  \end{itemize}
+
+  We naturally impose this kind of relation when describing relationships among the assets.
   
-  \begin{figure}[htb]
+  \subsection{Graph of preference flow}
+  
+  This is a graph whose nodes represent assets, and edges (directed) describe how much more is one asset preferred over the other.
+  In case of missing edge between two assets, we consider that neither is preferable over another.
+  The graph as a whole describes preference flow among its nodes.
+  Relations in this graph should ideally be in compliance with properties of previously mentioned properties of preference relation.
+  However, they might also be inconsistent --- this is dealt with in the later stage of algorithm.
+  An example of graph is shown on Fig. \ref{fig:graph}.
+  
+  \begin{figure}[h]
     \centering
-    \includegraphics[width=\columnwidth]{graphics/output_0573.pdf}
-    \caption{TODO: put image with weights on edges}
+    \includegraphics[width=\columnwidth]{graphics/graph.pdf}
+    \caption{(TODO: put image with weights on edges) An example of a graph of preference flow. Asset number and calculated preference are inscribed in each node, and preference flows are shown on edges.}
     \label{fig:graph}
   \end{figure}
-    
-  \begin{figure}[htb]
+  
+  The measure of this preference flow is determined by a statistical arbitrage algorithm, and it corresponds to the magnitude of a pair of assets prices ratio going out of what is considered statistically confident range.
+  This is illustrated on Fig. \ref{fig:devmag}.
+  
+  \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.png}
-    \caption{TODO: put a better image, this is just for a placeholder}
+    \caption{(TODO: put a better image, this is just for a placeholder) Log price difference of a pair of assets during period of $T + 1$ time steps.
+    During the last observed timestep, it goes (TODO: broj) times standard deviations away from mean value of past time window of size $T$. This would be measure of preference flow from asset with higher price to the asset with lower price.}
     \label{fig:devmag}
   \end{figure}
 
-  \subsection{Preference flow}
+  The main idea of preference flow is that preference of a particular node depends on amount of preference flowing in and out of it.
+  This allows for some kind of generalized statistical arbitrage over multiple assets at a time.
+   
+  \subsection{Potential method}
+  \label{sub:potential}
+  From previously obtained graph it is possible to tell which pair of assets has the highest preference flow.
+  However, it is not yet possible to directly tell which are the most or least preferrable assets, or obtain the measure of preference for individual assets.
+  For calculating the preference of some node in the graph, we use the potential method\cite{caklovic}.
+  The potential of a node corresponds to difference in amount of flow going in and out of the node.
   
-  \verb|TODO| 
-  
-  Include measure of inconsistency?
+  A concise summary of the method is as follows:
+  \begin{enumerate}
+    \item For the observed graph, let there be a total of $N$ nodes and E edges.
+    \item Let $\mathbf{A}$ be the incidence matrix $\left[E \times N\right]$ of previously obtained graph. $\mathbf{A}$ has following properties:
+    \begin{enumerate}
+      \item each row corresponds to an edge in the graph, and each column to a node,
+      \item for every edge in the graph going from node $i$ to node $j$, there is a corresponding row that has $-1$ and $1$ in columns that correspond to nodes $i$ and $j$ respectively,
+      \item the remainder of elements in the matrix are zeros.
+    \end{enumerate}
+    \item Let $\mathbf{F}$ be column vector $\left[E \times 1\right]$ that contains edge weights, and order of the edges is consistent with order of the edges in $\mathbf{A}$.
     
+    \item Let $\mathbf{X}$ be column vector $\left[N \times 1\right]$ that contains potentials of each node, and order of the nodes is consistent with order of the nodes in $\mathbf{A}$.
+    
+    \item Now $\mathbf{A}$, $\mathbf{X}$, and $\mathbf{F}$ should satisfy the equation
+    \begin{equation}
+    \label{eq:flowover}
+    \mathbf{A} \mathbf{X} = \mathbf{F},
+    \end{equation}
+    meaning that the difference between potential of any two nodes should result result in weight of the edge between them.
+    Most of the time this represents an overdetermined system since $\mathbf{A}$ has more rows than columns, so we convert it to a least squares problem:
+    \begin{equation}
+    \begin{gathered}
+    \min_{\mathbf{X}} \left\{ \left \lVert \mathbf{A} \mathbf{X} - \mathbf{F}\textsl{} \right \rVert ^ 2 \right\}\ \Rightarrow\ 
+    \frac{\partial}{\partial \mathbf{X}} \left \lVert \mathbf{A} \mathbf{X} - \mathbf{F} \right \rVert ^ 2 = \mathbf{0},
+    \end{gathered}
+    \end{equation}
+    from which we obtain the equation:
+    \begin{equation}
+    \label{eq:flow}
+    \mathbf{A}^{T} \mathbf{A} \mathbf{X} = \mathbf{A}^{T} \mathbf{F}.
+    \end{equation}
+    Following constraint is also included:
+    \begin{equation}
+    \label{eq:sumiszero}
+    \underbrace{\begin{bmatrix} 1 & 1 & \cdots & 1 \end{bmatrix}}_{N} \cdot \mathbf{X} = 0
+    \end{equation}
+    to ensure an unique solution and that total amounts of positive and negative potential are equal.
+    
+    \item Joining the previous two equations together by adding (\ref{eq:sumiszero}) to each row of (\ref{eq:flow}) results in:
+    \begin{equation}
+    \begin{aligned}
+    \mathbf{A}^{T} \mathbf{A} \mathbf{X} + \mathbf{J} \mathbf{X} &= \mathbf{A}^{T} \mathbf{F}\\
+    \left[\mathbf{A}^{T} \mathbf{A} + \mathbf{J} \right] \mathbf{X} &= \mathbf{A}^{T} \mathbf{F},
+    \end{aligned}
+    \end{equation}
+    where $\mathbf{J}$ is a matrix of ones with same dimension as $\mathbf{A}^{T} \mathbf{A}$.
+    Finally, solving for $\mathbf{X}$ gives us:
+    \begin{equation}
+    \label{eq:final}
+    \mathbf{X} = \left[\mathbf{A}^T \mathbf{A} + \mathbf{J} \right]^{-1} \mathbf{A}^T \mathbf{F}.
+    \end{equation}
+    \item Furthermore, it has been shown that in case of a complete graph term $\left[ \mathbf{A}^T \mathbf{A} + \mathbf{J} \right]^{-1}$ will be equal to $\frac{1}{N} \mathbf{I}$ due to its connection to the Laplace matrix.
+    In our case, graphs will be incomplete most of the time, but they may be represented as complete graphs if we treat missing edges as edges of weight 0 (direction doesn't matter).
+    On the other hand, $\mathbf{A}^T \mathbf{F}$ doesn't change if we remove corresponding entries for missing edges.
+    Thus, we can shorten (\ref{eq:final}) for some more:
+    \begin{equation}
+    \mathbf{X} = \frac{1}{N} \mathbf{A}^T \mathbf{F},
+    \end{equation}
+    to get as computationally optimal expression as possible.
+  \end{enumerate}
+  
+  (TODO: \v{c}ini se nepotrebno komplicirano uvoditi metodu od koje na kraju samo dobijemo zbroj svih bridova koji utječu u čvor minus oni koji izlaze iz njega.)
+  
   \section{ALGORITHM} 
   
   Parameters of the algorithm are:
   \begin{itemize}
-    \item $T$ - length of the past time window
-    \item $\alpha$ - the deviation threshold
+    \item $T$ - length of the past time window,
+    \item $\alpha$ - the deviation threshold,
+    \item $\beta$ - asset selection threshold.
   \end{itemize}
   
   Let there be total of $N$ assets in $D$ days.
@@ -92,19 +182,20 @@
   
   \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right), \end{equation}
   \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
-  \begin{equation} m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau=t-T+1}^{t} c_{i,j}^{(\tau)} \label{eq:m}, \end{equation}
-  \begin{equation} d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=t-T+1}^{t} \left(c_{i,j}^{(\tau)} - m_{i,j}^{(t)} \right)^2} \label{eq:d}. \end{equation}
+  \begin{equation} m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau=1}^{T} c_{i,j}^{(t - \tau)} \label{eq:m}, \end{equation}
+  \begin{equation} d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=1}^{T} \left(c_{i,j}^{(t - \tau)} - m_{i,j}^{(t)} \right)^2} \label{eq:d}. \end{equation}
   
-  Note that calculating means and standard deviations of log price differences separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
+  Note that period over which means and standard deviations of log price differences are calculated does not include time step $t$.
+  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
   Therefore, it is advisable to use a rolling algorithm as described in the appendix.
-  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
+  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
   \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
   and decoded from $k$ as:
   \begin{equation} i = \left\lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \right\rfloor, \end{equation}
   \begin{equation} j = k + i \cdot \left.(i + 1) \middle/ 2\right. - N \cdot (i - 1) + 1. \end{equation}
   An example of proposed coding is shown on figure \ref{fig:coding}.
   
-  \begin{figure}[htb]
+  \begin{figure}[h]
     \centering
     \begin{tabular}{C|CCCCC}
       i/j & 1 & 2 & 3 & 4 & 5 \\ \hline
@@ -132,92 +223,132 @@
     \label{fig:coding}
   \end{figure}
   
-  \subsection{Creating the graph}
+  \subsection{Creating the graph of preference flow}
   
-  Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference relations between assets for each time step $t$.
+  Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
   Considering the time step $t$, we find all such pairs of assets $(i,j)$ for which holds:
   
   \begin{equation}
     \label{eq:thresh}
-    \left| c_{i,j}^{(t)} - m_{i,j}^{(t-1)} \right| > \alpha \cdot d_{i,j}^{(t - 1)},
+    \left| c_{i,j}^{(t)} - m_{i,j}^{(t)} \right| > \alpha \cdot d_{i,j}^{(t)},
   \end{equation}
   i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
+  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
 
-  Afterwards, for each observed pair $(i,j)$ that breaks the threshold we add into graph vertices $i$ and $j$, and a weighed edge going from $i$ to $j$, with weight $w_{i,j}^{(t)}$ obtained as:
+  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, and a weighed edge going from $i$ to $j$, with weight $w_{i,j}^{(t)}$ obtained as:
   
   \begin{equation}
     \label{eq:weight}
-    w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t-1)}\right) \middle/ d_{i,j}^{(t-1)} \right..
+    w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right..
   \end{equation}
   
   Thus, it is possible to create a relatively sparse graph for each time step $t \in T..D-1$.
   At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
   Lower values of parameter $\alpha$ yield denser graphs.
   
-  \subsection{Choosing assets from graph}
+  \subsection{Choosing assets from graph by potential method}
+  We obtain preference of each asset via the potential method, as described earlier in \ref{sub:potential}.
+  Let $\varphi_i$ denote the potential of asset $i$ at the current time step.
+  By obtaining preferences of each asset it is now possible to pick assets into the portfolio.
+  The most preferred assets are being bought while the least preferred should be short-sold if possible.
   
-  From previously obtained graph it is possible to tell which pair of assets has the highest preference flow.
-  However it is not yet possible to directly tell which is the most preferrable asset, or obtain the measure of preference for individual assets.
-  For this we need to calculate some sort of potential for each node in graph, which corresponds to difference in amount of flow going in and out of the node.
-  A quick way to do this is by using the potential method as described in \cite{caklovic}.
-  The summary of the method is as follows:
-  \begin{enumerate}
-    \item Let $\mathbf{A}$ be the incidence matrix of previously obtained graph. $\mathbf{A}$ has following properties:
-    \begin{enumerate}
-      \item each row corresponds to an edge in the graph, and each column to a node,
-      \item for every edge in the graph going from node $i$ to node $j$, there is a corresponding row that has $-1$ and $1$ in columns that correspond to nodes $i$ and $j$, respectively,
-      \item the remainder of elements in the matrix are zeros.
-    \end{enumerate}
-    \item Let $\mathbf{F}$ be column vector that contains edge weights, and order of the edges is consistent with order of the edges in $\mathbf{A}$.
-    
-    \item Let $\mathbf{X}$ be column vector that contains potentials of each node, and order of the nodes is consistent with order of the nodes in $\mathbf{A}$.
-    
-    \item Now $\mathbf{A}$, $\mathbf{X}$, and $\mathbf{F}$ should satisfy the equation
-    \begin{equation}
-      \label{eq:flowover}
-      \mathbf{A} \mathbf{X} = \mathbf{F},
-    \end{equation}
-    meaning that the difference between potential of any two nodes should result result in weight of the edge between them.
-    Most of the time this represents an overdetermined system since $\mathbf{A}$ has more rows than columns, so we convert it to a least squares problem:
-    \begin{equation}
-      \label{eq:flow}
-      \begin{gathered}
-      \min_{\mathbf{X}} \left\{ \left \lVert \mathbf{A} \mathbf{X} - \mathbf{F}\textsl{} \right \rVert ^ 2 \right\} \Rightarrow
-      \frac{\partial}{\partial \mathbf{X}} \left \lVert \mathbf{A} \mathbf{X} - \mathbf{F}\textsl{} \right \rVert ^ 2 = \mathbf{0},
-      \end{gathered}
-    \end{equation}
-    from which we obtain the equation:
-    \begin{equation}
-      \mathbf{A}^{T} \mathbf{A} \mathbf{X} = \mathbf{A}^{T} \mathbf{F}.
-    \end{equation}
-    Following constraint is also added:
-    \begin{equation}
-      \label{eq:sumiszero}
-      \underbrace{\begin{bmatrix} 1 & 1 & \cdots & 1 \end{bmatrix}}_{N} \cdot \mathbf{X} = 0
-    \end{equation}
-    to ensure that total amounts of positive and negative potential are equal.
-      
-    \item Joining the previous two equations together by adding (\ref{eq:sumiszero}) to each row of (\ref{eq:flow}) results in:
-    \begin{equation}
-      \begin{aligned}
-        \mathbf{A}^{T} \mathbf{A} \mathbf{X} + \mathbf{J} \mathbf{X} &= \mathbf{A}^{T} \mathbf{F}\\
-        \left[\mathbf{A}^{T} \mathbf{A} + \mathbf{J} \right] \mathbf{X} &= \mathbf{A}^{T} \mathbf{F},
-      \end{aligned}
-    \end{equation}
-    where $\mathbf{J}$ is a matrix of ones with same dimension as $\mathbf{A}^{T} \mathbf{A}$.
-    Finally, solving for $\mathbf{X}$ gives us:
-    \begin{equation}
-      \mathbf{X} = \left[\mathbf{A}^T \mathbf{A} + \mathbf{J} \right]^{-1} \mathbf{A}^T \mathbf{F}.
-    \end{equation}
-  \end{enumerate}
-      
+  For determining the assets that should be held in portfolio at time step $t$, we find such assets $i$ which satisfy:
+  \begin{equation}
+    \varphi_i \ge \beta \cdot \Phi,
+  \end{equation}
+  where $\Phi$ is $\max_j \left\{ \left|\varphi_j\right| \right\}$, and $\beta$ is the asset selection threshold parameter mentioned earlier.
+  Likewise, for short-selling we choose those assets $i$ which satisfy:
+  \begin{equation}
+  \varphi_i \le -\beta \cdot \Phi.
+  \end{equation}
+  
   \section{RESULTS}
   
-  \verb|TODO|
+  Results were obtained by testing on dataset (TODO: dataset).
+  Short selling was disabled.
+  
+  \begin{figure}[htb]
+  \label{table:results}
+  \centering
+  \begin{tabular}{ccRRR}
+    \multicolumn{5}{c}{T=90}                                                                                                                                      \\ \hline
+    \multicolumn{1}{c}{$\alpha$}               & \multicolumn{1}{c}{$\beta$} & \multicolumn{1}{r}{Sharpe ratio} & \multicolumn{1}{r}{turnover rate} & \multicolumn{1}{r}{profit} \\ \hline
+    \multicolumn{1}{c}{\multirow{6}{*}{3.0}} & 1.0                       & 1.12033                    & \mathbf{0.64613}                      & 18.63180                   \\
+    \multicolumn{1}{c}{}                     & 0.9                       & 1.14333                    & 0.68407                      & 19.03378                   \\
+    \multicolumn{1}{c}{}                     & 0.8                       & \mathbf{1.15759}                    & 0.71548                      & \mathbf{19.35692}                   \\
+    \multicolumn{1}{c}{}                     & 0.7                       & 1.13153                    & 0.75715                      & 19.00914                   \\
+    \multicolumn{1}{c}{}                     & 0.6                       & 1.06598                    & 0.79802                      & 17.70338                   \\
+    \multicolumn{1}{c}{}                     & 0.5                       & 1.03619                    & 0.85536                      & 17.16405                   \\ \hline
+    \multirow{6}{*}{3.25}                    & 1.0                       & 1.04127                    & 0.68351                      & 17.27340                   \\
+    & 0.9                       & 1.07932                    & 0.71015                      & 17.90707                   \\
+    & 0.8                       & 1.12707                    & 0.75099                      & 18.72864                   \\
+    & 0.7                       & 1.10705                    & 0.79748                      & 18.42081                   \\
+    & 0.6                       & 1.05853                    & 0.84321                      & 17.51641                   \\
+    & 0.5                       & 1.01289                    & 0.89148                      & 16.76236                   \\ \hline
+    \multirow{6}{*}{3.5}                     & 1.0                       & 0.99809                    & 0.72792                      & 16.40651                   \\
+    & 0.9                       & 1.02397                    & 0.76663                      & 16.88082                   \\
+    & 0.8                       & 1.03420                    & 0.81126                      & 17.09970                   \\
+    & 0.7                       & 1.05821                    & 0.86305                      & 17.48784                   \\
+    & 0.6                       & 1.01590                    & 0.91392                      & 16.89037                   \\
+    & 0.5                       & 0.98479                    & 0.96461                      & 16.27100                   \\ \hline
+    \multirow{6}{*}{3.75}                    & 1.0                       & 0.98829                    & 0.80549                      & 15.84890                   \\
+    & 0.9                       & 1.02361                    & 0.84603                      & 16.40503                   \\
+    & 0.8                       & 1.04266                    & 0.89192                      & 16.74853                   \\
+    & 0.7                       & 1.03920                    & 0.95609                      & 16.73169                   \\
+    & 0.6                       & 1.05219                    & 1.00587                      & 17.00883                   \\
+    & 0.5                       & 1.03340                    & 1.06956                      & 16.67687                   \\ \hline
+    \multirow{6}{*}{4.0}                     & 1.0                       & 1.00574                    & 0.91970                      & 15.02475                   \\
+    & 0.9                       & 1.02546                    & 0.95710                      & 15.37962                   \\
+    & 0.8                       & 1.04724                    & 0.99747                      & 15.74329                   \\
+    & 0.7                       & 1.04383                    & 1.03972                      & 15.76506                   \\
+    & 0.6                       & 1.01710                    & 1.08639                      & 15.39334                   \\
+    & 0.5                       & 1.01925                    & 1.15608                      & 15.43147                  
+  \end{tabular}
+  \caption{Results. TODO: comment.}
+  \end{figure}
+  \begin{figure}[htb]
+  \label{table:results}
+  \centering
+  \begin{tabular}{ccRRR}
+    \multicolumn{5}{c}{T=120}                                                                                                                                      \\ \hline
+    \multicolumn{1}{c}{$\alpha$}               & \multicolumn{1}{c}{$\beta$} & \multicolumn{1}{r}{Sharpe ratio} & \multicolumn{1}{r}{turnover rate} & \multicolumn{1}{r}{profit} \\ \hline
+    \multirow{6}{*}{3.0}    & 1.0 & 1.02488 & \mathbf{0.57236} & 17.63623 \\
+    & 0.9 & 0.99552 & 0.60648 & 17.16067 \\
+    & 0.8 & 1.00498 & 0.64939 & 17.24051 \\
+    & 0.7 & 1.01485 & 0.68910 & 17.43257 \\
+    & 0.6 & 1.04164 & 0.72308 & 17.91063 \\
+    & 0.5 & \mathbf{1.08388} & 0.78830 & \mathbf{18.33920} \\ \hline
+    \multirow{6}{*}{3.25} & 1.0 & 0.95261 & 0.60842 & 15.76037 \\
+    & 0.9 & 0.97329 & 0.63420 & 16.11968 \\
+    & 0.8 & 0.98852 & 0.67298 & 16.35240 \\
+    & 0.7 & 0.97404 & 0.72470 & 16.12448 \\
+    & 0.6 & 0.94128 & 0.77388 & 15.67659 \\
+    & 0.5 & 0.97199 & 0.81790 & 15.97750 \\ \hline
+    \multirow{6}{*}{3.5}  & 1.0 & 0.89277 & 0.66365 & 14.63103 \\
+    & 0.9 & 0.93685 & 0.69743 & 15.37556 \\
+    & 0.8 & 0.94367 & 0.73989 & 15.52817 \\
+    & 0.7 & 0.95012 & 0.79145 & 15.73655 \\
+    & 0.6 & 0.96529 & 0.83751 & 15.97783 \\
+    & 0.5 & 0.99559 & 0.88986 & 16.08797 \\ \hline
+    \multirow{6}{*}{3.75} & 1.0 & 0.90895 & 0.74222 & 14.27841 \\
+    & 0.9 & 0.96107 & 0.77696 & 15.10384 \\
+    & 0.8 & 0.98794 & 0.82238 & 15.53080 \\
+    & 0.7 & 1.00128 & 0.87246 & 15.92569 \\
+    & 0.6 & 0.98468 & 0.92541 & 15.67132 \\
+    & 0.5 & 1.01009 & 0.98699 & 16.09083 \\ \hline
+    \multirow{6}{*}{4.0}    & 1.0 & 0.99691 & 0.83501 & 14.67240 \\
+    & 0.9 & 1.01115 & 0.87406 & 14.89908 \\
+    & 0.8 & 1.06557 & 0.91977 & 15.71279 \\
+    & 0.7 & 1.06097 & 0.95934 & 15.76776 \\
+    & 0.6 & 1.03053 & 0.99846 & 15.34007 \\
+    & 0.5 & 1.04213 & 1.05134 & 15.47247
+  \end{tabular}
+  \caption{Results. TODO: comment.}
+  \end{figure}
 
   \section{CONCLUSIONS}
   
-  \verb|TODO|
+  Algorithm works on pairs of assets, looking for those deviations which are  uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
     
   % \addtolength{\textheight}{-12cm} % This command serves to balance the column lengths
   % on the last page of the document manually. It shortens
@@ -227,7 +358,7 @@
   % sure that you do not shorten the textheight too much.
   
   \section*{APPENDIX}
-  
+ 
   \subsection{Rolling mean and variance algorithm}
   \label{sub:rolling}
   

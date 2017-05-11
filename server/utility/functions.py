@@ -90,7 +90,8 @@ def decode_pair(c, N, inv=False):
 def decode_pairs(cs, N, inv=False):
     b1 = N + 0.5
     b2 = (N - 0.5) ** 2
-    return np.array(np.vectorize(lambda c: _decode_pair(c, N, b1, b2, inv))(cs)).transpose()
+    return np.array(
+        np.vectorize(lambda c: _decode_pair(c, N, b1, b2, inv), otypes=(np.int32, np.int32))(cs)).transpose()
 
 
 def _decode_pair(c, N, b1, b2, inv):
@@ -146,7 +147,6 @@ def statistical_arbitrage(diffs, means, varss, p, d,
     N = N_from_pairs(P)
 
     if 'thresh' not in method:
-
         selected_codes = np.argsort(varss, axis=1)[:-1, :p]
         selected_diffs = select_argsort(diffs[T - 1:-1, :], selected_codes)
         selected_means = select_argsort(means[:-1, :], selected_codes)
@@ -251,7 +251,7 @@ def partition_as(days, pairs, weights=None):
         j += 1
 
 
-def calculate_preference_flow(pairs, weights=None, scale=False):
+def calculate_preference_flow(pairs, weights=None, scale=False, fast=True, return_inconsistency=False):
     nodes = set(np.ravel(pairs))
     M = len(nodes)
     P = pairs_from_N(M)
@@ -259,11 +259,11 @@ def calculate_preference_flow(pairs, weights=None, scale=False):
     node_index = {node: index for index, node in enumerate(nodes)}
     A = np.zeros((P, M))
     F = np.zeros((P, 1))
-    for ii in range(M):
-        for ji in range(ii + 1, M):
-            c = ii * M + ji - int((ii + 1) * (ii + 2) / 2)
-            A[c, ii] = 1
-            A[c, ji] = -1
+    # for ii in range(M):
+    #     for ji in range(ii + 1, M):
+    #         c = ii * M + ji - int((ii + 1) * (ii + 2) / 2)
+    #         A[c, ii] = 1
+    #         A[c, ji] = -1
     if weights is None:
         for i, j in pairs:
             ii = node_index[i]
@@ -284,15 +284,29 @@ def calculate_preference_flow(pairs, weights=None, scale=False):
             A[c, ii] = 1
             A[c, ji] = -1
             F[c] = weight
-    X = np.dot(np.linalg.inv(np.dot(A.T, A) + np.ones((M, M))),
-               np.dot(A.T, F))
+
+    if fast:
+        valids = np.where(F != 0)[0]
+        F = F[valids]
+        A = A[valids]
+        X = np.dot(A.T, F) / M
+    else:
+        X = np.dot(np.linalg.inv(np.dot(A.T, A) + np.ones((M, M))), np.dot(A.T, F))
+
     if scale:
         X *= M
-    return {node: X[index, 0] for index, node in enumerate(nodes)}
+
+    X_dict = {node: X[index, 0] for index, node in enumerate(nodes)}
+
+    if return_inconsistency:
+        inconsistency = np.linalg.norm(np.dot(A, X)) / np.linalg.norm(F)
+        return X_dict, inconsistency
+    else:
+        return X_dict
 
 
 def trade_single(log_prices, t, i, inv=False):
-    """inv: False ako shortamo, True ako prodajemo."""
+    """inv: False ako shortamo, True ako kupujemo."""
     return (1 - 2 * inv) * (log_prices[t, i - 1] - log_prices[t + 1, i - 1])
 
 
@@ -322,6 +336,7 @@ def turnover_ratio(series: Iterable[Set[T]]):
 
 
 def join_ts_profit(ts, profits):
+    if not len(ts):
+        return [], []
     pprofits = partition_as(ts, profits)
     return np.array([[t, np.sum(profit, axis=0)] for t, profit in pprofits]).transpose()
-
