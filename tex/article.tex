@@ -4,16 +4,32 @@
 % The following packages can be found on http:\\www.ctan.org
 \usepackage{graphics} % for pdf, bitmapped graphics files
 \usepackage{epsfig} % for postscript graphics files
-\usepackage{mathptmx} % assumes new font selection scheme installed
+%\usepackage{mathptmx} % assumes new font selection scheme installed
 \usepackage{times} % assumes new font selection scheme installed
+%\usepackage{lmodern}
 \usepackage{amsmath} % assumes amsmath package installed
 \usepackage{amssymb} % assumes amsmath package installed
-\usepackage[activate={true}, final, tracking=true, kerning=true, spacing=true, factor=1100, stretch=5, shrink=5]{microtype} % nicer typesetting
+\usepackage[activate={true, nocompatibility}, final, tracking=true, kerning=true, spacing=true, factor=1100, stretch=20, shrink=20]{microtype} % nicer typesetting
 
+\usepackage{fixmath}
 \usepackage{array}
 \usepackage{multirow}
+\usepackage{bm}
+\usepackage{mathrsfs}
 \newcolumntype{C}{>{$}c<{$}}
 \newcolumntype{R}{>{$}r<{$}}
+
+\usepackage{lmodern}
+
+%\newcommand{\matr}[1]{\bm{#1}}
+%%\newcommand{\matr}[1]{#1}
+\newcommand{\matr}[1]{\mathbold{#1}}
+\newcommand{\graph}[1]{\bm{\mathcal{#1}}}
+
+\newcommand{\T}{\mathrm{T}}
+\newcommand{\upto}{\mathinner {\ldotp \ldotp}}
+
+\DeclareMathOperator*{\argmin}{arg\min}
 
 \title{\LARGE \bf Portfolio Optimization Based on a Complex Networks Model\\
   \normalsize TODO: propose a better title}
@@ -106,66 +122,88 @@
   
   A concise summary of the method is as follows:
   \begin{enumerate}
-    \item For the observed graph, let there be a total of $N$ nodes and E edges.
-    \item Let $\mathbf{A}$ be the incidence matrix $\left[E \times N\right]$ of previously obtained graph. $\mathbf{A}$ has following properties:
-    \begin{enumerate}
-      \item each row corresponds to an edge in the graph, and each column to a node,
-      \item for every edge in the graph going from node $i$ to node $j$, there is a corresponding row that has $-1$ and $1$ in columns that correspond to nodes $i$ and $j$ respectively,
-      \item the remainder of elements in the matrix are zeros.
-    \end{enumerate}
-    \item Let $\mathbf{F}$ be column vector $\left[E \times 1\right]$ that contains edge weights, and order of the edges is consistent with order of the edges in $\mathbf{A}$.
+    \item For the observed graph $\graph{G}$, let there be a total of $N$ nodes, and maximum of $E = \binom{N}{2}$ edges, in case of a complete graph.
     
-    \item Let $\mathbf{X}$ be column vector $\left[N \times 1\right]$ that contains potentials of each node, and order of the nodes is consistent with order of the nodes in $\mathbf{A}$.
+    \item If $\graph{G}$ is not complete, we complete it by adding edges to it with weight 0 (direction doesn't matter).
+    Thus, from now on $\graph{G}$ is a complete graph with $\binom{N}{2}$ edges.
+    % In our case, graphs will be incomplete for most of the time, but they may be \textsl{supplemented} (TODO: opposite of `reduced') to complete graphs, if we treat missing edges as edges of weight 0 (direction doesn't matter).
     
-    \item Now $\mathbf{A}$, $\mathbf{X}$, and $\mathbf{F}$ should satisfy the equation
+    \item Let $\matr{B}$ be the $E \times N$ incidence matrix of $\graph{G}$.
+%    $\matr{B}$ has following properties:
+%    \begin{enumerate}
+%      \item each row corresponds to an edge in the graph, and each column to a node,
+%      \item for every edge in the graph going from node $i$ to node $j$, there is a corresponding row that has $-1$ and $1$ in columns that correspond to nodes $i$ and $j$ respectively,
+%      \item the remainder of elements in the matrix are zeros.
+%    \end{enumerate}
+
+    \item Let $\matr{f}$ be $E \times 1$ vector that contains edge weights (i.e. preference flows).
+    Order of the edges must be the same as order of the edges in $\matr{B}$.
+    As mentioned before, in place of missing edges we simply put 0.
+    
+    \item Let $\matr{\phi}$ be $N \times 1$ vector that contains potentials of each node, in order that is the same as order of the nodes in $\matr{B}$.
+    
+    \item Now, if $\graph{G}$ was consistent, then $\matr{B}$, $\matr{\phi}$, and $\matr{f}$ would satisfy the equation
     \begin{equation}
-    \label{eq:flowover}
-    \mathbf{A} \mathbf{X} = \mathbf{F},
+    \label{eq:flowformula}
+    \matr{B} \matr{\phi} = \matr{f}.
     \end{equation}
-    meaning that the difference between potential of any two nodes should result result in weight of the edge between them.
-    Most of the time this represents an overdetermined system since $\mathbf{A}$ has more rows than columns, so we convert it to a least squares problem:
-    \begin{equation}
+    Equation (\ref{eq:flowformula}) simply means that the difference between potential of any two nodes should result result in weight of the edge between them.
+    This is possible only for consistent graphs, and most of the time our graphs will be inconsistent.
+    In that case we try to find an approximate solution $\matr{\phi^*}$ that minimizes the square error:
+    \begin{equation*}
     \begin{gathered}
-    \min_{\mathbf{X}} \left\{ \left \lVert \mathbf{A} \mathbf{X} - \mathbf{F}\textsl{} \right \rVert ^ 2 \right\}\ \Rightarrow\ 
-    \frac{\partial}{\partial \mathbf{X}} \left \lVert \mathbf{A} \mathbf{X} - \mathbf{F} \right \rVert ^ 2 = \mathbf{0},
+    \matr{\phi^*} = \argmin_{\matr{\phi}} \left\{ \left \lVert \matr{B} \matr{\phi} - \matr{f}\textsl{} \right \rVert ^ 2 \right\} \\ \Downarrow \\
+    \frac{\partial \left \lVert \matr{B} \matr{\phi^*} - \matr{f} \right \rVert ^ 2}{\partial \matr{\phi^*}} = \mathbf{0},
     \end{gathered}
-    \end{equation}
-    from which we obtain the equation:
+    \end{equation*}
+    which brings us to the following equation:
     \begin{equation}
     \label{eq:flow}
-    \mathbf{A}^{T} \mathbf{A} \mathbf{X} = \mathbf{A}^{T} \mathbf{F}.
+    \matr{B}^\T \matr{B} \matr{\phi^*} = \matr{B}^\T \matr{f}.
     \end{equation}
-    Following constraint is also included:
+    Equation (\ref{eq:flow}) determines $\matr{\phi^*}$ up to a constant (i.e. solution has one degree of freedom), so the following constraint is also included:
     \begin{equation}
     \label{eq:sumiszero}
-    \underbrace{\begin{bmatrix} 1 & 1 & \cdots & 1 \end{bmatrix}}_{N} \cdot \mathbf{X} = 0
+    \matr{j}^\T \matr{\phi^*} = 0
     \end{equation}
-    to ensure an unique solution and that total amounts of positive and negative potential are equal.
+    where $\matr{j}$ is vector of ones with same dimension as $\matr{\phi^*}$.
+    This ensures an unique solution for which total amounts of positive and negative potential will be equal.
     
     \item Joining the previous two equations together by adding (\ref{eq:sumiszero}) to each row of (\ref{eq:flow}) results in:
-    \begin{equation}
+    \begin{equation*}
     \begin{aligned}
-    \mathbf{A}^{T} \mathbf{A} \mathbf{X} + \mathbf{J} \mathbf{X} &= \mathbf{A}^{T} \mathbf{F}\\
-    \left[\mathbf{A}^{T} \mathbf{A} + \mathbf{J} \right] \mathbf{X} &= \mathbf{A}^{T} \mathbf{F},
+    \matr{B}^\T \matr{B} \matr{\phi^*} + \matr{J} \matr{\phi^*} &= \matr{B}^\T \matr{f}\\
+    \left[\matr{B}^\T \matr{B} + \matr{J} \right] \matr{\phi^*} &= \matr{B}^\T \matr{f},
     \end{aligned}
-    \end{equation}
-    where $\mathbf{J}$ is a matrix of ones with same dimension as $\mathbf{A}^{T} \mathbf{A}$.
-    Finally, solving for $\mathbf{X}$ gives us:
+    \end{equation*}
+    where $\matr{J}$ is a matrix of ones with same dimension as $\matr{B}^\T \matr{B}$.
+    Finally, solving for $\matr{\phi^*}$ gives us:
     \begin{equation}
     \label{eq:final}
-    \mathbf{X} = \left[\mathbf{A}^T \mathbf{A} + \mathbf{J} \right]^{-1} \mathbf{A}^T \mathbf{F}.
+    \matr{\phi^*} = \left[\matr{B}^\T \matr{B} + \matr{J} \right]^{-1} \matr{B}^\T \matr{f}.
     \end{equation}
-    \item Furthermore, it has been shown that in case of a complete graph term $\left[ \mathbf{A}^T \mathbf{A} + \mathbf{J} \right]^{-1}$ will be equal to $\frac{1}{N} \mathbf{I}$ due to its connection to the Laplace matrix.
-    In our case, graphs will be incomplete most of the time, but they may be represented as complete graphs if we treat missing edges as edges of weight 0 (direction doesn't matter).
-    On the other hand, $\mathbf{A}^T \mathbf{F}$ doesn't change if we remove corresponding entries for missing edges.
-    Thus, we can shorten (\ref{eq:final}) for some more:
+    \item Furthermore, the term $\left[ \matr{B}^\T \matr{B} + \matr{J} \right]^{-1}$ in (\ref{eq:final}) can be simplified to $\frac{1}{N} \matr{I}$ due to $\matr{B}^\T \matr{B}$ being the Laplace matrix of a complete graph; thus, we can simplify (\ref{eq:final}) some more:
     \begin{equation}
-    \mathbf{X} = \frac{1}{N} \mathbf{A}^T \mathbf{F},
+    \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
     \end{equation}
     to get as computationally optimal expression as possible.
+    
+    \item Afterwards, we can calculate the reconstruction $\matr{f}^*$ of preference  flow by simply plugging back $\matr{\phi^*}$ into (\ref{eq:flowformula}):
+    \begin{equation}
+    \matr{f^*} = \matr{B} \matr{\phi^*}.
+    \end{equation}
+    The reconstructed preference flow $\matr{f^*}$ compared to the original preference flow $\matr{f}$ may even contain some new and/or lose some old edges.
+    In addition, $\matr{B}$, $\matr{\phi^*}$, and $\matr{f^*}$ now describe a consistent graph $\graph{G^*}$.
+    This allows now to define a consistency measure $\kappa$ as follows:
+    \begin{equation}
+    \label{eq:consistency}
+    \kappa = \frac{\left \lVert \matr{f^*} \right \rVert}{\left \lVert \matr{f} \right \rVert}.
+    \end{equation}
+    Equation (\ref{eq:consistency}) represents the cosine of the angle between $\matr{f}$ and $\matr{f^*}$ in the column space of matrix $\matr{B}$.
+    Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G^*}$.
+    $\kappa$ ranges from 0 to 1, with 1 meaning fully consistent.
+    
   \end{enumerate}
-  
-  (TODO: \v{c}ini se nepotrebno komplicirano uvoditi metodu od koje na kraju samo dobijemo zbroj svih bridova koji utječu u čvor minus oni koji izlaze iz njega.)
   
   \section{ALGORITHM} 
   
@@ -177,51 +215,51 @@
   \end{itemize}
   
   Let there be total of $N$ assets in $D$ days.
-  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in 1..N$ and $t \in 0..D-1$.
+  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in \left[1 \upto N\right]$ and $t \in \left[0 \upto D-1\right]$.
   The log prices $b_i^{(t)}$, log price differences $c_{i,j}^{(t)}$ between assets $i$ and $j$, and rolling means $m_{i,j}^{(t)}$ and standard deviations $d_{i,j}^{(t)}$ of log price differences over past time window of size $T$ are obtained as follows:
   
   \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right), \end{equation}
   \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
-  \begin{equation} m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau=1}^{T} c_{i,j}^{(t - \tau)} \label{eq:m}, \end{equation}
-  \begin{equation} d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=1}^{T} \left(c_{i,j}^{(t - \tau)} - m_{i,j}^{(t)} \right)^2} \label{eq:d}. \end{equation}
+  \begin{equation} m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau=1}^T c_{i,j}^{(t - \tau)} \label{eq:m}, \end{equation}
+  \begin{equation} d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=1}^T \left(c_{i,j}^{(t - \tau)} - m_{i,j}^{(t)} \right)^2} \label{eq:d}. \end{equation}
   
-  Note that period over which means and standard deviations of log price differences are calculated does not include time step $t$.
-  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
-  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
-  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
-  \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
-  and decoded from $k$ as:
-  \begin{equation} i = \left\lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \right\rfloor, \end{equation}
-  \begin{equation} j = k + i \cdot \left.(i + 1) \middle/ 2\right. - N \cdot (i - 1) + 1. \end{equation}
-  An example of proposed coding is shown on figure \ref{fig:coding}.
-  
-  \begin{figure}[h]
-    \centering
-    \begin{tabular}{C|CCCCC}
-      i/j & 1 & 2 & 3 & 4 & 5 \\ \hline
-      1 & \cdot & 0 & 1 & 2 & 3 \\
-      2 & \cdot & \cdot & 4 & 5 & 6 \\
-      3 & \cdot & \cdot & \cdot & 7 & 8 \\
-      4 & \cdot & \cdot & \cdot & \cdot & 9 \\
-      5 & \cdot & \cdot & \cdot & \cdot & \cdot
-    \end{tabular}
-    \hspace{0.8cm}
-    \begin{tabular}{C|CC}
-    k & i & j \\ \hline
-    0 & 1 & 2 \\
-    1 & 1 & 3 \\
-    2 & 1 & 4 \\
-    3 & 1 & 5 \\
-    4 & 2 & 3 \\
-    5 & 2 & 4 \\
-    6 & 2 & 5 \\
-    7 & 3 & 4 \\
-    8 & 3 & 5 \\
-    9 & 4 & 5 \\
-    \end{tabular}
-    \caption{Example of the proposed coding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.}
-    \label{fig:coding}
-  \end{figure}
+%  Note that period over which means and standard deviations of log price differences are calculated does not include time step $t$.
+%  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
+%  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
+%  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
+%  \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
+%  and decoded from $k$ as:
+%  \begin{equation} i = \left\lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \right\rfloor, \end{equation}
+%  \begin{equation} j = k + i \cdot \left.(i + 1) \middle/ 2\right. - N \cdot (i - 1) + 1. \end{equation}
+%  An example of proposed coding is shown on figure \ref{fig:coding}.
+%  
+%  \begin{figure}[h]
+%    \centering
+%    \begin{tabular}{C|CCCCC}
+%      i/j & 1 & 2 & 3 & 4 & 5 \\ \hline
+%      1 & \cdot & 0 & 1 & 2 & 3 \\
+%      2 & \cdot & \cdot & 4 & 5 & 6 \\
+%      3 & \cdot & \cdot & \cdot & 7 & 8 \\
+%      4 & \cdot & \cdot & \cdot & \cdot & 9 \\
+%      5 & \cdot & \cdot & \cdot & \cdot & \cdot
+%    \end{tabular}
+%    \hspace{0.8cm}
+%    \begin{tabular}{C|CC}
+%    k & i & j \\ \hline
+%    0 & 1 & 2 \\
+%    1 & 1 & 3 \\
+%    2 & 1 & 4 \\
+%    3 & 1 & 5 \\
+%    4 & 2 & 3 \\
+%    5 & 2 & 4 \\
+%    6 & 2 & 5 \\
+%    7 & 3 & 4 \\
+%    8 & 3 & 5 \\
+%    9 & 4 & 5 \\
+%    \end{tabular}
+%    \caption{Example of the proposed coding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.}
+%    \label{fig:coding}
+%  \end{figure}
   
   \subsection{Creating the graph of preference flow}
   
@@ -242,24 +280,24 @@
     w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right..
   \end{equation}
   
-  Thus, it is possible to create a relatively sparse graph for each time step $t \in T..D-1$.
+  Thus, it is possible to create a relatively sparse graph for each time step $t \in \left[T \upto D-1\right]$.
   At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
   Lower values of parameter $\alpha$ yield denser graphs.
   
   \subsection{Choosing assets from graph by potential method}
   We obtain preference of each asset via the potential method, as described earlier in \ref{sub:potential}.
-  Let $\varphi_i$ denote the potential of asset $i$ at the current time step.
+  Let $\phi_i$ denote the potential of asset $i$ at the current time step.
   By obtaining preferences of each asset it is now possible to pick assets into the portfolio.
   The most preferred assets are being bought while the least preferred should be short-sold if possible.
   
   For determining the assets that should be held in portfolio at time step $t$, we find such assets $i$ which satisfy:
   \begin{equation}
-    \varphi_i \ge \beta \cdot \Phi,
+    \phi_i \ge \beta \cdot \Phi,
   \end{equation}
-  where $\Phi$ is $\max_j \left\{ \left|\varphi_j\right| \right\}$, and $\beta$ is the asset selection threshold parameter mentioned earlier.
+  where $\Phi$ is $\max_j \left\{ \left| \phi_j \right| \right\}$, and $\beta$ is the asset selection threshold parameter mentioned earlier.
   Likewise, for short-selling we choose those assets $i$ which satisfy:
   \begin{equation}
-  \varphi_i \le -\beta \cdot \Phi.
+  \phi_i \le -\beta \cdot \Phi.
   \end{equation}
   
   \section{RESULTS}
