@@ -19,7 +19,7 @@
 \newcolumntype{C}{>{$}c<{$}}
 \newcolumntype{R}{>{$}r<{$}}
 
-\usepackage{lmodern}
+%\usepackage{lmodern}
 
 %\newcommand{\matr}[1]{\bm{#1}}
 %%\newcommand{\matr}[1]{#1}
@@ -53,12 +53,12 @@
   
   \section{INTRODUCTION}
   
-  The task of portfolio optimization is to try to enhance various criteria, which most of the time include maximization of expected return and minimization of deviation\dots
+%  The task of portfolio optimization is to try to enhance various criteria, which most of the time include maximization of expected return and minimization of deviation\dots
   
   Classical statistical arbitrage methods take into account some pair of assets whose prices behave similarly during certain period of time measured by cointegration, correlation, or some other measure of similarity; then try to find a moment in time when those assets' prices go out of what was statistically considered as `normal' range.
   When such opportunities show up, we can take advantage of them by predicting, with a certain statistical confidence, that they will return to the `normal' range once again in the next time step, and do the trading accordingly to this prediction.
   
-  In this paper, we present a new method that uses predictions obtained by statistical arbitrage method, with confidence as a proxy for describing the preference relations between pairs of assets.
+  In this paper, we propose a new method that uses predictions obtained by statistical arbitrage method, with confidence as a proxy for describing the preference relations between pairs of assets.
   Next, a graph is formed based on those relations, so that in-depth analysis of assets' interaction with each other might be performed.
   Finally, assets are put into order by preference, and picked into the portfolio.
   The idea of this method is to create a generalization of statistical arbitrage methods that will be more robust and perform better when working on a larger number of assets.
@@ -77,7 +77,7 @@
   \subsection{Preference relations and utility function}
   
   Let $\Omega$ be any set of entities.
-  Preference relation $\succ_{\Omega \times \Omega}$ is a \textit{strict weak ordering} that describes the way humans prefer some entity over another.
+  Preference relation $\succ$ defined over $\Omega \times \Omega$ is a strict weak ordering that describes the way humans prefer some entity over another.
   This relation is specific in that it is ($\forall x, y, z \in \Omega$):
   \begin{itemize}
     \item \textit{irreflexive}: every entity $x$ is not preferrable over itself, %($\neg \left( x \succ x \right)$),
@@ -114,19 +114,15 @@
   This imposed preference relation should preferably be consistent, but when it comes to larger number of entities, it may become infeasible to construct a graph with such qualities.
   Instead of aiming at consistency of relations, we devise a consistency measure and use it as an additional parameter in decision making.
   
-  The measure of this preference flow is determined by a statistical arbitrage method, and it corresponds to the magnitude of a pair of assets prices ratio going out of what is considered statistically confident range.
-  This is illustrated on Fig. \ref{fig:devmag}.
+  Construction of graph is based on a statistical arbitrage method.
+  In short, an edge going from node $i$ to node $j$ with weight $w_{i,j}$ will be present in graph if and only if following happens: assets represented by nodes $i$ and $j$ have demonstrated similar behavior during the past period of time, but have suddenly diverged at the moment, as determined per statistical measures.
+  Weight $w_{i,j}$ corresponds to the magnitude of this divergence.  
+  A detailed description of procedure is given later in \ref{sub:creating-graph}.
   
-  \begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.png}
-    \caption{(TODO: put a better image, this is just for a placeholder) Log price difference of a pair of assets during period of $T + 1$ time steps.
-    During the last observed timestep, it goes (TODO: broj) times standard deviations away from mean value of past time window of size $T$.
-    This would be measure of preference flow from asset with higher price to the asset with lower price.}
-    \label{fig:devmag}
-  \end{figure}
+%  The measure of this preference flow is determined by a statistical arbitrage method, and it corresponds to the magnitude of a pair of assets prices ratio going out of what is considered statistically confident range.
+%  
 
-  The main idea of preference flow is that preference of a particular node depends on amount of preference flowing in and out of it.
+  The main idea of preference flow is that preference of a particular node should depend on amount of preference flowing in and out of it.
   This allows for some kind of generalized statistical arbitrage over multiple assets at a time.
    
   \subsection{Potential method}
@@ -216,7 +212,7 @@
     \end{equation}
     Equation (\ref{eq:consistency}) represents the cosine of the angle between $\matr{f}$ and $\matr{f^*}$ in the column space of matrix $\matr{B}$.
     Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
-    $\kappa$ ranges from 0 to 1, with 0 being full inconsistency (virtually unreachable), and 1 meaning full consistency.
+    $\kappa$ ranges from 0 to 1, with 0 meaning full inconsistency (virtually unreachable), and 1 meaning full consistency.
     
   \end{enumerate}
   
@@ -287,19 +283,18 @@
 %  \end{figure}
   
   \subsection{Creating the graph of preference flow}
-  
+  \label{sub:creating-graph}
   Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
-  Considering one time step $t$, we find all such pairs of assets $(i,j)$ for which holds:
-  
+  Considering one time step $t$, we find all such pairs of assets $(i,j)$ for which holds:  
   \begin{equation}
     \label{eq:thresh}
     \left| c_{i,j}^{(t)} - m_{i,j}^{(t)} \right| > \alpha \cdot d_{i,j}^{(t)},
   \end{equation}
   i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
-  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
-
-  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{(t)}$ going from $i$ to $j$. Weight $w_{i,j}^{(t)}$ is obtained as:
-  
+  An example is shown on Fig. \ref{fig:devmag}.
+%  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
+  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{(t)}$ going from $i$ to $j$.
+  Weight $w_{i,j}^{(t)}$ is obtained as:
   \begin{equation}
     \label{eq:weight}
     w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right..
@@ -308,6 +303,15 @@
   Thus it is possible to create a graph of preference flow for each time step $t \in \left[T \upto D-1\right]$.
   At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
   Setting lower values for parameter $\alpha$ yields denser graphs.
+  
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.png}
+    \caption{(TODO: put a better image, this is just for a placeholder) Log price difference of a pair of assets during period of $T + 1$ time steps.
+      During the last observed timestep, it goes (TODO: broj) times standard deviations away from mean value of past time window of size $T$.
+      This would be measure of preference flow from asset with higher price to the asset with lower price.}
+    \label{fig:devmag}
+  \end{figure}
   
   \subsection{Choosing assets from graph}
   We obtain preference of each asset via the potential method, as described earlier in \ref{sub:potential}.
@@ -432,12 +436,7 @@
   % so it should come on the page before the last. Make
   % sure that you do not shorten the textheight too much.
   
-  \section*{APPENDIX}
- 
-  \subsection{Rolling mean and variance algorithm}
-  \label{sub:rolling}
-  
-  \verb|TODO|
+  % \section*{APPENDIX}
 
   \begin{thebibliography}{9} % mind the label-width
     
