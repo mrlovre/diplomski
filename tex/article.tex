@@ -9,7 +9,7 @@
 %\usepackage{lmodern}
 \usepackage{amsmath} % assumes amsmath package installed
 \usepackage{amssymb} % assumes amsmath package installed
-\usepackage[activate={true, nocompatibility}, final, tracking=true, kerning=true, spacing=true, factor=1100, stretch=20, shrink=20]{microtype} % nicer typesetting
+\usepackage[activate={true, nocompatibility}, final, tracking=true, kerning=true, spacing=true, factor=1000, stretch=20, shrink=20]{microtype} % nicer typesetting
 
 \usepackage{fixmath}
 \usepackage{array}
@@ -24,16 +24,14 @@
 %\newcommand{\matr}[1]{\bm{#1}}
 %%\newcommand{\matr}[1]{#1}
 \newcommand{\matr}[1]{\mathbold{#1}}
-\newcommand{\graph}[1]{\bm{\mathcal{#1}}}
+\newcommand{\graph}[1]{\mathcal{#1}}
 
 \newcommand{\T}{\mathrm{T}}
 \newcommand{\upto}{\mathinner {\ldotp \ldotp}}
 
 \DeclareMathOperator*{\argmin}{arg\min}
 
-\title{\LARGE \bf Portfolio Optimization Based on a Complex Networks Model\\
-  \normalsize TODO: propose a better title}
-
+\title{\LARGE \bf Portfolio Optimization Using Preference Flow Based on Statistical Arbitrage}
 \author{Lovre Mr\v{c}ela et al.}
 
 \begin{document}
@@ -44,12 +42,12 @@
     
   \begin{abstract}
     
-  A new algorithm for portfolio optimization is presented which is based on statistical arbitrage, with potential method used to obtain the most preferred assets.
-  A graph that represents preference flow among financial assets (i.e., if an edge exists going from asset A to asset B, then A is preferred over B) is constructed at each time step a, using the modified version of statistical arbitrage.
+  A new algorithm for portfolio optimization is proposed which is based on statistical arbitrage, with potential method used to obtain the most preferred assets.
+  A graph that represents preference flow among financial assets (i.e., if an edge exists going from asset $\mathbold{A}$ to asset $\mathbold{B}$, then $\mathbold{A}$ is preferred over $\mathbold{B}$) is constructed at each time step, using the modified version of statistical arbitrage.
   Then, the preference of each asset is calculated, using the potential method\cite{caklovic}, from which the most preferred assets are selected into the portfolio for each time step.
   
   Method has been tested on dataset (TODO: which dataset), by simulating the portfolio obtained by the algorithm, including the trading cost of 0.1\%.
-  Sharpe ratios over 1.0 were recorded.
+  Sharpe ratios over 1.0 were observed.
   
   \end{abstract}
   
@@ -57,7 +55,13 @@
   
   The task of portfolio optimization is to try to enhance various criteria, which most of the time include maximization of expected return and minimization of deviation\dots
   
-  The approach that is taken in this paper relies on finding abrupt deviations of price relations between in the observed set of assets.
+  Classical statistical arbitrage methods take into account some pair of assets whose prices behave similarly during certain period of time measured by cointegration, correlation, or some other measure of similarity; then try to find a moment in time when those assets' prices go out of what was statistically considered as `normal' range.
+  When such opportunities show up, we can take advantage of them by predicting, with a certain statistical confidence, that they will return to the `normal' range once again in the next time step, and do the trading accordingly to this prediction.
+  
+  In this paper, we present a new method that uses predictions obtained by statistical arbitrage method, with confidence as a proxy for describing the preference relations between pairs of assets.
+  Next, a graph is formed based on those relations, so that in-depth analysis of assets' interaction with each other might be performed.
+  Finally, assets are put into order by preference, and picked into the portfolio.
+  The idea of this method is to create a generalization of statistical arbitrage methods that will be more robust and perform better when working on a larger number of assets.
   
 %  Each asset is compared to all other assets while looking for such specific deviations, so, in general, this algorithm performs better where there is larger number of assets.
   
@@ -70,26 +74,31 @@
   
   Following are descriptions of the key components in the algorithm: graph of preference flow, and choosing assets for the portfolio...
   
-  \subsection{Preference relation}
+  \subsection{Preference relations and utility function}
   
-  Preference relation is a \textit{strict weak ordering} that corresponds to the way humans prefer some entity over another.
-  This relation is specific in that it is:
+  Let $\Omega$ be any set of entities.
+  Preference relation $\succ_{\Omega \times \Omega}$ is a \textit{strict weak ordering} that describes the way humans prefer some entity over another.
+  This relation is specific in that it is ($\forall x, y, z \in \Omega$):
   \begin{itemize}
-    \item \textit{irreflexive} --- every entity is not preferrable over itself,
-    \item \textit{asymmetrical} --- if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$,
-    \item \textit{transitive} --- if $x$ is preferrable over $y$, and $y$ is preferrable over $z$, then $x$ is also preferrable over $z$,
-    \item \textit{transitive in incomparability} --- noting that $x$ and $y$ may be incomparable (i.e., neither $x$ is preferrable over $y$, nor $y$ is preferrable over $x$): if $x$ is incomparable with $y$, and $y$ is incomparable with $z$, then $x$ is also incomparable with $z$.
+    \item \textit{irreflexive}: every entity $x$ is not preferrable over itself, %($\neg \left( x \succ x \right)$),
+    \item \textit{asymmetrical}: if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$, %($x \succ y \Rightarrow \neg \left( y \succ x \right)$),
+    \item \textit{transitive}: if $x$ is preferrable over $y$, and $y$ is preferrable over $z$, then $x$ is also preferrable over $z$, %($x \succ y \wedge y \succ z \Rightarrow x \succ z$),
+    \item \textit{transitive in incomparability} (noting that $x$ and $y$ may be \textit{incomparable}, i.e. neither $x$ is preferrable over $y$, nor $y$ is preferrable over $x$): if $x$ is incomparable with $y$, and $y$ is incomparable with $z$, then $x$ is also incomparable with $z$.
   \end{itemize}
 
-  We naturally impose this kind of relation when describing relationships among the assets.
+  We naturally assume this kind of relation when describing relationships among the assets.
+  Determining that some asset is preferred over another is an easier task than assigning a preference rank to each asset individually, especially when the number of assets becomes large.
+  However, the latter is more useful for decision making, and therefore it is desirable to find a way of sorting assets in the order of preference.
+  
+  Utility function $U\colon \Omega \to \mathbb{R}$ is mapping from entities to real numbers, in such way that order of the mapping corresponds to the preference order of the entities, i.e. $\forall x, y \in \Omega, U(x) > U(y) \Rightarrow x \succ y$.
+  One such mapping is obtained by using potential method that is described later in this paper.
+  In addition to ordering of the entities, utility function also provides a magnitude of preference for particular entity, and hence it is more informative when it comes to the decision making.
   
   \subsection{Graph of preference flow}
   
-  This is a graph whose nodes represent assets, and edges (directed) describe how much more is one asset preferred over the other.
-  In case of missing edge between two assets, we consider that neither is preferable over another.
-  The graph as a whole describes preference flow among its nodes.
-  Relations in this graph should ideally be in compliance with properties of previously mentioned properties of preference relation.
-  However, they might also be inconsistent --- this is dealt with in the later stage of algorithm.
+  Graph of preference flow is a simple weighted directed graph whose nodes represent entities, edges represent preference for one entity over another, and edge weights correspond to the strength of the preferences.
+  In case of missing edge between two nodes, it is considered that neither entity is preferable over another (incomparability).
+  The graph as a whole describes preference flow among the entities.
   An example of graph is shown on Fig. \ref{fig:graph}.
   
   \begin{figure}[h]
@@ -99,14 +108,21 @@
     \label{fig:graph}
   \end{figure}
   
-  The measure of this preference flow is determined by a statistical arbitrage algorithm, and it corresponds to the magnitude of a pair of assets prices ratio going out of what is considered statistically confident range.
+  Connections in this graph impose a preference relation among entities that are in the graph, in a way that an edge that goes from node $A$ to node $B$ means that $A$ is preferred over $B$.
+  It is the case that neither node is in relation with itself (irrelexivity), and that no multiple connections are allowed between two nodes (implies asymmetry).
+  However, problems arise with the aforementioned properties of transitivity, and transitivity in incomparability, which may not hold for an arbitrary instance of the graph.
+  This imposed preference relation should preferably be consistent, but when it comes to larger number of entities, it may become infeasible to construct a graph with such qualities.
+  Instead of aiming at consistency of relations, we devise a consistency measure and use it as an additional parameter in decision making.
+  
+  The measure of this preference flow is determined by a statistical arbitrage method, and it corresponds to the magnitude of a pair of assets prices ratio going out of what is considered statistically confident range.
   This is illustrated on Fig. \ref{fig:devmag}.
   
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.png}
     \caption{(TODO: put a better image, this is just for a placeholder) Log price difference of a pair of assets during period of $T + 1$ time steps.
-    During the last observed timestep, it goes (TODO: broj) times standard deviations away from mean value of past time window of size $T$. This would be measure of preference flow from asset with higher price to the asset with lower price.}
+    During the last observed timestep, it goes (TODO: broj) times standard deviations away from mean value of past time window of size $T$.
+    This would be measure of preference flow from asset with higher price to the asset with lower price.}
     \label{fig:devmag}
   \end{figure}
 
@@ -117,7 +133,7 @@
   \label{sub:potential}
   From previously obtained graph it is possible to tell which pair of assets has the highest preference flow.
   However, it is not yet possible to directly tell which are the most or least preferrable assets, or obtain the measure of preference for individual assets.
-  For calculating the preference of some node in the graph, we use the potential method\cite{caklovic}.
+  To calculate preferences for each node in the graph, we use the potential method\cite{caklovic}.
   The potential of a node corresponds to difference in amount of flow going in and out of the node.
   
   A concise summary of the method is as follows:
@@ -150,13 +166,13 @@
     Equation (\ref{eq:flowformula}) simply means that the difference between potential of any two nodes should result result in weight of the edge between them.
     This is possible only for consistent graphs, and most of the time our graphs will be inconsistent.
     In that case we try to find an approximate solution $\matr{\phi^*}$ that minimizes the square error:
-    \begin{equation*}
-    \begin{gathered}
-    \matr{\phi^*} = \argmin_{\matr{\phi}} \left\{ \left \lVert \matr{B} \matr{\phi} - \matr{f}\textsl{} \right \rVert ^ 2 \right\} \\ \Downarrow \\
-    \frac{\partial \left \lVert \matr{B} \matr{\phi^*} - \matr{f} \right \rVert ^ 2}{\partial \matr{\phi^*}} = \mathbf{0},
-    \end{gathered}
-    \end{equation*}
-    which brings us to the following equation:
+    \begin{gather}
+    \matr{\phi^*} = \argmin_{\matr{\phi}} \left\{ \left \lVert \matr{B} \matr{\phi} - \matr{f}\textsl{} \right \rVert ^ 2 \right\} \nonumber \\ 
+    \Downarrow \nonumber \\
+    \label{eq:derivative}
+    \frac{\partial \left \lVert \matr{B} \matr{\phi^*} - \matr{f} \right \rVert ^ 2}{\partial \matr{\phi^*}} = \mathbf{0}.
+    \end{gather}
+    Solving (\ref{eq:derivative}) via commonly used techniques of matrix calculus brings us to the following equation:
     \begin{equation}
     \label{eq:flow}
     \matr{B}^\T \matr{B} \matr{\phi^*} = \matr{B}^\T \matr{f}.
@@ -169,15 +185,14 @@
     where $\matr{j}$ is vector of ones with same dimension as $\matr{\phi^*}$.
     This ensures an unique solution for which total amounts of positive and negative potential will be equal.
     
-    \item Joining the previous two equations together by adding (\ref{eq:sumiszero}) to each row of (\ref{eq:flow}) results in:
-    \begin{equation*}
-    \begin{aligned}
-    \matr{B}^\T \matr{B} \matr{\phi^*} + \matr{J} \matr{\phi^*} &= \matr{B}^\T \matr{f}\\
+    \item Joining the previous two equations together by adding (\ref{eq:sumiszero}) to each row in (\ref{eq:flow}) results in:
+    \begin{align}
+    \matr{B}^\T \matr{B} \matr{\phi^*} + \matr{J} \matr{\phi^*} &= \matr{B}^\T \matr{f} \nonumber \\
+    \label{eq:joined}
     \left[\matr{B}^\T \matr{B} + \matr{J} \right] \matr{\phi^*} &= \matr{B}^\T \matr{f},
-    \end{aligned}
-    \end{equation*}
+    \end{align}
     where $\matr{J}$ is a matrix of ones with same dimension as $\matr{B}^\T \matr{B}$.
-    Finally, solving for $\matr{\phi^*}$ gives us:
+    Finally, solving (\ref{eq:joined}) for $\matr{\phi^*}$ gives us:
     \begin{equation}
     \label{eq:final}
     \matr{\phi^*} = \left[\matr{B}^\T \matr{B} + \matr{J} \right]^{-1} \matr{B}^\T \matr{f}.
@@ -193,15 +208,15 @@
     \matr{f^*} = \matr{B} \matr{\phi^*}.
     \end{equation}
     The reconstructed preference flow $\matr{f^*}$ compared to the original preference flow $\matr{f}$ may even contain some new and/or lose some old edges.
-    In addition, $\matr{B}$, $\matr{\phi^*}$, and $\matr{f^*}$ now describe a consistent graph $\graph{G^*}$.
+    In addition, $\matr{B}$, $\matr{\phi^*}$, and $\matr{f^*}$ now describe a consistent graph $\graph{G}^*$.
     This allows now to define a consistency measure $\kappa$ as follows:
     \begin{equation}
     \label{eq:consistency}
     \kappa = \frac{\left \lVert \matr{f^*} \right \rVert}{\left \lVert \matr{f} \right \rVert}.
     \end{equation}
     Equation (\ref{eq:consistency}) represents the cosine of the angle between $\matr{f}$ and $\matr{f^*}$ in the column space of matrix $\matr{B}$.
-    Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G^*}$.
-    $\kappa$ ranges from 0 to 1, with 1 meaning fully consistent.
+    Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
+    $\kappa$ ranges from 0 to 1, with 0 being full inconsistency (virtually unreachable), and 1 meaning full consistency.
     
   \end{enumerate}
   
@@ -215,13 +230,23 @@
   \end{itemize}
   
   Let there be total of $N$ assets in $D$ days.
-  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in \left[1 \upto N\right]$ and $t \in \left[0 \upto D-1\right]$.
-  The log prices $b_i^{(t)}$, log price differences $c_{i,j}^{(t)}$ between assets $i$ and $j$, and rolling means $m_{i,j}^{(t)}$ and standard deviations $d_{i,j}^{(t)}$ of log price differences over past time window of size $T$ are obtained as follows:
-  
-  \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right), \end{equation}
+  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in {\left[1 \upto N\right]}$ and $t \in {\left[0 \upto D-1\right]}$.
+  The log prices $b_i^{(t)}$, and log price differences $c_{i,j}^{(t)}$ between assets $i$ and $j$ are obtained as follows:
+  \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right) \end{equation}
   \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
-  \begin{equation} m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau=1}^T c_{i,j}^{(t - \tau)} \label{eq:m}, \end{equation}
-  \begin{equation} d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=1}^T \left(c_{i,j}^{(t - \tau)} - m_{i,j}^{(t)} \right)^2} \label{eq:d}. \end{equation}
+  and rolling means $m_{i,j}^{(t)}$ and standard deviations $d_{i,j}^{(t)}$ of log price differences over the past time window of size $T$ are obtained as follows:
+   
+  \begin{equation}
+    \label{eq:mean}
+    m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
+  \end{equation}
+  \begin{equation}
+    \label{eq:deviation}
+    d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=t - T}^{t - 1} \left(c_{i,j}^{(\tau)} - m_{i,j}^{(t)} \right)^2}.
+  \end{equation}
+  
+  Note that in summation used in (\ref{eq:mean}, \ref{eq:deviation}) time step $t$ was intentionally excluded, therefore summation goes only to $t - 1$.
+  We use these calculations as basis for creating the portfolio.
   
 %  Note that period over which means and standard deviations of log price differences are calculated does not include time step $t$.
 %  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
@@ -264,7 +289,7 @@
   \subsection{Creating the graph of preference flow}
   
   Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
-  Considering the time step $t$, we find all such pairs of assets $(i,j)$ for which holds:
+  Considering one time step $t$, we find all such pairs of assets $(i,j)$ for which holds:
   
   \begin{equation}
     \label{eq:thresh}
@@ -273,31 +298,42 @@
   i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
   Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
 
-  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, and a weighed edge going from $i$ to $j$, with weight $w_{i,j}^{(t)}$ obtained as:
+  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{(t)}$ going from $i$ to $j$. Weight $w_{i,j}^{(t)}$ is obtained as:
   
   \begin{equation}
     \label{eq:weight}
     w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right..
   \end{equation}
   
-  Thus, it is possible to create a relatively sparse graph for each time step $t \in \left[T \upto D-1\right]$.
+  Thus it is possible to create a graph of preference flow for each time step $t \in \left[T \upto D-1\right]$.
   At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
-  Lower values of parameter $\alpha$ yield denser graphs.
+  Setting lower values for parameter $\alpha$ yields denser graphs.
   
-  \subsection{Choosing assets from graph by potential method}
+  \subsection{Choosing assets from graph}
   We obtain preference of each asset via the potential method, as described earlier in \ref{sub:potential}.
-  Let $\phi_i$ denote the potential of asset $i$ at the current time step.
-  By obtaining preferences of each asset it is now possible to pick assets into the portfolio.
-  The most preferred assets are being bought while the least preferred should be short-sold if possible.
+  By obtaining the measure of preference of each asset it is now possible to pick assets for the portfolio.
+  The most preferred assets should be bought while the least preferred should be short-sold if possible.
+  
+  Let $\matr{\phi}^{(t)}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{(t)} \in \matr{\phi}^{(t)}$ denote the preference of asset $i$ at time step $t$.
+  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
+  Lower values of $\kappa$ suggest that we should hedge our portfolio by including some more assets in the order of preference, while higher values suggest that it is safer to do trading with smaller number of assets.
+  So, the bound on the assets which will be taken into portfolio is proportional to the consinstency measure $\kappa$.
+  Depending on the nature of assets we may tune the consistency measure $\kappa$ to be more or less inclined to hedging by transforming it to
+  \begin{equation}
+    \kappa^\prime = a + (1 - a)\kappa^b,
+  \end{equation}
+  where $a \in [0, 1], b \in \mathbb{R}^+$.
+  For default values of $a = 0, b = 1$, $\kappa^\prime$ equals $\kappa$.
+  In our dataset, values $a = 0.5$ and $b = 0.5$ achieved better performances than the default ones.
   
   For determining the assets that should be held in portfolio at time step $t$, we find such assets $i$ which satisfy:
   \begin{equation}
-    \phi_i \ge \beta \cdot \Phi,
+    \phi_i^{(t)} \ge \kappa^\prime \cdot \Phi,
   \end{equation}
-  where $\Phi$ is $\max_j \left\{ \left| \phi_j \right| \right\}$, and $\beta$ is the asset selection threshold parameter mentioned earlier.
-  Likewise, for short-selling we choose those assets $i$ which satisfy:
+  where $\Phi$ is $\max_j \left\{ \left| \phi_j \right| \right\}$.
+  Likewise, for short-selling we choose those assets $i$ that satisfy:
   \begin{equation}
-  \phi_i \le -\beta \cdot \Phi.
+    \phi_i^{(t)} \le -\kappa^\prime \cdot \Phi.
   \end{equation}
   
   \section{RESULTS}
@@ -387,6 +423,7 @@
   \section{CONCLUSIONS}
   
   Algorithm works on pairs of assets, looking for those deviations which are  uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
+  It adapts to the inconsistence of preferences by picking variable number of assets into the portfolio.
     
   % \addtolength{\textheight}{-12cm} % This command serves to balance the column lengths
   % on the last page of the document manually. It shortens
