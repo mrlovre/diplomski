@@ -1,0 +1,20 @@
+T: 60
+d: 0.0
+Avg (year): 0.98336
+Stddev (year): 0.77905
+Sharpe ratio (year): 1.26225
+Profit:
+  positive only: 89.58775
+  negative only: -58.24852
+  total: 31.33923
+  positive to negative ratio: 1.53803
+Average accuracy: 0.34902
+Average turnovers (range [0, 2]):
+  top: 0.53083
+  bottom: 0.62087
+  total: 0.57585
+Total turnovers:
+  top: 3291.66667
+  bottom: 3850.00000
+  total: 7141.66667
+Actual profit, if transaction cost were 0.1%: 24.19757
