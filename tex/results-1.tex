@@ -1,13 +1,12 @@
-% Please add the following required packages to your document preamble:
-% \usepackage{booktabs}
-\begin{table*}[tp]
+\begin{table}[b]
   \centering
   \caption{Results for $T = 60, \alpha=0$.}
   \label{table:results-1}
-  \begin{tabularx}{\textwidth}{@{}l|rrrrrrr@{}}
+  \begin{tabularx}{\textwidth}{@{}lrrrrrrr@{}}
     \toprule
-    a & \multicolumn{3}{c}{0.0} & \multicolumn{3}{c}{0.5} & \multicolumn{1}{c}{1.0} \\ \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-8}
-    b & \multicolumn{1}{c}{0.5} & \multicolumn{1}{c}{1.0} & \multicolumn{1}{c}{2.0} & \multicolumn{1}{c}{0.5} & \multicolumn{1}{c}{1.0} & \multicolumn{1}{c}{2.0} & \multicolumn{1}{c}{/} \\ \midrule
+    Parameter: & & & & & & & \\
+    \quad a & \multicolumn{3}{c}{0.0} & \multicolumn{3}{c}{0.5} & \multicolumn{1}{c}{1.0} \\ \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-8}
+    \quad b & \multicolumn{1}{c}{0.5} & \multicolumn{1}{c}{1.0} & \multicolumn{1}{c}{2.0} & \multicolumn{1}{c}{0.5} & \multicolumn{1}{c}{1.0} & \multicolumn{1}{c}{2.0} & \multicolumn{1}{c}{/} \\ \midrule
     Average return (year) & 0.95339 & 0.88967 & 0.84463 & 0.98336 & 0.95663 & 0.89704 & 1.00223 \\
     Volatility (year) & 0.77042 & 0.76595 & 0.74077 & 0.77905 & 0.77054 & 0.76660 & 0.78363 \\
     Sharpe ratio (year) & 1.23750 & 1.16152 & 1.14020 & 1.26225 & 1.24150 & 1.17015 & 1.27896 \\ \midrule
@@ -20,4 +19,4 @@
     Average turnover ratio & 0.59976 & 0.64224 & 0.73597 & 0.57585 & 0.59947 & 0.64089 & 0.55112 \\ \midrule
     Actual profit, if transaction cost were 0.1\% & 23.46019 & 21.89215 & 20.78402 & 24.19757 & 23.53996 & 22.07361 & 24.66204 \\ \bottomrule
   \end{tabularx}
-\end{table*}
+\end{table}
