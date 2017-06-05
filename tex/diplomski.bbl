@@ -5,10 +5,10 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Downes(2002)]{downes2002shortams}
-Michael Downes.
-\newblock \emph{{Short Math Guide for \LaTeX{}}}.
-\newblock American Mathematical Society, 2002.
-\newblock URL \url{ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf}.
+\bibitem[Oetiket et~al.()Oetiket, Partl, Hyna, and Schlegl]{oetiket2007lshort}
+T.~Oetiket, H.~Partl, Hyna, and E.~Schlegl.
+\newblock \emph{The not-so-short introduction to Latex}.
+\newblock URL
+  \url{http://www.ctan.org/tex-archive/info/lshort/english/lshort.pdf}.
 
 \end{thebibliography}

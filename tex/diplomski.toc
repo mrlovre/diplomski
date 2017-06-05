@@ -1,12 +1,13 @@
 \select@language {croatian}
 \contentsline {chapter}{\numberline {1}Uvod}{1}
 \contentsline {chapter}{\numberline {2}Metode i koncepti}{2}
-\contentsline {section}{\numberline {2.1}Relacija preferencije i funkcija korisnosti}{2}
-\contentsline {section}{\numberline {2.2}Graph of preference flow}{3}
-\contentsline {section}{\numberline {2.3}Potential method}{4}
+\contentsline {section}{\numberline {2.1}Statisti\IeC {\v c}ka arbitra\IeC {\v z}a zasnovana na standardnoj devijaciji}{2}
+\contentsline {section}{\numberline {2.2}Relacija preferencije i funkcija korisnosti}{2}
+\contentsline {section}{\numberline {2.3}Graf toka preferencija}{3}
+\contentsline {section}{\numberline {2.4}Metoda potencijala}{4}
 \contentsline {chapter}{\numberline {3}Algoritam}{7}
-\contentsline {section}{\numberline {3.1}Creating the graph of preference flow}{8}
-\contentsline {section}{\numberline {3.2}Choosing assets from graph}{8}
-\contentsline {chapter}{\numberline {4}Results}{11}
+\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{8}
+\contentsline {section}{\numberline {3.2}Konstrukcija portfelja prema grafu toka preferencija}{9}
+\contentsline {chapter}{\numberline {4}Rezultati}{11}
 \contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{13}
 \contentsline {chapter}{Literatura}{14}

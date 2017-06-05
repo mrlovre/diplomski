@@ -1,57 +1,49 @@
 This is BibTeX, Version 0.99d (TeX Live 2016/Arch Linux)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: diplomski.aux
-The style file: fer.bst
+The style file: unsrtnat.bst
 Database file #1: literatura.bib
-author.editor.sort is an unknown function---line 1194 of file fer.bst
-editor.organization.sort is an unknown function---line 1196 of file fer.bst
-author.organization.sort is an unknown function---line 1198 of file fer.bst
-author.sort is an unknown function---line 1199 of file fer.bst
-0 is an integer literal, not a function, for entry downes2002shortams
-while executing---line 1220 of file fer.bst
-You can't pop an empty literal stack for entry downes2002shortams
-while executing---line 1220 of file fer.bst
-You can't pop an empty literal stack for entry downes2002shortams
-while executing---line 1220 of file fer.bst
+Warning--I didn't find a database entry for "caklovic"
+Warning--empty year in oetiket2007lshort
 You've used 1 entry,
-            2495 wiz_defined-function locations,
-            557 strings with 4606 characters,
-and the built_in function-call counts, 298 in all, are:
-= -- 27
-> -- 7
-< -- 1
-+ -- 3
-- -- 2
-* -- 18
-:= -- 52
-add.period$ -- 4
+            2481 wiz_defined-function locations,
+            556 strings with 4607 characters,
+and the built_in function-call counts, 361 in all, are:
+= -- 23
+> -- 27
+< -- 0
++ -- 10
+- -- 8
+* -- 31
+:= -- 68
+add.period$ -- 3
 call.type$ -- 1
-change.case$ -- 2
+change.case$ -- 1
 chr.to.int$ -- 1
 cite$ -- 2
-duplicate$ -- 17
-empty$ -- 25
-format.name$ -- 3
-if$ -- 56
+duplicate$ -- 16
+empty$ -- 24
+format.name$ -- 9
+if$ -- 64
 int.to.chr$ -- 1
-int.to.str$ -- 1
+int.to.str$ -- 2
 missing$ -- 0
-newline$ -- 14
+newline$ -- 13
 num.names$ -- 3
-pop$ -- 7
+pop$ -- 10
 preamble$ -- 1
-purify$ -- 2
+purify$ -- 1
 quote$ -- 0
-skip$ -- 12
+skip$ -- 9
 stack$ -- 0
 substring$ -- 2
-swap$ -- 2
+swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 9
-warning$ -- 0
+type$ -- 7
+warning$ -- 1
 while$ -- 2
 width$ -- 0
-write$ -- 21
-(There were 7 error messages)
+write$ -- 18
+(There were 2 warnings)
