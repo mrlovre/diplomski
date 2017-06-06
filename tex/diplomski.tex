@@ -45,7 +45,7 @@
 \maketitle
 
 % Ispis stranice s napomenom o umetanju izvornika rada. Uklonite naredbu \izvornik ako želite izbaciti tu stranicu.
-\izvornik
+%\izvornik
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
 \zahvala{}
@@ -81,16 +81,16 @@
   U tom slučaju radi se o indiferentnosti između $a$ i $b$, i to se označava kao $a \sim b$.
 %  This relation is specific in that it is ($\forall x, y, z \in \Omega$):
 
-  Ova relacija specifična je po tome što je ($\forall x, y, z \in \Omega$):
+  Ova relacija specifična je po tome što je:
   \begin{itemize}
 %    \item \textit{irreflexive}: every entity $x$ is not preferrable over itself, %($\neg \left( x \succ x \right)$),
-    \item \textit{irrefleksivna}: $\neg \left( x \succ x \right)$ --- za nijedno dobro ne vrijedi da je više preferirano od samog sebe,
+    \item \textit{irrefleksivna}: $\forall x \in \Omega\colon \neg \left( x \succ x \right)$ --- za nijedno dobro ne vrijedi da je više preferirano od samog sebe,
 %    \item \textit{asymmetrical}: if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$, %($x \succ y \Rightarrow \neg \left( y \succ x \right)$),
-    \item \textit{asimetrična}: $x \succ y \Rightarrow \neg \left( y \succ x \right)$ --- ako je $x$ više preferirano od $y$, onda $y$ nije više preferirano od $x$,
+    \item \textit{asimetrična}: $\forall x, y \in \Omega\colon x \succ y \Rightarrow \neg \left( y \succ x \right)$ --- ako je $x$ više preferirano od $y$, onda $y$ nije više preferirano od $x$,
 %    \item \textit{transitive}: if $x$ is preferrable over $y$, and $y$ is preferrable over $z$, then $x$ is also preferrable over $z$, %($x \succ y \wedge y \succ z \Rightarrow x \succ z$),
-    \item \textit{tranzitivna}: $x \succ y \wedge y \succ z \Rightarrow x \succ z$ --- ako je $x$ više preferirano od $y$, te $y$ više preferirano od $z$, tada je i $x$ više preferirano od $z$,
+    \item \textit{tranzitivna}: $\forall x, y, z \in \Omega\colon x \succ y \wedge y \succ z \Rightarrow x \succ z$ --- ako je $x$ više preferirano od $y$, te $y$ više preferirano od $z$, tada je i $x$ više preferirano od $z$,
 %    \item \textit{transitive in incomparability} (noting that $x$ and $y$ may be \textit{incomparable}, i.e. neither $x$ is preferrable over $y$, nor $y$ is preferrable over $x$): if $x$ is incomparable with $y$, and $y$ is incomparable with $z$, then $x$ is also incomparable with $z$.
-    \item \textit{tranzitivna po indiferentnosti}: $x \sim y \wedge y \sim z \Rightarrow x \sim z$ --- ako je $x$ podjednako preferirano kao i $y$, te $y$ podjednako preferirano kao i $z$, tada je i $x$ podjednako preferirano kao i $z$.
+    \item \textit{tranzitivna po indiferentnosti}: $\forall x, y, z \in \Omega\colon x \sim y \wedge y \sim z \Rightarrow x \sim z$ --- ako je $x$ podjednako preferirano kao i $y$, te $y$ podjednako preferirano kao i $z$, tada je i $x$ podjednako preferirano kao i $z$.
   \end{itemize}
   
 %  We naturally assume this kind of relation we describe relationships among the assets.
@@ -104,7 +104,7 @@
 %  Utility function $U\colon \Omega \to \mathbb{R}$ is mapping from entities to real numbers, in such way that order of the mapping corresponds to the preference order of the entities, i.e. $\forall x, y \in \Omega, U(x) > U(y) \Rightarrow x \succ y$.
 %  One such mapping is obtained by using potential method that is described later in this paper.
 %  In addition to ordering of the entities, utility function also provides the intensity of preference for a particular entity, hence it is more informative when it comes to the decision making.
-  Funkcija korisnosti $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, na način da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega, U(x) > U(y) \Leftrightarrow x \succ y$.
+  Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, na način da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega \colon U(x) > U(y) \Leftrightarrow x \succ y$.
   Jedno takvo preslikavanje ostvaruje se korištenjem metode potencijala koja je opisana u poglavlju \ref{sec:metpot}.
   Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također unosi i mjeru intenziteta preferencije prema nekoj vrijednosnici, što znači da nosi više informacija od same relacije.
 
@@ -158,21 +158,37 @@
 
   \section{Metoda potencijala}
   \label{sec:metpot}
-  From previously obtained graph it is possible to tell which pair of assets has the highest preference flow.
-  However, it is not yet possible to directly tell which are the most or least preferrable assets, or obtain the measure of preference for individual assets.
-  To calculate preferences for each node in the graph, we use the potential method\cite{caklovic}.
-  The potential of a node corresponds to difference in amount of flow going in and out of the node.
+%  From previously obtained graph it is possible to tell which pair of assets has the highest preference flow.
+%  However, it is not yet possible to directly tell which are the most or least preferrable assets, or obtain the measure of preference for individual assets.
+%  To calculate preferences for each node in the graph, we use the potential method\cite{caklovic}.
+%  The potential of a node corresponds to difference in amount of flow going in and out of the node.
+  Iz prethodno dobivenog grafa moguće je utvrditi u kojem paru vrijednosnica je tok preferencije najveći.
+  Ipak, još uvijek nije moguće izravno utvrditi koja konkretna vrijednosnica je najviše ili najmanje poželjna, ili odrediti individualne mjere preferencije za svaku vrijednosnicu.
+  Kako bi to bilo moguće korištena je metoda potencijala koja je opisana u nastavku.
   
   %  A concise summary of the method is as follows:
   %  \begin{enumerate}
   %    \item 
-  For the observed graph $\graph{G}$, let there be a total of $N$ nodes, and maximum of $E = \binom{N}{2}$ edges, in case of a complete graph.
-  If $\graph{G}$ is not complete, we complete it by adding edges to it with weight 0 (direction doesn't matter),
-  thus forming a complete graph $\graph{G}$ with $\binom{N}{2}$ edges.
+%  For the observed graph $\graph{G}$, let there be a total of $N$ nodes, and maximum of $E = \binom{N}{2}$ edges, in case of a complete graph.
+%  If $\graph{G}$ is not complete, we complete it by adding edges to it with weight 0 (direction doesn't matter),
+%  thus forming a complete graph $\graph{G}$ with $\binom{N}{2}$ edges.
   % In our case, graphs will be incomplete for most of the time, but they may be \textsl{supplemented} (TODO: opposite of `reduced') to complete graphs, if we treat missing edges as edges of weight 0 (direction doesn't matter).
   
+  \subsection{Računanje potencijala čvorova}
+
+  Neka je za promatrani graf $\graph{G}$ ukupno $N$ čvorova, te najviše $E = \binom{N}{2}$ bridova, ukoliko se radi o potpunom grafu.
+  Ako $\graph{G}$ nije potpun graf, on se može dopuniti na način da se dodaju bridovi između čvorova koji nisu povezani, čija je težina jednaka 0, a sam smjer nije bitan.
+  U nastavku se podrazumijeva da je $\graph{G}$ potpun graf.
+  
   %    \item
-  Let $\matr{B}$ be the $E \times N$ incidence matrix of $\graph{G}$.
+%  Let $\matr{B}$ be the $E \times N$ incidence matrix of $\graph{G}$.
+  Neka je $\matr{B}$ matrica incidencije grafa $\graph{G}$.
+  Matrica incidencije je matrica za koju vrijedi:
+  \begin{enumerate}
+    \item broj redaka jednak je broju bridova $E$, i broj stupaca jednak je broju čvorova $N$;
+    \item za svaki od $E$ bridova grafa postoji odgovarajući redak u matrici koji ga opisuje: ako brid ide od čvora $i$ do čvora $j$, tada taj redak sadrži $-1$ i $1$ u stupcima koji odgovaraju čvorovima $i$ i $j$;
+    \item ostali elementi matrice su jednaki 0.
+  \end{enumerate}
   %    $\matr{B}$ has following properties:
   %    \begin{enumerate}
   %      \item each row corresponds to an edge in the graph, and each column to a node,
@@ -181,89 +197,119 @@
   %    \end{enumerate}
   %
   %    \item
-  Let $\matr{f}$ be $E \times 1$ vector that contains edge weights (i.e. preference flows).
-  Order of the edges must be the same as order of the edges in $\matr{B}$.
-  As mentioned before, in place of missing edges we simply put 0.
+%  Let $\matr{f}$ be $E \times 1$ vector that contains edge weights (i.e. preference flows).
+%  Order of the edges must be the same as order of the edges in $\matr{B}$.
+%  As mentioned before, in place of missing edges we simply put 0.
+  Neka je $\matr{f}$ vektor dimenzija $E \times 1$ koji sadrži težine bridova, tj. tokove preferencije,
   %    
   %    \item
-  Let $\matr{\phi}$ be $N \times 1$ vector that contains potentials of each node, in order that is the same as order of the nodes in $\matr{B}$.
+  i neka je $\matr{\phi}$ vektor dimenzija $N \times 1$ koji sadrži potencijale čvorova, koji se žele pronaći.
+  Redoslijed pripadnih čvorova i bridova moraju odgovarati redoslijedu čvorova i bridova u matrici incidencija $\matr{B}$.
+%  Let $\matr{\phi}$ be $N \times 1$ vector that contains potentials of each node, in order that is the same as order of the nodes in $\matr{B}$.
   
   %    \item 
-  Now, if $\graph{G}$ was consistent, then $\matr{B}$, $\matr{\phi}$, and $\matr{f}$ would satisfy the equation
+%  Now, if $\graph{G}$ was consistent, then $\matr{B}$, $\matr{\phi}$, and $\matr{f}$ would satisfy the equation
+  U idealnom slučaju, kada je $\graph{G}$ konzistentan, $\matr{B}$, $\matr{\phi}$, i $\matr{f}$ zadovoljavaju jednadžbu:
   \begin{equation}
   \label{eq:flowformula}
   \matr{B} \matr{\phi} = \matr{f}.
   \end{equation}
-  Equation (\ref{eq:flowformula}) states that the difference between potential of any two nodes should result in weight of the edge between them.
-  This is possible only for consistent graphs, and most of the time our graphs will be inconsistent.
-  In that case we try to find an approximate solution $\matr{\phi^*}$ that minimizes the square error:
+%  Equation (\ref{eq:flowformula}) states that the difference between potential of any two nodes should result in weight of the edge between them.
+%  This is possible only for consistent graphs, and most of the time our graphs will be inconsistent.
+%  In that case we try to find an approximate solution $\matr{\phi^*}$ that minimizes the square error:
+  Jednadžba (\ref{eq:flowformula}) tvrdi da razlike potencijala dvaju čvorova odgovaraju toku preferencije, odnosno težini brida koji povezuje te čvorove (do na predznak).
+  Ovo je zadovoljivo samo za konzistentne grafove, što često i nije slučaj u ovom zadatku.
+  U slučaju kada je graf $\graph{G}$ nekonzistentan, od interesa je pronaći rješenje $\matr{\phi^*}$ koje ima minimalnu kvadratnu pogrešku.
+  Tako originalni problem postaje:
   \begin{gather}
-  \matr{\phi^*} = \argmin_{\matr{\phi}} \left\{ \left \lVert \matr{B} \matr{\phi} - \matr{f}\textsl{} \right \rVert ^ 2 \right\} \nonumber \\ 
-  \Downarrow \nonumber \\
   \label{eq:derivative}
+  \matr{\phi^*} = \argmin_{\matr{\phi}} \left\{ \left \lVert \matr{B} \matr{\phi} - \matr{f}\textsl{} \right \rVert ^ 2 \right\} \quad
+  \Leftrightarrow \quad 
   \frac{\partial \left \lVert \matr{B} \matr{\phi^*} - \matr{f} \right \rVert ^ 2}{\partial \matr{\phi^*}} = \mathbf{0}.
   \end{gather}
-  Solving (\ref{eq:derivative}) via commonly used techniques of matrix calculus brings us to the following equation:
+  Matričnim deriviranjem (\ref{eq:derivative}) dobiva se sljedeća jednadžba:
   \begin{gather}
-  \label{eq:flow}
   2 \matr{B}^\T \left[\matr{B} \matr{\phi^*} - \matr{f} \right] = \mathbf{0} \nonumber \\
+  \label{eq:flow}
   \matr{B}^\T \matr{B} \matr{\phi^*} = \matr{B}^\T \matr{f}.
   \end{gather}
-  Equation (\ref{eq:flow}) determines $\matr{\phi^*}$ up to a constant (i.e. solution has one degree of freedom), so the following constraint is also included:
+%  Equation (\ref{eq:flow}) determines $\matr{\phi^*}$ up to a constant (i.e. solution has one degree of freedom), so the following constraint is also included:
+  Jednadžba (\ref{eq:flow}) određuje $\matr{\phi^*}$ do na konstantu, tj. rješenje ima jedan stupanj slobode.
+  Stoga se dodaje sljedeće ograničenje:
   \begin{equation}
   \label{eq:sumiszero}
   \matr{j}^\T \matr{\phi^*} = 0
   \end{equation}
-  where $\matr{j}$ is vector of ones with same dimension as $\matr{\phi^*}$.
-  This ensures an unique solution for which total amounts of positive and negative potential will be equal.
+  gdje je $\matr{j}$ vektor jedinica istih dimenzija kao i $\matr{\phi^*}$.
+  Jednadžba (\ref{eq:sumiszero}) osigurava jedinstveno rješenje u kojem je ukupan zbroj potencijala svih čvorova jednak nuli.
   
-  %    \item
-  Joining the previous two equations together by adding (\ref{eq:sumiszero}) to each row in (\ref{eq:flow}) results in:
+  Združivanjem prethodnih dviju jednadžbi u jednu, tako da se (\ref{eq:sumiszero}) doda svakom retku u (\ref{eq:flow}), dobiva se:
   \begin{align}
   \matr{B}^\T \matr{B} \matr{\phi^*} + \matr{J} \matr{\phi^*} &= \matr{B}^\T \matr{f} \nonumber \\
   \label{eq:joined}
   \left[\matr{B}^\T \matr{B} + \matr{J} \right] \matr{\phi^*} &= \matr{B}^\T \matr{f},
   \end{align}
-  where $\matr{J}$ is a matrix of ones with same dimension as $\matr{B}^\T \matr{B}$.
-  Finally, solving (\ref{eq:joined}) for $\matr{\phi^*}$ gives us:
+  gdje je $\matr{J}$ matrica jedinica istih dimenzija kao i $\matr{B}^\T \matr{B}$.
+  Konačno, rješavanjem (\ref{eq:joined}) po $\matr{\phi^*}$ dobiva se:
   \begin{equation}
   \label{eq:final}
   \matr{\phi^*} = \left[\matr{B}^\T \matr{B} + \matr{J} \right]^{-1} \matr{B}^\T \matr{f}.
   \end{equation}
   %    \item 
-  Furthermore, the term $\left[ \matr{B}^\T \matr{B} + \matr{J} \right]^{-1}$ in (\ref{eq:final}) can be simplified to $\frac{1}{N} \matr{I}$ due to $\matr{B}^\T \matr{B}$ being the Laplace matrix of a complete graph; thus, we can simplify (\ref{eq:final}) some more:
+  Dodatno, izraz (\ref{eq:final}) sadrži u sebi Laplaceovu matricu $\matr{L} = \matr{B}^\T\matr{B}$.
+  Za Laplaceovu matricu vrijedi:
+  \begin{itemize}
+    \item $(\matr{L})_{ii}$ je jednak broju susjeda čvora $i$,
+    \item ostali elementi jednaki su $-1$.
+  \end{itemize}
+  Kako je graf $\graph{G}$ potpun, tj. broj susjeda svakog čvora jednak je $N - 1$, izraz $\left[ \matr{B}^\T \matr{B} + \matr{J} \right]^{-1}$ se može pojednostavniti u $\frac{1}{N} \matr{I}$; i stoga, se (\ref{eq:final}) može svesti na:
   \begin{equation}
+  \label{eq:final2}
   \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
   \end{equation}
-  to get as computationally optimal expression as possible.
+  tako da se dobije računalno optimalan izraz.
+  Jednadžba (\ref{eq:final2}) tvrdi da se rješenje u smislu najmanjih kvadrata jednadžbe (\ref{eq:flowformula}) dobije na način da se za svaki čvor pribroje težine svih bridova koji izlaze iz njega, i oduzmu težine svih bridova koji ulaze u njega.
   
+  \subsection{Konzistentna rekonstrukcija grafa}
+  
+  Sada se na temelju dobivenog potencijala čvorova $\matr{\phi^*}$ može izračunati tok preferencije $\matr{f^*}$ koji je konzistentan s potencijalnom, tako da se u (\ref{eq:flowformula}) supstituira $\matr{\phi^*}$ umjesto $\matr{\phi}$:
   %    \item
-  Afterwards, we can calculate the consistent reconstruction $\matr{f^*}$ of preference  flow by simply plugging back $\matr{\phi^*}$ into (\ref{eq:flowformula}):
+%  Afterwards, we can calculate the consistent reconstruction $\matr{f^*}$ of preference flow by simply plugging back $\matr{\phi^*}$ into (\ref{eq:flowformula}):
   \begin{equation}
   \matr{f^*} = \matr{B} \matr{\phi^*}.
   \end{equation}
-  The reconstructed preference flow $\matr{f^*}$ compared to the original preference flow $\matr{f}$ may even contain some new and/or lose some old edges.
-  In addition, $\matr{B}$, $\matr{\phi^*}$, and $\matr{f^*}$ now describe a consistent graph $\graph{G}^*$.
-  It is now possible to define a consistency measure $\kappa$ as follows:
+%  The reconstructed preference flow $\matr{f^*}$ compared to the original preference flow $\matr{f}$ may even contain some new and/or lose some old edges.
+%  In addition, $\matr{B}$, $\matr{\phi^*}$, and $\matr{f^*}$ now describe a consistent graph $\graph{G}^*$.
+%  It is now possible to define a consistency measure $\kappa$ as follows:
+  Rekonsutrirani tok preferencije $\matr{f^*}$ u odnosu na originalni $\matr{f}$ može sadržavati neke nove, pa čak i izgubiti neke stare težine.
+  Dodatno, $\matr{B}$, $\matr{\phi^*}$, i $\matr{f}$ opisuju konzistentan graf $\graph{G}^*$.
+  Mjera konzistentnosti $\kappa$ definira se kao:
   \begin{equation}
   \label{eq:consistency}
   \kappa = \frac{\left \lVert \matr{f^*} \right \rVert}{\left \lVert \matr{f} \right \rVert}.
   \end{equation}
-  Equation (\ref{eq:consistency}) represents the cosine of the angle between $\matr{f}$ and $\matr{f^*}$ in the column space of matrix $\matr{B}$.
-  Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
-  $\kappa$ ranges from 0 to 1, with 0 meaning full inconsistency (virtually unreachable), and 1 meaning full consistency.
+%  Equation (\ref{eq:consistency}) represents the cosine of the angle between $\matr{f}$ and $\matr{f^*}$ in the column space of matrix $\matr{B}$.
+%  Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
+%  $\kappa$ ranges from 0 to 1, with 0 meaning full inconsistency (virtually unreachable), and 1 meaning full consistency.
+  Jednadžba (\ref{eq:consistency}) predstavlja kosinus kuta između $\matr{f}$ i $\matr{f^*}$ u prostoru određenom vektor stupacima matrice incidencije $\matr{B}$.
+  Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (praktički nedostižno), a 1 potpunu konzistentnost.
   
   %  \end{enumerate}
   
 \chapter{Algoritam}
 
-  Let there be total of $N$ assets in $D$ days.
-  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in {\left[1, 2, \ldots, N\right]}$ and $t \in {\left[0, 1, \ldots, D-1\right]}$.
-  The log prices $b_i^{(t)}$, and log price differences $c_{i,j}^{(t)}$ between assets $i$ and $j$ are obtained as follows:
+%  Let there be total of $N$ assets in $D$ days.
+%  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in {\left[1, 2, \ldots, N\right]}$ and $t \in {\left[0, 1, \ldots, D-1\right]}$.
+%  The log prices $b_i^{(t)}$, and log price differences $c_{i,j}^{(t)}$ between assets $i$ and $j$ are obtained as follows:
+%  \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right) \end{equation}
+%  \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
+%  and rolling means $m_{i,j}^{(t)}$ and standard deviations $d_{i,j}^{(t)}$ of log price differences over the past time window of size $T$ are obtained as follows:
+  Neka u zadanom skupu podataka ima ukupno $N$ vrijednosnica kroz $D$ vremenskih koraka.
+  Neka je cijena vrijednosnice $i$ u vremenskom koraku $t$ jednaka $a_i^{(t)}$, za $i \in {\left[1, 2, \ldots, N\right]}$ i $t \in {\left[0, 1, \ldots, D-1\right]}$.
+  Log cijene $b_i^{(t)}$, i razlike log cijena po parovima $c_{i,j}^{(t)}$ dobivaju se na sljedeći način:
   \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right) \end{equation}
   \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
-  and rolling means $m_{i,j}^{(t)}$ and standard deviations $d_{i,j}^{(t)}$ of log price differences over the past time window of size $T$ are obtained as follows:
-  
+  i srednja vrijednost $m_{i,j}^{(t)}$ i standardna devijacija $d_{i,j}^{(t)}$ razlika log cijena tijekom proteklog perioda duljine $T$ dobivene su kako slijedi:
   \begin{equation}
   \label{eq:mean}
   m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
@@ -273,18 +319,25 @@
   d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=t - T}^{t - 1} \left(c_{i,j}^{(\tau)} - m_{i,j}^{(t)} \right)^2}.
   \end{equation}
   
-  Note that in summation used in (\ref{eq:mean}, \ref{eq:deviation}) time step $t$ was intentionally excluded, therefore summation goes only to $t - 1$.
-  We use these calculations as basis for creating the portfolio.
+  Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, stoga sumiranje ide do $t - 1$.
+%  Note that in summation used in (\ref{eq:mean}, \ref{eq:deviation}) time step $t$ was intentionally excluded, therefore summation goes only to $t - 1$.
+  Ovi izračuni su temelj za daljnji tijek algoritma.
+%  We use these calculations as basis for creating the portfolio.
 
-  Note that period over which means and standard deviations of log price differences are calculated does not include time step $t$.
-  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
-  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
-  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
+%  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
+%  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
+%  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
+  Također valja primijetiti da bi izračunavanje srednjih vrijednosti i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
+  Stoga je preporučljivo koristiti algoritam s pomičnim prozorima za računanje, koji je opisan u dodatku (TODO).
+  Što se tiče memorijske potrošnje, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
+  Međutim, sva tri tenzora su antisimetrična, u smislu da vrijedi $c_{i,j}^{(t)} = -c_{j,i}^{(t)}$, $m_{i,j}^{(t)} = -m_{j,i}^{(t)}$, i $d_{i,j}^{(t)} = -d_{j,i}^{(t)}$, stoga je polovina informacije sadržane u njima redundantna.
+  Imajući to u vidu, ti tenzori se mogu `ispeglati' do dimenzije $(D - T) \times \left. N\cdot(N - 1) \middle/ 2\right.$, koristeći sljedeće preslikavanje kod kodiranja --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
   \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
-  and decoded from $k$ as:
+  a za dobivanje $(i, j)$ iz $k$ izrazi:
   \begin{equation} i = \left\lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \right\rfloor, \end{equation}
   \begin{equation} j = k + i \cdot \left.(i + 1) \middle/ 2\right. - N \cdot (i - 1) + 1. \end{equation}
-  An example of proposed coding is shown on figure \ref{fig:coding}.
+%  An example of proposed coding for $N = 5$ is shown on figure \ref{fig:coding}.
+  Na slici \ref{fig:coding} prikazano je kodiranje u slučaju $N = 5$ vrijednosnica.
   
   \begin{figure}[h]
     \centering
@@ -302,58 +355,68 @@
     \begin{minipage}{0.5\textwidth}
       \centering
       \begin{tabular}{C|CCCCCCCCCC}
+        k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ \hline
        i & 1 & 1 & 1 & 1 & 2 & 2 & 2 & 3 & 3 & 4 \\
-       j & 2 & 3 & 4 & 5 & 3 & 4 & 5 & 4 & 5 & 5 \\ \hline
-       k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
-%      k & i & j \\ \hline
-%      0 & 1 & 2 \\
-%      1 & 1 & 3 \\
-%      2 & 1 & 4 \\
-%      3 & 1 & 5 \\
-%      4 & 2 & 3 \\
-%      5 & 2 & 4 \\
-%      6 & 2 & 5 \\
-%      7 & 3 & 4 \\
-%      8 & 3 & 5 \\
-%      9 & 4 & 5 \\
+       j & 2 & 3 & 4 & 5 & 3 & 4 & 5 & 4 & 5 & 5 \\
       \end{tabular}
     \end{minipage}
-    \caption{Example of the proposed coding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.}
+    \caption{Example of the proposed encoding and decoding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.}
     \label{fig:coding}
   \end{figure}
 
   \section{Konstrukcija grafa toka preferencija}
   \label{sub:creating-graph}
-  Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
-  Considering one time step $t$, we find all such pairs of assets $(i,j)$ that satisfy:
+%  Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
+%  Considering one time step $t$, we find all such pairs of assets $(i,j)$ that satisfy:
+%  \begin{equation}
+%  \label{eq:thresh}
+%  \left| c_{i,j}^{(t)} - m_{i,j}^{(t)} \right| > \alpha \cdot d_{i,j}^{(t)},
+%  \end{equation}
+%  i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
+%  An illustration is shown on Fig. \ref{fig:devmag}.
+  Korištenjem prethodno dobivenih $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ sada je moguće kreirati graf toka preferencije među vrijednosnicama u svakom vremenskom koraku $t$.
+  Razmatrajući fiksni vremenski korak $t$, izdvajaju se svi parovi vrijednosnica $(i,j)$ za koje vrijedi:
   \begin{equation}
   \label{eq:thresh}
   \left| c_{i,j}^{(t)} - m_{i,j}^{(t)} \right| > \alpha \cdot d_{i,j}^{(t)},
   \end{equation}
-  i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
-  An illustration is shown on Fig. \ref{fig:devmag}.
+  tj. trenutna vrijednost razlike log cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od srednje vrijednosti izmjerene u proteklom periodu.
   %  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
-  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{(t)}$ going from $i$ to $j$.
-  Weight $w_{i,j}^{(t)}$ is obtained as:
+%  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{(t)}$ going from $i$ to $j$.
+%  Weight $w_{i,j}^{(t)}$ is obtained as:
+  Nakon toga, za svaki par $(i,j)$ koji zadovoljava (\ref{eq:thresh}) dodaju se u graf čvorovi $i$ i $j$, te brid koji ide od $i$ do $j$ s težinom $w_{i,j}^{(t)}$.
+  Težina $w_{i,j}^{(t)}$ dobiva se kao:
   \begin{equation}
   \label{eq:weight}
-  w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right..
+  w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right.,
   \end{equation}
+  što odgovara udaljenosti razlike log cijena od srednje vrijednosti mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veće od $\alpha$.
+  Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
-  Thus it is possible to create a graph of preference flow for each time step $t \in \left[T, T + 1, \ldots, D-1\right]$.
-  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
-  Setting lower values for parameter $\alpha$ yields denser graphs, and setting $\alpha = 0$ always yields complete graphs.
-  
-  \begin{figure}[h]
+  \begin{figure}[htb]
     \centering
     \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.png}
-    \caption{Log price difference between a pair of assets $(i, j)$ during a period of $T + 1$ time steps, where $T = 120$.
-      Dashed and dotted line represents mean value, and region between two dashed lines represents $\alpha$ standard deviation range from mean value, here $\alpha = 1$; both are calculated in the first $T$ time steps.
-      During the time step $T + 1$, log price difference goes over $\alpha$ standard deviations above mean value of past period of size $T$.
-      This would mean that two of the assets $i$ and $j$ would be added to the graph of preference flow at the time step $T + 1$.
-      Weight $w_{i,j}$ describes current deviation from mean value.}
+    \caption{
+%      Log price difference between a pair of assets $(i, j)$ during a period of $T + 1$ time steps, where $T = 120$.
+%      Dashed and dotted line represents mean value, and region between two dashed lines represents $\alpha$ standard deviation range from mean value, here $\alpha = 1$; both are calculated in the first $T$ time steps.
+%      During the time step $T + 1$, log price difference goes over $\alpha$ standard deviations above mean value of past period of size $T$.
+%      This would mean that two of the assets $i$ and $j$ would be added to the graph of preference flow at the time step $T + 1$.
+%      Weight $w_{i,j}$ describes current deviation from mean value.
+       Razlika log cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$.
+       Točka-crta linija predstavlja srednju vrijednost, a područje između dviju crtkanih linija predstavlja $\alpha$ standardnih devijacija udaljenosti od srednje vrijednosti; obje mjere su izračunate nad prvih $T$ vremenskih koraka.
+       Tijekom vremenskog koraka $T + 1$, razlika log cijena prelazi preko $\alpha$ standardnih devijacija iznad srednje vrijednosti proteklog perioda duljine $T$.
+       To znači da će vrijednosnice $i$ i $j$ biti dodane u graf toka preferencije u vremenskom koraku $T + 1$.
+       Težina $w_{i,j}^{(T+1)}$ opisuje devijaciju od srednje vrijednosti.
+    }
     \label{fig:devmag}
   \end{figure}
+  
+  Na taj način moguće je konstruirati graf toka preferencija za bilo koji vremenski korak $t \in \left[T, T + 1, \ldots, D-1\right]$.
+  U nekim vremenskim koracima moguće je da dobiveni graf bude prazan, ukoliko nijedan par vrijednosnica $(i,j)$ ne zadovoljava (\ref{eq:thresh}).
+  Postavljanjem nižih vrijednosti za $\alpha$ dobivaju se gušći grafovi i rjeđe se događa da je graf prazan, dok se postavljanjem $\alpha = 0$ uvijek dobivaju potpuni grafovi.
+%  Thus it is possible to create a graph of preference flow for each time step $t \in \left[T, T + 1, \ldots, D-1\right]$.
+%  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
+%  Setting lower values for parameter $\alpha$ yields denser graphs, and setting $\alpha = 0$ always yields complete graphs.
   
   \section{Konstrukcija portfelja prema grafu toka preferencija}
   We obtain preference for each asset via the potential method, as described earlier in \ref{sub:potential}.

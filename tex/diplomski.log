@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  5 JUN 2017 13:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  6 JUN 2017 18:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -914,17 +914,7 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 45.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 48.
- (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic settings for font family
-(microtype)             `lmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-
-[1] [3] (./diplomski.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [3] (./diplomski.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -950,44 +940,40 @@ Overfull \hbox (2.47226pt too wide) in paragraph at lines 71--71
 
 [2
 
-] <graphics/graph.pdf, id=32, 390.45876pt x 390.45876pt>
+] <graphics/graph.pdf, id=27, 390.45876pt x 390.45876pt>
 File: graphics/graph.pdf Graphic file (type pdf)
 
 <use graphics/graph.pdf>
 Package pdftex.def Info: graphics/graph.pdf used on input line 125.
 (pdftex.def)             Requested size: 206.28249pt x 206.28082pt.
- [3 <./graphics/graph.pdf>]
-
-Package natbib Warning: Citation `caklovic' on page 4 undefined on input line 1
-63.
-
-[4] [5] [6]
-Poglavlje 3.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 321.
-[7
-
-] <graphics/deviation-magnitude.png, id=65, 394.5942pt x 313.6518pt>
-File: graphics/deviation-magnitude.png Graphic file (type png)
-
-<use graphics/deviation-magnitude.png>
-Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 34
-9.
-(pdftex.def)             Requested size: 371.30595pt x 295.16295pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[3] [4 <./graphics/graph.pdf>] [5] [6]
+Poglavlje 3.
+[7
 
-Overfull \hbox (3.80708pt too wide) in paragraph at lines 358--358
+]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 363.
+ <graphics/deviation-magnitude.png, id=60, 394.5942pt x 313.6518pt>
+File: graphics/deviation-magnitude.png Graphic file (type png)
+
+<use graphics/deviation-magnitude.png>
+Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 39
+8.
+(pdftex.def)             Requested size: 371.30595pt x 295.16295pt.
+ [8]
+Overfull \hbox (3.80708pt too wide) in paragraph at lines 421--421
 []\T1/lmr/bx/n/17.28 Konstrukcija por-t-fe-lja prema grafu toka pre-
  []
 
 
-LaTeX Warning: Reference `sub:potential' on page 8 undefined on input line 359.
+LaTeX Warning: Reference `sub:potential' on page 9 undefined on input line 422.
 
 
-[8] [9 <./graphics/deviation-magnitude.png>] [10]
+[9 <./graphics/deviation-magnitude.png>] [10]
 Poglavlje 4.
 (./results-1.tex
 Underfull \hbox (badness 10000) in alignment at lines 21--21
@@ -1000,25 +986,31 @@ Underfull \hbox (badness 10000) in alignment at lines 21--21
 Poglavlje 5.
 (./diplomski.bbl [13
 
-]) [14
+]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 12.
+ (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+) [14
 
 ]
-
-Package natbib Warning: There were undefined citations.
-
 [15] (./diplomski.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 8201 strings out of 493013
- 123145 string characters out of 6139317
- 229942 words of memory out of 5000000
- 11418 multiletter control sequences out of 15000+600000
- 131798 words of font info for 153 fonts, out of 8000000 for 9000
+ 8205 strings out of 493013
+ 123186 string characters out of 6139317
+ 229952 words of memory out of 5000000
+ 11421 multiletter control sequences out of 15000+600000
+ 131560 words of font info for 153 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,42p,768b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,12n,42p,861b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fo
 nts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
 enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-d
@@ -1032,16 +1024,15 @@ st/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/l
 m/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/
 texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/p
 ublic/lm/lmr8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr
-/share/texmf-dist/fonts/type1/public/lm/lmro12.pfb></usr/share/texmf-dist/fonts
-/type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx
-10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texm
-f-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtto10.pfb></usr/
-share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (19 pages, 406354 bytes).
+/share/texmf-dist/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts
+/type1/public/lm/lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy
+10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf
+-dist/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/symbols/msbm10.pfb>
+Output written on diplomski.pdf (18 pages, 358274 bytes).
 PDF statistics:
- 172 PDF objects out of 1000 (max. 8388607)
- 123 compressed objects within 2 object streams
+ 160 PDF objects out of 1000 (max. 8388607)
+ 114 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 35851 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 35339 words of extra memory for PDF output out of 35830 (max. 10000000)
 
