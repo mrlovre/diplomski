@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  6 JUN 2017 18:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  16 JUN 2017 12:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -723,19 +723,19 @@ Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 ) (./diplomski.aux)
 \openout1 = `diplomski.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 34.
-LaTeX Font Info:    ... okay on input line 34.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 34.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 35.
+LaTeX Font Info:    ... okay on input line 35.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 35.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -836,26 +836,22 @@ e
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 34.
+LaTeX Info: Redefining \microtypecontext on input line 35.
 Package microtype Info: Generating PDF output.
-Package microtype Info: Character protrusion enabled (level 2),
-(microtype)             factor: 1100.
+Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
-(microtype)             stretch: 10, shrink: 10, step: 1, non-selected.
+(microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-Package microtype Info: Tracking enabled.
-Package microtype Info: Using default tracking set `smallcaps'.
-Package microtype Info: Adjustment of interword spacing enabled.
-Package microtype Info: Using default spacing set `basictext'.
-Package microtype Info: Adjustment of character kerning enabled.
-Package microtype Info: Using default kerning set `alltext'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of interword spacing.
+Package microtype Info: No adjustment of character kerning.
 
 (/usr/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 45.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 46.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -864,35 +860,35 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 45.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 46.
 
 (/usr/share/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 45.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 46.
 
 (/usr/share/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 45.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 46.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 45.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 46.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 45.
+(Font)              <14.4> on input line 46.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 45.
+(Font)              <10> on input line 46.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 45.
-LaTeX Font Info:    Try loading font information for U+msa on input line 45.
+(Font)              <7> on input line 46.
+LaTeX Font Info:    Try loading font information for U+msa on input line 46.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -900,7 +896,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 45.
+LaTeX Font Info:    Try loading font information for U+msb on input line 46.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -908,13 +904,17 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 45.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 46.
 
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [3] (./diplomski.toc
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [3]
+Package microtype Info: Character `029' is missing
+(microtype)             in font `T1/lmr/m/sc/24.88'.
+(microtype)             Ignoring protrusion settings for this character.
+ (./diplomski.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <12> on input line 4.
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -933,47 +933,29 @@ Poglavlje 1.
 
 ]
 Poglavlje 2.
-
-Overfull \hbox (2.47226pt too wide) in paragraph at lines 71--71
-[]\T1/lmr/bx/n/17.28 Statisti£ka ar-bi-traºa zas-no-vana na stan-dard-
- []
-
 [2
 
 ] <graphics/graph.pdf, id=27, 390.45876pt x 390.45876pt>
 File: graphics/graph.pdf Graphic file (type pdf)
 
 <use graphics/graph.pdf>
-Package pdftex.def Info: graphics/graph.pdf used on input line 125.
+Package pdftex.def Info: graphics/graph.pdf used on input line 134.
 (pdftex.def)             Requested size: 206.28249pt x 206.28082pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[3] [4 <./graphics/graph.pdf>] [5] [6]
+ [3 <./graphics/graph.pdf>] [4] [5] [6]
 Poglavlje 3.
 [7
 
 ]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 363.
+(Font)              <10.95> on input line 376.
  <graphics/deviation-magnitude.png, id=60, 394.5942pt x 313.6518pt>
 File: graphics/deviation-magnitude.png Graphic file (type png)
 
 <use graphics/deviation-magnitude.png>
-Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 39
-8.
+Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 41
+2.
 (pdftex.def)             Requested size: 371.30595pt x 295.16295pt.
- [8]
-Overfull \hbox (3.80708pt too wide) in paragraph at lines 421--421
-[]\T1/lmr/bx/n/17.28 Konstrukcija por-t-fe-lja prema grafu toka pre-
- []
-
-
-LaTeX Warning: Reference `sub:potential' on page 9 undefined on input line 422.
-
-
-[9 <./graphics/deviation-magnitude.png>] [10]
+ [8] [9 <./graphics/deviation-magnitude.png>] [10]
 Poglavlje 4.
 (./results-1.tex
 Underfull \hbox (badness 10000) in alignment at lines 21--21
@@ -998,41 +980,40 @@ Package microtype Info: Loading generic settings for font family
 ) [14
 
 ]
-[15] (./diplomski.aux)
+Poglavlje A.
+[15
 
-LaTeX Warning: There were undefined references.
-
- ) 
+] [16] (./diplomski.aux) ) 
 Here is how much of TeX's memory you used:
- 8205 strings out of 493013
- 123186 string characters out of 6139317
- 229952 words of memory out of 5000000
- 11421 multiletter control sequences out of 15000+600000
- 131560 words of font info for 153 fonts, out of 8000000 for 9000
+ 8157 strings out of 493013
+ 120550 string characters out of 6139317
+ 230640 words of memory out of 5000000
+ 11328 multiletter control sequences out of 15000+600000
+ 130804 words of font info for 175 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,42p,861b,423s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fo
-nts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.
-enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-d
-ist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmib10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmex
-tra/cmmib8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/lm/lmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmex10.p
-fb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf-di
-st/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/l
-m/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/
-texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/lm/lmr8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr
-/share/texmf-dist/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts
-/type1/public/lm/lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy
-10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf
--dist/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (18 pages, 358274 bytes).
+ 43i,12n,42p,861b,417s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{
+/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts
+/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy
+.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/lm/lmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/s
+hare/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf-dist/fonts/
+type1/public/lm/lmex10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi10.
+pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf-d
+ist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/l
+m/lmr10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/
+texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf-dist/fonts/type1/pu
+blic/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmss12.pfb></us
+r/share/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf-dist/fo
+nts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lms
+y8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/share/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on diplomski.pdf (19 pages, 359585 bytes).
 PDF statistics:
- 160 PDF objects out of 1000 (max. 8388607)
- 114 compressed objects within 2 object streams
+ 164 PDF objects out of 1000 (max. 8388607)
+ 117 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  35339 words of extra memory for PDF output out of 35830 (max. 10000000)
 

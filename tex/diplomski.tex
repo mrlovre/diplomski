@@ -1,7 +1,8 @@
 \documentclass[lmodern, utf8, diplomski, numeric]{fer}
 \usepackage{booktabs}
 
-\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
+%\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1500,stretch=10,shrink=10]{microtype}
+\usepackage[final]{microtype}
 \microtypecontext{spacing=nonfrench}
 \usepackage{indentfirst}
 \usepackage{booktabs}
@@ -60,15 +61,23 @@
   Sličnost se mjeri kointegracijom, korelacijom, ili nekom drugom mjerom, s ciljem pronalaska trenutka kada te cijene izlaze van statistički utvrđenog intervala visoke pouzdanosti.
   Takve prilike mogu se iskoristiti predviđanjem da će se cijene u idućem trenutku ponovno vratiti unutar intervala visoke pouzdanosti, te se u skladu s tim predviđanjem može provesti trgovanje.
   
-  In this paper, we propose a new method based on those predictions that are obtained by the statistical arbitrage method, using statistical measures as a proxy for describing the preference relations between pairs of assets.
-  Next, a graph is formed based on those relations, so that mutual interaction of assets might be analyzed.
-  This graph imposes a preference relation among the assets that are included in it.
-  Finally, assets are sorted by preference and included into the portfolio.
-  The idea of this method is to create a generalization of statistical arbitrage methods that is more robust and performs better when working with a larger number of assets by trying to take into account mutual interaction of assets.
+%  In this paper, we propose a new method based on those predictions that are obtained by the statistical arbitrage method, using statistical measures as a proxy for describing the preference relations between pairs of assets.
+%  Next, a graph is formed based on those relations, so that mutual interaction of assets might be analyzed.
+%  This graph imposes a preference relation among the assets that are included in it.
+%  Finally, assets are sorted by preference and included into the portfolio.
+%  The idea of this method is to create a generalization of statistical arbitrage methods that is more robust and performs better when working with a larger number of assets by trying to take into account mutual interaction of assets.
+
+  U ovom radu, predložena je nova metoda temeljena na predviđanjima koja su dobivena metodom statističke arbitraže, pri čemu se statističke mjere koriste za opisivanje relacije preferencije među parovima vrijednosnica.
+  Razlikuju se dvije vrste preferencije: preferencija jedne vrijednosnice nad drugom i individualna mjera preferencije za svaku vrijednosnicu.
+  Iz dobivene relacije preferencije konstruira se graf toka preferencija iz kojeg se može proučiti međusobna interakcija svih vrijednosnica koje su na raspolaganju.
+%  Idući korak je konstruiranje grafova temeljenih na prethodno dobivenim relacijama, kako bi se mogla proučiti međusobna interakcija svih vrijednosnica koje su na raspolaganju.
+  Konačno, za svaku vrijednosnicu izračunava se individualna mjera preferencije, na temelju čega se donosi odluka o sastavljanju portfelja.
+  
+  Ideja ove metode je ostvariti generalizaciju klasičnih metoda statističke arbitraže koja će biti robusnija i ostvarivati bolje rezultate kada ima velik broj vrijednosnica na raspolaganju tako što izvlači zajedničku interakciju iz svih vrijednosnica.
 
 \chapter{Metode i koncepti}
 
-  \section{Statistička arbitraža zasnovana na standardnoj devijaciji}
+  \section{Statistička arbitraža}
 
   \section{Relacija preferencije i funkcija korisnosti}
 
@@ -77,7 +86,7 @@
 %  Preference relation $\succ$ defined over $\Omega \times \Omega$ is a strict weak ordering that describes the way humans prefer some entity over another.
   Relacija preferencije, označena sa $\succ$ i definirana nad $\Omega \times \Omega$, je strogi slabi uređaj koji odgovara načinu na koji ljudi preferiraju jednu vrijednosnicu u odnosu na drugu.
   Između dvaju dobara $a, b \in \Omega$ relacija može, ali i ne mora postojati.
-  Primjerice, $a$ može biti više preferirano u odnosu na $b$, ili $b$ u odnosu na $a$, ali moguća je situacija gdje su oba dobra podjednako preferirane.
+  Primjerice, $a$ može biti više preferirano u odnosu na $b$, ili $b$ u odnosu na $a$, ali moguća je situacija gdje su oba dobra podjednako preferirana.
   U tom slučaju radi se o indiferentnosti između $a$ i $b$, i to se označava kao $a \sim b$.
 %  This relation is specific in that it is ($\forall x, y, z \in \Omega$):
 
@@ -96,7 +105,7 @@
 %  We naturally assume this kind of relation we describe relationships among the assets.
 %  Determining that some asset is preferred over another is easier than assigning a preference rank to each asset individually, especially for a larger number of assets.
 %  However, the latter is more useful for decision making, and therefore it is desirable to find a way of sorting assets in the order of preference.
-  Ovakva vrsta relacije prirodno opisuje odnose među različitim vrijenosnicama, npr. dionica $A$ u nekom trenutku može biti više preferirana od dionice $B$.
+  Ovakva vrsta relacije prirodno opisuje odnose među različitim vrijednosnicama, npr. dionica $A$ u nekom trenutku može biti više preferirana od dionice $B$.
   Razlog tome je što je za čovjeka lakše ocijeniti odnos (više, manje, jednako preferirano) između svakog para vrijednosnica, nego pridijeliti svakoj vrijednosnici individualnu mjeru preferencije, pogotovo ako se radi o velikom broju vrijednosnica.
   No ipak, u svrhu konstruiranja portfelja korisnije je posjedovati individualnu mjeru preferencije za svaku vrijednosnicu.
   Stoga je poželjno pronaći način da se iz relacije preferencije dobiju individualne mjere preferencije.
@@ -175,7 +184,7 @@
   % In our case, graphs will be incomplete for most of the time, but they may be \textsl{supplemented} (TODO: opposite of `reduced') to complete graphs, if we treat missing edges as edges of weight 0 (direction doesn't matter).
   
   \subsection{Računanje potencijala čvorova}
-
+  \label{sub:potential}
   Neka je za promatrani graf $\graph{G}$ ukupno $N$ čvorova, te najviše $E = \binom{N}{2}$ bridova, ukoliko se radi o potpunom grafu.
   Ako $\graph{G}$ nije potpun graf, on se može dopuniti na način da se dodaju bridovi između čvorova koji nisu povezani, čija je težina jednaka 0, a sam smjer nije bitan.
   U nastavku se podrazumijeva da je $\graph{G}$ potpun graf.
@@ -268,7 +277,7 @@
   \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
   \end{equation}
   tako da se dobije računalno optimalan izraz.
-  Jednadžba (\ref{eq:final2}) tvrdi da se rješenje u smislu najmanjih kvadrata jednadžbe (\ref{eq:flowformula}) dobije na način da se za svaki čvor pribroje težine svih bridova koji izlaze iz njega, i oduzmu težine svih bridova koji ulaze u njega.
+  Jednadžba (\ref{eq:final2}) tvrdi da se rješenje u smislu najmanjih kvadrata $\matr{\phi^*}$ jednadžbe (\ref{eq:flowformula}) dobije na način da se za svaki čvor pribroje težine svih bridova koji izlaze iz njega, i oduzmu težine svih bridova koji ulaze u njega.
   
   \subsection{Konzistentna rekonstrukcija grafa}
   
@@ -292,7 +301,7 @@
 %  Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
 %  $\kappa$ ranges from 0 to 1, with 0 meaning full inconsistency (virtually unreachable), and 1 meaning full consistency.
   Jednadžba (\ref{eq:consistency}) predstavlja kosinus kuta između $\matr{f}$ i $\matr{f^*}$ u prostoru određenom vektor stupacima matrice incidencije $\matr{B}$.
-  Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (praktički nedostižno), a 1 potpunu konzistentnost.
+  Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (u praksi nedostižno), a 1 potpunu konzistentnost.
   
   %  \end{enumerate}
   
@@ -328,12 +337,12 @@
 %  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
 %  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
   Također valja primijetiti da bi izračunavanje srednjih vrijednosti i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
-  Stoga je preporučljivo koristiti algoritam s pomičnim prozorima za računanje, koji je opisan u dodatku (TODO).
-  Što se tiče memorijske potrošnje, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
-  Međutim, sva tri tenzora su antisimetrična, u smislu da vrijedi $c_{i,j}^{(t)} = -c_{j,i}^{(t)}$, $m_{i,j}^{(t)} = -m_{j,i}^{(t)}$, i $d_{i,j}^{(t)} = -d_{j,i}^{(t)}$, stoga je polovina informacije sadržane u njima redundantna.
-  Imajući to u vidu, ti tenzori se mogu `ispeglati' do dimenzije $(D - T) \times \left. N\cdot(N - 1) \middle/ 2\right.$, koristeći sljedeće preslikavanje kod kodiranja --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
+  Stoga je preporučljivo koristiti algoritam s pomičnim prozorima za računanje, koji je opisan u dodatku.
+  Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
+  Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{(t)} = -c_{j,i}^{(t)}$, $m_{i,j}^{(t)} = -m_{j,i}^{(t)}$, i $d_{i,j}^{(t)} = d_{j,i}^{(t)}$, stoga je polovina informacije sadržane u njima redundantna.
+  Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $(D - T) \times \left. N\cdot(N - 1) \middle/ 2\right.$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
   \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
-  a za dobivanje $(i, j)$ iz $k$ izrazi:
+  a za dekodiranje $(i, j)$ iz $k$ izrazi:
   \begin{equation} i = \left\lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \right\rfloor, \end{equation}
   \begin{equation} j = k + i \cdot \left.(i + 1) \middle/ 2\right. - N \cdot (i - 1) + 1. \end{equation}
 %  An example of proposed coding for $N = 5$ is shown on figure \ref{fig:coding}.
@@ -360,7 +369,11 @@
        j & 2 & 3 & 4 & 5 & 3 & 4 & 5 & 4 & 5 & 5 \\
       \end{tabular}
     \end{minipage}
-    \caption{Example of the proposed encoding and decoding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.}
+    \caption{
+%      Example of the proposed encoding and decoding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.
+       Primjer predložene sheme kodiranja i dekodiranja, za $N = 5$.
+       Točka $(\cdot)$ označava da se određena kombinacija ne koristi.
+    }
     \label{fig:coding}
   \end{figure}
 
@@ -374,13 +387,13 @@
 %  \end{equation}
 %  i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
 %  An illustration is shown on Fig. \ref{fig:devmag}.
-  Korištenjem prethodno dobivenih $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ sada je moguće kreirati graf toka preferencije među vrijednosnicama u svakom vremenskom koraku $t$.
+  Korištenjem prethodno dobivenih $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ sada je moguće kreirati graf toka preferencija među vrijednosnicama u svakom vremenskom koraku $t$.
   Razmatrajući fiksni vremenski korak $t$, izdvajaju se svi parovi vrijednosnica $(i,j)$ za koje vrijedi:
   \begin{equation}
   \label{eq:thresh}
   \left| c_{i,j}^{(t)} - m_{i,j}^{(t)} \right| > \alpha \cdot d_{i,j}^{(t)},
   \end{equation}
-  tj. trenutna vrijednost razlike log cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od srednje vrijednosti izmjerene u proteklom periodu.
+  tj. trenutna apsolutna vrijednost razlike log cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od srednje vrijednosti izmjerene u proteklom periodu.
   %  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
 %  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{(t)}$ going from $i$ to $j$.
 %  Weight $w_{i,j}^{(t)}$ is obtained as:
@@ -390,7 +403,8 @@
   \label{eq:weight}
   w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right.,
   \end{equation}
-  što odgovara udaljenosti razlike log cijena od srednje vrijednosti mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veće od $\alpha$.
+  što odgovara udaljenosti razlike log cijena od srednje vrijednosti mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
+  Negativan predznak težine $w_{i,j}^{(t)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{(t)} = -w_{i,j}^{(t)} > 0$ ekvivalentan je prethodnome bridu.
   Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
   \begin{figure}[htb]
@@ -405,7 +419,7 @@
        Razlika log cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$.
        Točka-crta linija predstavlja srednju vrijednost, a područje između dviju crtkanih linija predstavlja $\alpha$ standardnih devijacija udaljenosti od srednje vrijednosti; obje mjere su izračunate nad prvih $T$ vremenskih koraka.
        Tijekom vremenskog koraka $T + 1$, razlika log cijena prelazi preko $\alpha$ standardnih devijacija iznad srednje vrijednosti proteklog perioda duljine $T$.
-       To znači da će vrijednosnice $i$ i $j$ biti dodane u graf toka preferencije u vremenskom koraku $T + 1$.
+       To znači da će vrijednosnice $i$ i $j$ biti dodane u graf toka preferencija u vremenskom koraku $T + 1$.
        Težina $w_{i,j}^{(T+1)}$ opisuje devijaciju od srednje vrijednosti.
     }
     \label{fig:devmag}
@@ -413,56 +427,93 @@
   
   Na taj način moguće je konstruirati graf toka preferencija za bilo koji vremenski korak $t \in \left[T, T + 1, \ldots, D-1\right]$.
   U nekim vremenskim koracima moguće je da dobiveni graf bude prazan, ukoliko nijedan par vrijednosnica $(i,j)$ ne zadovoljava (\ref{eq:thresh}).
-  Postavljanjem nižih vrijednosti za $\alpha$ dobivaju se gušći grafovi i rjeđe se događa da je graf prazan, dok se postavljanjem $\alpha = 0$ uvijek dobivaju potpuni grafovi.
+  Postavljanjem nižih vrijednosti za $\alpha$ dobivaju se gušći grafovi i manje često se događa da je graf prazan, dok se postavljanjem $\alpha = 0$ uvijek dobivaju potpuni grafovi.
 %  Thus it is possible to create a graph of preference flow for each time step $t \in \left[T, T + 1, \ldots, D-1\right]$.
 %  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
 %  Setting lower values for parameter $\alpha$ yields denser graphs, and setting $\alpha = 0$ always yields complete graphs.
   
-  \section{Konstrukcija portfelja prema grafu toka preferencija}
-  We obtain preference for each asset via the potential method, as described earlier in \ref{sub:potential}.
-  By obtaining the measure of preference for each asset it is possible to pick assets for the portfolio.
-  The most preferred assets should be bought while the least preferred should be short-sold if possible.
+  \section{Konstrukcija portfelja}
+%  We obtain preference for each asset via the potential method, as described earlier in \ref{sub:potential}.
+%  By obtaining the measure of preference for each asset it is possible to pick assets for the portfolio.
+%  The most preferred assets should be bought while the least preferred should be short-sold if possible.
+  Individualna mjera preferencije za svaku vrijednosnicu dobivena je metodom potencijala, na način kako je ranije opisano u \ref{sub:potential}.
+  Vrijednosnice s trenutačno najvećom preferencijom preporučeno je kupiti, dok je one s najmanjom preferencijom preporučeno prodati, odnosno \textit{shortati} ukoliko je to moguće.
   
-  Let $\matr{\phi}^{(t)} = \begin{bmatrix} \phi_1^{(t)} & \phi_2^{(t)} & \ldots & \phi_N^{(t)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{(t)}$ denote the preference for asset $i$ at time step $t$.
-  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
-  Lower values of $\kappa$ suggest that we should diversify our portfolio by including some more assets in the order of preference, while higher values suggest that it is safe to do trading with smaller number of assets.
-  Portfolio diversification might be seen as a strategy for protection from fundamental risks, e.g. risk of asset default.
-  
-  The bound on the assets which will be taken into portfolio is proportional to the consistency measure $\kappa$.
-  Depending on the nature of assets we may tune the consistency measure $\kappa$ to be more or less inclined to diversification by transforming it to $\kappa^\prime$:
+%  Let $\matr{\phi}^{(t)} = \begin{bmatrix} \phi_1^{(t)} & \phi_2^{(t)} & \ldots & \phi_N^{(t)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{(t)}$ denote the preference for asset $i$ at time step $t$.
+%  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
+%  Lower values of $\kappa$ suggest that we should diversify our portfolio by including some more assets in the order of preference, while higher values suggest that it is safe to do trading with smaller number of assets.
+%  Portfolio diversification might be seen as a strategy for protection from fundamental risks, e.g. risk of asset default.
+  Neka je $\matr{\phi}^{(t)} = \begin{bmatrix} \phi_1^{(t)} & \phi_2^{(t)} & \ldots & \phi_N^{(t)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$ i $\phi_i^{(t)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
+  Pri odabiru vrijednosnica za portfelj, u obzir se također uzima i mjera konzistentnosti $\kappa$.
+  Uključivanje mjere konzistentnosti pri odabiru omogućuje zaštitu od fundamentalnog rizika (propadanja neke dionice) putem diverzifikacije portfelja.
+  Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portftelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
+    
+%  The bound on the assets which will be taken into portfolio is proportional to the consistency measure $\kappa$.
+%  Depending on the nature of assets we may tune the consistency measure $\kappa$ to be more or less inclined to diversification by transforming it to $\kappa^\prime$:
+  Granica mjere preferencije za vrijednosnice koje će biti uključene u portfelj je proporcionalna mjeri konzistentnosti $\kappa$.
+  Ovisno o prirodi skupa koji je na raspolaganju, mjera konzistentnosti može se preinačiti tako da algoritam bude više ili manje sklon diverzifikaciji portfelja, na sljedeći način:
   \begin{equation}
   \kappa^\prime = a + (1 - a)\kappa^b,
   \end{equation}
-  where $a \in [0, 1], b \in \mathbb{R}^+$.
-  For default values of $a = 0$, $b = 1$, $\kappa^\prime$ equals $\kappa$.
+  gdje je $a \in [0, 1], b \in \mathbb{R}^+$.
+  Za vrijednosti $a = 0$, $b = 1$, $\kappa^\prime$ postaje jednak $\kappa$.
+  Parametar $a$ regulira utjecaj mjere konzistentnosti na određivanje portfelja: za $a = 0$, diverzifikacija u potpunosti ovisi o mjeri konzistentnosti $\kappa$, dok za $a = 1$ mjera konzistentnosti ne dolazi do izražaja te se u portfelju zadržava samo vrijednosnica s najvećom individualnom preferencijom.
+  S druge strane, parametar $b$ regulira diverzifikaciju portfelja: kada je $0 < b < 1$, algoritam je više privržen diverzifikaciji čak i kada je konzistentnost mala, a kada je $b > 1$, algoritam je više privržen diverzifikaciji čak i kada je mjera konzistencije velika.
   
-  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
+%  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
+  Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje vrijedi:
   \begin{equation}
   \phi_i^{(t)} \ge \kappa^\prime \cdot \Phi,
   \end{equation}
-  where $\Phi$ is $\max_j \left\{ \left| \phi_j \right| \right\}$.
-  Likewise, for short-selling we choose those assets $i$ for which holds:
+  gdje je $\Phi = \max_j \left\{ \left| \phi_j \right| \right\}$.
+  Isto tako, za prodaju se biraju vrijednosnice $i$, za koje vrijedi:
   \begin{equation}
   \phi_i^{(t)} \le -\kappa^\prime \cdot \Phi.
   \end{equation}
-  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
-  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high. 
+%  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
+%  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high. 
   
   \chapter{Rezultati}
+  Skup podataka nad kojim je algoritam testiran uključuje 203 od 500 dionica koje su bile uključene u S\&P indeks u razdoblju od 1. siječnja 1980. do 31. prosinca. 2003.
+  Razdoblje uključuje 6261 dan trgovanja, odnosno vremenskih koraka.
+  Ukupno 20503 praova dionica je ispitano metodom statističke arbitraže u svakom vremenskom koraku.
+  Simulirani su troškovi trgovanja u iznosu 0.10\% za svako obavljeno trgovanje.
+  Sažeti prikaz rezultat dan je u tablici \ref{table:results-1}.
   
-  Results were obtained by testing on a set of 203 stocks that were contiguously included in S\&P 500 index from Jan 1st, 1980 thru Dec 31st, 2003, which includes 6261 trading days.
-  A total of 20503 pairs of assets were probed for statistical arbitrage at each time step.
-  Summary of results for various parameters is shown in the table \ref{table:results-1}.
-  Best profit and Sharpe ratio has been achieved when using $\alpha = 0$.
+  Godišnji Sharpeov omjer $S$ definiran je kao omjer srednjeg godišnjeg povrata $\mu_r$ i srednje godišnje volatilnosti $\sigma_r$.
+  Analizirana su zasebno trgovanja koja rezultiraju pozitivnim i negativnim profitom, njihova razlika i omjer.
+  Mjera preciznosti definirana je kao omjer broja trgovanja koja rezultiraju pozitivinim profitom u ukupnom broju trgovanja.
+  Mjera obrtaja \engl{turnover ratio} opisuje promjenu portfelja između dva vremenska koraka.
+  Ova mjera može biti u rasponu od 0 do 2, gdje vrijednost 0 znači da nema promjene, vrijednost 1 odgovara prelasku iz ili u prazan portfelj, a vrijednost 2 znači da su vrijednosnice između dva vremenska koraka potpuno različite.
+  Konačno, izračunat je ukupan profit uz uključene troškove trgovanja.
+  
+%We test the proposed method on a set of 203 stocks that were contiguously included in S&P 500 index from Jan 1st, 1980 thru Dec 31st, 2003, which includes 6261 trading days.
+%A total of 20503 pairs of assets were probed for statistical arbitrage at each time step.
+%Transaction costs of 0.10% were also included in the analysis.
+%The summary of results for various parameters is shown in Table I.
+%The annual Sharpe ratio [11] is defined as: S = μ σ r r – the ratio between annual mean returns and volatilities of the considered portfolio.
+%For each individual trade we analyze the profit by evaluating the amount of gain, loss and net profit, as well as gain/loss ratio.
+%We measure the algorithm accuracy as the ratio of trades resulting in gain to the total number of trades, and we calculate the average turnover ratio as the average percetnage of the portfolio which needs to be rebalanced at each point.
+%Finally, we include the transaction costs and recalculate the portfolio gains.
+%The highest profits and Sharpe ratios have been achieved when using α = 0.
+%These results indicate that the proposed method does indeed yield portfolios which are able to perform mutli–criteria statistical arbitrage on a large set of assets.
+%In addition, we report that the method adapts to the inconsistence of preferences by picking variable number of assets into the portfolio.
+%This speaks to the resilience of the algorithm to various market conditions, also demonstrated by the obtained portfolio performance.
+%Another interesting finding is the fact that the average gain is much higher than the average loss, meaning that the algorithm errors cost less than the gains obtained when the algorithm is correct.
+%The method is shown to produce rational turnover ratios, and the fact that the obtained Sharpe ratios remain high despite transaction costs additionally affirms the validity of the approach
+%These findings suggest that the proposed method produces consistent returns and may be feasible in a live market setting.
   
   \input{results-1.tex}
 
   \chapter{Zaključak}
   Algorithm works on pairs of assets, looking for those deviations which are uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
   It adapts to the inconsistence of preferences by picking variable number of assets into the portfolio.
-
+  
 \bibliography{literatura}
 \bibliographystyle{unsrtnat}
+
+\appendix
+\chapter{Dodatak}
 
 \begin{sazetak}
 Sažetak na hrvatskom jeziku.
@@ -470,8 +521,8 @@ Sažetak na hrvatskom jeziku.
 \kljucnerijeci{Ključne riječi, odvojene zarezima.}
 \end{sazetak}
 
-% TODO: Navedite naslov na engleskom jeziku.
-\engtitle{Title}
+% w: Navedite naslov na engleskom jeziku.
+\engtitle{Complex network based time series analysis}
 \begin{abstract}
 Abstract.
 
