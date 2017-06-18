@@ -21,6 +21,9 @@
 
 \newcommand{\T}{\top}
 \newcommand{\upto}{\mathinner {\ldotp \ldotp}}
+\newcommand{\Efromto}[2]{\operatorname{\mathbf{E}}\left[#1\ \middle\vert\ #2\right]}
+\newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\left[#1\ \middle\vert\ #2\right]}
+\newcommand{\norm}[1]{\bar{#1}}
 
 \DeclareMathOperator*{\argmin}{arg\min}
 \usepackage{fixmath}
@@ -30,12 +33,11 @@
 \usepackage{mathrsfs}
 \newcolumntype{C}{>{$}c<{$}}
 \newcolumntype{R}{>{$}r<{$}}
-\usepackage{lmodern}
 
 \begin{document}
 
 % TODO: Navedite broj rada.
-\thesisnumber{000}
+\thesisnumber{1099}
 
 % TODO: Navedite naslov rada.
 \title{Analiza vremenskih nizova zasnovana na kompleksnim mrežama}
@@ -49,7 +51,7 @@
 %\izvornik
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
-\zahvala{}
+\zahvala{Zahvaljujem se dopredsjednici Hrvatskog sabora dr. sc. Vesni-Ani Škaro i Miloradu Pupovcu.}
 
 \tableofcontents
 
@@ -76,8 +78,76 @@
   Ideja ove metode je ostvariti generalizaciju klasičnih metoda statističke arbitraže koja će biti robusnija i ostvarivati bolje rezultate kada ima velik broj vrijednosnica na raspolaganju tako što izvlači zajedničku interakciju iz svih vrijednosnica.
 
 \chapter{Metode i koncepti}
+  Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu.
+  Ako vam se ne sviđa slobodno možete preskočit...
 
   \section{Statistička arbitraža}
+  Statistička arbitraža \engl{statistical arbitrage} je algoritam trgovanja zasnovan na statistici.
+  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje pozitivan profit s vjerojatnošću 1, dok pritom njegova početna vrijednost iznosi 0.
+  Trivijalan primjer arbitraže je situacija u kojoj bi se ista vrijednosnica nudila po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
+  Matematička definicija arbitražnih okolnosti je sljedeća:
+  \begin{equation}
+  \label{eq:statarb}
+  V^{(0)} = 0, \quad P\left(V^{(t)} > 0\right) = 1,
+  \end{equation}
+  gdje $V^{(t)}$ označava vrijednost portfelja u trenutku $t$.
+
+  U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
+  Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti manji od 1.
+  Tako se može može dogoditi da bude $V^{(t)} < 0$ za neke $t$.
+  Ipak, kako $t \to +\infty$, vjerojatnost $P\left(V^{(t)} > 0\right) \to 1$.
+  U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
+  
+  Algoritam statističke arbitraže najčešće čine sljedeći koraci (u svakom vremenskom trenutku):
+  \begin{enumerate}
+    \item određivanje neke mjere sličnosti među parovima vrijednosnica nad proteklim vremenskim periodom zadane duljine,
+    \item uzimanje u obzir samo onih parova kod kojih mjera sličnosti ne prelazi zadani prag, odnosno odbacivanje preostalih parova;
+    \item za parove čije je ponašanje međusobno dovoljno slično utvrđuje se nalaze li se u sadašnjem trenutku njihove cijene izvan očekivanog intervala,
+    \item u skladu s utvrđenim provodi se trgovanje parovima vrijednosnica na način da se u jednoj od njih zauzme kratka, a u drugoj duga pozicija, te se u idućem trenutku te pozicije resetiraju.
+  \end{enumerate}
+  
+  Najčešće korištene mjere sličnosti su: razlika normaliziranih log-cijena, normalizirana razlika log-cijena, te kointegracija slučajnih procesa.
+  U nastavku su ukratko opisane navedene mjere.
+  
+  \subsection{Razlika normaliziranih log-cijena}
+  Neka je sa $P_X^{(t)}$ označena log-cijena vrijednosnice $X$ u trenutku $t$, i neka se koristi period od $T$ vremenskih koraka.
+  Neka je ukupno $M$ vremenskih koraka, tj. $t \in \left[0, 1, \ldots, M - 1\right]$.
+  Za svaku vrijednosnicu $X$ u trenutcima $t \ge T$ izračunaju se normalizirane log-cijene $\norm{P}_X^{(t)}$:
+  \begin{equation}
+  \norm{P}_X^{(t)} = \frac{P_X^{(t)} - \Efromto{P_X^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{P_X^{(\tau)}}{t-T \le \tau < t}}}.
+  \end{equation}
+  Oznake $\Efromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ i $\Varfromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ predstavljaju očekivanje i varijancu cijene vrijednosnice $X$ nad intervalom $\left[t_1, t_2\right>$.
+  Nadalje, za svaki par vrijednosnica $X$ i $Y$ izračuna se razlika njihovih normaliziranih log-scijena $D_{X,Y}^{(t)}$ u trenutku $t$:
+  \begin{equation}
+  D_{X,Y}^{(t)} = \norm{P}_X^{(t)} - \norm{P}_Y^{(t)}
+  \end{equation}
+  Razlika normaliziranih log-cijena se koristi kao mjera sličnosti u algoritmu statističke arbitraže.
+  Kod ove mjere normalizacijom se postiže ravnopravna usporedba dviju dionica različitih volatilnosti, što znači da će se prilikom usporedbe dviju dionica čiji su intenziteti promjene cijene različiti oni dovesti na istu razinu.
+  
+  \subsection{Normalizirana razlika cijena}
+  Za razliku od prethodne mjere sličnosti, u ovom slučaju se razlika računa nad nenormaliziranim log-cijenama za sve $t$, označeno sa $d_{X,Y}^{(t)}$:
+  \begin{equation}
+  d_{X,Y}^{(t)} = P_X^{(t)} - P_Y^{(t)},
+  \end{equation}
+  a zatim se iz razlika $d_{X,Y}^{(t)}$ računaju normalizirane razlike $\norm{d}_{X,Y}^{(t)}$ za $t \ge T$:
+  \begin{equation}
+  \norm{d}_{X,Y}^{(t)} = \frac{d_{X,Y}^{(t)} - \Efromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}}.
+  \end{equation}
+  Ovako dobivena normalizirana razlika log-cijena koristi se kao mjera sličnosti.
+  U odnosu na prethodnu, ova mjera je više osjetljiva na promjene log-cijena neovisno o volatilnostima samih vrijednosnica, što će doći do izražaja prilikom usporedbe dviju vrijednosnica čije se cijene mijenjaju različitom brzinom i intenzitetom.
+  
+  \subsection{Mjera kointegracije za slučajne procese}
+  Što je?
+  
+  Testovi kointegracije, koji postoje.
+  
+  Koja je mjera sličnosti?
+  
+  Nedostatak: zahtjevni izračuni, pogotovo za velik broj parova.
+  
+  \subsection{Nedostaci statističke arbitraže}
+  
+  Nedostaci klasičnih metoda statističke arbitraže su: faljivanje. Kad se uključe troškovi trgovanja...
 
   \section{Relacija preferencije i funkcija korisnosti}
 
@@ -124,15 +194,15 @@
 %  The graph as a whole describes preference flow among the entities.
 %  An example of graph is shown on Fig. \ref{fig:graph}.
   Graf toka preferencija je težinski usmjereni graf, bez višestrukih bridova i petlji.
-  Njegovi čvorovi predstavljaju vrijednosnice, usmjereni bridovi preferenciju jedne vrijednosnice nad drugom, a težine bridova odgovaraju jačini preferencije.
+  Njegovi čvorovi predstavljaju vrijednosnice, usmjereni bridovi preferenciju jedne vrijednosnice nad drugom, a težine bridova odgovaraju intenzitetu preferencije.
   Ukoliko između dva čvora nedostaje brid, smatra se da su pripadne vrijednosnice podjednako preferirane (indiferentnost u odlučivanju).
   Graf kao cjelina opisuje tok preferencija među vrijednosnicama.
   Primjer grafa prikazan je na slici \ref{fig:graph}.
   
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\columnwidth]{graphics/graph.pdf}
-    \caption{Primjer grafa toka preferencija. Na bridovima su prikazane jačine preferencija jedne vrijednosnice u odnosu na drugu, a u čvorove su upisane izračunate individualne mjere preferencija za pripadnu vrijednosnicu.}
+    \includegraphics[width=0.6\columnwidth]{graphics/graph.pdf}
+    \caption{Primjer grafa toka preferencija. Na bridovima su prikazani intenziteti preferencija jedne vrijednosnice u odnosu na drugu, a u čvorove su upisane izračunate individualne mjere preferencija za pripadnu vrijednosnicu.}
     \label{fig:graph}
   \end{figure}
   
@@ -150,11 +220,13 @@
 %  However, problems arise with the aforementioned properties of transitivity, and transitivity in incomparability, which may not hold for an arbitrarily constructed instance of the graph.
 %  This imposed preference relation should preferably be in compliance with all the aforementioned properties, but when it comes to larger number of entities, it may become infeasible to construct a graph of such qualities directly.
 %  Instead of aiming at a consistent preference relation, we devise a consistency measure that describes similarity between the original graph and its nearest consistent reconstruction, and use it as an additional parameter in decision making.
-  Veze u ovom grafu na jedan način nameću relaciju preferencije među vrijednosnicama koje su opisane grafom, na način da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
+  Veze u ovom grafu nameću relaciju preferencije među vrijednosnicama koje su opisane grafom, na način da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
   Kako ne graf sadrži petlje, tj. nijedna vrijednosnica nije u relaciji sama sa sobom, ispunjeno je svojstvo irrefleksivnosti; a kako nema višestrukih bridova među čvorovima vrijedi i svojstvo asimetričnosti.
   Ipak, problemi se pojavljuju kod prethodno spomenutih svojstava tranzitivnosti, i tranzitivnosti po indiferentnosti, koja ne moraju uvijek vrijediti za proizvoljno konstruiran graf.
-  Poželjno bi bilo da graf nameće relaciju preferencije koja zadovoljava sva četiri prethodno navedena svojstva, no kada se radi o većem broju vrijednosnica, konstruiranje grafa koji posjeduje takva svojstva postaje nepraktično.
-  Umjesto postizanja konzistentnosti sa svojstvima relacije preferencije, upotrijebljena je mjera konzistentnosti koja opisuje koliko je neki graf sličan sa svojom najbližom konzistentnom rekonstrukcijom, te se ona koristi kao dodatan parametar pri konstruiranju portfelja.
+  Poželjno bi bilo da relacija preferencije koju graf nameće zadovoljava sva četiri prethodno navedena svojstva; no konstruiranje grafa koji posjeduje takva svojstva je nepraktično, pogotovo kada se radi o većem broju vrijednosnica.
+  
+  Umjesto da cilj bude konstrukcija grafa koji će biti konzistentan sa svojstvima relacije preferencije, definirana je mjera konzistentnosti koja opisuje koliko je neki graf sličan sa svojom najbližom konzistentnom rekonstrukcijom.
+  Mjera konzistentnosti se koristi kao dodatan parametar pri konstruiranju portfelja.
   Opis mjere konzistentnosti te način dobivanja najbliže konzistentne rekonstrukcije grafa dan je u odjeljku \ref{sec:metpot}.
   
   %  The measure of this preference flow is determined by a statistical arbitrage method, and it corresponds to the magnitude of a pair of assets prices ratio going out of what is considered statistically confident range.
@@ -337,7 +409,7 @@
 %  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
 %  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
   Također valja primijetiti da bi izračunavanje srednjih vrijednosti i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
-  Stoga je preporučljivo koristiti algoritam s pomičnim prozorima za računanje, koji je opisan u dodatku.
+  Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku.
   Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
   Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{(t)} = -c_{j,i}^{(t)}$, $m_{i,j}^{(t)} = -m_{j,i}^{(t)}$, i $d_{i,j}^{(t)} = d_{j,i}^{(t)}$, stoga je polovina informacije sadržane u njima redundantna.
   Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $(D - T) \times \left. N\cdot(N - 1) \middle/ 2\right.$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
@@ -364,7 +436,7 @@
     \begin{minipage}{0.5\textwidth}
       \centering
       \begin{tabular}{C|CCCCCCCCCC}
-        k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ \hline
+       k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ \hline
        i & 1 & 1 & 1 & 1 & 2 & 2 & 2 & 3 & 3 & 4 \\
        j & 2 & 3 & 4 & 5 & 3 & 4 & 5 & 4 & 5 & 5 \\
       \end{tabular}
@@ -513,7 +585,8 @@
 \bibliographystyle{unsrtnat}
 
 \appendix
-\chapter{Dodatak}
+\chapter{Efikasno računanje momenata s pomičnim prozorom}
+Pri izračunavanju momenata (srednja vrijednost, varijanca) vremenskih nizova 
 
 \begin{sazetak}
 Sažetak na hrvatskom jeziku.
