@@ -2,7 +2,7 @@
 \usepackage{booktabs}
 
 %\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1500,stretch=10,shrink=10]{microtype}
-\usepackage[final]{microtype}
+\usepackage[final, stretch=25, shrink=15]{microtype}
 \microtypecontext{spacing=nonfrench}
 \usepackage{indentfirst}
 \usepackage{booktabs}
@@ -21,9 +21,17 @@
 
 \newcommand{\T}{\top}
 \newcommand{\upto}{\mathinner {\ldotp \ldotp}}
-\newcommand{\Efromto}[2]{\operatorname{\mathbf{E}}\left[#1\ \middle\vert\ #2\right]}
-\newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\left[#1\ \middle\vert\ #2\right]}
+\newcommand{\E}[1]{\operatorname{\mathbf{E}}\left[#1\right]}
+\newcommand{\Var}[1]{\operatorname{\mathbf{Var}}\left[#1\right]}
+\newcommand{\Efromto}[2]{\operatorname{\mathbf{E}}\left[#1\, \middle\vert\, #2\right]}
+\newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\left[#1\, \middle\vert\, #2\right]}
 \newcommand{\norm}[1]{\bar{#1}}
+\newcommand{\prob}[1]{\operatorname{P}\left(#1\right)}
+\newcommand{\R}[2]{\operatorname{\mathbf{R}}_{#1}\left[#2\right]}
+\newcommand{\I}[1]{\operatorname{\mathrm{I}}\left(#1\right)}
+\newcommand{\diff}{\operatorname{\mathrm{\Delta}}}
+\newcommand{\diffn}[1]{\operatorname{\mathrm{\Delta}}^d}
+\newcommand{\lag}{\operatorname{\mathrm{L}}}
 
 \DeclareMathOperator*{\argmin}{arg\min}
 \usepackage{fixmath}
@@ -88,17 +96,17 @@
   Matematička definicija arbitražnih okolnosti je sljedeća:
   \begin{equation}
   \label{eq:statarb}
-  V^{(0)} = 0, \quad P\left(V^{(t)} > 0\right) = 1,
+  V^{(0)} = 0, \quad \prob{V^{\left(t\right)} > 0} = 1,
   \end{equation}
-  gdje $V^{(t)}$ označava vrijednost portfelja u trenutku $t$.
+  gdje $V^{\left(t\right)}$ označava vrijednost portfelja u trenutku $t$.
 
   U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
-  Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti manji od 1.
-  Tako se može može dogoditi da bude $V^{(t)} < 0$ za neke $t$.
-  Ipak, kako $t \to +\infty$, vjerojatnost $P\left(V^{(t)} > 0\right) \to 1$.
+  Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 1.
+  Tako se može može dogoditi da bude $V^{\left(t\right)} < 0$ za neke $t$.
+  Ipak, kako $t \to +\infty$, vjerojatnost $\prob{V^{\left(t\right)} > 0} \to 1$.
   U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
   
-  Algoritam statističke arbitraže najčešće čine sljedeći koraci (u svakom vremenskom trenutku):
+  Algoritam statističke arbitraže najčešće čine sljedeći koraci (za svaki vremenski trenutak):
   \begin{enumerate}
     \item određivanje neke mjere sličnosti među parovima vrijednosnica nad proteklim vremenskim periodom zadane duljine,
     \item uzimanje u obzir samo onih parova kod kojih mjera sličnosti ne prelazi zadani prag, odnosno odbacivanje preostalih parova;
@@ -110,34 +118,88 @@
   U nastavku su ukratko opisane navedene mjere.
   
   \subsection{Razlika normaliziranih log-cijena}
-  Neka je sa $P_X^{(t)}$ označena log-cijena vrijednosnice $X$ u trenutku $t$, i neka se koristi period od $T$ vremenskih koraka.
+  Neka je sa $P_X^{\left(t\right)}$ označena log-cijena vrijednosnice $X$ u trenutku $t$, i neka se koristi period od $T$ vremenskih koraka.
   Neka je ukupno $M$ vremenskih koraka, tj. $t \in \left[0, 1, \ldots, M - 1\right]$.
-  Za svaku vrijednosnicu $X$ u trenutcima $t \ge T$ izračunaju se normalizirane log-cijene $\norm{P}_X^{(t)}$:
+  Za svaku vrijednosnicu $X$ u trenutcima $t \ge T$ izračunaju se normalizirane log-cijene $\norm{P}_X^{\left(t\right)}$:
   \begin{equation}
-  \norm{P}_X^{(t)} = \frac{P_X^{(t)} - \Efromto{P_X^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{P_X^{(\tau)}}{t-T \le \tau < t}}}.
+  \norm{P}_X^{\left(t\right)} = \frac{P_X^{\left(t\right)} - \Efromto{P_X^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{P_X^{(\tau)}}{t-T \le \tau < t}}}.
   \end{equation}
   Oznake $\Efromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ i $\Varfromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ predstavljaju očekivanje i varijancu cijene vrijednosnice $X$ nad intervalom $\left[t_1, t_2\right>$.
-  Nadalje, za svaki par vrijednosnica $X$ i $Y$ izračuna se razlika njihovih normaliziranih log-scijena $D_{X,Y}^{(t)}$ u trenutku $t$:
+  Nadalje, za svaki par vrijednosnica $X$ i $Y$ izračuna se razlika njihovih normaliziranih log-cijena $D_{X,Y}^{\left(t\right)}$ u trenutku $t$:
   \begin{equation}
-  D_{X,Y}^{(t)} = \norm{P}_X^{(t)} - \norm{P}_Y^{(t)}
+  D_{X,Y}^{\left(t\right)} = \norm{P}_X^{\left(t\right)} - \norm{P}_Y^{\left(t\right)}
   \end{equation}
   Razlika normaliziranih log-cijena se koristi kao mjera sličnosti u algoritmu statističke arbitraže.
-  Kod ove mjere normalizacijom se postiže ravnopravna usporedba dviju dionica različitih volatilnosti, što znači da će se prilikom usporedbe dviju dionica čiji su intenziteti promjene cijene različiti oni dovesti na istu razinu.
+  Kod ove mjere normalizacijom se postiže ravnopravna usporedba dviju dionica različitih volatilnosti, što znači da će se prilikom usporedbe dviju dionica čiji su intenziteti promjene cijene različiti nakon normalizacije oni dovesti na istu razinu.
   
-  \subsection{Normalizirana razlika cijena}
-  Za razliku od prethodne mjere sličnosti, u ovom slučaju se razlika računa nad nenormaliziranim log-cijenama za sve $t$, označeno sa $d_{X,Y}^{(t)}$:
+  \subsection{Normalizirana razlika log-cijena}
+  Za razliku od prethodne mjere sličnosti, u ovom slučaju se razlika računa nad nenormaliziranim log-cijenama za sve $t$, označeno sa $d_{X,Y}^{\left(t\right)}$:
   \begin{equation}
-  d_{X,Y}^{(t)} = P_X^{(t)} - P_Y^{(t)},
+  d_{X,Y}^{\left(t\right)} = P_X^{\left(t\right)} - P_Y^{\left(t\right)},
   \end{equation}
-  a zatim se iz razlika $d_{X,Y}^{(t)}$ računaju normalizirane razlike $\norm{d}_{X,Y}^{(t)}$ za $t \ge T$:
+  a zatim se iz razlika $d_{X,Y}^{\left(t\right)}$ računaju normalizirane razlike $\norm{d}_{X,Y}^{\left(t\right)}$ za $t \ge T$:
   \begin{equation}
-  \norm{d}_{X,Y}^{(t)} = \frac{d_{X,Y}^{(t)} - \Efromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}}.
+  \norm{d}_{X,Y}^{\left(t\right)} = \frac{d_{X,Y}^{\left(t\right)} - \Efromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}}.
   \end{equation}
   Ovako dobivena normalizirana razlika log-cijena koristi se kao mjera sličnosti.
   U odnosu na prethodnu, ova mjera je više osjetljiva na promjene log-cijena neovisno o volatilnostima samih vrijednosnica, što će doći do izražaja prilikom usporedbe dviju vrijednosnica čije se cijene mijenjaju različitom brzinom i intenzitetom.
   
   \subsection{Mjera kointegracije za slučajne procese}
-  Što je?
+  Za razliku od prethodne dvije mjere sličnosti gdje se cijene dionica tretiraju kao vremenski nizovi, kod ove mjere one se tretiraju kao realizacije slučajnog procesa.
+  Za neki slučajni proces zanimljivo je proučiti svojstvo stacionarnosti --- slučajni proces $U\left[t\right]$ je stacionaran ako i samo ako vrijedi:
+  \begin{gather}
+  \label{eq:stat1}
+  \E{U\left[t\right]} = \mathrm{const.}\\
+  \label{eq:stat2}
+  \R{UU}{t, \tau} = \E{U\left[t\right] \cdot U\left[t + \tau\right]} = \R{UU}{\tau}.
+  \end{gather}
+  Za stacionarne slučajne procese vrijedi da njihova statistička svojstva ne ovise o vremenu:
+  jednadžba (\ref{eq:stat1}) tvrdi da je za stacionaran proces $U\left[t\right]$ srednja vrijednost slučajnog procesa $\E{U\left[t\right]}$ neovisna o vremenu $t$, a jednadžba (\ref{eq:stat2}) tvrdi da njegova autokorelacija $\R{UU}{t, \tau}$ ovisi samo o vremenskom pomaku $\tau$, ali ne i o $t$.
+  Ovakva definicija stacionarnosti naziva se još i ``stacionarnost u širem smislu''.
+  
+  Red integracije slučajnog procesa, označen sa $\I{d}$, gdje je $d$ red integracije, opisuje njegovu stacionarnost.
+  Stacionarni slučajni procesi su $\I{0}$.
+  Za općenit proces $V\left[t\right]$ koji je $\I{1}$ vrijedi da je proces $\diff V\left[t\right]$ dobiven njegovim diferenciranjem
+  \begin{equation}
+  \label{eq:red1}
+  \diff V\left[t\right] = \left(1 - \lag\right) V\left[t\right] = V\left[t\right] - V\left[t - 1\right]
+  \end{equation}
+  stacionaran proces, a za općenit proces $W\left[t\right]$ koji je $\I{d}$ vrijedi da je proces $\diffn{d} W\left[d\right]$ dobiven njegovim uzastopnim diferenciranjem $d$ puta
+  \begin{align}
+  \diffn{d} W\left[t\right] &= \left(1 - \lag\right)^d W\left[t\right] = \left( \sum_{n = 0}^{d} \binom{d}{n} \left(-1\right)^n\lag^n \right) W\left[t\right] \nonumber \\
+  \label{eq:redn}
+  &= \sum_{n = 0}^{d} \binom{d}{n} \left(-1\right)^n W\left[t - n\right]
+  \end{align}
+  stacionaran proces.
+  U (\ref{eq:red1}) i (\ref{eq:redn}) korišten je operator kašnjenja $\lag$ sa značenjem $\lag U\left[t\right] = U\left[t - 1\right]$.
+  
+  Trivijalno je provjeriti da linearna kombinacija dvaju slučajnih procesa koji su $\I{0}$ jest također $\I{0}$, kao i da linearna kombinacija dvaju slučajnih procesa od kojih je jedan $\I{0}$, a drugi $\I{1}$ jest $\I{1}$.
+  Malo je teže odrediti kojeg je reda integracije linearna kombinacija dvaju slučajnih procesa koji su $\I{1}$: to može biti $\I{0}$ ili $\I{1}$.
+  Kointegracija dvaju slučajnih procesa $X\left[t\right]$ i $Y\left[t\right]$ koji su $\I{1}$ označava da je njihova linearna kombinacija $U\left[t\right]$ stacionaran proces, odnosno $\I{0}$:
+  \begin{equation}
+  X\left[t\right] + \beta Y\left[t\right] = U\left[t\right],
+  \end{equation}
+  gdje je $\beta$ konstanta koja se još naziva i kointegracijski koeficijent.
+  Stacionarni slučajni proces $U\left[t\right]$ pritom se može prikazati kao:
+  \begin{equation}
+  U\left[t\right] = \mu + \varepsilon\left[t\right],
+  \end{equation}
+  gdje je $\mu = \E{U\left[t\right]}$, srednja vrijednost, a $\varepsilon\left[t\right]$ rezidualna vrijednost za koju vrijedi $\E{\varepsilon\left[t\right]} = 0$.
+  
+  Pretpostavka kod ove mjere sličnosti jest da su dva nestacionarna slučajna procesa $P_X\left[t\right]$ i $P_Y\left[t\right]$ koji predstavljaju kretanje log-cijena vrijednosnica $X$ i $Y$ kointegirana.
+  Postoji nekoliko metoda za provjeru kointegracije, najčešće korištene su Engle-Granger metoda, Johansen metoda i Phillips-Ouliaris metoda.
+  Najjednostavnija od navedenih je Engle-Granger metoda, koja je opisana u nastavku.
+  
+  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\left[t\right]$ koji je linearna kombinacija cijena $P_X\left[t\right]$ i $P_Y\left[t\right]$, zatim u drugom koraku provjeriti\ldots
+  Postupkom najmanjih kvadrata najprije se određuju procjene parametara $\mu$ i $\beta$, označene sa $\hat{\mu}$ i $\hat{\beta}$:
+  \begin{equation}
+  \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \left\{\left\lVert P_X\left[t\right] + \beta P_Y\left[t\right] -\mu \right\rVert^2\right\},
+  \end{equation}
+  a zatim se izraze procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$:
+  \begin{equation}
+  \hat{\varepsilon}\left[t\right] = -\hat{\mu} + P_X\left[t\right] + \hat{\beta} P_Y\left[t\right].
+  \end{equation}
+  
   
   Testovi kointegracije, koji postoje.
   
@@ -380,24 +442,24 @@
 \chapter{Algoritam}
 
 %  Let there be total of $N$ assets in $D$ days.
-%  Let price of asset $i$ at the time step $t$ be $a_i^{(t)}$, for $i \in {\left[1, 2, \ldots, N\right]}$ and $t \in {\left[0, 1, \ldots, D-1\right]}$.
-%  The log prices $b_i^{(t)}$, and log price differences $c_{i,j}^{(t)}$ between assets $i$ and $j$ are obtained as follows:
-%  \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right) \end{equation}
-%  \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
-%  and rolling means $m_{i,j}^{(t)}$ and standard deviations $d_{i,j}^{(t)}$ of log price differences over the past time window of size $T$ are obtained as follows:
+%  Let price of asset $i$ at the time step $t$ be $a_i^{\left(t\right)}$, for $i \in {\left[1, 2, \ldots, N\right]}$ and $t \in {\left[0, 1, \ldots, D-1\right]}$.
+%  The log prices $b_i^{\left(t\right)}$, and log price differences $c_{i,j}^{\left(t\right)}$ between assets $i$ and $j$ are obtained as follows:
+%  \begin{equation} b_i^{\left(t\right)} = \log\left(a_i^{\left(t\right)}\right) \end{equation}
+%  \begin{equation} c_{i,j}^{\left(t\right)} = b_i^{\left(t\right)} - b_j^{\left(t\right)}, \end{equation}
+%  and rolling means $m_{i,j}^{\left(t\right)}$ and standard deviations $d_{i,j}^{\left(t\right)}$ of log price differences over the past time window of size $T$ are obtained as follows:
   Neka u zadanom skupu podataka ima ukupno $N$ vrijednosnica kroz $D$ vremenskih koraka.
-  Neka je cijena vrijednosnice $i$ u vremenskom koraku $t$ jednaka $a_i^{(t)}$, za $i \in {\left[1, 2, \ldots, N\right]}$ i $t \in {\left[0, 1, \ldots, D-1\right]}$.
-  Log cijene $b_i^{(t)}$, i razlike log cijena po parovima $c_{i,j}^{(t)}$ dobivaju se na sljedeći način:
-  \begin{equation} b_i^{(t)} = \log\left(a_i^{(t)}\right) \end{equation}
-  \begin{equation} c_{i,j}^{(t)} = b_i^{(t)} - b_j^{(t)}, \end{equation}
-  i srednja vrijednost $m_{i,j}^{(t)}$ i standardna devijacija $d_{i,j}^{(t)}$ razlika log cijena tijekom proteklog perioda duljine $T$ dobivene su kako slijedi:
+  Neka je cijena vrijednosnice $i$ u vremenskom koraku $t$ jednaka $a_i^{\left(t\right)}$, za $i \in {\left[1, 2, \ldots, N\right]}$ i $t \in {\left[0, 1, \ldots, D-1\right]}$.
+  Log cijene $b_i^{\left(t\right)}$, i razlike log cijena po parovima $c_{i,j}^{\left(t\right)}$ dobivaju se na sljedeći način:
+  \begin{equation} b_i^{\left(t\right)} = \log\left(a_i^{\left(t\right)}\right) \end{equation}
+  \begin{equation} c_{i,j}^{\left(t\right)} = b_i^{\left(t\right)} - b_j^{\left(t\right)}, \end{equation}
+  i srednja vrijednost $m_{i,j}^{\left(t\right)}$ i standardna devijacija $d_{i,j}^{\left(t\right)}$ razlika log cijena tijekom proteklog perioda duljine $T$ dobivaju se kako slijedi:
   \begin{equation}
   \label{eq:mean}
-  m_{i,j}^{(t)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
+  m_{i,j}^{\left(t\right)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
   \end{equation}
   \begin{equation}
   \label{eq:deviation}
-  d_{i,j}^{(t)} = \sqrt{\frac{1}{T}\sum_{\tau=t - T}^{t - 1} \left(c_{i,j}^{(\tau)} - m_{i,j}^{(t)} \right)^2}.
+  d_{i,j}^{\left(t\right)} = \sqrt{\frac{1}{T}\sum_{\tau=t - T}^{t - 1} \left(c_{i,j}^{(\tau)} - m_{i,j}^{\left(t\right)} \right)^2}.
   \end{equation}
   
   Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, stoga sumiranje ide do $t - 1$.
@@ -407,11 +469,11 @@
 
 %  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
 %  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
-%  On that note, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
+%  On that note, $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, and $d_{i,j}^{\left(t\right)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
   Također valja primijetiti da bi izračunavanje srednjih vrijednosti i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
   Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku.
-  Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
-  Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{(t)} = -c_{j,i}^{(t)}$, $m_{i,j}^{(t)} = -m_{j,i}^{(t)}$, i $d_{i,j}^{(t)} = d_{j,i}^{(t)}$, stoga je polovina informacije sadržane u njima redundantna.
+  Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
+  Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{\left(t\right)} = -c_{j,i}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)} = -m_{j,i}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)} = d_{j,i}^{\left(t\right)}$, stoga je polovina informacije sadržane u njima redundantna.
   Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $(D - T) \times \left. N\cdot(N - 1) \middle/ 2\right.$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
   \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
   a za dekodiranje $(i, j)$ iz $k$ izrazi:
@@ -451,32 +513,32 @@
 
   \section{Konstrukcija grafa toka preferencija}
   \label{sub:creating-graph}
-%  Using the obtained $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, and $d_{i,j}^{(t)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
+%  Using the obtained $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, and $d_{i,j}^{\left(t\right)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
 %  Considering one time step $t$, we find all such pairs of assets $(i,j)$ that satisfy:
 %  \begin{equation}
 %  \label{eq:thresh}
-%  \left| c_{i,j}^{(t)} - m_{i,j}^{(t)} \right| > \alpha \cdot d_{i,j}^{(t)},
+%  \left| c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)} \right| > \alpha \cdot d_{i,j}^{\left(t\right)},
 %  \end{equation}
 %  i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
 %  An illustration is shown on Fig. \ref{fig:devmag}.
-  Korištenjem prethodno dobivenih $c_{i,j}^{(t)}$, $m_{i,j}^{(t)}$, i $d_{i,j}^{(t)}$ sada je moguće kreirati graf toka preferencija među vrijednosnicama u svakom vremenskom koraku $t$.
+  Korištenjem prethodno dobivenih $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)}$ sada je moguće kreirati graf toka preferencija među vrijednosnicama u svakom vremenskom koraku $t$.
   Razmatrajući fiksni vremenski korak $t$, izdvajaju se svi parovi vrijednosnica $(i,j)$ za koje vrijedi:
   \begin{equation}
   \label{eq:thresh}
-  \left| c_{i,j}^{(t)} - m_{i,j}^{(t)} \right| > \alpha \cdot d_{i,j}^{(t)},
+  \left| c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)} \right| > \alpha \cdot d_{i,j}^{\left(t\right)},
   \end{equation}
   tj. trenutna apsolutna vrijednost razlike log cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od srednje vrijednosti izmjerene u proteklom periodu.
   %  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
-%  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{(t)}$ going from $i$ to $j$.
-%  Weight $w_{i,j}^{(t)}$ is obtained as:
-  Nakon toga, za svaki par $(i,j)$ koji zadovoljava (\ref{eq:thresh}) dodaju se u graf čvorovi $i$ i $j$, te brid koji ide od $i$ do $j$ s težinom $w_{i,j}^{(t)}$.
-  Težina $w_{i,j}^{(t)}$ dobiva se kao:
+%  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{\left(t\right)}$ going from $i$ to $j$.
+%  Weight $w_{i,j}^{\left(t\right)}$ is obtained as:
+  Nakon toga, za svaki par $(i,j)$ koji zadovoljava (\ref{eq:thresh}) dodaju se u graf čvorovi $i$ i $j$, te brid koji ide od $i$ do $j$ s težinom $w_{i,j}^{\left(t\right)}$.
+  Težina $w_{i,j}^{\left(t\right)}$ dobiva se kao:
   \begin{equation}
   \label{eq:weight}
-  w_{i,j}^{(t)} = \left. \left(c_{i,j}^{(t)} - m_{i,j}^{(t)}\right) \middle/ d_{i,j}^{(t)} \right.,
+  w_{i,j}^{\left(t\right)} = \left. \left(c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)}\right) \middle/ d_{i,j}^{\left(t\right)} \right.,
   \end{equation}
   što odgovara udaljenosti razlike log cijena od srednje vrijednosti mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
-  Negativan predznak težine $w_{i,j}^{(t)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{(t)} = -w_{i,j}^{(t)} > 0$ ekvivalentan je prethodnome bridu.
+  Negativan predznak težine $w_{i,j}^{\left(t\right)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{\left(t\right)} = -w_{i,j}^{\left(t\right)} > 0$ ekvivalentan je prethodnome bridu.
   Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
   \begin{figure}[htb]
@@ -511,11 +573,11 @@
   Individualna mjera preferencije za svaku vrijednosnicu dobivena je metodom potencijala, na način kako je ranije opisano u \ref{sub:potential}.
   Vrijednosnice s trenutačno najvećom preferencijom preporučeno je kupiti, dok je one s najmanjom preferencijom preporučeno prodati, odnosno \textit{shortati} ukoliko je to moguće.
   
-%  Let $\matr{\phi}^{(t)} = \begin{bmatrix} \phi_1^{(t)} & \phi_2^{(t)} & \ldots & \phi_N^{(t)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{(t)}$ denote the preference for asset $i$ at time step $t$.
+%  Let $\matr{\phi}^{\left(t\right)} = \begin{bmatrix} \phi_1^{\left(t\right)} & \phi_2^{\left(t\right)} & \ldots & \phi_N^{\left(t\right)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{\left(t\right)}$ denote the preference for asset $i$ at time step $t$.
 %  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
 %  Lower values of $\kappa$ suggest that we should diversify our portfolio by including some more assets in the order of preference, while higher values suggest that it is safe to do trading with smaller number of assets.
 %  Portfolio diversification might be seen as a strategy for protection from fundamental risks, e.g. risk of asset default.
-  Neka je $\matr{\phi}^{(t)} = \begin{bmatrix} \phi_1^{(t)} & \phi_2^{(t)} & \ldots & \phi_N^{(t)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$ i $\phi_i^{(t)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
+  Neka je $\matr{\phi}^{\left(t\right)} = \begin{bmatrix} \phi_1^{\left(t\right)} & \phi_2^{\left(t\right)} & \ldots & \phi_N^{\left(t\right)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$ i $\phi_i^{\left(t\right)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
   Pri odabiru vrijednosnica za portfelj, u obzir se također uzima i mjera konzistentnosti $\kappa$.
   Uključivanje mjere konzistentnosti pri odabiru omogućuje zaštitu od fundamentalnog rizika (propadanja neke dionice) putem diverzifikacije portfelja.
   Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portftelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
@@ -535,12 +597,12 @@
 %  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
   Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje vrijedi:
   \begin{equation}
-  \phi_i^{(t)} \ge \kappa^\prime \cdot \Phi,
+  \phi_i^{\left(t\right)} \ge \kappa^\prime \cdot \Phi,
   \end{equation}
   gdje je $\Phi = \max_j \left\{ \left| \phi_j \right| \right\}$.
   Isto tako, za prodaju se biraju vrijednosnice $i$, za koje vrijedi:
   \begin{equation}
-  \phi_i^{(t)} \le -\kappa^\prime \cdot \Phi.
+  \phi_i^{\left(t\right)} \le -\kappa^\prime \cdot \Phi.
   \end{equation}
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high. 

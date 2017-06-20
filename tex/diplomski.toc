@@ -3,18 +3,18 @@
 \contentsline {chapter}{\numberline {2}Metode i koncepti}{2}
 \contentsline {section}{\numberline {2.1}Statisti\IeC {\v c}ka arbitra\IeC {\v z}a}{2}
 \contentsline {subsection}{\numberline {2.1.1}Razlika normaliziranih log-cijena}{3}
-\contentsline {subsection}{\numberline {2.1.2}Normalizirana razlika cijena}{3}
+\contentsline {subsection}{\numberline {2.1.2}Normalizirana razlika log-cijena}{4}
 \contentsline {subsection}{\numberline {2.1.3}Mjera kointegracije za slu\IeC {\v c}ajne procese}{4}
-\contentsline {subsection}{\numberline {2.1.4}Nedostaci statisti\IeC {\v c}ke arbitra\IeC {\v z}e}{4}
-\contentsline {section}{\numberline {2.2}Relacija preferencije i funkcija korisnosti}{4}
-\contentsline {section}{\numberline {2.3}Graf toka preferencija}{5}
-\contentsline {section}{\numberline {2.4}Metoda potencijala}{7}
-\contentsline {subsection}{\numberline {2.4.1}Ra\IeC {\v c}unanje potencijala \IeC {\v c}vorova}{7}
-\contentsline {subsection}{\numberline {2.4.2}Konzistentna rekonstrukcija grafa}{9}
-\contentsline {chapter}{\numberline {3}Algoritam}{10}
-\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{11}
-\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{12}
-\contentsline {chapter}{\numberline {4}Rezultati}{14}
-\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{16}
-\contentsline {chapter}{Literatura}{17}
-\contentsline {chapter}{\numberline {A}Efikasno ra\IeC {\v c}unanje momenata s pomi\IeC {\v c}nim prozorom}{18}
+\contentsline {subsection}{\numberline {2.1.4}Nedostaci statisti\IeC {\v c}ke arbitra\IeC {\v z}e}{6}
+\contentsline {section}{\numberline {2.2}Relacija preferencije i funkcija korisnosti}{6}
+\contentsline {section}{\numberline {2.3}Graf toka preferencija}{7}
+\contentsline {section}{\numberline {2.4}Metoda potencijala}{8}
+\contentsline {subsection}{\numberline {2.4.1}Ra\IeC {\v c}unanje potencijala \IeC {\v c}vorova}{8}
+\contentsline {subsection}{\numberline {2.4.2}Konzistentna rekonstrukcija grafa}{10}
+\contentsline {chapter}{\numberline {3}Algoritam}{12}
+\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{13}
+\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{14}
+\contentsline {chapter}{\numberline {4}Rezultati}{16}
+\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{18}
+\contentsline {chapter}{Literatura}{19}
+\contentsline {chapter}{\numberline {A}Efikasno ra\IeC {\v c}unanje momenata s pomi\IeC {\v c}nim prozorom}{20}
