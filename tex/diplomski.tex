@@ -190,7 +190,7 @@
   Postoji nekoliko metoda za provjeru kointegracije, najčešće korištene su Engle-Granger metoda, Johansen metoda i Phillips-Ouliaris metoda.
   Najjednostavnija od navedenih je Engle-Granger metoda, koja je opisana u nastavku.
   
-  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\left[t\right]$ koji je linearna kombinacija cijena $P_X\left[t\right]$ i $P_Y\left[t\right]$, zatim u drugom koraku provjeriti\ldots
+  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\left[t\right]$ koji je linearna kombinacija cijena $P_X\left[t\right]$ i $P_Y\left[t\right]$, zatim u drugom koraku provjeriti je li taj proces zaista stacionaran.
   Postupkom najmanjih kvadrata najprije se određuju procjene parametara $\mu$ i $\beta$, označene sa $\hat{\mu}$ i $\hat{\beta}$:
   \begin{equation}
   \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \left\{\left\lVert P_X\left[t\right] + \beta P_Y\left[t\right] -\mu \right\rVert^2\right\},
@@ -199,17 +199,17 @@
   \begin{equation}
   \hat{\varepsilon}\left[t\right] = -\hat{\mu} + P_X\left[t\right] + \hat{\beta} P_Y\left[t\right].
   \end{equation}
+  U drugom koraku provjerava se je li $\hat{\varepsilon\left[t\right]}$ zaista stacionaran proces, čime se dobiva t-vrijednost.
   
-  
-  Testovi kointegracije, koji postoje.
-  
-  Koja je mjera sličnosti?
-  
-  Nedostatak: zahtjevni izračuni, pogotovo za velik broj parova.
+  Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$ koriste se kao mjera sličnosti.
+  Ova mjera je rezultat dublje analize u odnosu na prethodne dvije mjere, i zbog toga je i računski zahtjevnija, što je ujedno prednost i nedostatak.
+  Kada se radi o velikom broju parova vrijednosnica, duboka analiza može se pokazati neizvedivom, stoga je bolje koristiti neku od dvije prethodno navedene mjere sličnosti.
+  U ovom radu korištena je normalizirana razlika log-cijena.
   
   \subsection{Nedostaci statističke arbitraže}
   
   Nedostaci klasičnih metoda statističke arbitraže su: faljivanje. Kad se uključe troškovi trgovanja...
+  Tretiranje parova dionica zasebno, nedostaje interakcija između svih dionica zajedno.
 
   \section{Relacija preferencije i funkcija korisnosti}
 
