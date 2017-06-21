@@ -14,7 +14,8 @@
 \contentsline {chapter}{\numberline {3}Algoritam}{12}
 \contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{13}
 \contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{14}
-\contentsline {chapter}{\numberline {4}Rezultati}{16}
-\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{18}
-\contentsline {chapter}{Literatura}{19}
-\contentsline {chapter}{\numberline {A}Efikasno ra\IeC {\v c}unanje momenata s pomi\IeC {\v c}nim prozorom}{20}
+\contentsline {section}{\numberline {3.3}Minimizacija koeficijenta obrtaja}{16}
+\contentsline {chapter}{\numberline {4}Rezultati}{17}
+\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{19}
+\contentsline {chapter}{Literatura}{20}
+\contentsline {chapter}{\numberline {A}Efikasno ra\IeC {\v c}unanje momenata s pomi\IeC {\v c}nim prozorom}{21}

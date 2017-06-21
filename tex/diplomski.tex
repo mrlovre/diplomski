@@ -199,7 +199,7 @@
   \begin{equation}
   \hat{\varepsilon}\left[t\right] = -\hat{\mu} + P_X\left[t\right] + \hat{\beta} P_Y\left[t\right].
   \end{equation}
-  U drugom koraku provjerava se je li $\hat{\varepsilon\left[t\right]}$ zaista stacionaran proces, čime se dobiva t-vrijednost.
+  U drugom koraku provjerava se je li $\hat{\varepsilon\left[t\right]}$ zaista stacionaran proces, čime se dobiva t-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
   
   Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$ koriste se kao mjera sličnosti.
   Ova mjera je rezultat dublje analize u odnosu na prethodne dvije mjere, i zbog toga je i računski zahtjevnija, što je ujedno prednost i nedostatak.
@@ -483,8 +483,7 @@
   Na slici \ref{fig:coding} prikazano je kodiranje u slučaju $N = 5$ vrijednosnica.
   
   \begin{figure}[h]
-    \centering
-    \begin{minipage}{0.5\textwidth}
+    \begin{minipage}{0.5\linewidth}
       \centering
       \begin{tabular}{C|CCCCC}
         i/j & 1 & 2 & 3 & 4 & 5 \\ \hline
@@ -495,7 +494,7 @@
         5 & \cdot & \cdot & \cdot & \cdot & \cdot
       \end{tabular}
     \end{minipage}%
-    \begin{minipage}{0.5\textwidth}
+    \begin{minipage}{0.5\linewidth}
       \centering
       \begin{tabular}{C|CCCCCCCCCC}
        k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\ \hline
@@ -504,7 +503,6 @@
       \end{tabular}
     \end{minipage}
     \caption{
-%      Example of the proposed encoding and decoding scheme, for $N = 5$. A dot $(\cdot)$ indicates that that combination is not used.
        Primjer predložene sheme kodiranja i dekodiranja, za $N = 5$.
        Točka $(\cdot)$ označava da se određena kombinacija ne koristi.
     }
@@ -605,12 +603,29 @@
   \phi_i^{\left(t\right)} \le -\kappa^\prime \cdot \Phi.
   \end{equation}
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
-%  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high. 
+%  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
+  
+  \section{Minimizacija koeficijenta obrtaja}
+  Koeficijent obrtaja \engl{turnover ratio} je mjera koja određuje koliki udio vrijednosnica u portfelju je promijenjen između dva vremenska koraka.
+  Ova mjera može biti u rasponu od 0 do 2, gdje 0 označava da su vrijednosnice u portfelju ostale iste između dva vremenska koraka, dok 2 označava da među vrijednosnicama uključenima u portfelj u prethodnom i sadašnjem koraku nijedna nije ostala ista.
+  Ova mjera je važna između ostalog jer opisuje troškove trgovanja: u svakom vremenskom koraku troškovi trgovanja su direktno proporcionalni količini vrijednosnica koje su prodane ili kupljene u tom koraku.
+  
+  Koeficijent obrtaja $\eta^{(t)}$ u vremenskom koraku $t$ u odnosu na $t-1$ računa se na sljedeći način.
+  Neka je na raspolaganju $N$ vrijednosnica.
+  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix} \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i > 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
+  Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
+  \begin{equation}
+  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert.
+  \end{equation}
+  
+  Primjeri.
+  
+  Minimizacija: energija signala.
   
   \chapter{Rezultati}
-  Skup podataka nad kojim je algoritam testiran uključuje 203 od 500 dionica koje su bile uključene u S\&P indeks u razdoblju od 1. siječnja 1980. do 31. prosinca. 2003.
+  Skup podataka nad kojim je algoritam testiran uključuje 203 od 500 dionica koje su bile uključene u S\&P indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
   Razdoblje uključuje 6261 dan trgovanja, odnosno vremenskih koraka.
-  Ukupno 20503 praova dionica je ispitano metodom statističke arbitraže u svakom vremenskom koraku.
+  Ukupno 20503 parova dionica je ispitano metodom statističke arbitraže u svakom vremenskom koraku.
   Simulirani su troškovi trgovanja u iznosu 0.10\% za svako obavljeno trgovanje.
   Sažeti prikaz rezultat dan je u tablici \ref{table:results-1}.
   
