@@ -9,6 +9,7 @@
 \usepackage{tabularx}
 \usepackage{caption}
 \usepackage{rotating}
+\usepackage{float}
 
 \usepackage[croatian]{babel}
 \usepackage[utf8]{inputenc}
@@ -68,8 +69,8 @@
 %  Similarity is measured by cointegration, correlation, or some other measure in order to find a moment in time when those assets' prices exceed what was statistically determined as highly confident range.
 %  When such opportunities present themselves, we can take advantage by predicting that prices will return once again to the confident range in the next time step, and do the trading in accordance with this prediction.
   Klasične metode statističke arbitraže uzimaju u obzir parove vrijednosnica čije cijene se ponašaju slično tijekom određenom vremenskog perioda.
-  Sličnost se mjeri kointegracijom, korelacijom, ili nekom drugom mjerom, s ciljem pronalaska trenutka kada te cijene izlaze van statistički utvrđenog intervala visoke pouzdanosti.
-  Takve prilike mogu se iskoristiti predviđanjem da će se cijene u idućem trenutku ponovno vratiti unutar intervala visoke pouzdanosti, te se u skladu s tim predviđanjem može provesti trgovanje.
+  Sličnost se mjeri kointegracijom, korelacijom, ili nekom drugom mjerom, s ciljem pronalaska trenutka kada te cijene izlaze van statistički utvrđeno visoko pouzdanog intervala.
+  Takve prilike mogu se iskoristiti predviđanjem da će se cijene u idućem trenutku ponovno vratiti unutar visoko pouzdanog intervala, te se u skladu s tim predviđanjem može provesti trgovanje.
   
 %  In this paper, we propose a new method based on those predictions that are obtained by the statistical arbitrage method, using statistical measures as a proxy for describing the preference relations between pairs of assets.
 %  Next, a graph is formed based on those relations, so that mutual interaction of assets might be analyzed.
@@ -77,36 +78,38 @@
 %  Finally, assets are sorted by preference and included into the portfolio.
 %  The idea of this method is to create a generalization of statistical arbitrage methods that is more robust and performs better when working with a larger number of assets by trying to take into account mutual interaction of assets.
 
-  U ovom radu, predložena je nova metoda temeljena na predviđanjima koja su dobivena metodom statističke arbitraže, pri čemu se statističke mjere koriste za opisivanje relacije preferencije među parovima vrijednosnica.
+  U ovom radu predložena je nova metoda temeljena na predviđanjima koja su dobivena metodom statističke arbitraže, pri čemu se statističke mjere koriste za opisivanje relacije preferencije među parovima vrijednosnica.
   Razlikuju se dvije vrste preferencije: preferencija jedne vrijednosnice nad drugom i individualna mjera preferencije za svaku vrijednosnicu.
   Iz dobivene relacije preferencije konstruira se graf toka preferencija iz kojeg se može proučiti međusobna interakcija svih vrijednosnica koje su na raspolaganju.
 %  Idući korak je konstruiranje grafova temeljenih na prethodno dobivenim relacijama, kako bi se mogla proučiti međusobna interakcija svih vrijednosnica koje su na raspolaganju.
   Konačno, za svaku vrijednosnicu izračunava se individualna mjera preferencije, na temelju čega se donosi odluka o sastavljanju portfelja.
   
   Ideja ove metode je ostvariti generalizaciju klasičnih metoda statističke arbitraže koja će biti robusnija i ostvarivati bolje rezultate kada ima velik broj vrijednosnica na raspolaganju tako što izvlači zajedničku interakciju iz svih vrijednosnica.
+  
+  Organizacija poglavlja je sljedeća: \ldots
 
 \chapter{Metode i koncepti}
   Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu.
-  Ako vam se ne sviđa slobodno možete preskočit...
+  Ako vam se ne sviđa slobodno možete preskočit\ldots
 
   \section{Statistička arbitraža}
   Statistička arbitraža \engl{statistical arbitrage} je algoritam trgovanja zasnovan na statistici.
-  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje pozitivan profit s vjerojatnošću 1, dok pritom njegova početna vrijednost iznosi 0.
+  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje nenegativan profit s vjerojatnošću 1, dok pritom njegova početna vrijednost iznosi 0.
   Trivijalan primjer arbitraže je situacija u kojoj bi se ista vrijednosnica nudila po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
   Matematička definicija arbitražnih okolnosti je sljedeća:
   \begin{equation}
   \label{eq:statarb}
-  V^{(0)} = 0, \quad \prob{V^{\left(t\right)} > 0} = 1,
+  V^{(0)} = 0, \quad \prob{V^{\left(t\right)} \ge 0} = 1,
   \end{equation}
   gdje $V^{\left(t\right)}$ označava vrijednost portfelja u trenutku $t$.
 
   U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
-  Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 1.
+  Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 100\%.
   Tako se može može dogoditi da bude $V^{\left(t\right)} < 0$ za neke $t$.
-  Ipak, kako $t \to +\infty$, vjerojatnost $\prob{V^{\left(t\right)} > 0} \to 1$.
+  Ipak, uz pretpostavku dovoljne likvidnosti tržiša, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\left(t\right)} > 0} \to 1$.
   U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
   
-  Algoritam statističke arbitraže najčešće čine sljedeći koraci (za svaki vremenski trenutak):
+  Algoritam statističke arbitraže u svakom vremenskom trenutku čine najčešće sljedeći koraci:
   \begin{enumerate}
     \item određivanje neke mjere sličnosti među parovima vrijednosnica nad proteklim vremenskim periodom zadane duljine,
     \item uzimanje u obzir samo onih parova kod kojih mjera sličnosti ne prelazi zadani prag, odnosno odbacivanje preostalih parova;
@@ -130,7 +133,35 @@
   D_{X,Y}^{\left(t\right)} = \norm{P}_X^{\left(t\right)} - \norm{P}_Y^{\left(t\right)}
   \end{equation}
   Razlika normaliziranih log-cijena se koristi kao mjera sličnosti u algoritmu statističke arbitraže.
-  Kod ove mjere normalizacijom se postiže ravnopravna usporedba dviju dionica različitih volatilnosti, što znači da će se prilikom usporedbe dviju dionica čiji su intenziteti promjene cijene različiti nakon normalizacije oni dovesti na istu razinu.
+  Kod ove mjere normalizacijom se postiže ravnopravna usporedba dviju vrijednosnica različitih volatilnosti, što znači da će se prilikom usporedbe dviju dionica čiji su intenziteti promjene cijene različiti nakon normalizacije oni dovesti na istu razinu.
+  Ilustrativni primjer kretanja cijena vrijednosnica prikazan je na slici \ref{fig:ab-prices}.
+  
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=1.0\linewidth]{graphics/ab-prices.png}
+    \caption{
+      Prikaz kretanja cijena dviju vrijednosnica u razdoblju od 500 dana.
+      Plavom bojom prikazano je $P_X^{(t)}$, a zelenom $P_Y^{(t)}$.
+      Svjetlijim nijansama tih boja prikazana je punom linijom srednja vrijednost, i crtkanom linijom raspon udaljenost za jednu devijaciju od srednje vrijednosti; srednja vrijednost i devijacija izračunate su na proteklom vremenskom periodu duljine 120 dana.
+    }
+    \label{fig:ab-prices}
+  \end{figure}
+
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm.png}
+    \caption{
+      Plavo: normalizirana cijena $\norm{P}_X^{(t)}$, zeleno: normalizirana cijena $\norm{P}_Y^{(t)}$.
+    }
+    \label{fig:ab-prices-norm}
+  \end{figure}
+
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm-diff.png}
+    \caption{
+      Razlika normaliziranih cijena, $D_{X,Y}^{\left(t\right)}$.}
+  \end{figure}
   
   \subsection{Normalizirana razlika log-cijena}
   Za razliku od prethodne mjere sličnosti, u ovom slučaju se razlika računa nad nenormaliziranim log-cijenama za sve $t$, označeno sa $d_{X,Y}^{\left(t\right)}$:
@@ -144,7 +175,20 @@
   Ovako dobivena normalizirana razlika log-cijena koristi se kao mjera sličnosti.
   U odnosu na prethodnu, ova mjera je više osjetljiva na promjene log-cijena neovisno o volatilnostima samih vrijednosnica, što će doći do izražaja prilikom usporedbe dviju vrijednosnica čije se cijene mijenjaju različitom brzinom i intenzitetom.
   
-  \subsection{Mjera kointegracije za slučajne procese}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{graphics/diff.png}
+    \caption{Tamnijom bojom prikazana je razlika nenormaliziranih cijena $d_{X,Y}^{(t)}$, a svijetlijom punom linijom srednja njezina vrijednost i crtkanom linijom udaljenost od srednje vrijednosti za jednu devijaciju.}
+  \end{figure}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
+    \caption{
+      Normalizirana razlika cijena, $\norm{d}_{X,Y}^{\left(t\right)}$.}
+  \end{figure}
+  
+  \subsection{Mjera kointegracije slučajnih procesa}
   Za razliku od prethodne dvije mjere sličnosti gdje se cijene dionica tretiraju kao vremenski nizovi, kod ove mjere one se tretiraju kao realizacije slučajnog procesa.
   Za neki slučajni proces zanimljivo je proučiti svojstvo stacionarnosti --- slučajni proces $U\left[t\right]$ je stacionaran ako i samo ako vrijedi:
   \begin{gather}
@@ -174,7 +218,7 @@
   U (\ref{eq:red1}) i (\ref{eq:redn}) korišten je operator kašnjenja $\lag$ sa značenjem $\lag U\left[t\right] = U\left[t - 1\right]$.
   
   Trivijalno je provjeriti da linearna kombinacija dvaju slučajnih procesa koji su $\I{0}$ jest također $\I{0}$, kao i da linearna kombinacija dvaju slučajnih procesa od kojih je jedan $\I{0}$, a drugi $\I{1}$ jest $\I{1}$.
-  Malo je teže odrediti kojeg je reda integracije linearna kombinacija dvaju slučajnih procesa koji su $\I{1}$: to može biti $\I{0}$ ili $\I{1}$.
+  Malo je teže odrediti kojeg je reda integracije linearna kombinacija dvaju slučajnih procesa koji su $\I{1}$: to može biti $\I{1}$, ali u posebnim slučajevima može biti i $\I{0}$.
   Kointegracija dvaju slučajnih procesa $X\left[t\right]$ i $Y\left[t\right]$ koji su $\I{1}$ označava da je njihova linearna kombinacija $U\left[t\right]$ stacionaran proces, odnosno $\I{0}$:
   \begin{equation}
   X\left[t\right] + \beta Y\left[t\right] = U\left[t\right],
@@ -190,7 +234,7 @@
   Postoji nekoliko metoda za provjeru kointegracije, najčešće korištene su Engle-Granger metoda, Johansen metoda i Phillips-Ouliaris metoda.
   Najjednostavnija od navedenih je Engle-Granger metoda, koja je opisana u nastavku.
   
-  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\left[t\right]$ koji je linearna kombinacija cijena $P_X\left[t\right]$ i $P_Y\left[t\right]$, zatim u drugom koraku provjeriti je li taj proces zaista stacionaran.
+  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\left[t\right]$ koji je linearna kombinacija cijena $P_X\left[t\right]$ i $P_Y\left[t\right]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran.
   Postupkom najmanjih kvadrata najprije se određuju procjene parametara $\mu$ i $\beta$, označene sa $\hat{\mu}$ i $\hat{\beta}$:
   \begin{equation}
   \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \left\{\left\lVert P_X\left[t\right] + \beta P_Y\left[t\right] -\mu \right\rVert^2\right\},
@@ -199,7 +243,7 @@
   \begin{equation}
   \hat{\varepsilon}\left[t\right] = -\hat{\mu} + P_X\left[t\right] + \hat{\beta} P_Y\left[t\right].
   \end{equation}
-  U drugom koraku provjerava se je li $\hat{\varepsilon\left[t\right]}$ zaista stacionaran proces, čime se dobiva t-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
+  U drugom koraku provjerava se je li $\hat{\varepsilon}\left[t\right]$ zaista stacionaran proces, čime se dobiva t-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
   
   Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$ koriste se kao mjera sličnosti.
   Ova mjera je rezultat dublje analize u odnosu na prethodne dvije mjere, i zbog toga je i računski zahtjevnija, što je ujedno prednost i nedostatak.
@@ -207,9 +251,22 @@
   U ovom radu korištena je normalizirana razlika log-cijena.
   
   \subsection{Nedostaci statističke arbitraže}
+  Jedan od nedostataka statističke arbitraže jest generalno slaba preciznost izražena kao udio broja trgovanja koji rezultira pozitivnim profitom u ukupnom broju trgovanja.
+  Uzrok tome su statističke mjere na kojima se algoritam temelji, koje ne mogu dati apsolutno pouzdanu odluku samim time što je kretanje cijena slučajan proces.
+  Također, problem može biti i tzv. varljiva korelacija u kojoj je kretanje cijena dviju vrijednosnica naizgled povezano, no zapravo je uzrok tome neki nepoznati vanjski faktor; tada predviđeno ponašanje može biti poprilično različito od stvarnog.
+  Isto tako statističke metode ne mogu razlikovati one devijacije u ponašanju cijena koje su prirodne od onih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i sl.
+  Pri testiranju algoritma statističke arbitraže nad testnim skupovima podataka preciznost rijetko kada prelazi 60\%, a većinom je manja od 50\%.
+  No, unatoč tome što algoritam griješi u više od pola slučajeva, ukupni profit je ipak pozitivan jer pogreške donose znatno manje gubitke u odnosu na zaradu ostvarenu pogotcima.
   
-  Nedostaci klasičnih metoda statističke arbitraže su: faljivanje. Kad se uključe troškovi trgovanja...
-  Tretiranje parova dionica zasebno, nedostaje interakcija između svih dionica zajedno.
+  Drugi nedostatak tiče se načina tretiranja vrijednosnica koje su na raspolaganju i koje se mogu uključiti u portfelj.
+  Svaki par vrijednosnica gleda se zasebno i pritom je isključena dublja analiza međusobnih interakcija svih vrijednosnica zajedno.
+  Trgovanje se obavlja uvijek u parovima, odnosno jednaki broj vrijednosnica se kupuje i prodaje u svakom trenutku.
+  U ovom radu istražena je metoda koja omogućuje trgovanje kupovanjem i prodajom svih vrijednosnica nezavisno, koristeći pritom metode statističke arbitraže kao opis preferencije među vrijednosnicama.
+  Interakcija među vrijednosnicama opisuje se grafom toka preferencija, iz čega se naposljetku izvlači poredak prema individualnoj preferenciji svih vrijednosnica.
+  
+  
+%  Nedostaci klasičnih metoda statističke arbitraže su: faljivanje. Kad se uključe troškovi trgovanja...
+%  Tretiranje parova dionica zasebno, nedostaje interakcija između svih dionica zajedno.
 
   \section{Relacija preferencije i funkcija korisnosti}
 
@@ -263,7 +320,7 @@
   
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.6\columnwidth]{graphics/graph.pdf}
+    \includegraphics[width=0.65\columnwidth]{graphics/graph.pdf}
     \caption{Primjer grafa toka preferencija. Na bridovima su prikazani intenziteti preferencija jedne vrijednosnice u odnosu na drugu, a u čvorove su upisane izračunate individualne mjere preferencija za pripadnu vrijednosnicu.}
     \label{fig:graph}
   \end{figure}
@@ -594,14 +651,14 @@
   
 %  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
   Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje vrijedi:
-  \begin{equation}
+  \begin{equation*}
   \phi_i^{\left(t\right)} \ge \kappa^\prime \cdot \Phi,
-  \end{equation}
+  \end{equation*}
   gdje je $\Phi = \max_j \left\{ \left| \phi_j \right| \right\}$.
   Isto tako, za prodaju se biraju vrijednosnice $i$, za koje vrijedi:
-  \begin{equation}
+  \begin{equation*}
   \phi_i^{\left(t\right)} \le -\kappa^\prime \cdot \Phi.
-  \end{equation}
+  \end{equation*}
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
   
@@ -615,8 +672,14 @@
   Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix} \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i > 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
   Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
   \begin{equation}
+  \label{eq:turnover}
   \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert.
   \end{equation}
+  Iz formule (\ref{eq:turnover}) može se vidjeti da se minimum $\eta^{(t)} = 0$ doista postiže ako i samo ako je $\matr{\alpha}^{(t)} = \matr{\alpha}^{(t-1)}$,
+  te maksimum $\eta^{(t)} = 2$ ako i samo ako je $\alpha_i^{(t)} \ne 0 \Rightarrow \alpha_i^{(t - 1)} = 0$ i $\alpha_i^{(t - 1)} \ne 0 \Rightarrow \alpha_i^{(t)} = 0$, jer tada vrijedi: 
+  \begin{equation*}
+  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)}\right\rvert + \sum_{i=1}^N \left \lvert\alpha_i^{(t-1)} \right\rvert = 1 + 1 = 2.
+  \end{equation*}
   
   Primjeri.
   
