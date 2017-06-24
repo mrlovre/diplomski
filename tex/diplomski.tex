@@ -23,8 +23,10 @@
 \newcommand{\T}{\top}
 \newcommand{\upto}{\mathinner {\ldotp \ldotp}}
 \newcommand{\E}[1]{\operatorname{\mathbf{E}}\left[#1\right]}
+\newcommand{\Esq}[1]{\operatorname{\mathbf{E}^2}\left[#1\right]}
 \newcommand{\Var}[1]{\operatorname{\mathbf{Var}}\left[#1\right]}
 \newcommand{\Efromto}[2]{\operatorname{\mathbf{E}}\left[#1\, \middle\vert\, #2\right]}
+\newcommand{\Esqfromto}[2]{\operatorname{\mathbf{E}^2}\left[#1\, \middle\vert\, #2\right]}
 \newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\left[#1\, \middle\vert\, #2\right]}
 \newcommand{\norm}[1]{\bar{#1}}
 \newcommand{\prob}[1]{\operatorname{P}\left(#1\right)}
@@ -49,7 +51,7 @@
 \thesisnumber{1099}
 
 % TODO: Navedite naslov rada.
-\title{Analiza vremenskih nizova zasnovana na kompleksnim mrežama}
+\title{Harry Potter\\ i analiza vremenskih nizova zasnovana na kompleksnim mrežama}
 
 % TODO: Navedite vaše ime i prezime.
 \author{Lovre Mrčela}
@@ -60,7 +62,8 @@
 %\izvornik
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
-\zahvala{Zahvaljujem se dopredsjednici Hrvatskog sabora dr. sc. Vesni-Ani Škaro i Miloradu Pupovcu.}
+%\zahvala{Zahvaljujem se dopredsjednici Hrvatskog sabora dr. sc. Vesni-Ani Škaro i Miloradu Pupovcu.}
+\zahvala{Zahvaljujem.}
 
 \tableofcontents
 
@@ -144,7 +147,7 @@
     \caption{
       Prikaz kretanja cijena dviju vrijednosnica u razdoblju od 500 dana.
       Plavom bojom prikazano je $P_X^{(t)}$, a zelenom $P_Y^{(t)}$.
-      Svjetlijim nijansama tih boja prikazana je punom linijom srednja vrijednost, i crtkanom linijom raspon udaljenost za jednu devijaciju od srednje vrijednosti; srednja vrijednost i devijacija izračunate su na proteklom vremenskom periodu $T$ duljine 120 dana.
+      Svjetlijim nijansama tih boja prikazano je punom linijom očekivanje, i crtkanom linijom udaljenost za jednu devijaciju od očekivanja; očekivanje i devijacija izračunati su na proteklom vremenskom periodu $T$ duljine 120 dana.
     }
     \label{fig:ab-prices}
   \end{figure}
@@ -182,7 +185,7 @@
   \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\linewidth]{graphics/diff.png}
-    \caption{Tamnijom bojom prikazana je razlika nenormaliziranih cijena $d_{X,Y}^{(t)}$, a svijetlijom punom linijom srednja njezina vrijednost i crtkanom linijom udaljenost od srednje vrijednosti za jednu devijaciju.}
+    \caption{Tamnijom bojom prikazana je razlika nenormaliziranih cijena $d_{X,Y}^{(t)}$, a svijetlijom punom linijom očekivanje i crtkanom linijom udaljenost od očekivanja za jednu devijaciju.}
     \label{fig:diff}
   \end{figure}
 
@@ -204,7 +207,7 @@
   \R{UU}{t, \tau} = \E{U\left[t\right] \cdot U\left[t + \tau\right]} = \R{UU}{\tau}.
   \end{gather}
   Za stacionarne slučajne procese vrijedi da njihova statistička svojstva ne ovise o vremenu:
-  jednadžba (\ref{eq:stat1}) tvrdi da je za stacionaran proces $U\left[t\right]$ srednja vrijednost slučajnog procesa $\E{U\left[t\right]}$ neovisna o vremenu $t$, a jednadžba (\ref{eq:stat2}) tvrdi da njegova autokorelacija $\R{UU}{t, \tau}$ ovisi samo o vremenskom pomaku $\tau$, ali ne i o $t$.
+  jednadžba (\ref{eq:stat1}) tvrdi da je za stacionaran proces $U\left[t\right]$ očekivanje slučajnog procesa $\E{U\left[t\right]}$ neovisna o vremenu $t$, a jednadžba (\ref{eq:stat2}) tvrdi da njegova autokorelacija $\R{UU}{t, \tau}$ ovisi samo o vremenskom pomaku $\tau$, ali ne i o $t$.
   Ovakva definicija stacionarnosti naziva se još i ``stacionarnost u širem smislu''.
   
   Red integracije slučajnog procesa, označen sa $\I{d}$, gdje je $d$ red integracije, opisuje njegovu stacionarnost.
@@ -234,7 +237,7 @@
   \begin{equation}
   U\left[t\right] = \mu + \varepsilon\left[t\right],
   \end{equation}
-  gdje je $\mu = \E{U\left[t\right]}$, srednja vrijednost, a $\varepsilon\left[t\right]$ rezidualna vrijednost za koju vrijedi $\E{\varepsilon\left[t\right]} = 0$.
+  gdje je $\mu = \E{U\left[t\right]}$, očekivanje, a $\varepsilon\left[t\right]$ rezidualna vrijednost za koju vrijedi $\E{\varepsilon\left[t\right]} = 0$.
   
   Pretpostavka kod ove mjere sličnosti jest da su dva nestacionarna slučajna procesa $P_X\left[t\right]$ i $P_Y\left[t\right]$ koji predstavljaju kretanje log-cijena vrijednosnica $X$ i $Y$ kointegirana.
   Postoji nekoliko metoda za provjeru kointegracije, najčešće korištene su Engle-Granger metoda, Johansen metoda i Phillips-Ouliaris metoda.
@@ -533,14 +536,14 @@
   Neka troškovi trgovanja, bilo kupovanja bilo prodavanja vrijednosnice, iznose $p$ dijelova vrijednosti po kojoj se vrijednosnica kupuje, odnosno prodaje.
   Ukoliko se računa s logaritmima cijena umjesto s običnim cijenama, troškovi trgovanja mogu se obračunati tako da se u svakom trenutku od ostvarenog profita oduzme $p \cdot \eta^{(t)}$.
   
-  \section{Osnovni pojmovi (prebaciti na početak)}
-  
-  \begin{description}
-    \item[Vrijednosni papiri] description
-    \item[Vrijednost] description
-    \item[Cijena] description
-    \item[Povrat] description
-  \end{description} 
+%  \section{Osnovni pojmovi (prebaciti na početak)}
+%  
+%  \begin{description}
+%    \item[Vrijednosni papiri] description
+%    \item[Vrijednost] description
+%    \item[Cijena] description
+%    \item[Povrat] description
+%  \end{description} 
   
 \chapter{Algoritam}
 
@@ -552,10 +555,10 @@
 %  and rolling means $m_{i,j}^{\left(t\right)}$ and standard deviations $d_{i,j}^{\left(t\right)}$ of log price differences over the past time window of size $T$ are obtained as follows:
   Neka u zadanom skupu podataka ima ukupno $N$ vrijednosnica kroz $D$ vremenskih koraka.
   Neka je cijena vrijednosnice $i$ u vremenskom koraku $t$ jednaka $a_i^{\left(t\right)}$, za $i \in {\left[1, 2, \ldots, N\right]}$ i $t \in {\left[0, 1, \ldots, D-1\right]}$.
-  Log cijene $b_i^{\left(t\right)}$, i razlike log cijena po parovima $c_{i,j}^{\left(t\right)}$ dobivaju se na sljedeći način:
+  Logaritamske cijene $b_i^{\left(t\right)}$, i razlike logaritamskih cijena po parovima $c_{i,j}^{\left(t\right)}$ dobivaju se na sljedeći način:
   \begin{equation} b_i^{\left(t\right)} = \log\left(a_i^{\left(t\right)}\right) \end{equation}
   \begin{equation} c_{i,j}^{\left(t\right)} = b_i^{\left(t\right)} - b_j^{\left(t\right)}, \end{equation}
-  i srednja vrijednost $m_{i,j}^{\left(t\right)}$ i standardna devijacija $d_{i,j}^{\left(t\right)}$ razlika log cijena tijekom proteklog perioda duljine $T$ dobivaju se kako slijedi:
+  i očekivanje $m_{i,j}^{\left(t\right)}$ i standardna devijacija $d_{i,j}^{\left(t\right)}$ razlika logaritamskih cijena tijekom proteklog perioda duljine $T$ dobivaju se kako slijedi:
   \begin{equation}
   \label{eq:mean}
   m_{i,j}^{\left(t\right)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
@@ -573,7 +576,7 @@
 %  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
 %  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
 %  On that note, $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, and $d_{i,j}^{\left(t\right)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
-  Također valja primijetiti da bi izračunavanje srednjih vrijednosti i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
+  Također valja primijetiti da bi izračunavanje očekivanja i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
   Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku.
   Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
   Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{\left(t\right)} = -c_{j,i}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)} = -m_{j,i}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)} = d_{j,i}^{\left(t\right)}$, stoga je polovina informacije sadržane u njima redundantna.
@@ -628,7 +631,7 @@
   \label{eq:thresh}
   \left| c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)} \right| > \alpha \cdot d_{i,j}^{\left(t\right)},
   \end{equation}
-  tj. trenutna apsolutna vrijednost razlike log cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od srednje vrijednosti izmjerene u proteklom periodu.
+  tj. trenutna apsolutna vrijednost razlike log-cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od očekivanja, izmjerenih u proteklom periodu.
   %  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
 %  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{\left(t\right)}$ going from $i$ to $j$.
 %  Weight $w_{i,j}^{\left(t\right)}$ is obtained as:
@@ -638,7 +641,7 @@
   \label{eq:weight}
   w_{i,j}^{\left(t\right)} = \left. \left(c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)}\right) \middle/ d_{i,j}^{\left(t\right)} \right.,
   \end{equation}
-  što odgovara udaljenosti razlike log cijena od srednje vrijednosti mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
+  što odgovara udaljenosti razlike log-cijena od očekivanja, mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
   Negativan predznak težine $w_{i,j}^{\left(t\right)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{\left(t\right)} = -w_{i,j}^{\left(t\right)} > 0$ ekvivalentan je prethodnome bridu.
   Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
@@ -651,11 +654,11 @@
 %      During the time step $T + 1$, log price difference goes over $\alpha$ standard deviations above mean value of past period of size $T$.
 %      This would mean that two of the assets $i$ and $j$ would be added to the graph of preference flow at the time step $T + 1$.
 %      Weight $w_{i,j}$ describes current deviation from mean value.
-       Razlika log cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$.
-       Točka-crta linija predstavlja srednju vrijednost, a područje između dviju crtkanih linija predstavlja $\alpha$ standardnih devijacija udaljenosti od srednje vrijednosti; obje mjere su izračunate nad prvih $T$ vremenskih koraka.
-       Tijekom vremenskog koraka $T + 1$, razlika log cijena prelazi preko $\alpha$ standardnih devijacija iznad srednje vrijednosti proteklog perioda duljine $T$.
+       Razlika log-cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$.
+       Točka-crta linija predstavlja očekivanje, a područje između dviju crtkanih linija predstavlja $\alpha$ standardnih devijacija udaljenosti od očekivanja; obje mjere su izračunate nad prvih $T$ vremenskih koraka.
+       Tijekom vremenskog koraka $T + 1$, razlika log-cijena prelazi preko $\alpha$ standardnih devijacija iznad očekivanja proteklog perioda duljine $T$.
        To znači da će vrijednosnice $i$ i $j$ biti dodane u graf toka preferencija u vremenskom koraku $T + 1$.
-       Težina $w_{i,j}^{(T+1)}$ opisuje devijaciju od srednje vrijednosti.
+       Težina $w_{i,j}^{(T+1)}$ opisuje devijaciju od očekivanja.
     }
     \label{fig:devmag}
   \end{figure}
@@ -752,12 +755,51 @@
 
   \appendix
   \chapter{Računanje momenata vremenskog niza na pomičnom prozoru}
-  Pri izračunavanju momenata (srednja vrijednost, varijanca) vremenskih nizova nad prozorima konačne duljine, pokazalo se neefikasnim izračunavati svaki prozor zasebno u svakom koraku, jer se većina uzoraka između dva susjedna prozora ponavlja.
+  Pri izračunavanju momenata (očekivanje, varijanca) vremenskih nizova nad prozorima konačne duljine, pokazalo se neefikasnim izračunavati svaki prozor zasebno u svakom koraku, jer se većina uzoraka između dva susjedna prozora ponavlja.
   Neka vremenski niz traje ukupno $D$ vremenskih koraka, te neka je veličina vremenskog prozora $T$.
   Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\mathcal{O}\left(\left(D - T + 1\right)\cdot T\right)$, odnosno približno $\mathcal{O}\left(DT\right)$, kako je $D \gg T$.
-  Stoga se isplati potražiti rekurzivne izraze za srednju vrijednost i varijancu kako bi se izračun mogao obaviti na učinkovitiji način.
+  Stoga se isplati potražiti rekurzivne izraze za očekivanje i varijancu kako bi se izračun mogao obaviti na učinkovitiji način.
   
-  Za početak, potrebno je razlikovati obične, centrirane, i normirane momente.
+  Neka je $a\left[t\right]$ vremenski niz, za $t \in \left[0, 1, \ldots, D - 1\right]$.
+  Nenormirani momenti $n$-tog reda $S_n$ niza $a\left[t\right]$ nad vremenskim prozorom duljine $T$ definirani su na sljedeći način:
+  \begin{equation}
+  S_n^{(t)} = \sum_{\tau=t-T+1}^{t} a^n\left[\tau\right].
+  \end{equation}
+  Za nulti moment uvijek vrijedi $S_0^{(t)} = T$ neovisno o $t$.
+  Rekurzivni izraz za ažuriranje nenormiranog momenta je očigledan:
+  \begin{align}
+  S_n^{(t+1)} &= \sum_{\tau=t+1-T+1}^{t+1} a^n\left[\tau\right] \nonumber \\
+    &= -a^n\left[t-T+1\right] + \sum_{\tau=t-T+1}^{t} a^n\left[\tau\right] + a^n\left[t+1\right] \nonumber \\
+    &= -a^n\left[t-T+1\right] + S_n^{(t)} + a^n\left[t+1\right].
+  \end{align}
+  
+  Preko nenormiranih momenata mogu se izraziti očekivanje i varijanca.
+  Očekivanje $\Efromto{a\left[\tau\right]}{t - T < \tau \le t}$ je normirani moment prvog reda, i može se izraziti kao:
+  \begin{equation}
+  \Efromto{a\left[\tau\right]}{t - T < \tau \le t} = \frac{S_1^{(t)}}{S_0^{(t)}},
+  \end{equation}
+  što je bilo relativno jednostavno za izračunati i bez korištenja nenomiranih momenata.
+  No, kod računanja varijance situacija je nešto složenija.
+  Varijanca je centrirani i normirani moment drugog reda.
+  Prema definiciji, varijanca $\Varfromto{a\left[\tau\right]}{t - T < \tau \le t}$ može se računati još i kao:
+  \begin{align}
+    \Varfromto{a\left[\tau\right]}{t - T < \tau \le t} &= \Efromto{\left(a\left[\tau\right] - \E{a\left[\tau\right]} \right)^2}{t - T < \tau \le t} \nonumber \\
+    &= \Efromto{a^2\left[\tau\right] - 2 a\left[\tau\right] \E{a\left[\tau\right]} + \Esq{a\left[\tau\right]}}{t - T < \tau \le t} \nonumber \\
+    &= \Efromto{a^2\left[\tau\right]}{t - T < \tau \le t} \nonumber \\
+    & - 2\Esqfromto{a\left[\tau\right]}{t - T < \tau \le t} + \Esqfromto{a\left[\tau\right]}{t - T < \tau \le t} \nonumber \\
+    &= \Efromto{a^2\left[\tau\right]}{t - T < \tau \le t} + \Esqfromto{a\left[\tau\right]}{t - T < \tau \le t}
+  \end{align}
+  Sada se $\Efromto{a^2\left[\tau\right]}{t - T < \tau \le t}$ također može izraziti preko nenormiranih momenata kao $\left. S_2^{(t)} \middle/ S_0^{(t)} \right.$.
+  Konačno, varijanca se može izraziti preko nenormiranih momenata kao:
+  \begin{equation}
+    \Varfromto{a\left[\tau\right]}{t - T < \tau \le t} = \frac{S_2^{(t)}}{S_0^{(t)}} - \frac{\left(S_1^{(t)}\right)^2}{\left(S_0^{(t)}\right)^2}
+    = \frac{S_0^{(t)} S_2^{(t)} - \left(S_1^{(t)}\right)^2}{\left(S_0^{(t)}\right)^2}.
+  \end{equation}
+  
+  Na ovaj način moguće je izračunati očekivanje i varijancu nad pomičnim prozorom na mnogo učinkovitiji način nego nerekurzivnim postupkom.
+  Inicijalno je potrebno izračunati momente $S_0^{(T - 1)}$, $S_1^{(T - 1)} $ i $S_2^{(T - 1)}$, te iz njih $\Efromto{a\left[\tau\right]}{0 \le \tau < T}$ i $\Varfromto{a\left[\tau\right]}{0 \le \tau < T}$; u složenosti $\mathcal{O}\left(T\right)$.
+  Nadalje, za svaki pomak vremenskog prozora rekurzivno se ažuriraju vrijednosti nenormiranih momenata, te se putem njih izračunavaju očekivanje i varijanca, u složenosti $\mathcal{O}\left(T - D\right)$.
+  Ukupna vremenska složenost algoritma time je pala s $\mathcal{O}\left(DT\right)$ na $\mathcal{O}\left(D\right)$.
 
   \begin{sazetak}
   Sažetak na hrvatskom jeziku.

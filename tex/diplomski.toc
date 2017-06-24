@@ -12,7 +12,6 @@
 \contentsline {subsection}{\numberline {2.4.1}Ra\IeC {\v c}unanje potencijala \IeC {\v c}vorova}{13}
 \contentsline {subsection}{\numberline {2.4.2}Konzistentna rekonstrukcija grafa}{15}
 \contentsline {section}{\numberline {2.5}Koeficijent obrtaja}{15}
-\contentsline {section}{\numberline {2.6}Osnovni pojmovi (prebaciti na po\IeC {\v c}etak)}{16}
 \contentsline {chapter}{\numberline {3}Algoritam}{17}
 \contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{18}
 \contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{19}
