@@ -5,17 +5,19 @@
 \contentsline {subsection}{\numberline {2.1.1}Razlika normaliziranih log-cijena}{3}
 \contentsline {subsection}{\numberline {2.1.2}Normalizirana razlika log-cijena}{6}
 \contentsline {subsection}{\numberline {2.1.3}Mjera kointegracije slu\IeC {\v c}ajnih procesa}{7}
-\contentsline {subsection}{\numberline {2.1.4}Nedostaci statisti\IeC {\v c}ke arbitra\IeC {\v z}e}{9}
+\contentsline {subsection}{\numberline {2.1.4}Nedostaci statisti\IeC {\v c}ke arbitra\IeC {\v z}e}{10}
 \contentsline {section}{\numberline {2.2}Relacija preferencije i funkcija korisnosti}{10}
 \contentsline {section}{\numberline {2.3}Graf toka preferencija}{11}
-\contentsline {section}{\numberline {2.4}Metoda potencijala}{12}
-\contentsline {subsection}{\numberline {2.4.1}Ra\IeC {\v c}unanje potencijala \IeC {\v c}vorova}{12}
-\contentsline {subsection}{\numberline {2.4.2}Konzistentna rekonstrukcija grafa}{14}
-\contentsline {chapter}{\numberline {3}Algoritam}{16}
-\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{17}
-\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{18}
+\contentsline {section}{\numberline {2.4}Metoda potencijala}{13}
+\contentsline {subsection}{\numberline {2.4.1}Ra\IeC {\v c}unanje potencijala \IeC {\v c}vorova}{13}
+\contentsline {subsection}{\numberline {2.4.2}Konzistentna rekonstrukcija grafa}{15}
+\contentsline {section}{\numberline {2.5}Koeficijent obrtaja}{15}
+\contentsline {section}{\numberline {2.6}Osnovni pojmovi (prebaciti na po\IeC {\v c}etak)}{16}
+\contentsline {chapter}{\numberline {3}Algoritam}{17}
+\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{18}
+\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{19}
 \contentsline {section}{\numberline {3.3}Minimizacija koeficijenta obrtaja}{20}
 \contentsline {chapter}{\numberline {4}Rezultati}{21}
 \contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{23}
 \contentsline {chapter}{Literatura}{24}
-\contentsline {chapter}{\numberline {A}Efikasno ra\IeC {\v c}unanje momenata s pomi\IeC {\v c}nim prozorom}{25}
+\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{25}

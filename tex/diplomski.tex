@@ -89,24 +89,26 @@
   Organizacija poglavlja je sljedeća: \ldots
 
 \chapter{Metode i koncepti}
-  Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu.
-  Ako vam se ne sviđa slobodno možete preskočit\ldots
-
+  Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu, kao i definicije korištenih osnovnih pojmova.
+  
   \section{Statistička arbitraža}
   Statistička arbitraža \engl{statistical arbitrage} je algoritam trgovanja zasnovan na statistici.
   Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje nenegativan profit s vjerojatnošću 1, dok pritom njegova početna vrijednost iznosi 0.
   Trivijalan primjer arbitraže je situacija u kojoj bi se ista vrijednosnica nudila po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
   Matematička definicija arbitražnih okolnosti je sljedeća:
   \begin{equation}
+  \begin{gathered}
   \label{eq:statarb}
-  V^{(0)} = 0, \quad \prob{V^{\left(t\right)} \ge 0} = 1,
+  V^{(0)} = 0\\
+  \quad \prob{V^{\left(t\right)} \ge 0} = 1,
+  \end{gathered}
   \end{equation}
   gdje $V^{\left(t\right)}$ označava vrijednost portfelja u trenutku $t$.
 
   U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
   Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 100\%.
   Tako se može može dogoditi da bude $V^{\left(t\right)} < 0$ za neke $t$.
-  Ipak, uz pretpostavku dovoljne likvidnosti tržiša, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\left(t\right)} > 0} \to 1$.
+  Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\left(t\right)} > 0} \to 1$.
   U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
   
   Algoritam statističke arbitraže u svakom vremenskom trenutku čine najčešće sljedeći koraci:
@@ -134,7 +136,7 @@
   \end{equation}
   Razlika normaliziranih log-cijena se koristi kao mjera sličnosti u algoritmu statističke arbitraže.
   Kod ove mjere normalizacijom se postiže ravnopravna usporedba dviju vrijednosnica različitih volatilnosti, što znači da će se prilikom usporedbe dviju dionica čiji su intenziteti promjene cijene različiti nakon normalizacije oni dovesti na istu razinu.
-  Ilustrativni primjer kretanja cijena vrijednosnica prikazan je na slici \ref{fig:ab-prices}.
+  Ilustrativni primjer kretanja cijena vrijednosnica prikazan je na slici \ref{fig:ab-prices}, normalizirane cijene na slici \ref{fig:ab-prices-norm}, i razlika normaliziranih cijena na slici \ref{fig:ab-prices-norm-diff}.
   
   \begin{figure}[p]
     \centering
@@ -142,7 +144,7 @@
     \caption{
       Prikaz kretanja cijena dviju vrijednosnica u razdoblju od 500 dana.
       Plavom bojom prikazano je $P_X^{(t)}$, a zelenom $P_Y^{(t)}$.
-      Svjetlijim nijansama tih boja prikazana je punom linijom srednja vrijednost, i crtkanom linijom raspon udaljenost za jednu devijaciju od srednje vrijednosti; srednja vrijednost i devijacija izračunate su na proteklom vremenskom periodu duljine 120 dana.
+      Svjetlijim nijansama tih boja prikazana je punom linijom srednja vrijednost, i crtkanom linijom raspon udaljenost za jednu devijaciju od srednje vrijednosti; srednja vrijednost i devijacija izračunate su na proteklom vremenskom periodu $T$ duljine 120 dana.
     }
     \label{fig:ab-prices}
   \end{figure}
@@ -161,6 +163,7 @@
     \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm-diff.png}
     \caption{
       Razlika normaliziranih cijena, $D_{X,Y}^{\left(t\right)}$.}
+    \label{fig:ab-prices-norm-diff}
   \end{figure}
   
   \subsection{Normalizirana razlika log-cijena}
@@ -174,11 +177,13 @@
   \end{equation}
   Ovako dobivena normalizirana razlika log-cijena koristi se kao mjera sličnosti.
   U odnosu na prethodnu, ova mjera je više osjetljiva na promjene log-cijena neovisno o volatilnostima samih vrijednosnica, što će doći do izražaja prilikom usporedbe dviju vrijednosnica čije se cijene mijenjaju različitom brzinom i intenzitetom.
+  Primjer razlike nenormaliziranih log-cijena istih dionica $X$ i $Y$ kao i u prethodnom slučaju prikazan je na slici \ref{fig:diff}, te normalizirane razlike na slici \ref{fig:diff-norm}.
   
   \begin{figure}[H]
     \centering
     \includegraphics[width=1.0\linewidth]{graphics/diff.png}
     \caption{Tamnijom bojom prikazana je razlika nenormaliziranih cijena $d_{X,Y}^{(t)}$, a svijetlijom punom linijom srednja njezina vrijednost i crtkanom linijom udaljenost od srednje vrijednosti za jednu devijaciju.}
+    \label{fig:diff}
   \end{figure}
 
   \begin{figure}[H]
@@ -186,6 +191,7 @@
     \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
     \caption{
       Normalizirana razlika cijena, $\norm{d}_{X,Y}^{\left(t\right)}$.}
+    \label{fig:diff-norm}
   \end{figure}
   
   \subsection{Mjera kointegracije slučajnih procesa}
@@ -237,31 +243,40 @@
   Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\left[t\right]$ koji je linearna kombinacija cijena $P_X\left[t\right]$ i $P_Y\left[t\right]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran.
   Postupkom najmanjih kvadrata najprije se određuju procjene parametara $\mu$ i $\beta$, označene sa $\hat{\mu}$ i $\hat{\beta}$:
   \begin{equation}
-  \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \left\{\left\lVert P_X\left[t\right] + \beta P_Y\left[t\right] -\mu \right\rVert^2\right\},
+  \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \left\{\sum_{\tau = t - T}^{t - 1} \left\lvert P_X\left[\tau\right] + \beta P_Y\left[\tau\right] -\mu \right\rvert^2\right\},
   \end{equation}
   a zatim se izraze procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$:
   \begin{equation}
   \hat{\varepsilon}\left[t\right] = -\hat{\mu} + P_X\left[t\right] + \hat{\beta} P_Y\left[t\right].
   \end{equation}
-  U drugom koraku provjerava se je li $\hat{\varepsilon}\left[t\right]$ zaista stacionaran proces, čime se dobiva t-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
+  U drugom koraku provjerava se je li $\hat{\varepsilon}\left[t\right]$ zaista stacionaran proces, čime se dobiva p-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
   
   Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$ koriste se kao mjera sličnosti.
-  Ova mjera je rezultat dublje analize u odnosu na prethodne dvije mjere, i zbog toga je i računski zahtjevnija, što je ujedno prednost i nedostatak.
-  Kada se radi o velikom broju parova vrijednosnica, duboka analiza može se pokazati neizvedivom, stoga je bolje koristiti neku od dvije prethodno navedene mjere sličnosti.
+  Primjer dobivenih rezidualnih vrijednosti za iste vrijednosnica $X$ i $Y$ prikazan je na slici \ref{fig:residual}.
+  U odnosu na prethodne dvije mjere, ova mjera je rezultat dublje statističke analize, zbog čega je i računski zahtjevnija, što je ujedno prednost i nedostatak.
+  Kada se radi o velikom broju parova vrijednosnica, kointegracije se može pokazati nepraktičnom za računanje, stoga je bolje koristiti neku od dvije prethodno navedene mjere sličnosti.
   U ovom radu korištena je normalizirana razlika log-cijena.
+  
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
+    \caption{
+      Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$.}
+    \label{fig:residual}
+  \end{figure}
   
   \subsection{Nedostaci statističke arbitraže}
   Jedan od nedostataka statističke arbitraže jest generalno slaba preciznost izražena kao udio broja trgovanja koji rezultira pozitivnim profitom u ukupnom broju trgovanja.
   Uzrok tome su statističke mjere na kojima se algoritam temelji, koje ne mogu dati apsolutno pouzdanu odluku samim time što je kretanje cijena slučajan proces.
   Također, problem može biti i tzv. varljiva korelacija u kojoj je kretanje cijena dviju vrijednosnica naizgled povezano, no zapravo je uzrok tome neki nepoznati vanjski faktor; tada predviđeno ponašanje može biti poprilično različito od stvarnog.
-  Isto tako statističke metode ne mogu razlikovati one devijacije u ponašanju cijena koje su prirodne od onih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i sl.
+  Isto tako statističke metode ne mogu razlikovati one devijacije u ponašanju cijena koje su svojstvene koreliranim slučajnim procesima od onih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i tome slično.
   Pri testiranju algoritma statističke arbitraže nad testnim skupovima podataka preciznost rijetko kada prelazi 60\%, a većinom je manja od 50\%.
   No, unatoč tome što algoritam griješi u više od pola slučajeva, ukupni profit je ipak pozitivan jer pogreške donose znatno manje gubitke u odnosu na zaradu ostvarenu pogotcima.
   
   Drugi nedostatak tiče se načina tretiranja vrijednosnica koje su na raspolaganju i koje se mogu uključiti u portfelj.
   Svaki par vrijednosnica gleda se zasebno i pritom je isključena dublja analiza međusobnih interakcija svih vrijednosnica zajedno.
-  Trgovanje se obavlja uvijek u parovima, odnosno jednaki broj vrijednosnica se kupuje i prodaje u svakom trenutku.
-  U ovom radu istražena je metoda koja omogućuje trgovanje kupovanjem i prodajom svih vrijednosnica nezavisno, koristeći pritom metode statističke arbitraže kao opis preferencije među vrijednosnicama.
+  Trgovanje se također odvija uvijek u parovima, odnosno jednaki broj vrijednosnica se kupuje i prodaje u svakom trenutku.
+  U ovom radu istražena je metoda koja omogućuje trgovanje kupovanjem i prodajom svih vrijednosnica nezavisno, koristeći pritom metode statističke arbitraže kao opis relacije preferencije među vrijednosnicama.
   Interakcija među vrijednosnicama opisuje se grafom toka preferencija, iz čega se naposljetku izvlači poredak prema individualnoj preferenciji svih vrijednosnica.
   
   
@@ -496,6 +511,37 @@
   
   %  \end{enumerate}
   
+  \section{Koeficijent obrtaja}
+  Koeficijent obrtaja \engl{turnover ratio} je mjera koja određuje koliki udio vrijednosnica u portfelju je promijenjen između dva vremenska koraka.
+  Ova mjera može biti u rasponu od 0 do 2, gdje 0 označava da su vrijednosnice u portfelju ostale iste između dva vremenska koraka, dok 2 označava da među vrijednosnicama uključenima u portfelj u prethodnom i sadašnjem koraku nijedna nije ostala ista.
+  Ova mjera je važna između ostalog jer opisuje troškove trgovanja: u svakom vremenskom koraku troškovi trgovanja su direktno proporcionalni količini vrijednosnica koje su prodane ili kupljene u tom koraku.
+  
+  Koeficijent obrtaja $\eta^{(t)}$ u vremenskom koraku $t$ u odnosu na $t-1$ računa se na sljedeći način.
+  Neka je na raspolaganju $N$ vrijednosnica.
+  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix} \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i > 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
+  Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
+  \begin{equation}
+  \label{eq:turnover}
+  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert.
+  \end{equation}
+  Iz (\ref{eq:turnover}) može se vidjeti da se minimum $\eta^{(t)} = 0$ doista postiže ako i samo ako je ispunjeno $\matr{\alpha}^{(t)} = \matr{\alpha}^{(t-1)}$,
+  a maksimum $\eta^{(t)} = 2$ ako i samo ako je ispunjeno $\alpha_i^{(t)} \ne 0 \Rightarrow \alpha_i^{(t - 1)} = 0$ i $\alpha_i^{(t - 1)} \ne 0 \Rightarrow \alpha_i^{(t)} = 0$, jer tada vrijedi: 
+  \begin{equation*}
+  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)}\right\rvert + \sum_{i=1}^N \left \lvert\alpha_i^{(t-1)} \right\rvert = 1 + 1 = 2.
+  \end{equation*}
+  
+  Neka troškovi trgovanja, bilo kupovanja bilo prodavanja vrijednosnice, iznose $p$ dijelova vrijednosti po kojoj se vrijednosnica kupuje, odnosno prodaje.
+  Ukoliko se računa s logaritmima cijena umjesto s običnim cijenama, troškovi trgovanja mogu se obračunati tako da se u svakom trenutku od ostvarenog profita oduzme $p \cdot \eta^{(t)}$.
+  
+  \section{Osnovni pojmovi (prebaciti na početak)}
+  
+  \begin{description}
+    \item[Vrijednosni papiri] description
+    \item[Vrijednost] description
+    \item[Cijena] description
+    \item[Povrat] description
+  \end{description} 
+  
 \chapter{Algoritam}
 
 %  Let there be total of $N$ assets in $D$ days.
@@ -560,7 +606,7 @@
       \end{tabular}
     \end{minipage}
     \caption{
-       Primjer predložene sheme kodiranja i dekodiranja, za $N = 5$.
+       Primjer predložene sheme kodiranja i dekodiranja za $N = 5$.
        Točka $(\cdot)$ označava da se određena kombinacija ne koristi.
     }
     \label{fig:coding}
@@ -632,7 +678,7 @@
 %  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
 %  Lower values of $\kappa$ suggest that we should diversify our portfolio by including some more assets in the order of preference, while higher values suggest that it is safe to do trading with smaller number of assets.
 %  Portfolio diversification might be seen as a strategy for protection from fundamental risks, e.g. risk of asset default.
-  Neka je $\matr{\phi}^{\left(t\right)} = \begin{bmatrix} \phi_1^{\left(t\right)} & \phi_2^{\left(t\right)} & \ldots & \phi_N^{\left(t\right)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$ i $\phi_i^{\left(t\right)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
+  Neka je $\matr{\phi}^{\left(t\right)} = \begin{bmatrix} \phi_1^{\left(t\right)} & \phi_2^{\left(t\right)} & \ldots & \phi_N^{\left(t\right)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$, te $\phi_i^{\left(t\right)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
   Pri odabiru vrijednosnica za portfelj, u obzir se također uzima i mjera konzistentnosti $\kappa$.
   Uključivanje mjere konzistentnosti pri odabiru omogućuje zaštitu od fundamentalnog rizika (propadanja neke dionice) putem diverzifikacije portfelja.
   Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portftelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
@@ -640,7 +686,7 @@
 %  The bound on the assets which will be taken into portfolio is proportional to the consistency measure $\kappa$.
 %  Depending on the nature of assets we may tune the consistency measure $\kappa$ to be more or less inclined to diversification by transforming it to $\kappa^\prime$:
   Granica mjere preferencije za vrijednosnice koje će biti uključene u portfelj je proporcionalna mjeri konzistentnosti $\kappa$.
-  Ovisno o prirodi skupa koji je na raspolaganju, mjera konzistentnosti može se preinačiti tako da algoritam bude više ili manje sklon diverzifikaciji portfelja, na sljedeći način:
+  Ovisno o prirodi skupa vrijednosnica koji je na raspolaganju, mjera konzistentnosti može se preinačiti tako da algoritam bude više ili manje sklon diverzifikaciji portfelja, na sljedeći način:
   \begin{equation}
   \kappa^\prime = a + (1 - a)\kappa^b,
   \end{equation}
@@ -650,43 +696,23 @@
   S druge strane, parametar $b$ regulira diverzifikaciju portfelja: kada je $0 < b < 1$, algoritam je više privržen diverzifikaciji čak i kada je konzistentnost mala, a kada je $b > 1$, algoritam je više privržen diverzifikaciji čak i kada je mjera konzistencije velika.
   
 %  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
-  Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje vrijedi:
+  Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje u trenutku $t$ vrijedi:
   \begin{equation*}
   \phi_i^{\left(t\right)} \ge \kappa^\prime \cdot \Phi,
   \end{equation*}
   gdje je $\Phi = \max_j \left\{ \left| \phi_j \right| \right\}$.
-  Isto tako, za prodaju se biraju vrijednosnice $i$, za koje vrijedi:
+  Isto tako, za prodaju se biraju vrijednosnice $i$, za koje u trenutku $t$ vrijedi:
   \begin{equation*}
   \phi_i^{\left(t\right)} \le -\kappa^\prime \cdot \Phi.
   \end{equation*}
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
   
-  \section{Minimizacija koeficijenta obrtaja}
-  Koeficijent obrtaja \engl{turnover ratio} je mjera koja određuje koliki udio vrijednosnica u portfelju je promijenjen između dva vremenska koraka.
-  Ova mjera može biti u rasponu od 0 do 2, gdje 0 označava da su vrijednosnice u portfelju ostale iste između dva vremenska koraka, dok 2 označava da među vrijednosnicama uključenima u portfelj u prethodnom i sadašnjem koraku nijedna nije ostala ista.
-  Ova mjera je važna između ostalog jer opisuje troškove trgovanja: u svakom vremenskom koraku troškovi trgovanja su direktno proporcionalni količini vrijednosnica koje su prodane ili kupljene u tom koraku.
-  
-  Koeficijent obrtaja $\eta^{(t)}$ u vremenskom koraku $t$ u odnosu na $t-1$ računa se na sljedeći način.
-  Neka je na raspolaganju $N$ vrijednosnica.
-  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix} \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i > 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
-  Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
-  \begin{equation}
-  \label{eq:turnover}
-  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert.
-  \end{equation}
-  Iz formule (\ref{eq:turnover}) može se vidjeti da se minimum $\eta^{(t)} = 0$ doista postiže ako i samo ako je $\matr{\alpha}^{(t)} = \matr{\alpha}^{(t-1)}$,
-  te maksimum $\eta^{(t)} = 2$ ako i samo ako je $\alpha_i^{(t)} \ne 0 \Rightarrow \alpha_i^{(t - 1)} = 0$ i $\alpha_i^{(t - 1)} \ne 0 \Rightarrow \alpha_i^{(t)} = 0$, jer tada vrijedi: 
-  \begin{equation*}
-  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)}\right\rvert + \sum_{i=1}^N \left \lvert\alpha_i^{(t-1)} \right\rvert = 1 + 1 = 2.
-  \end{equation*}
-  
-  Primjeri.
-  
+  \section{Minimizacija koeficijenta obrtaja} 
   Minimizacija: energija signala.
   
   \chapter{Rezultati}
-  Skup podataka nad kojim je algoritam testiran uključuje 203 od 500 dionica koje su bile uključene u S\&P indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
+  Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
   Razdoblje uključuje 6261 dan trgovanja, odnosno vremenskih koraka.
   Ukupno 20503 parova dionica je ispitano metodom statističke arbitraže u svakom vremenskom koraku.
   Simulirani su troškovi trgovanja u iznosu 0.10\% za svako obavljeno trgovanje.
@@ -721,25 +747,29 @@
   Algorithm works on pairs of assets, looking for those deviations which are uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
   It adapts to the inconsistence of preferences by picking variable number of assets into the portfolio.
   
-\bibliography{literatura}
-\bibliographystyle{unsrtnat}
+  \bibliography{literatura}
+  \bibliographystyle{unsrtnat}
 
-\appendix
-\chapter{Efikasno računanje momenata s pomičnim prozorom}
-Pri izračunavanju momenata (srednja vrijednost, varijanca) vremenskih nizova 
+  \appendix
+  \chapter{Računanje momenata vremenskog niza na pomičnom prozoru}
+  Pri izračunavanju momenata (srednja vrijednost, varijanca) vremenskih nizova nad prozorima konačne duljine, pokazalo se neefikasnim izračunavati svaki prozor zasebno u svakom koraku, jer se većina uzoraka između dva susjedna prozora ponavlja.
+  Neka vremenski niz traje ukupno $D$ vremenskih koraka, te neka je veličina vremenskog prozora $T$.
+  Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\mathcal{O}\left(\left(D - T + 1\right)\cdot T\right)$, odnosno približno $\mathcal{O}\left(DT\right)$, kako je $D \gg T$.
+  Stoga se isplati potražiti rekurzivne izraze za srednju vrijednost i varijancu kako bi se izračun mogao obaviti na učinkovitiji način.
+  
+  Za početak, potrebno je razlikovati obične, centrirane, i normirane momente.
 
-\begin{sazetak}
-Sažetak na hrvatskom jeziku.
+  \begin{sazetak}
+  Sažetak na hrvatskom jeziku.
 
-\kljucnerijeci{Ključne riječi, odvojene zarezima.}
-\end{sazetak}
+  \kljucnerijeci{Ključne riječi, odvojene zarezima.}
+  \end{sazetak}
 
-% w: Navedite naslov na engleskom jeziku.
-\engtitle{Complex network based time series analysis}
-\begin{abstract}
-Abstract.
+  \engtitle{Complex network based time series analysis}
+  \begin{abstract}
+  Abstract.
 
-\keywords{Keywords.}
-\end{abstract}
+  \keywords{Keywords.}
+  \end{abstract}
 
 \end{document}
