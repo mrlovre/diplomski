@@ -10,6 +10,7 @@
 \usepackage{caption}
 \usepackage{rotating}
 \usepackage{float}
+\usepackage{mathtools}
 
 \usepackage[croatian]{babel}
 \usepackage[utf8]{inputenc}
@@ -22,19 +23,21 @@
 
 \newcommand{\T}{\top}
 \newcommand{\upto}{\mathinner {\ldotp \ldotp}}
-\newcommand{\E}[1]{\operatorname{\mathbf{E}}\left[#1\right]}
-\newcommand{\Esq}[1]{\operatorname{\mathbf{E}^2}\left[#1\right]}
-\newcommand{\Var}[1]{\operatorname{\mathbf{Var}}\left[#1\right]}
-\newcommand{\Efromto}[2]{\operatorname{\mathbf{E}}\left[#1\, \middle\vert\, #2\right]}
-\newcommand{\Esqfromto}[2]{\operatorname{\mathbf{E}^2}\left[#1\, \middle\vert\, #2\right]}
-\newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\left[#1\, \middle\vert\, #2\right]}
+\newcommand{\E}[1]{\operatorname{\mathbf{E}}\q[#1\w]}
+\newcommand{\Esq}[1]{\operatorname{\mathbf{E}^2}\q[#1\w]}
+\newcommand{\Var}[1]{\operatorname{\mathbf{Var}}\q[#1\w]}
+\newcommand{\Efromto}[2]{\operatorname{\mathbf{E}}\q[#1\, \middle\vert\, #2\w]}
+\newcommand{\Esqfromto}[2]{\operatorname{\mathbf{E}^2}\q[#1\, \middle\vert\, #2\w]}
+\newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\q[#1\, \middle\vert\, #2\w]}
 \newcommand{\norm}[1]{\bar{#1}}
-\newcommand{\prob}[1]{\operatorname{P}\left(#1\right)}
-\newcommand{\R}[2]{\operatorname{\mathbf{R}}_{#1}\left[#2\right]}
-\newcommand{\I}[1]{\operatorname{\mathrm{I}}\left(#1\right)}
+\newcommand{\prob}[1]{\operatorname{P}\q(#1\w)}
+\newcommand{\R}[2]{\operatorname{\mathbf{R}}_{#1}\q[#2\w]}
+\newcommand{\I}[1]{\operatorname{\mathrm{I}}\q(#1\w)}
 \newcommand{\diff}{\operatorname{\mathrm{\Delta}}}
 \newcommand{\diffn}[1]{\operatorname{\mathrm{\Delta}}^d}
 \newcommand{\lag}{\operatorname{\mathrm{L}}}
+\newcommand{\q}{\left}
+\newcommand{\w}{\right}
 
 \DeclareMathOperator*{\argmin}{arg\min}
 \usepackage{fixmath}
@@ -103,15 +106,15 @@
   \begin{gathered}
   \label{eq:statarb}
   V^{(0)} = 0\\
-  \quad \prob{V^{\left(t\right)} \ge 0} = 1,
+  \quad \prob{V^{\q(t\w)} \ge 0} = 1,
   \end{gathered}
   \end{equation}
-  gdje $V^{\left(t\right)}$ označava vrijednost portfelja u trenutku $t$.
+  gdje $V^{\q(t\w)}$ označava vrijednost portfelja u trenutku $t$.
 
   U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
   Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 100\%.
-  Tako se može može dogoditi da bude $V^{\left(t\right)} < 0$ za neke $t$.
-  Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\left(t\right)} > 0} \to 1$.
+  Tako se može može dogoditi da bude $V^{\q(t\w)} < 0$ za neke $t$.
+  Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\q(t\w)} > 0} \to 1$.
   U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
   
   Algoritam statističke arbitraže u svakom vremenskom trenutku čine najčešće sljedeći koraci:
@@ -126,16 +129,16 @@
   U nastavku su ukratko opisane navedene mjere.
   
   \subsection{Razlika normaliziranih log-cijena}
-  Neka je sa $P_X^{\left(t\right)}$ označena log-cijena vrijednosnice $X$ u trenutku $t$, i neka se koristi period od $T$ vremenskih koraka.
-  Neka je ukupno $M$ vremenskih koraka, tj. $t \in \left[0, 1, \ldots, M - 1\right]$.
-  Za svaku vrijednosnicu $X$ u trenutcima $t \ge T$ izračunaju se normalizirane log-cijene $\norm{P}_X^{\left(t\right)}$:
+  Neka je sa $P_X^{\q(t\w)}$ označena log-cijena vrijednosnice $X$ u trenutku $t$, i neka se koristi period od $T$ vremenskih koraka.
+  Neka je ukupno $M$ vremenskih koraka, tj. $t \in \q[0, 1, \ldots, M - 1\w]$.
+  Za svaku vrijednosnicu $X$ u trenutcima $t \ge T$ izračunaju se normalizirane log-cijene $\norm{P}_X^{\q(t\w)}$:
   \begin{equation}
-  \norm{P}_X^{\left(t\right)} = \frac{P_X^{\left(t\right)} - \Efromto{P_X^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{P_X^{(\tau)}}{t-T \le \tau < t}}}.
+  \norm{P}_X^{\q(t\w)} = \frac{P_X^{\q(t\w)} - \Efromto{P_X^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{P_X^{(\tau)}}{t-T \le \tau < t}}}.
   \end{equation}
-  Oznake $\Efromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ i $\Varfromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ predstavljaju očekivanje i varijancu cijene vrijednosnice $X$ nad intervalom $\left[t_1, t_2\right>$.
-  Nadalje, za svaki par vrijednosnica $X$ i $Y$ izračuna se razlika njihovih normaliziranih log-cijena $D_{X,Y}^{\left(t\right)}$ u trenutku $t$:
+  Oznake $\Efromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ i $\Varfromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ predstavljaju očekivanje i varijancu cijene vrijednosnice $X$ nad intervalom $\q[t_1, t_2\w>$.
+  Nadalje, za svaki par vrijednosnica $X$ i $Y$ izračuna se razlika njihovih normaliziranih log-cijena $D_{X,Y}^{\q(t\w)}$ u trenutku $t$:
   \begin{equation}
-  D_{X,Y}^{\left(t\right)} = \norm{P}_X^{\left(t\right)} - \norm{P}_Y^{\left(t\right)}
+  D_{X,Y}^{\q(t\w)} = \norm{P}_X^{\q(t\w)} - \norm{P}_Y^{\q(t\w)}
   \end{equation}
   Razlika normaliziranih log-cijena se koristi kao mjera sličnosti u algoritmu statističke arbitraže.
   Kod ove mjere normalizacijom se postiže ravnopravna usporedba dviju vrijednosnica različitih volatilnosti, što znači da će se prilikom usporedbe dviju dionica čiji su intenziteti promjene cijene različiti nakon normalizacije oni dovesti na istu razinu.
@@ -145,9 +148,9 @@
     \centering
     \includegraphics[width=1.0\linewidth]{graphics/ab-prices.png}
     \caption{
-      Prikaz kretanja cijena dviju vrijednosnica u razdoblju od 500 dana.
-      Plavom bojom prikazano je $P_X^{(t)}$, a zelenom $P_Y^{(t)}$.
-      Svjetlijim nijansama tih boja prikazano je punom linijom očekivanje, i crtkanom linijom udaljenost za jednu devijaciju od očekivanja; očekivanje i devijacija izračunati su na proteklom vremenskom periodu $T$ duljine 120 dana.
+      Prikaz kretanja cijena dviju vrijednosnica, $X$ i $Y$, u razdoblju od 500 dana.
+      Plavom bojom prikazana je cijena $P_X^{(t)}$, a zelenom cijena $P_Y^{(t)}$.
+      Svjetlijim nijansama tih boja prikazano je punom linijom očekivanje, i crtkanom linijom udaljenost za jednu devijaciju od očekivanja; očekivanje i devijacija izračunati su u svakom trenutku na proteklom vremenskom periodu $T$ duljine 120 dana.
     }
     \label{fig:ab-prices}
   \end{figure}
@@ -165,18 +168,18 @@
     \centering
     \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm-diff.png}
     \caption{
-      Razlika normaliziranih cijena, $D_{X,Y}^{\left(t\right)}$.}
+      Razlika normaliziranih cijena, $D_{X,Y}^{\q(t\w)}$.}
     \label{fig:ab-prices-norm-diff}
   \end{figure}
   
   \subsection{Normalizirana razlika log-cijena}
-  Za razliku od prethodne mjere sličnosti, u ovom slučaju se razlika računa nad nenormaliziranim log-cijenama za sve $t$, označeno sa $d_{X,Y}^{\left(t\right)}$:
+  Za razliku od prethodne mjere sličnosti, u ovom slučaju se razlika računa nad nenormaliziranim log-cijenama za sve $t$, označeno sa $d_{X,Y}^{\q(t\w)}$:
   \begin{equation}
-  d_{X,Y}^{\left(t\right)} = P_X^{\left(t\right)} - P_Y^{\left(t\right)},
+  d_{X,Y}^{\q(t\w)} = P_X^{\q(t\w)} - P_Y^{\q(t\w)},
   \end{equation}
-  a zatim se iz razlika $d_{X,Y}^{\left(t\right)}$ računaju normalizirane razlike $\norm{d}_{X,Y}^{\left(t\right)}$ za $t \ge T$:
+  a zatim se iz razlika $d_{X,Y}^{\q(t\w)}$ računaju normalizirane razlike $\norm{d}_{X,Y}^{\q(t\w)}$ za $t \ge T$:
   \begin{equation}
-  \norm{d}_{X,Y}^{\left(t\right)} = \frac{d_{X,Y}^{\left(t\right)} - \Efromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}}.
+  \norm{d}_{X,Y}^{\q(t\w)} = \frac{d_{X,Y}^{\q(t\w)} - \Efromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{d_{X,Y}^{(\tau)}}{t-T \le \tau < t}}}.
   \end{equation}
   Ovako dobivena normalizirana razlika log-cijena koristi se kao mjera sličnosti.
   U odnosu na prethodnu, ova mjera je više osjetljiva na promjene log-cijena neovisno o volatilnostima samih vrijednosnica, što će doći do izražaja prilikom usporedbe dviju vrijednosnica čije se cijene mijenjaju različitom brzinom i intenzitetom.
@@ -193,68 +196,68 @@
     \centering
     \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
     \caption{
-      Normalizirana razlika cijena, $\norm{d}_{X,Y}^{\left(t\right)}$.}
+      Normalizirana razlika cijena, $\norm{d}_{X,Y}^{\q(t\w)}$.}
     \label{fig:diff-norm}
   \end{figure}
   
   \subsection{Mjera kointegracije slučajnih procesa}
   Za razliku od prethodne dvije mjere sličnosti gdje se cijene dionica tretiraju kao vremenski nizovi, kod ove mjere one se tretiraju kao realizacije slučajnog procesa.
-  Za neki slučajni proces zanimljivo je proučiti svojstvo stacionarnosti --- slučajni proces $U\left[t\right]$ je stacionaran ako i samo ako vrijedi:
+  Za neki slučajni proces zanimljivo je proučiti svojstvo stacionarnosti --- slučajni proces $U\q[t\w]$ je stacionaran ako i samo ako vrijedi:
   \begin{gather}
   \label{eq:stat1}
-  \E{U\left[t\right]} = \mathrm{const.}\\
+  \E{U\q[t\w]} = \mathrm{const.}\\
   \label{eq:stat2}
-  \R{UU}{t, \tau} = \E{U\left[t\right] \cdot U\left[t + \tau\right]} = \R{UU}{\tau}.
+  \R{UU}{t, \tau} = \E{U\q[t\w] \cdot U\q[t + \tau\w]} = \R{UU}{\tau}.
   \end{gather}
   Za stacionarne slučajne procese vrijedi da njihova statistička svojstva ne ovise o vremenu:
-  jednadžba (\ref{eq:stat1}) tvrdi da je za stacionaran proces $U\left[t\right]$ očekivanje slučajnog procesa $\E{U\left[t\right]}$ neovisna o vremenu $t$, a jednadžba (\ref{eq:stat2}) tvrdi da njegova autokorelacija $\R{UU}{t, \tau}$ ovisi samo o vremenskom pomaku $\tau$, ali ne i o $t$.
+  jednadžba (\ref{eq:stat1}) tvrdi da je za stacionaran proces $U\q[t\w]$ očekivanje slučajnog procesa $\E{U\q[t\w]}$ neovisna o vremenu $t$, a jednadžba (\ref{eq:stat2}) tvrdi da njegova autokorelacija $\R{UU}{t, \tau}$ ovisi samo o vremenskom pomaku $\tau$, ali ne i o $t$.
   Ovakva definicija stacionarnosti naziva se još i ``stacionarnost u širem smislu''.
   
   Red integracije slučajnog procesa, označen sa $\I{d}$, gdje je $d$ red integracije, opisuje njegovu stacionarnost.
   Stacionarni slučajni procesi su $\I{0}$.
-  Za općenit proces $V\left[t\right]$ koji je $\I{1}$ vrijedi da je proces $\diff V\left[t\right]$ dobiven njegovim diferenciranjem
+  Za općenit proces $V\q[t\w]$ koji je $\I{1}$ vrijedi da je proces $\diff V\q[t\w]$ dobiven njegovim diferenciranjem
   \begin{equation}
   \label{eq:red1}
-  \diff V\left[t\right] = \left(1 - \lag\right) V\left[t\right] = V\left[t\right] - V\left[t - 1\right]
+  \diff V\q[t\w] = \q(1 - \lag\w) V\q[t\w] = V\q[t\w] - V\q[t - 1\w]
   \end{equation}
-  stacionaran proces, a za općenit proces $W\left[t\right]$ koji je $\I{d}$ vrijedi da je proces $\diffn{d} W\left[d\right]$ dobiven njegovim uzastopnim diferenciranjem $d$ puta
+  stacionaran proces, a za općenit proces $W\q[t\w]$ koji je $\I{d}$ vrijedi da je proces $\diffn{d} W\q[d\w]$ dobiven njegovim uzastopnim diferenciranjem $d$ puta
   \begin{align}
-  \diffn{d} W\left[t\right] &= \left(1 - \lag\right)^d W\left[t\right] = \left( \sum_{n = 0}^{d} \binom{d}{n} \left(-1\right)^n\lag^n \right) W\left[t\right] \nonumber \\
+  \diffn{d} W\q[t\w] &= \q(1 - \lag\w)^d W\q[t\w] = \q( \sum_{n = 0}^{d} \binom{d}{n} \q(-1\w)^n\lag^n \w) W\q[t\w] \nonumber \\
   \label{eq:redn}
-  &= \sum_{n = 0}^{d} \binom{d}{n} \left(-1\right)^n W\left[t - n\right]
+  &= \sum_{n = 0}^{d} \binom{d}{n} \q(-1\w)^n W\q[t - n\w]
   \end{align}
   stacionaran proces.
-  U (\ref{eq:red1}) i (\ref{eq:redn}) korišten je operator kašnjenja $\lag$ sa značenjem $\lag U\left[t\right] = U\left[t - 1\right]$.
+  U (\ref{eq:red1}) i (\ref{eq:redn}) korišten je operator kašnjenja $\lag$ sa značenjem $\lag U\q[t\w] = U\q[t - 1\w]$.
   
   Trivijalno je provjeriti da linearna kombinacija dvaju slučajnih procesa koji su $\I{0}$ jest također $\I{0}$, kao i da linearna kombinacija dvaju slučajnih procesa od kojih je jedan $\I{0}$, a drugi $\I{1}$ jest $\I{1}$.
   Malo je teže odrediti kojeg je reda integracije linearna kombinacija dvaju slučajnih procesa koji su $\I{1}$: to može biti $\I{1}$, ali u posebnim slučajevima može biti i $\I{0}$.
-  Kointegracija dvaju slučajnih procesa $X\left[t\right]$ i $Y\left[t\right]$ koji su $\I{1}$ označava da je njihova linearna kombinacija $U\left[t\right]$ stacionaran proces, odnosno $\I{0}$:
+  Kointegracija dvaju slučajnih procesa $X\q[t\w]$ i $Y\q[t\w]$ koji su $\I{1}$ označava da je njihova linearna kombinacija $U\q[t\w]$ stacionaran proces, odnosno $\I{0}$:
   \begin{equation}
-  X\left[t\right] + \beta Y\left[t\right] = U\left[t\right],
+  X\q[t\w] + \beta Y\q[t\w] = U\q[t\w],
   \end{equation}
   gdje je $\beta$ konstanta koja se još naziva i kointegracijski koeficijent.
-  Stacionarni slučajni proces $U\left[t\right]$ pritom se može prikazati kao:
+  Stacionarni slučajni proces $U\q[t\w]$ pritom se može prikazati kao:
   \begin{equation}
-  U\left[t\right] = \mu + \varepsilon\left[t\right],
+  U\q[t\w] = \mu + \varepsilon\q[t\w],
   \end{equation}
-  gdje je $\mu = \E{U\left[t\right]}$, očekivanje, a $\varepsilon\left[t\right]$ rezidualna vrijednost za koju vrijedi $\E{\varepsilon\left[t\right]} = 0$.
+  gdje je $\mu = \E{U\q[t\w]}$, očekivanje, a $\varepsilon\q[t\w]$ rezidualna vrijednost za koju vrijedi $\E{\varepsilon\q[t\w]} = 0$.
   
-  Pretpostavka kod ove mjere sličnosti jest da su dva nestacionarna slučajna procesa $P_X\left[t\right]$ i $P_Y\left[t\right]$ koji predstavljaju kretanje log-cijena vrijednosnica $X$ i $Y$ kointegirana.
+  Pretpostavka kod ove mjere sličnosti jest da su dva nestacionarna slučajna procesa $P_X\q[t\w]$ i $P_Y\q[t\w]$ koji predstavljaju kretanje log-cijena vrijednosnica $X$ i $Y$ kointegirana.
   Postoji nekoliko metoda za provjeru kointegracije, najčešće korištene su Engle-Granger metoda, Johansen metoda i Phillips-Ouliaris metoda.
   Najjednostavnija od navedenih je Engle-Granger metoda, koja je opisana u nastavku.
   
-  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\left[t\right]$ koji je linearna kombinacija cijena $P_X\left[t\right]$ i $P_Y\left[t\right]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran.
+  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\q[t\w]$ koji je linearna kombinacija cijena $P_X\q[t\w]$ i $P_Y\q[t\w]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran.
   Postupkom najmanjih kvadrata najprije se određuju procjene parametara $\mu$ i $\beta$, označene sa $\hat{\mu}$ i $\hat{\beta}$:
   \begin{equation}
-  \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \left\{\sum_{\tau = t - T}^{t - 1} \left\lvert P_X\left[\tau\right] + \beta P_Y\left[\tau\right] -\mu \right\rvert^2\right\},
+  \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \q\{\sum_{\tau = t - T}^{t - 1} \q \lvert P_X\q[\tau\w] + \beta P_Y\q[\tau\w] -\mu \w \rvert^2\w\},
   \end{equation}
-  a zatim se izraze procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$:
+  a zatim se izraze procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$:
   \begin{equation}
-  \hat{\varepsilon}\left[t\right] = -\hat{\mu} + P_X\left[t\right] + \hat{\beta} P_Y\left[t\right].
+  \hat{\varepsilon}\q[t\w] = -\hat{\mu} + P_X\q[t\w] + \hat{\beta} P_Y\q[t\w].
   \end{equation}
-  U drugom koraku provjerava se je li $\hat{\varepsilon}\left[t\right]$ zaista stacionaran proces, čime se dobiva p-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
+  U drugom koraku provjerava se je li $\hat{\varepsilon}\q[t\w]$ zaista stacionaran proces, čime se dobiva p-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
   
-  Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$ koriste se kao mjera sličnosti.
+  Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$ koriste se kao mjera sličnosti.
   Primjer dobivenih rezidualnih vrijednosti za iste vrijednosnica $X$ i $Y$ prikazan je na slici \ref{fig:residual}.
   U odnosu na prethodne dvije mjere, ova mjera je rezultat dublje statističke analize, zbog čega je i računski zahtjevnija, što je ujedno prednost i nedostatak.
   Kada se radi o velikom broju parova vrijednosnica, kointegracije se može pokazati nepraktičnom za računanje, stoga je bolje koristiti neku od dvije prethodno navedene mjere sličnosti.
@@ -264,7 +267,7 @@
     \centering
     \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
     \caption{
-      Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\left[t\right]$.}
+      Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$.}
     \label{fig:residual}
   \end{figure}
   
@@ -299,10 +302,10 @@
 
   Ova relacija specifična je po tome što je:
   \begin{itemize}
-%    \item \textit{irreflexive}: every entity $x$ is not preferrable over itself, %($\neg \left( x \succ x \right)$),
-    \item \textit{irrefleksivna}: $\forall x \in \Omega\colon \neg \left( x \succ x \right)$ --- za nijedno dobro ne vrijedi da je više preferirano od samog sebe,
-%    \item \textit{asymmetrical}: if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$, %($x \succ y \Rightarrow \neg \left( y \succ x \right)$),
-    \item \textit{asimetrična}: $\forall x, y \in \Omega\colon x \succ y \Rightarrow \neg \left( y \succ x \right)$ --- ako je $x$ više preferirano od $y$, onda $y$ nije više preferirano od $x$,
+%    \item \textit{irreflexive}: every entity $x$ is not preferrable over itself, %($\neg \q( x \succ x \w)$),
+    \item \textit{irrefleksivna}: $\forall x \in \Omega\colon \neg \q( x \succ x \w)$ --- za nijedno dobro ne vrijedi da je više preferirano od samog sebe,
+%    \item \textit{asymmetrical}: if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$, %($x \succ y \Rightarrow \neg \q( y \succ x \w)$),
+    \item \textit{asimetrična}: $\forall x, y \in \Omega\colon x \succ y \Rightarrow \neg \q( y \succ x \w)$ --- ako je $x$ više preferirano od $y$, onda $y$ nije više preferirano od $x$,
 %    \item \textit{transitive}: if $x$ is preferrable over $y$, and $y$ is preferrable over $z$, then $x$ is also preferrable over $z$, %($x \succ y \wedge y \succ z \Rightarrow x \succ z$),
     \item \textit{tranzitivna}: $\forall x, y, z \in \Omega\colon x \succ y \wedge y \succ z \Rightarrow x \succ z$ --- ako je $x$ više preferirano od $y$, te $y$ više preferirano od $z$, tada je i $x$ više preferirano od $z$,
 %    \item \textit{transitive in incomparability} (noting that $x$ and $y$ may be \textit{incomparable}, i.e. neither $x$ is preferrable over $y$, nor $y$ is preferrable over $x$): if $x$ is incomparable with $y$, and $y$ is incomparable with $z$, then $x$ is also incomparable with $z$.
@@ -320,7 +323,8 @@
 %  Utility function $U\colon \Omega \to \mathbb{R}$ is mapping from entities to real numbers, in such way that order of the mapping corresponds to the preference order of the entities, i.e. $\forall x, y \in \Omega, U(x) > U(y) \Rightarrow x \succ y$.
 %  One such mapping is obtained by using potential method that is described later in this paper.
 %  In addition to ordering of the entities, utility function also provides the intensity of preference for a particular entity, hence it is more informative when it comes to the decision making.
-  Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, na način da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega \colon U(x) > U(y) \Leftrightarrow x \succ y$.
+  Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, na način da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega \colon x \succ y \Leftrightarrow U\q(x\w) > U\q(y\w)$.
+  Posljedično, za indiferentnost vrijedi $\forall x, y \in \Omega \colon x \sim y \Leftrightarrow U\q(x\w) = U\q(y\w)$.
   Jedno takvo preslikavanje ostvaruje se korištenjem metode potencijala koja je opisana u poglavlju \ref{sec:metpot}.
   Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također unosi i mjeru intenziteta preferencije prema nekoj vrijednosnici, što znači da nosi više informacija od same relacije.
 
@@ -332,14 +336,14 @@
 %  An example of graph is shown on Fig. \ref{fig:graph}.
   Graf toka preferencija je težinski usmjereni graf, bez višestrukih bridova i petlji.
   Njegovi čvorovi predstavljaju vrijednosnice, usmjereni bridovi preferenciju jedne vrijednosnice nad drugom, a težine bridova odgovaraju intenzitetu preferencije.
-  Ukoliko između dva čvora nedostaje brid, smatra se da su pripadne vrijednosnice podjednako preferirane (indiferentnost u odlučivanju).
+  Ukoliko između dva čvora nedostaje brid, smatra se da su pripadne vrijednosnice podjednako preferirane (indiferentnost u odlučivanju kod relacije preferencije).
   Graf kao cjelina opisuje tok preferencija među vrijednosnicama.
   Primjer grafa prikazan je na slici \ref{fig:graph}.
   
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\columnwidth]{graphics/graph.pdf}
-    \caption{Primjer grafa toka preferencija. Na bridovima su prikazani intenziteti preferencija jedne vrijednosnice u odnosu na drugu, a u čvorove su upisane izračunate individualne mjere preferencija za pripadnu vrijednosnicu.}
+    \caption{Primjer grafa toka preferencija. Na bridovima su prikazani intenziteti preferencija jedne vrijednosnice u odnosu na drugu, a u čvorove su upisane izračunate individualne mjere preferencija za pripadni čvor kao razlika zbroja težina bridova koji izlaze iz tog čvora i zbroja težina bridova koji ulaze u taj čvor. Opravdanje za takav postupak dano je u odjeljku \ref{sec:metpot}. Ovaj graf je konzistentan s relacijom preferencije koju predstavlja.}
     \label{fig:graph}
   \end{figure}
   
@@ -347,10 +351,15 @@
 %  An edge going from node $i$ to node $j$ with weight $w_{i,j}$ will be present in the graph if and only if assets represented by nodes $i$ and $j$ have demonstrated similar behavior during the past period, but have suddenly diverged at the moment, as determined per statistical measures.
 %  Weight $w_{i,j}$ corresponds to the magnitude of this divergence.  
 %  A detailed description of used statistical measures the procedure is given later in \ref{sub:creating-graph}.
-  Konstrukcija grafa temelji se na metodi statističke arbitraže.
+  
+  Konstrukcija grafa u ovom radu temelji se na metodi statističke arbitraže.
   Brid koji ide od čvora $i$ do čvora $j$ s težinom $w_{i,j}$ je prisutan u grafu ako i samo ako su se dvije pripadne vrijednosnice $i$ i $j$ ponašale slično tijekom proteklog vremenskog perioda, ali su prema određenim statističkim mjerama trenutačno razdvojile.
   Težina $w_{i,j}$ opisuje magnitudu ovog razdvajanja.
-  Detaljan opis korištenih statističkih mjera dan je u odjeljku \ref{sub:creating-graph}.
+  Detaljan opis postupka dobivanja korištenih statističkih mjera dan je u odjeljku \ref{sub:creating-graph}.
+  
+  Graf preferencije toga je pomoćna struktura koja služi pri prevođenju toka preferencije među čvorovima u individualne mjere preferencije svakog čvora.
+  Ako se zanemare težine bridova u grafu i ostave samo smjerovi, iz njega se direktno može pročitati relacija preferencije.
+  Težine u grafu daju dodatnu informaciju o funkciji korisnosti koja odgovara toj relaciji preferencije, za razliku od situacije kada težina nema, što je ekvivalentno tome da su sve preferencije jednakog intenziteta.
     
 %  Connections in this graph impose a preference relation among entities that are presented by the graph, in the way that an edge that goes from node $A$ to node $B$ means that $A$ is preferred over $B$.
 %  It is the case that neither node is in relation with itself (irreflexivity), and that no multiple connections are allowed between two nodes (implies asymmetry).
@@ -358,13 +367,14 @@
 %  This imposed preference relation should preferably be in compliance with all the aforementioned properties, but when it comes to larger number of entities, it may become infeasible to construct a graph of such qualities directly.
 %  Instead of aiming at a consistent preference relation, we devise a consistency measure that describes similarity between the original graph and its nearest consistent reconstruction, and use it as an additional parameter in decision making.
   Veze u ovom grafu nameću relaciju preferencije među vrijednosnicama koje su opisane grafom, na način da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
-  Kako ne graf sadrži petlje, tj. nijedna vrijednosnica nije u relaciji sama sa sobom, ispunjeno je svojstvo irrefleksivnosti; a kako nema višestrukih bridova među čvorovima vrijedi i svojstvo asimetričnosti.
-  Ipak, problemi se pojavljuju kod prethodno spomenutih svojstava tranzitivnosti, i tranzitivnosti po indiferentnosti, koja ne moraju uvijek vrijediti za proizvoljno konstruiran graf.
+  Prethodno spomenuta svojstva irrefleksivnosti i asimetričnosti uvijek vrijede i u grafu toka preferencije:
+  kako graf ne sadrži petlje, tj. nijedna vrijednosnica nije u relaciji sama sa sobom, ispunjeno je svojstvo irrefleksivnosti; a kako nema višestrukih bridova među čvorovima vrijedi i svojstvo asimetričnosti.
+  Ipak, problemi se pojavljuju kod svojstava tranzitivnosti, i tranzitivnosti po indiferentnosti, koja ne moraju uvijek vrijediti za proizvoljno konstruiran graf.
   Poželjno bi bilo da relacija preferencije koju graf nameće zadovoljava sva četiri prethodno navedena svojstva; no konstruiranje grafa koji posjeduje takva svojstva je nepraktično, pogotovo kada se radi o većem broju vrijednosnica.
   
   Umjesto da cilj bude konstrukcija grafa koji će biti konzistentan sa svojstvima relacije preferencije, definirana je mjera konzistentnosti koja opisuje koliko je neki graf sličan sa svojom najbližom konzistentnom rekonstrukcijom.
   Mjera konzistentnosti se koristi kao dodatan parametar pri konstruiranju portfelja.
-  Opis mjere konzistentnosti te način dobivanja najbliže konzistentne rekonstrukcije grafa dan je u odjeljku \ref{sec:metpot}.
+  Opis mjere konzistentnosti, te način dobivanja najbliže konzistentne rekonstrukcije grafa dan je u odjeljku \ref{sec:reconstruct}.
   
   %  The measure of this preference flow is determined by a statistical arbitrage method, and it corresponds to the magnitude of a pair of assets prices ratio going out of what is considered statistically confident range.
   %  
@@ -382,7 +392,7 @@
 %  The potential of a node corresponds to difference in amount of flow going in and out of the node.
   Iz prethodno dobivenog grafa moguće je utvrditi u kojem paru vrijednosnica je tok preferencije najveći.
   Ipak, još uvijek nije moguće izravno utvrditi koja konkretna vrijednosnica je najviše ili najmanje poželjna, ili odrediti individualne mjere preferencije za svaku vrijednosnicu.
-  Kako bi to bilo moguće korištena je metoda potencijala koja je opisana u nastavku.
+  Kako bi to bilo moguće korištena je metoda potencijala\citep{potential} koja je opisana u nastavku.
   
   %  A concise summary of the method is as follows:
   %  \begin{enumerate}
@@ -403,9 +413,9 @@
   Neka je $\matr{B}$ matrica incidencije grafa $\graph{G}$.
   Matrica incidencije je matrica za koju vrijedi:
   \begin{enumerate}
-    \item broj redaka jednak je broju bridova $E$, i broj stupaca jednak je broju čvorova $N$;
-    \item za svaki od $E$ bridova grafa postoji odgovarajući redak u matrici koji ga opisuje: ako brid ide od čvora $i$ do čvora $j$, tada taj redak sadrži $-1$ i $1$ u stupcima koji odgovaraju čvorovima $i$ i $j$;
-    \item ostali elementi matrice su jednaki 0.
+    \item broj redaka matrice jednak je broju bridova $E$, i broj stupaca matrice jednak je broju čvorova $N$;
+    \item za svaki od $E$ bridova grafa postoji odgovarajući redak u matrici koji ga opisuje, na sljedeći način: ako brid ide od čvora $i$ do čvora $j$, tada taj redak sadrži $-1$ i $1$ u stupcima koji odgovaraju čvorovima $i$ i $j$;
+    \item svi ostali elementi matrice su jednaki 0.
   \end{enumerate}
   %    $\matr{B}$ has following properties:
   %    \begin{enumerate}
@@ -441,13 +451,13 @@
   Tako originalni problem postaje:
   \begin{gather}
   \label{eq:derivative}
-  \matr{\phi^*} = \argmin_{\matr{\phi}} \left\{ \left \lVert \matr{B} \matr{\phi} - \matr{f}\textsl{} \right \rVert ^ 2 \right\} \quad
+  \matr{\phi^*} = \argmin_{\matr{\phi}} \q\{ \q \lVert \matr{B} \matr{\phi} - \matr{f}\textsl{} \w \rVert ^ 2 \w\} \quad
   \Leftrightarrow \quad 
-  \frac{\partial \left \lVert \matr{B} \matr{\phi^*} - \matr{f} \right \rVert ^ 2}{\partial \matr{\phi^*}} = \mathbf{0}.
+  \frac{\partial \q \lVert \matr{B} \matr{\phi^*} - \matr{f} \w \rVert ^ 2}{\partial \matr{\phi^*}} = \mathbf{0}.
   \end{gather}
   Matričnim deriviranjem (\ref{eq:derivative}) dobiva se sljedeća jednadžba:
   \begin{gather}
-  2 \matr{B}^\T \left[\matr{B} \matr{\phi^*} - \matr{f} \right] = \mathbf{0} \nonumber \\
+  2 \matr{B}^\T \q[\matr{B} \matr{\phi^*} - \matr{f} \w] = \mathbf{0} \nonumber \\
   \label{eq:flow}
   \matr{B}^\T \matr{B} \matr{\phi^*} = \matr{B}^\T \matr{f}.
   \end{gather}
@@ -465,13 +475,13 @@
   \begin{align}
   \matr{B}^\T \matr{B} \matr{\phi^*} + \matr{J} \matr{\phi^*} &= \matr{B}^\T \matr{f} \nonumber \\
   \label{eq:joined}
-  \left[\matr{B}^\T \matr{B} + \matr{J} \right] \matr{\phi^*} &= \matr{B}^\T \matr{f},
+  \q[\matr{B}^\T \matr{B} + \matr{J} \w] \matr{\phi^*} &= \matr{B}^\T \matr{f},
   \end{align}
   gdje je $\matr{J}$ matrica jedinica istih dimenzija kao i $\matr{B}^\T \matr{B}$.
   Konačno, rješavanjem (\ref{eq:joined}) po $\matr{\phi^*}$ dobiva se:
   \begin{equation}
   \label{eq:final}
-  \matr{\phi^*} = \left[\matr{B}^\T \matr{B} + \matr{J} \right]^{-1} \matr{B}^\T \matr{f}.
+  \matr{\phi^*} = \q[\matr{B}^\T \matr{B} + \matr{J} \w]^{-1} \matr{B}^\T \matr{f}.
   \end{equation}
   %    \item 
   Dodatno, izraz (\ref{eq:final}) sadrži u sebi Laplaceovu matricu $\matr{L} = \matr{B}^\T\matr{B}$.
@@ -480,7 +490,7 @@
     \item $(\matr{L})_{ii}$ je jednak broju susjeda čvora $i$,
     \item ostali elementi jednaki su $-1$.
   \end{itemize}
-  Kako je graf $\graph{G}$ potpun, tj. broj susjeda svakog čvora jednak je $N - 1$, izraz $\left[ \matr{B}^\T \matr{B} + \matr{J} \right]^{-1}$ se može pojednostavniti u $\frac{1}{N} \matr{I}$; i stoga, se (\ref{eq:final}) može svesti na:
+  Kako je graf $\graph{G}$ potpun, tj. broj susjeda svakog čvora jednak je $N - 1$, izraz $\q[ \matr{B}^\T \matr{B} + \matr{J} \w]^{-1}$ se može pojednostavniti u $\frac{1}{N} \matr{I}$; i stoga, se (\ref{eq:final}) može svesti na:
   \begin{equation}
   \label{eq:final2}
   \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
@@ -489,8 +499,8 @@
   Jednadžba (\ref{eq:final2}) tvrdi da se rješenje u smislu najmanjih kvadrata $\matr{\phi^*}$ jednadžbe (\ref{eq:flowformula}) dobije na način da se za svaki čvor pribroje težine svih bridova koji izlaze iz njega, i oduzmu težine svih bridova koji ulaze u njega.
   
   \subsection{Konzistentna rekonstrukcija grafa}
-  
-  Sada se na temelju dobivenog potencijala čvorova $\matr{\phi^*}$ može izračunati tok preferencije $\matr{f^*}$ koji je konzistentan s potencijalnom, tako da se u (\ref{eq:flowformula}) supstituira $\matr{\phi^*}$ umjesto $\matr{\phi}$:
+  \label{sec:reconstruct}
+  Sada se na temelju dobivenog potencijala čvorova $\matr{\phi^*}$ može izračunati tok preferencije $\matr{f^*}$ koji je konzistentan s potencijalom, tako da se u (\ref{eq:flowformula}) supstituira $\matr{\phi^*}$ umjesto $\matr{\phi}$:
   %    \item
 %  Afterwards, we can calculate the consistent reconstruction $\matr{f^*}$ of preference flow by simply plugging back $\matr{\phi^*}$ into (\ref{eq:flowformula}):
   \begin{equation}
@@ -499,12 +509,14 @@
 %  The reconstructed preference flow $\matr{f^*}$ compared to the original preference flow $\matr{f}$ may even contain some new and/or lose some old edges.
 %  In addition, $\matr{B}$, $\matr{\phi^*}$, and $\matr{f^*}$ now describe a consistent graph $\graph{G}^*$.
 %  It is now possible to define a consistency measure $\kappa$ as follows:
-  Rekonsutrirani tok preferencije $\matr{f^*}$ u odnosu na originalni $\matr{f}$ može sadržavati neke nove, pa čak i izgubiti neke stare težine.
+  Rekonstruirani graf toka preferencije $\matr{f^*}$ u odnosu na originalni $\matr{f}$ može sadržavati neke nove, pa čak i izgubiti neke stare bridove.
   Dodatno, $\matr{B}$, $\matr{\phi^*}$, i $\matr{f}$ opisuju konzistentan graf $\graph{G}^*$.
+  Za konzistentan graf dobiven na ovaj način također vrijedi i da je suma preferencija po nekoj petlji jednaka 0.
+  
   Mjera konzistentnosti $\kappa$ definira se kao:
   \begin{equation}
   \label{eq:consistency}
-  \kappa = \frac{\left \lVert \matr{f^*} \right \rVert}{\left \lVert \matr{f} \right \rVert}.
+  \kappa = \frac{\q \lVert \matr{f^*} \w \rVert}{\q \lVert \matr{f} \w \rVert}.
   \end{equation}
 %  Equation (\ref{eq:consistency}) represents the cosine of the angle between $\matr{f}$ and $\matr{f^*}$ in the column space of matrix $\matr{B}$.
 %  Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
@@ -512,7 +524,49 @@
   Jednadžba (\ref{eq:consistency}) predstavlja kosinus kuta između $\matr{f}$ i $\matr{f^*}$ u prostoru određenom vektor stupacima matrice incidencije $\matr{B}$.
   Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (u praksi nedostižno), a 1 potpunu konzistentnost.
   
-  %  \end{enumerate}
+  \subsection{Primjer}
+  Na sljedećem primjeru demonstrirana je metoda potencijala čvorova za određivanje individualnih preferencija čvorova u grafu.
+  Na raspolaganju su četiri vrijednosnice, $A$, $B$, $C$ i $D$.
+  Metodom statističke arbitraže dobivene su preferencije među vrijednosnicama s intenzitetima prikazanim na grafu na slici \ref{fig:graph-eg-1}.
+  Taj graf nije konzistentan: prema njemu $B$ nije izravno usporediva sa $C$, ali kako je $B \succ A$ i $A \succ C$, po tranzitivnosti bi trebalo biti i $B \succ C$, što u grafu nije slučaj.  
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{graphics/graph-eg-1.png}
+    \caption{Primjer nekonzistentnog grafa prije izračunavanja potencijala čvorova.}
+    \label{fig:graph-eg-1}
+  \end{figure}
+
+  Matrica incidencije $\matr{B}$ i vektor toka preferencije $\matr{f}$ grafa sa slike \ref{fig:graph-eg-1} su sljedeći:
+  \begin{equation*}
+  \matr{B} = \begin{bmatrix*}[r]
+  -1 & 1 & 0 & 0 \\
+  -1 & 0 & 1 & 0 \\
+  -1 & 0 & 0 & 1 \\
+  0 & -1 & 1 & 0 \\
+  0 & -1 & 0 & 1 \\
+  0 & 0 & -1 & 1
+  \end{bmatrix*},\quad
+  \matr{f} = \begin{bmatrix*}[r]
+  -2 \\ 1 \\ -4 \\ 0 \\ -1 \\ -2
+  \end{bmatrix*}
+  \end{equation*}
+  Računanjem prema metodi potencijala $\matr{\phi^*} = \frac{1}{N}\matr{B}^\T \matr{f}$ i $\matr{f^*} = \matr{B} \matr{\phi^*}$, dobivaju se:
+  \begin{equation*}
+  \matr{\phi}^* = \begin{bmatrix*}[r]
+  -1.25 \\ 0.75 \\ -0.25 \\ 1.75
+  \end{bmatrix*}, \quad
+  \matr{f}^* = \begin{bmatrix*}[r]
+  -1.5 \\ -0.5 \\ -1 \\ 1 \\ -1.5 \\ -2.5
+  \end{bmatrix*}
+  \end{equation*}  
+  Rekonstrukcija grafa prikazana je na slici \ref{fig:graph-eg-2}.
+  
+  \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\linewidth]{graphics/graph-eg-2.png}
+    \caption{Primjer najbliže konzistentne rekonstrukcije grafa nakon izračunavanja potencijala čvorova.}
+    \label{fig:graph-eg-2}
+  \end{figure}
   
   \section{Koeficijent obrtaja}
   Koeficijent obrtaja \engl{turnover ratio} je mjera koja određuje koliki udio vrijednosnica u portfelju je promijenjen između dva vremenska koraka.
@@ -525,12 +579,12 @@
   Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
   \begin{equation}
   \label{eq:turnover}
-  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert.
+  \eta^{(t)} = \sum_{i=1}^{N} \q \lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \w \rvert.
   \end{equation}
   Iz (\ref{eq:turnover}) može se vidjeti da se minimum $\eta^{(t)} = 0$ doista postiže ako i samo ako je ispunjeno $\matr{\alpha}^{(t)} = \matr{\alpha}^{(t-1)}$,
   a maksimum $\eta^{(t)} = 2$ ako i samo ako je ispunjeno $\alpha_i^{(t)} \ne 0 \Rightarrow \alpha_i^{(t - 1)} = 0$ i $\alpha_i^{(t - 1)} \ne 0 \Rightarrow \alpha_i^{(t)} = 0$, jer tada vrijedi: 
   \begin{equation*}
-  \eta^{(t)} = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \right\rvert = \sum_{i=1}^{N} \left\lvert \alpha_i^{(t)}\right\rvert + \sum_{i=1}^N \left \lvert\alpha_i^{(t-1)} \right\rvert = 1 + 1 = 2.
+  \eta^{(t)} = \sum_{i=1}^{N} \q \lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \w \rvert = \sum_{i=1}^{N} \q \lvert \alpha_i^{(t)}\w \rvert + \sum_{i=1}^N \q \lvert\alpha_i^{(t-1)} \w \rvert = 1 + 1 = 2.
   \end{equation*}
   
   Neka troškovi trgovanja, bilo kupovanja bilo prodavanja vrijednosnice, iznose $p$ dijelova vrijednosti po kojoj se vrijednosnica kupuje, odnosno prodaje.
@@ -548,24 +602,24 @@
 \chapter{Algoritam}
 
 %  Let there be total of $N$ assets in $D$ days.
-%  Let price of asset $i$ at the time step $t$ be $a_i^{\left(t\right)}$, for $i \in {\left[1, 2, \ldots, N\right]}$ and $t \in {\left[0, 1, \ldots, D-1\right]}$.
-%  The log prices $b_i^{\left(t\right)}$, and log price differences $c_{i,j}^{\left(t\right)}$ between assets $i$ and $j$ are obtained as follows:
-%  \begin{equation} b_i^{\left(t\right)} = \log\left(a_i^{\left(t\right)}\right) \end{equation}
-%  \begin{equation} c_{i,j}^{\left(t\right)} = b_i^{\left(t\right)} - b_j^{\left(t\right)}, \end{equation}
-%  and rolling means $m_{i,j}^{\left(t\right)}$ and standard deviations $d_{i,j}^{\left(t\right)}$ of log price differences over the past time window of size $T$ are obtained as follows:
+%  Let price of asset $i$ at the time step $t$ be $a_i^{\q(t\w)}$, for $i \in {\q[1, 2, \ldots, N\w]}$ and $t \in {\q[0, 1, \ldots, D-1\w]}$.
+%  The log prices $b_i^{\q(t\w)}$, and log price differences $c_{i,j}^{\q(t\w)}$ between assets $i$ and $j$ are obtained as follows:
+%  \begin{equation} b_i^{\q(t\w)} = \log\q(a_i^{\q(t\w)}\w) \end{equation}
+%  \begin{equation} c_{i,j}^{\q(t\w)} = b_i^{\q(t\w)} - b_j^{\q(t\w)}, \end{equation}
+%  and rolling means $m_{i,j}^{\q(t\w)}$ and standard deviations $d_{i,j}^{\q(t\w)}$ of log price differences over the past time window of size $T$ are obtained as follows:
   Neka u zadanom skupu podataka ima ukupno $N$ vrijednosnica kroz $D$ vremenskih koraka.
-  Neka je cijena vrijednosnice $i$ u vremenskom koraku $t$ jednaka $a_i^{\left(t\right)}$, za $i \in {\left[1, 2, \ldots, N\right]}$ i $t \in {\left[0, 1, \ldots, D-1\right]}$.
-  Logaritamske cijene $b_i^{\left(t\right)}$, i razlike logaritamskih cijena po parovima $c_{i,j}^{\left(t\right)}$ dobivaju se na sljedeći način:
-  \begin{equation} b_i^{\left(t\right)} = \log\left(a_i^{\left(t\right)}\right) \end{equation}
-  \begin{equation} c_{i,j}^{\left(t\right)} = b_i^{\left(t\right)} - b_j^{\left(t\right)}, \end{equation}
-  i očekivanje $m_{i,j}^{\left(t\right)}$ i standardna devijacija $d_{i,j}^{\left(t\right)}$ razlika logaritamskih cijena tijekom proteklog perioda duljine $T$ dobivaju se kako slijedi:
+  Neka je cijena vrijednosnice $i$ u vremenskom koraku $t$ jednaka $a_i^{\q(t\w)}$, za $i \in {\q[1, 2, \ldots, N\w]}$ i $t \in {\q[0, 1, \ldots, D-1\w]}$.
+  Logaritamske cijene $b_i^{\q(t\w)}$, i razlike logaritamskih cijena po parovima $c_{i,j}^{\q(t\w)}$ dobivaju se na sljedeći način:
+  \begin{equation} b_i^{\q(t\w)} = \log\q(a_i^{\q(t\w)}\w) \end{equation}
+  \begin{equation} c_{i,j}^{\q(t\w)} = b_i^{\q(t\w)} - b_j^{\q(t\w)}, \end{equation}
+  i očekivanje $m_{i,j}^{\q(t\w)}$ i standardna devijacija $d_{i,j}^{\q(t\w)}$ razlika logaritamskih cijena tijekom proteklog perioda duljine $T$ dobivaju se kako slijedi:
   \begin{equation}
   \label{eq:mean}
-  m_{i,j}^{\left(t\right)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
+  m_{i,j}^{\q(t\w)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
   \end{equation}
   \begin{equation}
   \label{eq:deviation}
-  d_{i,j}^{\left(t\right)} = \sqrt{\frac{1}{T}\sum_{\tau=t - T}^{t - 1} \left(c_{i,j}^{(\tau)} - m_{i,j}^{\left(t\right)} \right)^2}.
+  d_{i,j}^{\q(t\w)} = \sqrt{\frac{1}{T}\sum_{\tau=t - T}^{t - 1} \q(c_{i,j}^{(\tau)} - m_{i,j}^{\q(t\w)} \w)^2}.
   \end{equation}
   
   Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, stoga sumiranje ide do $t - 1$.
@@ -575,16 +629,16 @@
 
 %  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
 %  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
-%  On that note, $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, and $d_{i,j}^{\left(t\right)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
+%  On that note, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, and $d_{i,j}^{\q(t\w)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
   Također valja primijetiti da bi izračunavanje očekivanja i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
   Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku.
-  Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
-  Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{\left(t\right)} = -c_{j,i}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)} = -m_{j,i}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)} = d_{j,i}^{\left(t\right)}$, stoga je polovina informacije sadržane u njima redundantna.
-  Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $(D - T) \times \left. N\cdot(N - 1) \middle/ 2\right.$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
-  \begin{equation} k = N \cdot (i - 1) + j - 1 - \left. i \cdot (i + 1) \middle/ 2\right., \end{equation}
+  Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
+  Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{\q(t\w)} = -c_{j,i}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)} = -m_{j,i}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)} = d_{j,i}^{\q(t\w)}$, stoga je polovina informacije sadržane u njima redundantna.
+  Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $(D - T) \times \q. N\cdot(N - 1) \middle/ 2\w.$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
+  \begin{equation} k = N \cdot (i - 1) + j - 1 - \q. i \cdot (i + 1) \middle/ 2\w., \end{equation}
   a za dekodiranje $(i, j)$ iz $k$ izrazi:
-  \begin{equation} i = \left\lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \right\rfloor, \end{equation}
-  \begin{equation} j = k + i \cdot \left.(i + 1) \middle/ 2\right. - N \cdot (i - 1) + 1. \end{equation}
+  \begin{equation} i = \q \lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \w \rfloor, \end{equation}
+  \begin{equation} j = k + i \cdot \q.(i + 1) \middle/ 2\w. - N \cdot (i - 1) + 1. \end{equation}
 %  An example of proposed coding for $N = 5$ is shown on figure \ref{fig:coding}.
   Na slici \ref{fig:coding} prikazano je kodiranje u slučaju $N = 5$ vrijednosnica.
   
@@ -617,32 +671,32 @@
 
   \section{Konstrukcija grafa toka preferencija}
   \label{sub:creating-graph}
-%  Using the obtained $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, and $d_{i,j}^{\left(t\right)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
+%  Using the obtained $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, and $d_{i,j}^{\q(t\w)}$ it is now possible to create a graph of preference flow among assets for each time step $t$.
 %  Considering one time step $t$, we find all such pairs of assets $(i,j)$ that satisfy:
 %  \begin{equation}
 %  \label{eq:thresh}
-%  \left| c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)} \right| > \alpha \cdot d_{i,j}^{\left(t\right)},
+%  \left| c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)} \right| > \alpha \cdot d_{i,j}^{\q(t\w)},
 %  \end{equation}
 %  i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
 %  An illustration is shown on Fig. \ref{fig:devmag}.
-  Korištenjem prethodno dobivenih $c_{i,j}^{\left(t\right)}$, $m_{i,j}^{\left(t\right)}$, i $d_{i,j}^{\left(t\right)}$ sada je moguće kreirati graf toka preferencija među vrijednosnicama u svakom vremenskom koraku $t$.
+  Korištenjem prethodno dobivenih $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)}$ sada je moguće kreirati graf toka preferencija među vrijednosnicama u svakom vremenskom koraku $t$.
   Razmatrajući fiksni vremenski korak $t$, izdvajaju se svi parovi vrijednosnica $(i,j)$ za koje vrijedi:
   \begin{equation}
   \label{eq:thresh}
-  \left| c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)} \right| > \alpha \cdot d_{i,j}^{\left(t\right)},
+  \q| c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)} \w| > \alpha \cdot d_{i,j}^{\q(t\w)},
   \end{equation}
   tj. trenutna apsolutna vrijednost razlike log-cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od očekivanja, izmjerenih u proteklom periodu.
   %  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
-%  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{\left(t\right)}$ going from $i$ to $j$.
-%  Weight $w_{i,j}^{\left(t\right)}$ is obtained as:
-  Nakon toga, za svaki par $(i,j)$ koji zadovoljava (\ref{eq:thresh}) dodaju se u graf čvorovi $i$ i $j$, te brid koji ide od $i$ do $j$ s težinom $w_{i,j}^{\left(t\right)}$.
-  Težina $w_{i,j}^{\left(t\right)}$ dobiva se kao:
+%  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{\q(t\w)}$ going from $i$ to $j$.
+%  Weight $w_{i,j}^{\q(t\w)}$ is obtained as:
+  Nakon toga, za svaki par $(i,j)$ koji zadovoljava (\ref{eq:thresh}) dodaju se u graf čvorovi $i$ i $j$, te brid koji ide od $i$ do $j$ s težinom $w_{i,j}^{\q(t\w)}$.
+  Težina $w_{i,j}^{\q(t\w)}$ dobiva se kao:
   \begin{equation}
   \label{eq:weight}
-  w_{i,j}^{\left(t\right)} = \left. \left(c_{i,j}^{\left(t\right)} - m_{i,j}^{\left(t\right)}\right) \middle/ d_{i,j}^{\left(t\right)} \right.,
+  w_{i,j}^{\q(t\w)} = \q. \q(c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}\w) \middle/ d_{i,j}^{\q(t\w)} \w.,
   \end{equation}
   što odgovara udaljenosti razlike log-cijena od očekivanja, mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
-  Negativan predznak težine $w_{i,j}^{\left(t\right)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{\left(t\right)} = -w_{i,j}^{\left(t\right)} > 0$ ekvivalentan je prethodnome bridu.
+  Negativan predznak težine $w_{i,j}^{\q(t\w)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{\q(t\w)} = -w_{i,j}^{\q(t\w)} > 0$ ekvivalentan je prethodnome bridu.
   Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
   \begin{figure}[htb]
@@ -663,10 +717,10 @@
     \label{fig:devmag}
   \end{figure}
   
-  Na taj način moguće je konstruirati graf toka preferencija za bilo koji vremenski korak $t \in \left[T, T + 1, \ldots, D-1\right]$.
+  Na taj način moguće je konstruirati graf toka preferencija za bilo koji vremenski korak $t \in \q[T, T + 1, \ldots, D-1\w]$.
   U nekim vremenskim koracima moguće je da dobiveni graf bude prazan, ukoliko nijedan par vrijednosnica $(i,j)$ ne zadovoljava (\ref{eq:thresh}).
   Postavljanjem nižih vrijednosti za $\alpha$ dobivaju se gušći grafovi i manje često se događa da je graf prazan, dok se postavljanjem $\alpha = 0$ uvijek dobivaju potpuni grafovi.
-%  Thus it is possible to create a graph of preference flow for each time step $t \in \left[T, T + 1, \ldots, D-1\right]$.
+%  Thus it is possible to create a graph of preference flow for each time step $t \in \q[T, T + 1, \ldots, D-1\w]$.
 %  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
 %  Setting lower values for parameter $\alpha$ yields denser graphs, and setting $\alpha = 0$ always yields complete graphs.
   
@@ -677,11 +731,11 @@
   Individualna mjera preferencije za svaku vrijednosnicu dobivena je metodom potencijala, na način kako je ranije opisano u \ref{sub:potential}.
   Vrijednosnice s trenutačno najvećom preferencijom preporučeno je kupiti, dok je one s najmanjom preferencijom preporučeno prodati, odnosno \textit{shortati} ukoliko je to moguće.
   
-%  Let $\matr{\phi}^{\left(t\right)} = \begin{bmatrix} \phi_1^{\left(t\right)} & \phi_2^{\left(t\right)} & \ldots & \phi_N^{\left(t\right)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{\left(t\right)}$ denote the preference for asset $i$ at time step $t$.
+%  Let $\matr{\phi}^{\q(t\w)} = \begin{bmatrix} \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{\q(t\w)}$ denote the preference for asset $i$ at time step $t$.
 %  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
 %  Lower values of $\kappa$ suggest that we should diversify our portfolio by including some more assets in the order of preference, while higher values suggest that it is safe to do trading with smaller number of assets.
 %  Portfolio diversification might be seen as a strategy for protection from fundamental risks, e.g. risk of asset default.
-  Neka je $\matr{\phi}^{\left(t\right)} = \begin{bmatrix} \phi_1^{\left(t\right)} & \phi_2^{\left(t\right)} & \ldots & \phi_N^{\left(t\right)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$, te $\phi_i^{\left(t\right)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
+  Neka je $\matr{\phi}^{\q(t\w)} = \begin{bmatrix} \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$, te $\phi_i^{\q(t\w)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
   Pri odabiru vrijednosnica za portfelj, u obzir se također uzima i mjera konzistentnosti $\kappa$.
   Uključivanje mjere konzistentnosti pri odabiru omogućuje zaštitu od fundamentalnog rizika (propadanja neke dionice) putem diverzifikacije portfelja.
   Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portftelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
@@ -701,12 +755,12 @@
 %  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
   Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje u trenutku $t$ vrijedi:
   \begin{equation*}
-  \phi_i^{\left(t\right)} \ge \kappa^\prime \cdot \Phi,
+  \phi_i^{\q(t\w)} \ge \kappa^\prime \cdot \Phi,
   \end{equation*}
-  gdje je $\Phi = \max_j \left\{ \left| \phi_j \right| \right\}$.
+  gdje je $\Phi = \max_j \q\{ \q| \phi_j \w| \w\}$.
   Isto tako, za prodaju se biraju vrijednosnice $i$, za koje u trenutku $t$ vrijedi:
   \begin{equation*}
-  \phi_i^{\left(t\right)} \le -\kappa^\prime \cdot \Phi.
+  \phi_i^{\q(t\w)} \le -\kappa^\prime \cdot \Phi.
   \end{equation*}
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
@@ -757,49 +811,49 @@
   \chapter{Računanje momenata vremenskog niza na pomičnom prozoru}
   Pri izračunavanju momenata (očekivanje, varijanca) vremenskih nizova nad prozorima konačne duljine, pokazalo se neefikasnim izračunavati svaki prozor zasebno u svakom koraku, jer se većina uzoraka između dva susjedna prozora ponavlja.
   Neka vremenski niz traje ukupno $D$ vremenskih koraka, te neka je veličina vremenskog prozora $T$.
-  Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\mathcal{O}\left(\left(D - T + 1\right)\cdot T\right)$, odnosno približno $\mathcal{O}\left(DT\right)$, kako je $D \gg T$.
+  Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\mathcal{O}\q(\q(D - T + 1\w)\cdot T\w)$, odnosno približno $\mathcal{O}\q(DT\w)$, kako je $D \gg T$.
   Stoga se isplati potražiti rekurzivne izraze za očekivanje i varijancu kako bi se izračun mogao obaviti na učinkovitiji način.
   
-  Neka je $a\left[t\right]$ vremenski niz, za $t \in \left[0, 1, \ldots, D - 1\right]$.
-  Nenormirani momenti $n$-tog reda $S_n$ niza $a\left[t\right]$ nad vremenskim prozorom duljine $T$ definirani su na sljedeći način:
+  Neka je $a\q[t\w]$ vremenski niz, za $t \in \q[0, 1, \ldots, D - 1\w]$.
+  Nenormirani momenti $n$-tog reda $S_n$ niza $a\q[t\w]$ nad vremenskim prozorom duljine $T$ definirani su na sljedeći način:
   \begin{equation}
-  S_n^{(t)} = \sum_{\tau=t-T+1}^{t} a^n\left[\tau\right].
+  S_n^{(t)} = \sum_{\tau=t-T+1}^{t} a^n\q[\tau\w].
   \end{equation}
   Za nulti moment uvijek vrijedi $S_0^{(t)} = T$ neovisno o $t$.
   Rekurzivni izraz za ažuriranje nenormiranog momenta je očigledan:
   \begin{align}
-  S_n^{(t+1)} &= \sum_{\tau=t+1-T+1}^{t+1} a^n\left[\tau\right] \nonumber \\
-    &= -a^n\left[t-T+1\right] + \sum_{\tau=t-T+1}^{t} a^n\left[\tau\right] + a^n\left[t+1\right] \nonumber \\
-    &= -a^n\left[t-T+1\right] + S_n^{(t)} + a^n\left[t+1\right].
+  S_n^{(t+1)} &= \sum_{\tau=t+1-T+1}^{t+1} a^n\q[\tau\w] \nonumber \\
+    &= -a^n\q[t-T+1\w] + \sum_{\tau=t-T+1}^{t} a^n\q[\tau\w] + a^n\q[t+1\w] \nonumber \\
+    &= -a^n\q[t-T+1\w] + S_n^{(t)} + a^n\q[t+1\w].
   \end{align}
   
   Preko nenormiranih momenata mogu se izraziti očekivanje i varijanca.
-  Očekivanje $\Efromto{a\left[\tau\right]}{t - T < \tau \le t}$ je normirani moment prvog reda, i može se izraziti kao:
+  Očekivanje $\Efromto{a\q[\tau\w]}{t - T < \tau \le t}$ je normirani moment prvog reda, i može se izraziti kao:
   \begin{equation}
-  \Efromto{a\left[\tau\right]}{t - T < \tau \le t} = \frac{S_1^{(t)}}{S_0^{(t)}},
+  \Efromto{a\q[\tau\w]}{t - T < \tau \le t} = \frac{S_1^{(t)}}{S_0^{(t)}},
   \end{equation}
   što je bilo relativno jednostavno za izračunati i bez korištenja nenomiranih momenata.
   No, kod računanja varijance situacija je nešto složenija.
   Varijanca je centrirani i normirani moment drugog reda.
-  Prema definiciji, varijanca $\Varfromto{a\left[\tau\right]}{t - T < \tau \le t}$ može se računati još i kao:
+  Prema definiciji, varijanca $\Varfromto{a\q[\tau\w]}{t - T < \tau \le t}$ može se računati još i kao:
   \begin{align}
-    \Varfromto{a\left[\tau\right]}{t - T < \tau \le t} &= \Efromto{\left(a\left[\tau\right] - \E{a\left[\tau\right]} \right)^2}{t - T < \tau \le t} \nonumber \\
-    &= \Efromto{a^2\left[\tau\right] - 2 a\left[\tau\right] \E{a\left[\tau\right]} + \Esq{a\left[\tau\right]}}{t - T < \tau \le t} \nonumber \\
-    &= \Efromto{a^2\left[\tau\right]}{t - T < \tau \le t} \nonumber \\
-    & - 2\Esqfromto{a\left[\tau\right]}{t - T < \tau \le t} + \Esqfromto{a\left[\tau\right]}{t - T < \tau \le t} \nonumber \\
-    &= \Efromto{a^2\left[\tau\right]}{t - T < \tau \le t} + \Esqfromto{a\left[\tau\right]}{t - T < \tau \le t}
+    \Varfromto{a\q[\tau\w]}{t - T < \tau \le t} &= \Efromto{\q(a\q[\tau\w] - \E{a\q[\tau\w]} \w)^2}{t - T < \tau \le t} \nonumber \\
+    &= \Efromto{a^2\q[\tau\w] - 2 a\q[\tau\w] \E{a\q[\tau\w]} + \Esq{a\q[\tau\w]}}{t - T < \tau \le t} \nonumber \\
+    &= \Efromto{a^2\q[\tau\w]}{t - T < \tau \le t} \nonumber \\
+    & - 2\Esqfromto{a\q[\tau\w]}{t - T < \tau \le t} + \Esqfromto{a\q[\tau\w]}{t - T < \tau \le t} \nonumber \\
+    &= \Efromto{a^2\q[\tau\w]}{t - T < \tau \le t} - \Esqfromto{a\q[\tau\w]}{t - T < \tau \le t}
   \end{align}
-  Sada se $\Efromto{a^2\left[\tau\right]}{t - T < \tau \le t}$ također može izraziti preko nenormiranih momenata kao $\left. S_2^{(t)} \middle/ S_0^{(t)} \right.$.
+  Sada se $\Efromto{a^2\q[\tau\w]}{t - T < \tau \le t}$ također može izraziti preko nenormiranih momenata kao $\q. S_2^{(t)} \middle/ S_0^{(t)} \w.$.
   Konačno, varijanca se može izraziti preko nenormiranih momenata kao:
   \begin{equation}
-    \Varfromto{a\left[\tau\right]}{t - T < \tau \le t} = \frac{S_2^{(t)}}{S_0^{(t)}} - \frac{\left(S_1^{(t)}\right)^2}{\left(S_0^{(t)}\right)^2}
-    = \frac{S_0^{(t)} S_2^{(t)} - \left(S_1^{(t)}\right)^2}{\left(S_0^{(t)}\right)^2}.
+    \Varfromto{a\q[\tau\w]}{t - T < \tau \le t} = \frac{S_2^{(t)}}{S_0^{(t)}} - \frac{\q(S_1^{(t)}\w)^2}{\q(S_0^{(t)}\w)^2}
+    = \frac{S_0^{(t)} S_2^{(t)} - \q(S_1^{(t)}\w)^2}{\q(S_0^{(t)}\w)^2}.
   \end{equation}
   
   Na ovaj način moguće je izračunati očekivanje i varijancu nad pomičnim prozorom na mnogo učinkovitiji način nego nerekurzivnim postupkom.
-  Inicijalno je potrebno izračunati momente $S_0^{(T - 1)}$, $S_1^{(T - 1)} $ i $S_2^{(T - 1)}$, te iz njih $\Efromto{a\left[\tau\right]}{0 \le \tau < T}$ i $\Varfromto{a\left[\tau\right]}{0 \le \tau < T}$; u složenosti $\mathcal{O}\left(T\right)$.
-  Nadalje, za svaki pomak vremenskog prozora rekurzivno se ažuriraju vrijednosti nenormiranih momenata, te se putem njih izračunavaju očekivanje i varijanca, u složenosti $\mathcal{O}\left(T - D\right)$.
-  Ukupna vremenska složenost algoritma time je pala s $\mathcal{O}\left(DT\right)$ na $\mathcal{O}\left(D\right)$.
+  Inicijalno je potrebno izračunati momente $S_0^{(T - 1)}$, $S_1^{(T - 1)} $ i $S_2^{(T - 1)}$, te iz njih $\Efromto{a\q[\tau\w]}{0 \le \tau < T}$ i $\Varfromto{a\q[\tau\w]}{0 \le \tau < T}$; u složenosti $\mathcal{O}\q(T\w)$.
+  Nadalje, za svaki pomak vremenskog prozora rekurzivno se ažuriraju vrijednosti nenormiranih momenata, te se putem njih izračunavaju očekivanje i varijanca, u složenosti $\mathcal{O}\q(T - D\w)$.
+  Ukupna vremenska složenost algoritma time je pala s $\mathcal{O}\q(DT\w)$ na $\mathcal{O}\q(D\w)$.
 
   \begin{sazetak}
   Sažetak na hrvatskom jeziku.

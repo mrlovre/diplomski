@@ -11,12 +11,13 @@
 \contentsline {section}{\numberline {2.4}Metoda potencijala}{13}
 \contentsline {subsection}{\numberline {2.4.1}Ra\IeC {\v c}unanje potencijala \IeC {\v c}vorova}{13}
 \contentsline {subsection}{\numberline {2.4.2}Konzistentna rekonstrukcija grafa}{15}
-\contentsline {section}{\numberline {2.5}Koeficijent obrtaja}{15}
-\contentsline {chapter}{\numberline {3}Algoritam}{17}
-\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{18}
-\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{19}
-\contentsline {section}{\numberline {3.3}Minimizacija koeficijenta obrtaja}{20}
-\contentsline {chapter}{\numberline {4}Rezultati}{21}
-\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{23}
-\contentsline {chapter}{Literatura}{24}
-\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{25}
+\contentsline {subsection}{\numberline {2.4.3}Primjer}{16}
+\contentsline {section}{\numberline {2.5}Koeficijent obrtaja}{17}
+\contentsline {chapter}{\numberline {3}Algoritam}{19}
+\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{20}
+\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{21}
+\contentsline {section}{\numberline {3.3}Minimizacija koeficijenta obrtaja}{22}
+\contentsline {chapter}{\numberline {4}Rezultati}{23}
+\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{25}
+\contentsline {chapter}{Literatura}{26}
+\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{27}

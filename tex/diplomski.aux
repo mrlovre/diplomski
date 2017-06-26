@@ -12,7 +12,7 @@
 \@writefile{toc}{\contentsline {section}{\numberline {2.1}Statisti\IeC {\v c}ka arbitra\IeC {\v z}a}{2}}
 \newlabel{eq:statarb}{{2.1}{2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.1}Razlika normaliziranih log-cijena}{3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces  Prikaz kretanja cijena dviju vrijednosnica u razdoblju od 500 dana. Plavom bojom prikazano je $P_X^{(t)}$, a zelenom $P_Y^{(t)}$. Svjetlijim nijansama tih boja prikazano je punom linijom o\IeC {\v c}ekivanje, i crtkanom linijom udaljenost za jednu devijaciju od o\IeC {\v c}ekivanja; o\IeC {\v c}ekivanje i devijacija izra\IeC {\v c}unati su na proteklom vremenskom periodu $T$ duljine 120 dana. \relax }}{4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces  Prikaz kretanja cijena dviju vrijednosnica, $X$ i $Y$, u razdoblju od 500 dana. Plavom bojom prikazana je cijena $P_X^{(t)}$, a zelenom cijena $P_Y^{(t)}$. Svjetlijim nijansama tih boja prikazano je punom linijom o\IeC {\v c}ekivanje, i crtkanom linijom udaljenost za jednu devijaciju od o\IeC {\v c}ekivanja; o\IeC {\v c}ekivanje i devijacija izra\IeC {\v c}unati su u svakom trenutku na proteklom vremenskom periodu $T$ duljine 120 dana. \relax }}{4}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:ab-prices}{{2.1}{4}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2.2}{\ignorespaces  Plavo: normalizirana cijena $\mathaccentV {bar}016{P}_X^{(t)}$, zeleno: normalizirana cijena $\mathaccentV {bar}016{P}_Y^{(t)}$. \relax }}{5}}
@@ -34,8 +34,9 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1.4}Nedostaci statisti\IeC {\v c}ke arbitra\IeC {\v z}e}{10}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.2}Relacija preferencije i funkcija korisnosti}{10}}
 \@writefile{toc}{\contentsline {section}{\numberline {2.3}Graf toka preferencija}{11}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Primjer grafa toka preferencija. Na bridovima su prikazani intenziteti preferencija jedne vrijednosnice u odnosu na drugu, a u \IeC {\v c}vorove su upisane izra\IeC {\v c}unate individualne mjere preferencija za pripadnu vrijednosnicu.\relax }}{12}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.7}{\ignorespaces Primjer grafa toka preferencija. Na bridovima su prikazani intenziteti preferencija jedne vrijednosnice u odnosu na drugu, a u \IeC {\v c}vorove su upisane izra\IeC {\v c}unate individualne mjere preferencija za pripadni \IeC {\v c}vor kao razlika zbroja te\IeC {\v z}ina bridova koji izlaze iz tog \IeC {\v c}vora i zbroja te\IeC {\v z}ina bridova koji ulaze u taj \IeC {\v c}vor. Opravdanje za takav postupak dano je u odjeljku \ref  {sec:metpot}. Ovaj graf je konzistentan s relacijom preferencije koju predstavlja.\relax }}{12}}
 \newlabel{fig:graph}{{2.7}{12}}
+\citation{potential}
 \@writefile{toc}{\contentsline {section}{\numberline {2.4}Metoda potencijala}{13}}
 \newlabel{sec:metpot}{{2.4}{13}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Ra\IeC {\v c}unanje potencijala \IeC {\v c}vorova}{13}}
@@ -44,40 +45,47 @@
 \newlabel{eq:derivative}{{2.15}{14}}
 \newlabel{eq:flow}{{2.16}{14}}
 \newlabel{eq:sumiszero}{{2.17}{14}}
-\newlabel{eq:joined}{{2.18}{14}}
-\newlabel{eq:final}{{2.19}{14}}
+\newlabel{eq:joined}{{2.18}{15}}
+\newlabel{eq:final}{{2.19}{15}}
 \newlabel{eq:final2}{{2.20}{15}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4.2}Konzistentna rekonstrukcija grafa}{15}}
+\newlabel{sec:reconstruct}{{2.4.2}{15}}
 \newlabel{eq:consistency}{{2.22}{15}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.5}Koeficijent obrtaja}{15}}
-\newlabel{eq:turnover}{{2.23}{16}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Algoritam}{17}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.3}Primjer}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.8}{\ignorespaces Primjer nekonzistentnog grafa prije izra\IeC {\v c}unavanja potencijala \IeC {\v c}vorova.\relax }}{16}}
+\newlabel{fig:graph-eg-1}{{2.8}{16}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.9}{\ignorespaces Primjer najbli\IeC {\v z}e konzistentne rekonstrukcije grafa nakon izra\IeC {\v c}unavanja potencijala \IeC {\v c}vorova.\relax }}{17}}
+\newlabel{fig:graph-eg-2}{{2.9}{17}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Koeficijent obrtaja}{17}}
+\newlabel{eq:turnover}{{2.23}{18}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Algoritam}{19}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{eq:mean}{{3.3}{17}}
-\newlabel{eq:deviation}{{3.4}{17}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces  Primjer predlo\IeC {\v z}ene sheme kodiranja i dekodiranja za $N = 5$. To\IeC {\v c}ka $(\cdot )$ ozna\IeC {\v c}ava da se odre\IeC {\dj }ena kombinacija ne koristi. \relax }}{18}}
-\newlabel{fig:coding}{{3.1}{18}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{18}}
-\newlabel{sub:creating-graph}{{3.1}{18}}
-\newlabel{eq:thresh}{{3.8}{18}}
-\newlabel{eq:weight}{{3.9}{18}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces  Razlika log-cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$. To\IeC {\v c}ka-crta linija predstavlja o\IeC {\v c}ekivanje, a podru\IeC {\v c}je izme\IeC {\dj }u dviju crtkanih linija predstavlja $\alpha $ standardnih devijacija udaljenosti od o\IeC {\v c}ekivanja; obje mjere su izra\IeC {\v c}unate nad prvih $T$ vremenskih koraka. Tijekom vremenskog koraka $T + 1$, razlika log-cijena prelazi preko $\alpha $ standardnih devijacija iznad o\IeC {\v c}ekivanja proteklog perioda duljine $T$. To zna\IeC {\v c}i da \IeC {\'c}e vrijednosnice $i$ i $j$ biti dodane u graf toka preferencija u vremenskom koraku $T + 1$. Te\IeC {\v z}ina $w_{i,j}^{(T+1)}$ opisuje devijaciju od o\IeC {\v c}ekivanja. \relax }}{19}}
-\newlabel{fig:devmag}{{3.2}{19}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{19}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.3}Minimizacija koeficijenta obrtaja}{20}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Rezultati}{21}}
+\newlabel{eq:mean}{{3.3}{19}}
+\newlabel{eq:deviation}{{3.4}{19}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces  Primjer predlo\IeC {\v z}ene sheme kodiranja i dekodiranja za $N = 5$. To\IeC {\v c}ka $(\cdot )$ ozna\IeC {\v c}ava da se odre\IeC {\dj }ena kombinacija ne koristi. \relax }}{20}}
+\newlabel{fig:coding}{{3.1}{20}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Konstrukcija grafa toka preferencija}{20}}
+\newlabel{sub:creating-graph}{{3.1}{20}}
+\newlabel{eq:thresh}{{3.8}{20}}
+\newlabel{eq:weight}{{3.9}{20}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces  Razlika log-cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$. To\IeC {\v c}ka-crta linija predstavlja o\IeC {\v c}ekivanje, a podru\IeC {\v c}je izme\IeC {\dj }u dviju crtkanih linija predstavlja $\alpha $ standardnih devijacija udaljenosti od o\IeC {\v c}ekivanja; obje mjere su izra\IeC {\v c}unate nad prvih $T$ vremenskih koraka. Tijekom vremenskog koraka $T + 1$, razlika log-cijena prelazi preko $\alpha $ standardnih devijacija iznad o\IeC {\v c}ekivanja proteklog perioda duljine $T$. To zna\IeC {\v c}i da \IeC {\'c}e vrijednosnice $i$ i $j$ biti dodane u graf toka preferencija u vremenskom koraku $T + 1$. Te\IeC {\v z}ina $w_{i,j}^{(T+1)}$ opisuje devijaciju od o\IeC {\v c}ekivanja. \relax }}{21}}
+\newlabel{fig:devmag}{{3.2}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Konstrukcija portfelja}{21}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Minimizacija koeficijenta obrtaja}{22}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Rezultati}{23}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{RF1}{22}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Results for $T = 60, \alpha =0$.\relax }}{22}}
-\newlabel{table:results-1}{{4.1}{22}}
+\newlabel{RF1}{24}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces Rezultati za $T = 60, \alpha =0$.\relax }}{24}}
+\newlabel{table:results-1}{{4.1}{24}}
 \bibdata{literatura}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{23}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Zaklju\IeC {\v c}ak}{25}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
+\bibcite{potential}{{1}{1991}{{\IeC {\v C}aklovi\IeC {\'c}}}{{}}}
 \bibstyle{unsrtnat}
-\@writefile{toc}{\contentsline {chapter}{Literatura}{24}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{25}}
+\@writefile{toc}{\contentsline {chapter}{Literatura}{26}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{27}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
