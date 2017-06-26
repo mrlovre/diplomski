@@ -824,35 +824,40 @@
   \begin{align}
   S_n^{(t+1)} &= \sum_{\tau=t+1-T+1}^{t+1} a^n\q[\tau\w] \nonumber \\
     &= -a^n\q[t-T+1\w] + \sum_{\tau=t-T+1}^{t} a^n\q[\tau\w] + a^n\q[t+1\w] \nonumber \\
+    \label{eq:rec}
     &= -a^n\q[t-T+1\w] + S_n^{(t)} + a^n\q[t+1\w].
   \end{align}
   
   Preko nenormiranih momenata mogu se izraziti očekivanje i varijanca.
   Očekivanje $\Efromto{a\q[\tau\w]}{t - T < \tau \le t}$ je normirani moment prvog reda, i može se izraziti kao:
   \begin{equation}
+  \label{eq:recmean}
   \Efromto{a\q[\tau\w]}{t - T < \tau \le t} = \frac{S_1^{(t)}}{S_0^{(t)}},
   \end{equation}
   što je bilo relativno jednostavno za izračunati i bez korištenja nenomiranih momenata.
   No, kod računanja varijance situacija je nešto složenija.
   Varijanca je centrirani i normirani moment drugog reda.
-  Prema definiciji, varijanca $\Varfromto{a\q[\tau\w]}{t - T < \tau \le t}$ može se računati još i kao:
+  Prema definiciji, varijanca $\Varfromto{a\q[\tau\w]}{t - T < \tau \le t}$ se može računati još i kao:
   \begin{align}
     \Varfromto{a\q[\tau\w]}{t - T < \tau \le t} &= \Efromto{\q(a\q[\tau\w] - \E{a\q[\tau\w]} \w)^2}{t - T < \tau \le t} \nonumber \\
     &= \Efromto{a^2\q[\tau\w] - 2 a\q[\tau\w] \E{a\q[\tau\w]} + \Esq{a\q[\tau\w]}}{t - T < \tau \le t} \nonumber \\
     &= \Efromto{a^2\q[\tau\w]}{t - T < \tau \le t} \nonumber \\
     & - 2\Esqfromto{a\q[\tau\w]}{t - T < \tau \le t} + \Esqfromto{a\q[\tau\w]}{t - T < \tau \le t} \nonumber \\
+    \label{eq:varalt}
     &= \Efromto{a^2\q[\tau\w]}{t - T < \tau \le t} - \Esqfromto{a\q[\tau\w]}{t - T < \tau \le t}
   \end{align}
-  Sada se $\Efromto{a^2\q[\tau\w]}{t - T < \tau \le t}$ također može izraziti preko nenormiranih momenata kao $\q. S_2^{(t)} \middle/ S_0^{(t)} \w.$.
+  Sada se u (\ref{eq:varalt}) $\Efromto{a^2\q[\tau\w]}{t - T < \tau \le t}$ također može izraziti preko nenormiranih momenata kao $\q. S_2^{(t)} \middle/ S_0^{(t)} \w.$,
+  i $\Esqfromto{a\q[\tau\w]}{t - T < \tau \le t}$ kao $\q. \q(S_1^{(t)}\w)^2 \middle/ \q(S_0^{(t)}\w)^2 \w.$.
   Konačno, varijanca se može izraziti preko nenormiranih momenata kao:
   \begin{equation}
+    \label{eq:recvar}
     \Varfromto{a\q[\tau\w]}{t - T < \tau \le t} = \frac{S_2^{(t)}}{S_0^{(t)}} - \frac{\q(S_1^{(t)}\w)^2}{\q(S_0^{(t)}\w)^2}
     = \frac{S_0^{(t)} S_2^{(t)} - \q(S_1^{(t)}\w)^2}{\q(S_0^{(t)}\w)^2}.
   \end{equation}
   
   Na ovaj način moguće je izračunati očekivanje i varijancu nad pomičnim prozorom na mnogo učinkovitiji način nego nerekurzivnim postupkom.
   Inicijalno je potrebno izračunati momente $S_0^{(T - 1)}$, $S_1^{(T - 1)} $ i $S_2^{(T - 1)}$, te iz njih $\Efromto{a\q[\tau\w]}{0 \le \tau < T}$ i $\Varfromto{a\q[\tau\w]}{0 \le \tau < T}$; u složenosti $\mathcal{O}\q(T\w)$.
-  Nadalje, za svaki pomak vremenskog prozora rekurzivno se ažuriraju vrijednosti nenormiranih momenata, te se putem njih izračunavaju očekivanje i varijanca, u složenosti $\mathcal{O}\q(T - D\w)$.
+  Nadalje, za svaki sljedeći pomak vremenskog prozora rekurzivno se ažuriraju vrijednosti nenormiranih momenata koristeći (\ref{eq:rec}), te se putem njih izračunavaju očekivanje i varijanca koristeći (\ref{eq:recmean}) i (\ref{eq:recvar}), u složenosti $\mathcal{O}\q(T - D\w)$.
   Ukupna vremenska složenost algoritma time je pala s $\mathcal{O}\q(DT\w)$ na $\mathcal{O}\q(D\w)$.
 
   \begin{sazetak}

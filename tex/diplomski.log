@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  26 JUN 2017 00:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  26 JUN 2017 09:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1076,10 +1076,10 @@ Poglavlje A.
 
 ] [28] [29] (./diplomski.aux) ) 
 Here is how much of TeX's memory you used:
- 8810 strings out of 493013
- 131741 string characters out of 6139317
- 246404 words of memory out of 5000000
- 11957 multiletter control sequences out of 15000+600000
+ 8814 strings out of 493013
+ 131783 string characters out of 6139317
+ 246448 words of memory out of 5000000
+ 11961 multiletter control sequences out of 15000+600000
  130974 words of font info for 177 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,12n,42p,867b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1101,7 +1101,7 @@ e1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmss12.pfb
 st/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/l
 m/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/share
 /texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (32 pages, 737538 bytes).
+Output written on diplomski.pdf (32 pages, 737790 bytes).
 PDF statistics:
  219 PDF objects out of 1000 (max. 8388607)
  145 compressed objects within 2 object streams
