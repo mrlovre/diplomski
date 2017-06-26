@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  26 JUN 2017 09:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  26 JUN 2017 16:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -764,19 +764,19 @@ Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 ) (./diplomski.aux)
 \openout1 = `diplomski.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 51.
-LaTeX Font Info:    ... okay on input line 51.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 51.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 52.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -878,7 +878,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 51.
+LaTeX Info: Redefining \microtypecontext on input line 52.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -893,7 +893,7 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 62.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 63.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -902,35 +902,35 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 62.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 63.
 
 (/usr/share/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 62.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 63.
 
 (/usr/share/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 62.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 63.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 62.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 63.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 62.
+(Font)              <14.4> on input line 63.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 62.
+(Font)              <10> on input line 63.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 62.
-LaTeX Font Info:    Try loading font information for U+msa on input line 62.
+(Font)              <7> on input line 63.
+LaTeX Font Info:    Try loading font information for U+msa on input line 63.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -938,7 +938,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 62.
+LaTeX Font Info:    Try loading font information for U+msb on input line 63.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -946,7 +946,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 62.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 63.
 
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -981,83 +981,94 @@ Poglavlje 2.
 File: graphics/ab-prices.png Graphic file (type png)
 
 <use graphics/ab-prices.png>
-Package pdftex.def Info: graphics/ab-prices.png used on input line 149.
+Package pdftex.def Info: graphics/ab-prices.png used on input line 150.
 (pdftex.def)             Requested size: 412.56497pt x 272.52307pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 154.
+(Font)              <10.95> on input line 155.
 
 <graphics/ab-prices-norm.png, id=32, 711.65875pt x 470.75874pt>
 File: graphics/ab-prices-norm.png Graphic file (type png)
 
 <use graphics/ab-prices-norm.png>
-Package pdftex.def Info: graphics/ab-prices-norm.png used on input line 160.
+Package pdftex.def Info: graphics/ab-prices-norm.png used on input line 161.
 (pdftex.def)             Requested size: 412.56497pt x 272.90378pt.
 
 <graphics/ab-prices-norm-diff.png, id=33, 711.65875pt x 470.75874pt>
 File: graphics/ab-prices-norm-diff.png Graphic file (type png)
 
 <use graphics/ab-prices-norm-diff.png>
-Package pdftex.def Info: graphics/ab-prices-norm-diff.png used on input line 16
-9.
+Package pdftex.def Info: graphics/ab-prices-norm-diff.png used on input line 17
+0.
 (pdftex.def)             Requested size: 412.56497pt x 272.90378pt.
  [3] [4 <./graphics/ab-prices.png>]
 [5 <./graphics/ab-prices-norm.png> <./graphics/ab-prices-norm-diff.png>]
 <graphics/diff.png, id=52, 718.685pt x 470.75874pt>
 File: graphics/diff.png Graphic file (type png)
  <use graphics/diff.png>
-Package pdftex.def Info: graphics/diff.png used on input line 190.
+Package pdftex.def Info: graphics/diff.png used on input line 191.
 (pdftex.def)             Requested size: 412.56497pt x 270.246pt.
 
 <graphics/diff-norm.png, id=53, 711.65875pt x 525.965pt>
 File: graphics/diff-norm.png Graphic file (type png)
 
 <use graphics/diff-norm.png>
-Package pdftex.def Info: graphics/diff-norm.png used on input line 197.
+Package pdftex.def Info: graphics/diff-norm.png used on input line 198.
 (pdftex.def)             Requested size: 412.56497pt x 304.90741pt.
  [6 <./graphics/diff.png>] [7 <./graphics/diff-norm.png>] [8]
 File: graphics/diff-norm.png Graphic file (type png)
  <use graphics/diff-norm.png>
-Package pdftex.def Info: graphics/diff-norm.png used on input line 268.
+Package pdftex.def Info: graphics/diff-norm.png used on input line 269.
 (pdftex.def)             Requested size: 412.56497pt x 304.90741pt.
  [9] [10] [11]
 <graphics/graph.pdf, id=77, 390.45876pt x 390.45876pt>
 File: graphics/graph.pdf Graphic file (type pdf)
 
 <use graphics/graph.pdf>
-Package pdftex.def Info: graphics/graph.pdf used on input line 345.
+Package pdftex.def Info: graphics/graph.pdf used on input line 352.
 (pdftex.def)             Requested size: 268.1647pt x 268.17758pt.
- [12 <./graphics/graph.pdf>] [13] [14] [15]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[12] [13 <./graphics/graph.pdf>] [14] [15]
 <graphics/graph-eg-1.png, id=98, 301.125pt x 301.125pt>
 File: graphics/graph-eg-1.png Graphic file (type png)
 
 <use graphics/graph-eg-1.png>
-Package pdftex.def Info: graphics/graph-eg-1.png used on input line 534.
+Package pdftex.def Info: graphics/graph-eg-1.png used on input line 544.
 (pdftex.def)             Requested size: 206.28249pt x 206.29234pt.
- [16 <./graphics/graph-eg-1.png>]
-<graphics/graph-eg-2.png, id=104, 301.125pt x 301.125pt>
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[16] <graphics/graph-eg-2.png, id=103, 301.125pt x 301.125pt>
 File: graphics/graph-eg-2.png Graphic file (type png)
 
 <use graphics/graph-eg-2.png>
-Package pdftex.def Info: graphics/graph-eg-2.png used on input line 566.
+Package pdftex.def Info: graphics/graph-eg-2.png used on input line 576.
 (pdftex.def)             Requested size: 206.28249pt x 206.29234pt.
- [17 <./graphics/graph-eg-2.png>] [18]
-Poglavlje 3.
-[19
 
-] <graphics/deviation-magnitude.png, id=115, 394.5942pt x 313.6518pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[17 <./graphics/graph-eg-1.png>] [18 <./graphics/graph-eg-2.png>] [19]
+Poglavlje 3.
+[20
+
+] <graphics/deviation-magnitude.png, id=118, 394.5942pt x 313.6518pt>
 File: graphics/deviation-magnitude.png Graphic file (type png)
 
 <use graphics/deviation-magnitude.png>
-Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 70
-4.
+Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 71
+5.
 (pdftex.def)             Requested size: 371.30595pt x 295.16295pt.
- [20] [21 <./graphics/deviation-magnitude.png>] [22]
+ [21] [22 <./graphics/deviation-magnitude.png>] [23]
 Poglavlje 4.
-(./results-1.tex) [23
+(./results-1.tex) [24
 
-] [24]
+] [25]
 Poglavlje 5.
-(./diplomski.bbl [25
+(./diplomski.bbl [26
 
 ]
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 13.
@@ -1068,24 +1079,24 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) [26
+) [27
 
 ]
 Poglavlje A.
-[27
+[28
 
-] [28] [29] (./diplomski.aux) ) 
+] [29] [30] (./diplomski.aux) ) 
 Here is how much of TeX's memory you used:
- 8814 strings out of 493013
- 131783 string characters out of 6139317
- 246448 words of memory out of 5000000
- 11961 multiletter control sequences out of 15000+600000
- 130974 words of font info for 177 fonts, out of 8000000 for 9000
+ 8836 strings out of 493013
+ 132085 string characters out of 6139317
+ 246474 words of memory out of 5000000
+ 11971 multiletter control sequences out of 15000+600000
+ 148360 words of font info for 185 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,42p,867b,427s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,12n,42p,867b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.
-enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-d
-ist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-m
+enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/
+fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-m
 athit.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texmf-dist/fonts/type1/
@@ -1096,15 +1107,16 @@ mi10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/te
 xmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/pub
 lic/lm/lmr10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/s
 hare/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf-dist/fonts/typ
-e1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmss12.pfb
-></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf-di
-st/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/l
-m/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/share
-/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (32 pages, 737790 bytes).
+e1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri8.pfb>
+</usr/share/texmf-dist/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf-dist/
+fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm
+/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/
+texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/
+public/amsfonts/symbols/msbm10.pfb>
+Output written on diplomski.pdf (33 pages, 746887 bytes).
 PDF statistics:
- 219 PDF objects out of 1000 (max. 8388607)
- 145 compressed objects within 2 object streams
+ 226 PDF objects out of 1000 (max. 8388607)
+ 150 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 35374 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 40494 words of extra memory for PDF output out of 42996 (max. 10000000)
 

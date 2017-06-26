@@ -36,6 +36,7 @@
 \newcommand{\diff}{\operatorname{\mathrm{\Delta}}}
 \newcommand{\diffn}[1]{\operatorname{\mathrm{\Delta}}^d}
 \newcommand{\lag}{\operatorname{\mathrm{L}}}
+\newcommand{\bigO}[1]{\operatorname{\mathcal{O}}\q(#1\w)}
 \newcommand{\q}{\left}
 \newcommand{\w}{\right}
 
@@ -135,7 +136,7 @@
   \begin{equation}
   \norm{P}_X^{\q(t\w)} = \frac{P_X^{\q(t\w)} - \Efromto{P_X^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{P_X^{(\tau)}}{t-T \le \tau < t}}}.
   \end{equation}
-  Oznake $\Efromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ i $\Varfromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ predstavljaju očekivanje i varijancu cijene vrijednosnice $X$ nad intervalom $\q[t_1, t_2\w>$.
+  Oznake $\Efromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ i $\Varfromto{P_X^{(\tau)}}{t_1 \le \tau < t_2}$ predstavljaju očekivanje i varijancu cijene vrijednosnice $X$ nad intervalom $\q[t_1, t_2\w\rangle$.
   Nadalje, za svaki par vrijednosnica $X$ i $Y$ izračuna se razlika njihovih normaliziranih log-cijena $D_{X,Y}^{\q(t\w)}$ u trenutku $t$:
   \begin{equation}
   D_{X,Y}^{\q(t\w)} = \norm{P}_X^{\q(t\w)} - \norm{P}_Y^{\q(t\w)}
@@ -267,7 +268,7 @@
     \centering
     \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
     \caption{
-      Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$.}
+      Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$ u slučaju vrijednosnica $X$ i $Y$.}
     \label{fig:residual}
   \end{figure}
   
@@ -297,7 +298,7 @@
   Relacija preferencije, označena sa $\succ$ i definirana nad $\Omega \times \Omega$, je strogi slabi uređaj koji odgovara načinu na koji ljudi preferiraju jednu vrijednosnicu u odnosu na drugu.
   Između dvaju dobara $a, b \in \Omega$ relacija može, ali i ne mora postojati.
   Primjerice, $a$ može biti više preferirano u odnosu na $b$, ili $b$ u odnosu na $a$, ali moguća je situacija gdje su oba dobra podjednako preferirana.
-  U tom slučaju radi se o indiferentnosti između $a$ i $b$, i to se označava kao $a \sim b$.
+  U tom slučaju radi se o indiferentnosti između $a$ i $b$, što se označava kao $a \sim b$.
 %  This relation is specific in that it is ($\forall x, y, z \in \Omega$):
 
   Ova relacija specifična je po tome što je:
@@ -329,16 +330,22 @@
   Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također unosi i mjeru intenziteta preferencije prema nekoj vrijednosnici, što znači da nosi više informacija od same relacije.
 
   \section{Graf toka preferencija}
+  Graf toka preferencija je pomoćna struktura koja služi pri prevođenju toka preferencija među čvorovima u individualne mjere preferencije svakog čvora.
+  U odnosu na relaciju preferencije koja je implicirana njime, graf sadrži još i intenzitete preferencija jednih čvorova nad drugima.
+  Ako se zanemare težine bridova u grafu i ostave samo smjerovi, iz njega se direktno može pročitati relacija preferencije koju on opisuje.
+  Težine u grafu daju dodatnu informaciju o individualnim mjerama preferencije čvorova koje odgovaraju toj relaciji preferencije, za razliku od situacije kada težina nema, što je ekvivalentno tome da su sve preferencije jednakog intenziteta.
+  U odnosu na individualne mjere preferencije svakog čvora zasebno, graf toka preferencija ne određuje poredak čvorova prema preferenciji.
+  
   
 %  Graph of preference flow is a weighted directed graph without multiple edges and loops, whose nodes represent entities, edges represent preference for one entity over another, and edge weights correspond to the strength of the preferences.
 %  If an edge between nodes is missing, it is considered that neither entity is preferable over another (incomparability of entities).
 %  The graph as a whole describes preference flow among the entities.
 %  An example of graph is shown on Fig. \ref{fig:graph}.
-  Graf toka preferencija je težinski usmjereni graf, bez višestrukih bridova i petlji.
+  Graf toka preferencija je težinski usmjereni graf, bez višestrukih bridova i petlji (bridova koji počinju i završavaju u istom grafu).
   Njegovi čvorovi predstavljaju vrijednosnice, usmjereni bridovi preferenciju jedne vrijednosnice nad drugom, a težine bridova odgovaraju intenzitetu preferencije.
   Ukoliko između dva čvora nedostaje brid, smatra se da su pripadne vrijednosnice podjednako preferirane (indiferentnost u odlučivanju kod relacije preferencije).
   Graf kao cjelina opisuje tok preferencija među vrijednosnicama.
-  Primjer grafa prikazan je na slici \ref{fig:graph}.
+  Primjer grafa toka preferencija prikazan je na slici \ref{fig:graph}.
   
   \begin{figure}[h]
     \centering
@@ -356,21 +363,22 @@
   Brid koji ide od čvora $i$ do čvora $j$ s težinom $w_{i,j}$ je prisutan u grafu ako i samo ako su se dvije pripadne vrijednosnice $i$ i $j$ ponašale slično tijekom proteklog vremenskog perioda, ali su prema određenim statističkim mjerama trenutačno razdvojile.
   Težina $w_{i,j}$ opisuje magnitudu ovog razdvajanja.
   Detaljan opis postupka dobivanja korištenih statističkih mjera dan je u odjeljku \ref{sub:creating-graph}.
-  
-  Graf preferencije toga je pomoćna struktura koja služi pri prevođenju toka preferencije među čvorovima u individualne mjere preferencije svakog čvora.
-  Ako se zanemare težine bridova u grafu i ostave samo smjerovi, iz njega se direktno može pročitati relacija preferencije.
-  Težine u grafu daju dodatnu informaciju o funkciji korisnosti koja odgovara toj relaciji preferencije, za razliku od situacije kada težina nema, što je ekvivalentno tome da su sve preferencije jednakog intenziteta.
     
 %  Connections in this graph impose a preference relation among entities that are presented by the graph, in the way that an edge that goes from node $A$ to node $B$ means that $A$ is preferred over $B$.
 %  It is the case that neither node is in relation with itself (irreflexivity), and that no multiple connections are allowed between two nodes (implies asymmetry).
 %  However, problems arise with the aforementioned properties of transitivity, and transitivity in incomparability, which may not hold for an arbitrarily constructed instance of the graph.
 %  This imposed preference relation should preferably be in compliance with all the aforementioned properties, but when it comes to larger number of entities, it may become infeasible to construct a graph of such qualities directly.
 %  Instead of aiming at a consistent preference relation, we devise a consistency measure that describes similarity between the original graph and its nearest consistent reconstruction, and use it as an additional parameter in decision making.
-  Veze u ovom grafu nameću relaciju preferencije među vrijednosnicama koje su opisane grafom, na način da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
-  Prethodno spomenuta svojstva irrefleksivnosti i asimetričnosti uvijek vrijede i u grafu toka preferencije:
+  Veze u ovom grafu opisuju relaciju preferencije među vrijednosnicama koje su opisane grafom, na način da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
+  Prethodno spomenuta svojstva irrefleksivnosti i asimetričnosti uvijek vrijede i u grafu toka preferencija:
   kako graf ne sadrži petlje, tj. nijedna vrijednosnica nije u relaciji sama sa sobom, ispunjeno je svojstvo irrefleksivnosti; a kako nema višestrukih bridova među čvorovima vrijedi i svojstvo asimetričnosti.
   Ipak, problemi se pojavljuju kod svojstava tranzitivnosti, i tranzitivnosti po indiferentnosti, koja ne moraju uvijek vrijediti za proizvoljno konstruiran graf.
+  Ako graf toka preferencija zadovoljava sva 4 svojstva, tada je on konzistentan s relacijom preferencije koju predstavlja.
   Poželjno bi bilo da relacija preferencije koju graf nameće zadovoljava sva četiri prethodno navedena svojstva; no konstruiranje grafa koji posjeduje takva svojstva je nepraktično, pogotovo kada se radi o većem broju vrijednosnica.
+  
+  S druge strane, graf toka preferencija je intrinzično konzistentan ukoliko vrijedi, za sve parove čvorova $i$ i $j$: kada postoji više puteva u grafu koji od čvora $i$ do čvora $j$, tada je zbroj težina duž tih puteva jednak.
+  Na primjer, ukoliko se u grafu nalaze tri čvora, $i$, $j$, i $k$, te je $i$ više preferirano u odnosu na $j$ s intenzitetom 1, i $j$ više preferirano u odnosu na $k$ također s intenzitetom 1, tada mora $i$ biti više preferirano u odnosu na $k$ s intenzitetom 2; u suprotnom graf nije intrinzično konzistentan.
+  Graf koji je intrinzično konzistentan ispunjava svojstvo tranzitivnosti relacije preferencije.
   
   Umjesto da cilj bude konstrukcija grafa koji će biti konzistentan sa svojstvima relacije preferencije, definirana je mjera konzistentnosti koja opisuje koliko je neki graf sličan sa svojom najbližom konzistentnom rekonstrukcijom.
   Mjera konzistentnosti se koristi kao dodatan parametar pri konstruiranju portfelja.
@@ -410,7 +418,7 @@
   
   %    \item
 %  Let $\matr{B}$ be the $E \times N$ incidence matrix of $\graph{G}$.
-  Neka je $\matr{B}$ matrica incidencije grafa $\graph{G}$.
+  Neka je $\matr{B}$ matrica incidencije grafa $\graph{G}$ dimenzija $\q[E \times N\w]$.
   Matrica incidencije je matrica za koju vrijedi:
   \begin{enumerate}
     \item broj redaka matrice jednak je broju bridova $E$, i broj stupaca matrice jednak je broju čvorova $N$;
@@ -428,10 +436,10 @@
 %  Let $\matr{f}$ be $E \times 1$ vector that contains edge weights (i.e. preference flows).
 %  Order of the edges must be the same as order of the edges in $\matr{B}$.
 %  As mentioned before, in place of missing edges we simply put 0.
-  Neka je $\matr{f}$ vektor dimenzija $E \times 1$ koji sadrži težine bridova, tj. tokove preferencije,
+  Neka je $\matr{f}$ vektor dimenzija $\q[E \times 1\w]$ koji sadrži težine bridova, tj. tokove preferencije,
   %    
   %    \item
-  i neka je $\matr{\phi}$ vektor dimenzija $N \times 1$ koji sadrži potencijale čvorova, koji se žele pronaći.
+  i neka je $\matr{\phi}$ vektor dimenzija $\q[N \times 1\w]$ koji sadrži potencijale čvorova, koji se žele pronaći.
   Redoslijed pripadnih čvorova i bridova moraju odgovarati redoslijedu čvorova i bridova u matrici incidencija $\matr{B}$.
 %  Let $\matr{\phi}$ be $N \times 1$ vector that contains potentials of each node, in order that is the same as order of the nodes in $\matr{B}$.
   
@@ -490,7 +498,7 @@
     \item $(\matr{L})_{ii}$ je jednak broju susjeda čvora $i$,
     \item ostali elementi jednaki su $-1$.
   \end{itemize}
-  Kako je graf $\graph{G}$ potpun, tj. broj susjeda svakog čvora jednak je $N - 1$, izraz $\q[ \matr{B}^\T \matr{B} + \matr{J} \w]^{-1}$ se može pojednostavniti u $\frac{1}{N} \matr{I}$; i stoga, se (\ref{eq:final}) može svesti na:
+  Kako je graf $\graph{G}$ potpun, odnosno broj susjeda svakog čvora jednak je $N - 1$, Laplaceova matrica grafa $\graph{G}$ ima $N - 1$ na dijagonali, a $-1$ drugdje. Tako se izraz $\q[ \matr{B}^\T \matr{B} + \matr{J} \w]^{-1} = \q[ N \matr{I} \w]^{-1}$ može pojednostavniti u $\frac{1}{N} \matr{I}$; i stoga se (\ref{eq:final}) može svesti na:
   \begin{equation}
   \label{eq:final2}
   \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
@@ -510,8 +518,8 @@
 %  In addition, $\matr{B}$, $\matr{\phi^*}$, and $\matr{f^*}$ now describe a consistent graph $\graph{G}^*$.
 %  It is now possible to define a consistency measure $\kappa$ as follows:
   Rekonstruirani graf toka preferencije $\matr{f^*}$ u odnosu na originalni $\matr{f}$ može sadržavati neke nove, pa čak i izgubiti neke stare bridove.
-  Dodatno, $\matr{B}$, $\matr{\phi^*}$, i $\matr{f}$ opisuju konzistentan graf $\graph{G}^*$.
-  Za konzistentan graf dobiven na ovaj način također vrijedi i da je suma preferencija po nekoj petlji jednaka 0.
+  Dodatno, $\matr{B}$, $\matr{\phi^*}$, i $\matr{f}$ opisuju konzistentan graf $\graph{G}^*$ koji je najbliža konzistentna rekonstrukcija grafa $\graph{G}$.
+  Intrinzična konzistentnost u rekonstruiranom grafu je posljedica djelovanja matrice incidencije $B$: ona je linearni operator preslikavanja koji potencijale čvorova preslikava u odgovarajući tok preferencija.
   
   Mjera konzistentnosti $\kappa$ definira se kao:
   \begin{equation}
@@ -524,11 +532,13 @@
   Jednadžba (\ref{eq:consistency}) predstavlja kosinus kuta između $\matr{f}$ i $\matr{f^*}$ u prostoru određenom vektor stupacima matrice incidencije $\matr{B}$.
   Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (u praksi nedostižno), a 1 potpunu konzistentnost.
   
-  \subsection{Primjer}
+  \subsection{Primjer korištenja metode potencijala}
   Na sljedećem primjeru demonstrirana je metoda potencijala čvorova za određivanje individualnih preferencija čvorova u grafu.
   Na raspolaganju su četiri vrijednosnice, $A$, $B$, $C$ i $D$.
   Metodom statističke arbitraže dobivene su preferencije među vrijednosnicama s intenzitetima prikazanim na grafu na slici \ref{fig:graph-eg-1}.
-  Taj graf nije konzistentan: prema njemu $B$ nije izravno usporediva sa $C$, ali kako je $B \succ A$ i $A \succ C$, po tranzitivnosti bi trebalo biti i $B \succ C$, što u grafu nije slučaj.  
+  Taj graf nije konzistentan s relacijom preferencije koju predstavlja: prema njemu $B$ nije izravno usporediva sa $C$, ali kako je $B \succ A$ i $A \succ C$, po tranzitivnosti bi trebalo biti i $B \succ C$, što u grafu nije slučaj.
+  Također, postoje dva puta od $D$ prema $A$: to su $D \rightarrow A$ i $D \rightarrow B \rightarrow A$, te je duž prvog puta zbroj težina jednak 4, a duž drugog je jednak 3, pa graf nije niti intrinzično konzistentan.
+  Isto je i s putevima od $D$ do $C$: duž puta $D \rightarrow C$ zbroj težina je jednak 2, a duž puta $D \rightarrow B \rightarrow C$ zbroj težina je jednak 5, što je čak i veće nepodudaranje nego u prethodnom slučaju.
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\linewidth]{graphics/graph-eg-1.png}
@@ -575,7 +585,7 @@
   
   Koeficijent obrtaja $\eta^{(t)}$ u vremenskom koraku $t$ u odnosu na $t-1$ računa se na sljedeći način.
   Neka je na raspolaganju $N$ vrijednosnica.
-  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix} \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i > 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
+  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix*}[r] \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix*}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i > 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
   Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
   \begin{equation}
   \label{eq:turnover}
@@ -632,9 +642,9 @@
 %  On that note, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, and $d_{i,j}^{\q(t\w)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
   Također valja primijetiti da bi izračunavanje očekivanja i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
   Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku.
-  Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)}$ su idejno tenzori dimenzija $(D - T) \times N \times N$.
+  Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)}$ su idejno tenzori dimenzija $\q[(D - T) \times N \times N\w]$.
   Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{\q(t\w)} = -c_{j,i}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)} = -m_{j,i}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)} = d_{j,i}^{\q(t\w)}$, stoga je polovina informacije sadržane u njima redundantna.
-  Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $(D - T) \times \q. N\cdot(N - 1) \middle/ 2\w.$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
+  Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $\q[(D - T) \times \q. N\cdot(N - 1) \middle/ 2\w.\w]$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
   \begin{equation} k = N \cdot (i - 1) + j - 1 - \q. i \cdot (i + 1) \middle/ 2\w., \end{equation}
   a za dekodiranje $(i, j)$ iz $k$ izrazi:
   \begin{equation} i = \q \lfloor N + 1/2 - \sqrt{(N + 1/2)^2 - 2(N + k)} \w \rfloor, \end{equation}
@@ -680,10 +690,10 @@
 %  i.e. current log price difference is at least $\alpha$ deviations distant from mean value of the past time window.
 %  An illustration is shown on Fig. \ref{fig:devmag}.
   Korištenjem prethodno dobivenih $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)}$ sada je moguće kreirati graf toka preferencija među vrijednosnicama u svakom vremenskom koraku $t$.
-  Razmatrajući fiksni vremenski korak $t$, izdvajaju se svi parovi vrijednosnica $(i,j)$ za koje vrijedi:
+  Promatrajući fiksni vremenski korak $t$, izdvajaju se svi parovi vrijednosnica $(i,j)$ za koje vrijedi:
   \begin{equation}
   \label{eq:thresh}
-  \q| c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)} \w| > \alpha \cdot d_{i,j}^{\q(t\w)},
+  \q\lvert c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)} \w\rvert > \alpha \cdot d_{i,j}^{\q(t\w)},
   \end{equation}
   tj. trenutna apsolutna vrijednost razlike log-cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od očekivanja, izmjerenih u proteklom periodu.
   %  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
@@ -693,7 +703,8 @@
   Težina $w_{i,j}^{\q(t\w)}$ dobiva se kao:
   \begin{equation}
   \label{eq:weight}
-  w_{i,j}^{\q(t\w)} = \q. \q(c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}\w) \middle/ d_{i,j}^{\q(t\w)} \w.,
+%  w_{i,j}^{\q(t\w)} = \q. \q(c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}\w) \middle/ d_{i,j}^{\q(t\w)} \w.,
+  w_{i,j}^{\q(t\w)} = \frac{c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}}{d_{i,j}^{\q(t\w)}},
   \end{equation}
   što odgovara udaljenosti razlike log-cijena od očekivanja, mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
   Negativan predznak težine $w_{i,j}^{\q(t\w)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{\q(t\w)} = -w_{i,j}^{\q(t\w)} > 0$ ekvivalentan je prethodnome bridu.
@@ -735,7 +746,7 @@
 %  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
 %  Lower values of $\kappa$ suggest that we should diversify our portfolio by including some more assets in the order of preference, while higher values suggest that it is safe to do trading with smaller number of assets.
 %  Portfolio diversification might be seen as a strategy for protection from fundamental risks, e.g. risk of asset default.
-  Neka je $\matr{\phi}^{\q(t\w)} = \begin{bmatrix} \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$, te $\phi_i^{\q(t\w)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
+  Neka je $\matr{\phi}^{\q(t\w)} = \begin{bmatrix*}[r] \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix*}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$, te $\phi_i^{\q(t\w)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
   Pri odabiru vrijednosnica za portfelj, u obzir se također uzima i mjera konzistentnosti $\kappa$.
   Uključivanje mjere konzistentnosti pri odabiru omogućuje zaštitu od fundamentalnog rizika (propadanja neke dionice) putem diverzifikacije portfelja.
   Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portftelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
@@ -755,12 +766,12 @@
 %  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
   Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje u trenutku $t$ vrijedi:
   \begin{equation*}
-  \phi_i^{\q(t\w)} \ge \kappa^\prime \cdot \Phi,
+  \phi_i^{\q(t\w)} \ge \kappa^\prime \cdot \Phi_\mathit{max},
   \end{equation*}
-  gdje je $\Phi = \max_j \q\{ \q| \phi_j \w| \w\}$.
+  gdje je $\Phi_\mathit{max} = \max_j \q\{ \q\lvert \phi_j \w\rvert \w\}$.
   Isto tako, za prodaju se biraju vrijednosnice $i$, za koje u trenutku $t$ vrijedi:
   \begin{equation*}
-  \phi_i^{\q(t\w)} \le -\kappa^\prime \cdot \Phi.
+  \phi_i^{\q(t\w)} \le -\kappa^\prime \cdot \Phi_\mathit{max}.
   \end{equation*}
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
@@ -811,12 +822,13 @@
   \chapter{Računanje momenata vremenskog niza na pomičnom prozoru}
   Pri izračunavanju momenata (očekivanje, varijanca) vremenskih nizova nad prozorima konačne duljine, pokazalo se neefikasnim izračunavati svaki prozor zasebno u svakom koraku, jer se većina uzoraka između dva susjedna prozora ponavlja.
   Neka vremenski niz traje ukupno $D$ vremenskih koraka, te neka je veličina vremenskog prozora $T$.
-  Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\mathcal{O}\q(\q(D - T + 1\w)\cdot T\w)$, odnosno približno $\mathcal{O}\q(DT\w)$, kako je $D \gg T$.
+  Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\bigO{\q(D - T + 1\w)\cdot T}$, odnosno približno $\bigO{DT}$, kako je $D \gg T$.
   Stoga se isplati potražiti rekurzivne izraze za očekivanje i varijancu kako bi se izračun mogao obaviti na učinkovitiji način.
   
   Neka je $a\q[t\w]$ vremenski niz, za $t \in \q[0, 1, \ldots, D - 1\w]$.
   Nenormirani momenti $n$-tog reda $S_n$ niza $a\q[t\w]$ nad vremenskim prozorom duljine $T$ definirani su na sljedeći način:
   \begin{equation}
+  \label{eq:nonnorm}
   S_n^{(t)} = \sum_{\tau=t-T+1}^{t} a^n\q[\tau\w].
   \end{equation}
   Za nulti moment uvijek vrijedi $S_0^{(t)} = T$ neovisno o $t$.
@@ -846,8 +858,8 @@
     \label{eq:varalt}
     &= \Efromto{a^2\q[\tau\w]}{t - T < \tau \le t} - \Esqfromto{a\q[\tau\w]}{t - T < \tau \le t}
   \end{align}
-  Sada se u (\ref{eq:varalt}) $\Efromto{a^2\q[\tau\w]}{t - T < \tau \le t}$ također može izraziti preko nenormiranih momenata kao $\q. S_2^{(t)} \middle/ S_0^{(t)} \w.$,
-  i $\Esqfromto{a\q[\tau\w]}{t - T < \tau \le t}$ kao $\q. \q(S_1^{(t)}\w)^2 \middle/ \q(S_0^{(t)}\w)^2 \w.$.
+  Izraz $\Efromto{a^2\q[\tau\w]}{t - T < \tau \le t}$ u (\ref{eq:varalt}) može se preko nenormiranih momenata izraziti kao $\q. S_2^{(t)} \middle/ S_0^{(t)} \w.$,
+  a izraz $\Esqfromto{a\q[\tau\w]}{t - T < \tau \le t}$ kao $\q. \q(S_1^{(t)}\w)^2 \middle/ \q(S_0^{(t)}\w)^2 \w.$.
   Konačno, varijanca se može izraziti preko nenormiranih momenata kao:
   \begin{equation}
     \label{eq:recvar}
@@ -856,9 +868,9 @@
   \end{equation}
   
   Na ovaj način moguće je izračunati očekivanje i varijancu nad pomičnim prozorom na mnogo učinkovitiji način nego nerekurzivnim postupkom.
-  Inicijalno je potrebno izračunati momente $S_0^{(T - 1)}$, $S_1^{(T - 1)} $ i $S_2^{(T - 1)}$, te iz njih $\Efromto{a\q[\tau\w]}{0 \le \tau < T}$ i $\Varfromto{a\q[\tau\w]}{0 \le \tau < T}$; u složenosti $\mathcal{O}\q(T\w)$.
-  Nadalje, za svaki sljedeći pomak vremenskog prozora rekurzivno se ažuriraju vrijednosti nenormiranih momenata koristeći (\ref{eq:rec}), te se putem njih izračunavaju očekivanje i varijanca koristeći (\ref{eq:recmean}) i (\ref{eq:recvar}), u složenosti $\mathcal{O}\q(T - D\w)$.
-  Ukupna vremenska složenost algoritma time je pala s $\mathcal{O}\q(DT\w)$ na $\mathcal{O}\q(D\w)$.
+  Inicijalno je potrebno izračunati momente $S_0^{(T - 1)}$, $S_1^{(T - 1)} $ i $S_2^{(T - 1)}$ prema (\ref{eq:nonnorm}), te iz njih $\Efromto{a\q[\tau\w]}{0 \le \tau < T}$ i $\Varfromto{a\q[\tau\w]}{0 \le \tau < T}$ prema (\ref{eq:recmean}) i (\ref{eq:recvar}); u složenosti $\bigO{T}$.
+  Nadalje, za svaki sljedeći pomak vremenskog prozora rekurzivno se ažuriraju vrijednosti nenormiranih momenata koristeći (\ref{eq:rec}), te se putem njih izračunavaju očekivanje i varijanca ponovno koristeći (\ref{eq:recmean}) i (\ref{eq:recvar}), u složenosti $\bigO{T - D}$.
+  Time je ukupna vremenska složenost algoritma pala s $\bigO{DT}$ na $\bigO{D}$.
 
   \begin{sazetak}
   Sažetak na hrvatskom jeziku.
