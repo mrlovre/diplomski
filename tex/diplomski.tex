@@ -100,14 +100,14 @@
   
   \section{Statistička arbitraža}
   Statistička arbitraža \engl{statistical arbitrage} je algoritam trgovanja zasnovan na statistici.
-  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje nenegativan profit s vjerojatnošću 1, dok pritom njegova početna vrijednost iznosi 0.
+  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje pozitivan profit s vjerojatnošću 1, dok pritom njegova početna vrijednost iznosi 0.
   Trivijalan primjer arbitraže je situacija u kojoj bi se ista vrijednosnica nudila po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
   Matematička definicija arbitražnih okolnosti je sljedeća:
   \begin{equation}
   \begin{gathered}
   \label{eq:statarb}
   V^{(0)} = 0\\
-  \quad \prob{V^{\q(t\w)} \ge 0} = 1,
+  \quad \prob{V^{\q(t\w)} > 0} = 1,
   \end{gathered}
   \end{equation}
   gdje $V^{\q(t\w)}$ označava vrijednost portfelja u trenutku $t$.
@@ -118,12 +118,12 @@
   Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\q(t\w)} > 0} \to 1$.
   U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
   
-  Algoritam statističke arbitraže u svakom vremenskom trenutku čine najčešće sljedeći koraci:
+  Algoritam statističke arbitraže u svakom vremenskom trenutku najčešće čine sljedeći koraci:
   \begin{enumerate}
     \item određivanje neke mjere sličnosti među parovima vrijednosnica nad proteklim vremenskim periodom zadane duljine,
     \item uzimanje u obzir samo onih parova kod kojih mjera sličnosti ne prelazi zadani prag, odnosno odbacivanje preostalih parova;
     \item za parove čije je ponašanje međusobno dovoljno slično utvrđuje se nalaze li se u sadašnjem trenutku njihove cijene izvan očekivanog intervala,
-    \item u skladu s utvrđenim provodi se trgovanje parovima vrijednosnica na način da se u jednoj od njih zauzme kratka, a u drugoj duga pozicija, te se u idućem trenutku te pozicije resetiraju.
+    \item u skladu s utvrđenim provodi se trgovanje parovima vrijednosnica na način da se u jednoj od njih zauzme kratka, a u drugoj duga pozicija, te se u idućem trenutku izlazi iz tih pozicija, osim ako se i u idućem trenutku utvrdi da treba ostati u istim pozicijama.
   \end{enumerate}
   
   Najčešće korištene mjere sličnosti su: razlika normaliziranih log-cijena, normalizirana razlika log-cijena, te kointegracija slučajnih procesa.
@@ -259,7 +259,7 @@
   U drugom koraku provjerava se je li $\hat{\varepsilon}\q[t\w]$ zaista stacionaran proces, čime se dobiva p-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
   
   Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$ koriste se kao mjera sličnosti.
-  Primjer dobivenih rezidualnih vrijednosti za iste vrijednosnica $X$ i $Y$ prikazan je na slici \ref{fig:residual}.
+  Primjer dobivenih rezidualnih vrijednosti za iste vrijednosnice $X$ i $Y$ prikazan je na slici \ref{fig:residual}.
   U odnosu na prethodne dvije mjere, ova mjera je rezultat dublje statističke analize, zbog čega je i računski zahtjevnija, što je ujedno prednost i nedostatak.
   Kada se radi o velikom broju parova vrijednosnica, kointegracije se može pokazati nepraktičnom za računanje, stoga je bolje koristiti neku od dvije prethodno navedene mjere sličnosti.
   U ovom radu korištena je normalizirana razlika log-cijena.
@@ -304,7 +304,7 @@
   Ova relacija specifična je po tome što je:
   \begin{itemize}
 %    \item \textit{irreflexive}: every entity $x$ is not preferrable over itself, %($\neg \q( x \succ x \w)$),
-    \item \textit{irrefleksivna}: $\forall x \in \Omega\colon \neg \q( x \succ x \w)$ --- za nijedno dobro ne vrijedi da je više preferirano od samog sebe,
+    \item \textit{irefleksivna}: $\forall x \in \Omega\colon \neg \q( x \succ x \w)$ --- za nijedno dobro ne vrijedi da je više preferirano od samog sebe,
 %    \item \textit{asymmetrical}: if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$, %($x \succ y \Rightarrow \neg \q( y \succ x \w)$),
     \item \textit{asimetrična}: $\forall x, y \in \Omega\colon x \succ y \Rightarrow \neg \q( y \succ x \w)$ --- ako je $x$ više preferirano od $y$, onda $y$ nije više preferirano od $x$,
 %    \item \textit{transitive}: if $x$ is preferrable over $y$, and $y$ is preferrable over $z$, then $x$ is also preferrable over $z$, %($x \succ y \wedge y \succ z \Rightarrow x \succ z$),
@@ -370,8 +370,8 @@
 %  This imposed preference relation should preferably be in compliance with all the aforementioned properties, but when it comes to larger number of entities, it may become infeasible to construct a graph of such qualities directly.
 %  Instead of aiming at a consistent preference relation, we devise a consistency measure that describes similarity between the original graph and its nearest consistent reconstruction, and use it as an additional parameter in decision making.
   Veze u ovom grafu opisuju relaciju preferencije među vrijednosnicama koje su opisane grafom, na način da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
-  Prethodno spomenuta svojstva irrefleksivnosti i asimetričnosti uvijek vrijede i u grafu toka preferencija:
-  kako graf ne sadrži petlje, tj. nijedna vrijednosnica nije u relaciji sama sa sobom, ispunjeno je svojstvo irrefleksivnosti; a kako nema višestrukih bridova među čvorovima vrijedi i svojstvo asimetričnosti.
+  Prethodno spomenuta svojstva irefleksivnosti i asimetričnosti uvijek vrijede i u grafu toka preferencija:
+  kako graf ne sadrži petlje, tj. nijedna vrijednosnica nije u relaciji sama sa sobom, ispunjeno je svojstvo irefleksivnosti; a kako nema višestrukih bridova među čvorovima vrijedi i svojstvo asimetričnosti.
   Ipak, problemi se pojavljuju kod svojstava tranzitivnosti, i tranzitivnosti po indiferentnosti, koja ne moraju uvijek vrijediti za proizvoljno konstruiran graf.
   Ako graf toka preferencija zadovoljava sva 4 svojstva, tada je on konzistentan s relacijom preferencije koju predstavlja.
   Poželjno bi bilo da relacija preferencije koju graf nameće zadovoljava sva četiri prethodno navedena svojstva; no konstruiranje grafa koji posjeduje takva svojstva je nepraktično, pogotovo kada se radi o većem broju vrijednosnica.
@@ -529,7 +529,7 @@
 %  Equation (\ref{eq:consistency}) represents the cosine of the angle between $\matr{f}$ and $\matr{f^*}$ in the column space of matrix $\matr{B}$.
 %  Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
 %  $\kappa$ ranges from 0 to 1, with 0 meaning full inconsistency (virtually unreachable), and 1 meaning full consistency.
-  Jednadžba (\ref{eq:consistency}) predstavlja kosinus kuta između $\matr{f}$ i $\matr{f^*}$ u prostoru određenom vektor stupacima matrice incidencije $\matr{B}$.
+  Jednadžba (\ref{eq:consistency}) predstavlja kosinus kuta između $\matr{f}$ i $\matr{f^*}$ u prostoru određenom vektor stupcima matrice incidencije $\matr{B}$.
   Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (u praksi nedostižno), a 1 potpunu konzistentnost.
   
   \subsection{Primjer korištenja metode potencijala}
@@ -595,7 +595,7 @@
   
   Koeficijent obrtaja $\eta^{(t)}$ u vremenskom koraku $t$ u odnosu na $t-1$ računa se na sljedeći način.
   Neka je na raspolaganju $N$ vrijednosnica.
-  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix*}[r] \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix*}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i > 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
+  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix*}[r] \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix*}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i \ge 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
   Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
   \begin{equation}
   \label{eq:turnover}
@@ -750,7 +750,7 @@
 %  By obtaining the measure of preference for each asset it is possible to pick assets for the portfolio.
 %  The most preferred assets should be bought while the least preferred should be short-sold if possible.
   Individualna mjera preferencije za svaku vrijednosnicu dobivena je metodom potencijala, na način kako je ranije opisano u \ref{sub:potential}.
-  Vrijednosnice s trenutačno najvećom preferencijom preporučeno je kupiti, dok je one s najmanjom preferencijom preporučeno prodati, odnosno \textit{shortati} ukoliko je to moguće.
+  Vrijednosnice s trenutačno najvećom preferencijom preporučeno je kupiti, dok je one s najmanjom preferencijom preporučeno prodati, odnosno zauzeti kratku poziciju ukoliko je to moguće.
   
 %  Let $\matr{\phi}^{\q(t\w)} = \begin{bmatrix} \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{\q(t\w)}$ denote the preference for asset $i$ at time step $t$.
 %  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
@@ -771,7 +771,7 @@
   gdje je $a \in [0, 1], b \in \mathbb{R}^+$.
   Za vrijednosti $a = 0$, $b = 1$, $\kappa^\prime$ postaje jednak $\kappa$.
   Parametar $a$ regulira utjecaj mjere konzistentnosti na određivanje portfelja: za $a = 0$, diverzifikacija u potpunosti ovisi o mjeri konzistentnosti $\kappa$, dok za $a = 1$ mjera konzistentnosti ne dolazi do izražaja te se u portfelju zadržava samo vrijednosnica s najvećom individualnom preferencijom.
-  S druge strane, parametar $b$ regulira diverzifikaciju portfelja: kada je $0 < b < 1$, algoritam je više privržen diverzifikaciji čak i kada je konzistentnost mala, a kada je $b > 1$, algoritam je više privržen diverzifikaciji čak i kada je mjera konzistencije velika.
+  S druge strane, parametar $b$ regulira diverzifikaciju portfelja: kada je $0 < b < 1$, algoritam je manje privržen diverzifikaciji čak i kada je konzistentnost mala, a kada je $b > 1$, algoritam je više privržen diverzifikaciji čak i kada je mjera konzistentnosti velika.
   
 %  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
   Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje u trenutku $t$ vrijedi:
@@ -820,6 +820,13 @@
 %These findings suggest that the proposed method produces consistent returns and may be feasible in a live market setting.
   
   \input{results-1.tex}
+  
+%  \begin{figure}
+%    \centering
+%    \includegraphics[width=\linewidth]{graphics/result1.png}
+%    \caption{}
+%    \label{fig:result1}
+%  \end{figure}
 
   \chapter{Zaključak}
   Algorithm works on pairs of assets, looking for those deviations which are uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
