@@ -75,8 +75,8 @@
 %  Classical statistical arbitrage methods take into account a pair of assets whose prices behave similarly during certain period of time.
 %  Similarity is measured by cointegration, correlation, or some other measure in order to find a moment in time when those assets' prices exceed what was statistically determined as highly confident range.
 %  When such opportunities present themselves, we can take advantage by predicting that prices will return once again to the confident range in the next time step, and do the trading in accordance with this prediction.
-  Klasične metode statističke arbitraže uzimaju u obzir parove vrijednosnica čije cijene se ponašaju slično tijekom određenom vremenskog perioda.
-  Sličnost se mjeri kointegracijom, korelacijom, ili nekom drugom mjerom, s ciljem pronalaska trenutka kada te cijene izlaze van statistički utvrđeno visoko pouzdanog intervala.
+  Klasične metode statističke arbitraže uzimaju u obzir parove vrijednosnica čije cijene se ponašaju slično tijekom određenog razdoblja.
+  Sličnost se mjeri kointegracijom, korelacijom, ili nekom drugom mjerom, s ciljem pronalaska trenutka kada te cijene izlaze izvan statistički utvrđeno visoko pouzdanog intervala.
   Takve prilike mogu se iskoristiti predviđanjem da će se cijene u idućem trenutku ponovno vratiti unutar visoko pouzdanog intervala, te se u skladu s tim predviđanjem može provesti trgovanje.
   
 %  In this paper, we propose a new method based on those predictions that are obtained by the statistical arbitrage method, using statistical measures as a proxy for describing the preference relations between pairs of assets.
@@ -114,16 +114,16 @@
 
   U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
   Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 100\%.
-  Tako se može može dogoditi da bude $V^{\q(t\w)} < 0$ za neke $t$.
+  Tako se može dogoditi da bude $V^{\q(t\w)} < 0$ za neke $t$.
   Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\q(t\w)} > 0} \to 1$.
   U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
   
   Algoritam statističke arbitraže u svakom vremenskom trenutku najčešće čine sljedeći koraci:
   \begin{enumerate}
-    \item određivanje neke mjere sličnosti među parovima vrijednosnica nad proteklim vremenskim periodom zadane duljine,
+    \item određivanje neke mjere sličnosti među parovima vrijednosnica nad proteklim periodom zadane duljine,
     \item uzimanje u obzir samo onih parova kod kojih mjera sličnosti ne prelazi zadani prag, odnosno odbacivanje preostalih parova;
     \item za parove čije je ponašanje međusobno dovoljno slično utvrđuje se nalaze li se u sadašnjem trenutku njihove cijene izvan očekivanog intervala,
-    \item u skladu s utvrđenim provodi se trgovanje parovima vrijednosnica na način da se u jednoj od njih zauzme kratka, a u drugoj duga pozicija, te se u idućem trenutku izlazi iz tih pozicija, osim ako se i u idućem trenutku utvrdi da treba ostati u istim pozicijama.
+    \item u skladu s utvrđenim provodi se trgovanje parovima vrijednosnica tako da se u jednoj od njih zauzme kratka, a u drugoj duga pozicija, te se u idućem trenutku izlazi iz tih pozicija, osim ako se i u idućem trenutku utvrdi da treba ostati u istim pozicijama.
   \end{enumerate}
   
   Najčešće korištene mjere sličnosti su: razlika normaliziranih log-cijena, normalizirana razlika log-cijena, te kointegracija slučajnih procesa.
@@ -151,7 +151,7 @@
     \caption{
       Prikaz kretanja cijena dviju vrijednosnica, $X$ i $Y$, u razdoblju od 500 dana.
       Plavom bojom prikazana je cijena $P_X^{(t)}$, a zelenom cijena $P_Y^{(t)}$.
-      Svjetlijim nijansama tih boja prikazano je punom linijom očekivanje, i crtkanom linijom udaljenost za jednu devijaciju od očekivanja; očekivanje i devijacija izračunati su u svakom trenutku na proteklom vremenskom periodu $T$ duljine 120 dana.
+      Svjetlijim nijansama tih boja prikazano je punom linijom očekivanje, i crtkanom linijom udaljenost za jednu devijaciju od očekivanja; očekivanje i devijacija izračunati su u svakom trenutku na proteklom periodu $T$ duljine 120 dana.
     }
     \label{fig:ab-prices}
   \end{figure}
@@ -324,7 +324,7 @@
 %  Utility function $U\colon \Omega \to \mathbb{R}$ is mapping from entities to real numbers, in such way that order of the mapping corresponds to the preference order of the entities, i.e. $\forall x, y \in \Omega, U(x) > U(y) \Rightarrow x \succ y$.
 %  One such mapping is obtained by using potential method that is described later in this paper.
 %  In addition to ordering of the entities, utility function also provides the intensity of preference for a particular entity, hence it is more informative when it comes to the decision making.
-  Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, na način da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega \colon x \succ y \Leftrightarrow U\q(x\w) > U\q(y\w)$.
+  Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, tako da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega \colon x \succ y \Leftrightarrow U\q(x\w) > U\q(y\w)$.
   Posljedično, za indiferentnost vrijedi $\forall x, y \in \Omega \colon x \sim y \Leftrightarrow U\q(x\w) = U\q(y\w)$.
   Jedno takvo preslikavanje ostvaruje se korištenjem metode potencijala koja je opisana u poglavlju \ref{sec:metpot}.
   Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također unosi i mjeru intenziteta preferencije prema nekoj vrijednosnici, što znači da nosi više informacija od same relacije.
@@ -343,7 +343,7 @@
 %  An example of graph is shown on Fig. \ref{fig:graph}.
   Graf toka preferencija je težinski usmjereni graf, bez višestrukih bridova i petlji (bridova koji počinju i završavaju u istom grafu).
   Njegovi čvorovi predstavljaju vrijednosnice, usmjereni bridovi preferenciju jedne vrijednosnice nad drugom, a težine bridova odgovaraju intenzitetu preferencije.
-  Ukoliko između dva čvora nedostaje brid, smatra se da su pripadne vrijednosnice podjednako preferirane (indiferentnost u odlučivanju kod relacije preferencije).
+  Ako između dva čvora nedostaje brid, smatra se da su pripadne vrijednosnice podjednako preferirane (indiferentnost u odlučivanju kod relacije preferencije).
   Graf kao cjelina opisuje tok preferencija među vrijednosnicama.
   Primjer grafa toka preferencija prikazan je na slici \ref{fig:graph}.
   
@@ -360,7 +360,7 @@
 %  A detailed description of used statistical measures the procedure is given later in \ref{sub:creating-graph}.
   
   Konstrukcija grafa u ovom radu temelji se na metodi statističke arbitraže.
-  Brid koji ide od čvora $i$ do čvora $j$ s težinom $w_{i,j}$ je prisutan u grafu ako i samo ako su se dvije pripadne vrijednosnice $i$ i $j$ ponašale slično tijekom proteklog vremenskog perioda, ali su prema određenim statističkim mjerama trenutačno razdvojile.
+  Brid koji ide od čvora $i$ do čvora $j$ s težinom $w_{i,j}$ je prisutan u grafu ako i samo ako su se dvije pripadne vrijednosnice $i$ i $j$ ponašale slično tijekom proteklog perioda, ali su prema određenim statističkim mjerama trenutačno razdvojile.
   Težina $w_{i,j}$ opisuje magnitudu ovog razdvajanja.
   Detaljan opis postupka dobivanja korištenih statističkih mjera dan je u odjeljku \ref{sub:creating-graph}.
     
@@ -369,15 +369,15 @@
 %  However, problems arise with the aforementioned properties of transitivity, and transitivity in incomparability, which may not hold for an arbitrarily constructed instance of the graph.
 %  This imposed preference relation should preferably be in compliance with all the aforementioned properties, but when it comes to larger number of entities, it may become infeasible to construct a graph of such qualities directly.
 %  Instead of aiming at a consistent preference relation, we devise a consistency measure that describes similarity between the original graph and its nearest consistent reconstruction, and use it as an additional parameter in decision making.
-  Veze u ovom grafu opisuju relaciju preferencije među vrijednosnicama koje su opisane grafom, na način da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
+  Veze u ovom grafu opisuju relaciju preferencije među vrijednosnicama koje su opisane grafom, tako da brid koji ide iz čvora $i$ u čvor $j$ pokazuje da je vrijednosnica $i$ više preferirana od vrijednosnice $j$.
   Prethodno spomenuta svojstva irefleksivnosti i asimetričnosti uvijek vrijede i u grafu toka preferencija:
   kako graf ne sadrži petlje, tj. nijedna vrijednosnica nije u relaciji sama sa sobom, ispunjeno je svojstvo irefleksivnosti; a kako nema višestrukih bridova među čvorovima vrijedi i svojstvo asimetričnosti.
   Ipak, problemi se pojavljuju kod svojstava tranzitivnosti, i tranzitivnosti po indiferentnosti, koja ne moraju uvijek vrijediti za proizvoljno konstruiran graf.
   Ako graf toka preferencija zadovoljava sva 4 svojstva, tada je on konzistentan s relacijom preferencije koju predstavlja.
   Poželjno bi bilo da relacija preferencije koju graf nameće zadovoljava sva četiri prethodno navedena svojstva; no konstruiranje grafa koji posjeduje takva svojstva je nepraktično, pogotovo kada se radi o većem broju vrijednosnica.
   
-  S druge strane, graf toka preferencija je intrinzično konzistentan ukoliko vrijedi, za sve parove čvorova $i$ i $j$: kada postoji više puteva u grafu koji od čvora $i$ do čvora $j$, tada je zbroj težina duž tih puteva jednak.
-  Na primjer, ukoliko se u grafu nalaze tri čvora, $i$, $j$, i $k$, te je $i$ više preferirano u odnosu na $j$ s intenzitetom 1, i $j$ više preferirano u odnosu na $k$ također s intenzitetom 1, tada mora $i$ biti više preferirano u odnosu na $k$ s intenzitetom 2; u suprotnom graf nije intrinzično konzistentan.
+  S druge strane, graf toka preferencija je intrinzično konzistentan ako vrijedi, za sve parove čvorova $i$ i $j$: kada postoji više puteva u grafu koji od čvora $i$ do čvora $j$, tada je zbroj težina duž tih puteva jednak.
+  Na primjer, ako se u grafu nalaze tri čvora, $i$, $j$, i $k$, te je $i$ više preferirano u odnosu na $j$ s intenzitetom 1, i $j$ više preferirano u odnosu na $k$ također s intenzitetom 1, tada mora $i$ biti više preferirano u odnosu na $k$ s intenzitetom 2; u suprotnom graf nije intrinzično konzistentan.
   Graf koji je intrinzično konzistentan također istovremeno zadovoljava i svojstvo tranzitivnosti relacije preferencije (dok obrat ne mora vrijediti).
   
   Umjesto da cilj bude konstrukcija grafa koji će biti konzistentan sa svojstvima relacije preferencije, definirana je mjera konzistentnosti koja opisuje koliko je neki graf sličan sa svojom najbližom konzistentnom rekonstrukcijom.
@@ -412,8 +412,8 @@
   
   \subsection{Računanje potencijala čvorova}
   \label{sub:potential}
-  Neka je za promatrani graf $\graph{G}$ ukupno $N$ čvorova, te najviše $E = \binom{N}{2}$ bridova, ukoliko se radi o potpunom grafu.
-  Ako $\graph{G}$ nije potpun graf, on se može dopuniti na način da se dodaju bridovi između čvorova koji nisu povezani, čija je težina jednaka 0, a sam smjer nije bitan.
+  Neka je za promatrani graf $\graph{G}$ ukupno $N$ čvorova, te najviše $E = \binom{N}{2}$ bridova, ako se radi o potpunom grafu.
+  Ako $\graph{G}$ nije potpun graf, on se može dopuniti tako da se dodaju bridovi između čvorova koji nisu povezani, čija je težina jednaka 0, a sam smjer nije bitan.
   U nastavku se podrazumijeva da je $\graph{G}$ potpun graf.
   
   %    \item
@@ -504,7 +504,7 @@
   \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
   \end{equation}
   tako da se dobije računalno optimalan izraz.
-  Jednadžba (\ref{eq:final2}) tvrdi da se rješenje u smislu najmanjih kvadrata $\matr{\phi^*}$ jednadžbe (\ref{eq:flowformula}) dobije na način da se za svaki čvor pribroje težine svih bridova koji izlaze iz njega, i oduzmu težine svih bridova koji ulaze u njega.
+  Jednadžba (\ref{eq:final2}) tvrdi da se rješenje u smislu najmanjih kvadrata $\matr{\phi^*}$ jednadžbe (\ref{eq:flowformula}) dobije tako da se za svaki čvor pribroje težine svih bridova koji izlaze iz njega, i oduzmu težine svih bridova koji ulaze u njega.
   
   \subsection{Konzistentna rekonstrukcija grafa}
   \label{sec:reconstruct}
@@ -561,7 +561,7 @@
   -2 \\ 1 \\ -4 \\ 0 \\ -1 \\ -2
   \end{bmatrix*}
   \end{equation*}
-  Matrica incidencije $\matr{B}$ konstruirana je tako da retci odgovaraju redom bridovima $\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$, $\overrightarrow{BC}$, $\overrightarrow{BD}$, i $\overrightarrow{CD}$, a stupci redom čvorovima $A$, $B$, $C$ i $D$.
+  Matrica incidencije $\matr{B}$ konstruirana je tako da redci odgovaraju redom bridovima $\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$, $\overrightarrow{BC}$, $\overrightarrow{BD}$, i $\overrightarrow{CD}$, a stupci redom čvorovima $A$, $B$, $C$ i $D$.
   Istim redoslijedom su i težine bridova upisane u vektor $\matr{f}$.
   Neke težine su negativne jer se smjer brida u matrici incidencije ne podudara sa smjerom brida u grafu.
   Računanjem prema metodi potencijala $\matr{\phi^*} = \frac{1}{N}\matr{B}^\T \matr{f}$ i $\matr{f^*} = \matr{B} \matr{\phi^*}$, dobivaju se:
@@ -608,7 +608,7 @@
   \end{equation*}
   
   Neka troškovi trgovanja, bilo kupovanja bilo prodavanja vrijednosnice, iznose $p$ dijelova vrijednosti po kojoj se vrijednosnica kupuje, odnosno prodaje.
-  Ukoliko se računa s logaritmima cijena umjesto s običnim cijenama, troškovi trgovanja mogu se obračunati tako da se u svakom trenutku od ostvarenog profita oduzme $p \cdot \eta^{(t)}$.
+  Ako se računa s logaritmima cijena umjesto s običnim cijenama, troškovi trgovanja mogu se obračunati tako da se u svakom trenutku od ostvarenog profita oduzme $p \cdot \eta^{(t)}$.
   
 %  \section{Osnovni pojmovi (prebaciti na početak)}
 %  
@@ -738,8 +738,8 @@
     \label{fig:devmag}
   \end{figure}
   
-  Na taj način moguće je konstruirati graf toka preferencija za bilo koji vremenski korak $t \in \q[T, T + 1, \ldots, D-1\w]$.
-  U nekim vremenskim koracima moguće je da dobiveni graf bude prazan, ukoliko nijedan par vrijednosnica $(i,j)$ ne zadovoljava (\ref{eq:thresh}).
+  Tako je moguće konstruirati graf toka preferencija za bilo koji vremenski korak $t \in \q[T, T + 1, \ldots, D-1\w]$.
+  U nekim vremenskim koracima moguće je da dobiveni graf bude prazan, ako nijedan par vrijednosnica $(i,j)$ ne zadovoljava (\ref{eq:thresh}).
   Postavljanjem nižih vrijednosti za $\alpha$ dobivaju se gušći grafovi i manje često se događa da je graf prazan, dok se postavljanjem $\alpha = 0$ uvijek dobivaju potpuni grafovi.
 %  Thus it is possible to create a graph of preference flow for each time step $t \in \q[T, T + 1, \ldots, D-1\w]$.
 %  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
@@ -750,7 +750,7 @@
 %  By obtaining the measure of preference for each asset it is possible to pick assets for the portfolio.
 %  The most preferred assets should be bought while the least preferred should be short-sold if possible.
   Individualna mjera preferencije za svaku vrijednosnicu dobivena je metodom potencijala, na način kako je ranije opisano u \ref{sub:potential}.
-  Vrijednosnice s trenutačno najvećom preferencijom preporučeno je kupiti, dok je one s najmanjom preferencijom preporučeno prodati, odnosno zauzeti kratku poziciju ukoliko je to moguće.
+  Vrijednosnice s trenutačno najvećom preferencijom preporučeno je kupiti, dok je one s najmanjom preferencijom preporučeno prodati, odnosno zauzeti kratku poziciju ako je to moguće.
   
 %  Let $\matr{\phi}^{\q(t\w)} = \begin{bmatrix} \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix}$ denote vector of preferences of assets at time step $t$ and $\phi_i^{\q(t\w)}$ denote the preference for asset $i$ at time step $t$.
 %  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
@@ -759,7 +759,7 @@
   Neka je $\matr{\phi}^{\q(t\w)} = \begin{bmatrix*}[r] \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix*}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$, te $\phi_i^{\q(t\w)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
   Pri odabiru vrijednosnica za portfelj, u obzir se također uzima i mjera konzistentnosti $\kappa$.
   Uključivanje mjere konzistentnosti pri odabiru omogućuje zaštitu od fundamentalnog rizika (propadanja neke dionice) putem diverzifikacije portfelja.
-  Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portftelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
+  Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portfelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
     
 %  The bound on the assets which will be taken into portfolio is proportional to the consistency measure $\kappa$.
 %  Depending on the nature of assets we may tune the consistency measure $\kappa$ to be more or less inclined to diversification by transforming it to $\kappa^\prime$:
@@ -798,7 +798,7 @@
   
   Godišnji Sharpeov omjer $S$ definiran je kao omjer srednjeg godišnjeg povrata $\mu_r$ i srednje godišnje volatilnosti $\sigma_r$.
   Analizirana su zasebno trgovanja koja rezultiraju pozitivnim i negativnim profitom, njihova razlika i omjer.
-  Mjera preciznosti definirana je kao omjer broja trgovanja koja rezultiraju pozitivinim profitom u ukupnom broju trgovanja.
+  Mjera preciznosti definirana je kao omjer broja trgovanja koja rezultiraju pozitivnim profitom u ukupnom broju trgovanja.
   Mjera obrtaja \engl{turnover ratio} opisuje promjenu portfelja između dva vremenska koraka.
   Ova mjera može biti u rasponu od 0 do 2, gdje vrijednost 0 znači da nema promjene, vrijednost 1 odgovara prelasku iz ili u prazan portfelj, a vrijednost 2 znači da su vrijednosnice između dva vremenska koraka potpuno različite.
   Konačno, izračunat je ukupan profit uz uključene troškove trgovanja.
