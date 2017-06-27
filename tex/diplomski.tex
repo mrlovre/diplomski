@@ -378,7 +378,7 @@
   
   S druge strane, graf toka preferencija je intrinzično konzistentan ukoliko vrijedi, za sve parove čvorova $i$ i $j$: kada postoji više puteva u grafu koji od čvora $i$ do čvora $j$, tada je zbroj težina duž tih puteva jednak.
   Na primjer, ukoliko se u grafu nalaze tri čvora, $i$, $j$, i $k$, te je $i$ više preferirano u odnosu na $j$ s intenzitetom 1, i $j$ više preferirano u odnosu na $k$ također s intenzitetom 1, tada mora $i$ biti više preferirano u odnosu na $k$ s intenzitetom 2; u suprotnom graf nije intrinzično konzistentan.
-  Graf koji je intrinzično konzistentan ispunjava svojstvo tranzitivnosti relacije preferencije.
+  Graf koji je intrinzično konzistentan također istovremeno zadovoljava i svojstvo tranzitivnosti relacije preferencije (dok obrat ne mora vrijediti).
   
   Umjesto da cilj bude konstrukcija grafa koji će biti konzistentan sa svojstvima relacije preferencije, definirana je mjera konzistentnosti koja opisuje koliko je neki graf sličan sa svojom najbližom konzistentnom rekonstrukcijom.
   Mjera konzistentnosti se koristi kao dodatan parametar pri konstruiranju portfelja.
@@ -542,7 +542,8 @@
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\linewidth]{graphics/graph-eg-1.png}
-    \caption{Primjer nekonzistentnog grafa prije izračunavanja potencijala čvorova.}
+    \caption{Primjer nekonzistentnog grafa prije izračunavanja potencijala čvorova.
+    U čvorove su upisani nazivi vrijednosnica, a na bridove su upisane težine koje opisuju tok preferencije.}
     \label{fig:graph-eg-1}
   \end{figure}
 
@@ -560,6 +561,9 @@
   -2 \\ 1 \\ -4 \\ 0 \\ -1 \\ -2
   \end{bmatrix*}
   \end{equation*}
+  Matrica incidencije $\matr{B}$ konstruirana je tako da retci odgovaraju redom bridovima $\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$, $\overrightarrow{BC}$, $\overrightarrow{BD}$, i $\overrightarrow{CD}$, a stupci redom čvorovima $A$, $B$, $C$ i $D$.
+  Istim redoslijedom su i težine bridova upisane u vektor $\matr{f}$.
+  Neke težine su negativne jer se smjer brida u matrici incidencije ne podudara sa smjerom brida u grafu.
   Računanjem prema metodi potencijala $\matr{\phi^*} = \frac{1}{N}\matr{B}^\T \matr{f}$ i $\matr{f^*} = \matr{B} \matr{\phi^*}$, dobivaju se:
   \begin{equation*}
   \matr{\phi}^* = \begin{bmatrix*}[r]
@@ -568,8 +572,14 @@
   \matr{f}^* = \begin{bmatrix*}[r]
   -1.5 \\ -0.5 \\ -1 \\ 1 \\ -1.5 \\ -2.5
   \end{bmatrix*}
-  \end{equation*}  
+  \end{equation*}
+  Prema dobivenom potencijalu čvorova $\matr{\phi}^*$ može se zaključiti kako je najviše preferiran čvor $D$, zatim $B$, zatim $C$, i naposljetku $A$.
   Rekonstrukcija grafa prikazana je na slici \ref{fig:graph-eg-2}.
+  Težine u rekonstruiranom vektoru toka preferencija $\matr{f}^*$ su promijenjene u odnosu na originalni $\matr{f}$, i to je promjena veća gdje je brid uzrokovao veću nekonzistenciju u originalnom grafu --- tako je najveća promjena u težini brida $\overrightarrow{AD}$, sa $-4$ na $-1$.
+  Također, pojavio se i novi brid $\overrightarrow{BC}$ koji prije nije postojao u originalnom grafu.
+  Brid $\overrightarrow{AC}$ je okrenuo smjer.
+  Sada postoje tri puta od čvora $D$ do $A$, i duž sva tri puta zbroj težina bridova iznosi 3.
+  Iz toga možemo zaključiti kako je rekonstruirani graf doista intrinzično konzistentan.
   
   \begin{figure}[h]
     \centering

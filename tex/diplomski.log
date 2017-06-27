@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  26 JUN 2017 16:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  26 JUN 2017 20:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1041,17 +1041,14 @@ Package pdftex.def Info: graphics/graph-eg-1.png used on input line 544.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16] <graphics/graph-eg-2.png, id=103, 301.125pt x 301.125pt>
+[16] [17 <./graphics/graph-eg-1.png>]
+<graphics/graph-eg-2.png, id=107, 301.125pt x 301.125pt>
 File: graphics/graph-eg-2.png Graphic file (type png)
 
 <use graphics/graph-eg-2.png>
-Package pdftex.def Info: graphics/graph-eg-2.png used on input line 576.
+Package pdftex.def Info: graphics/graph-eg-2.png used on input line 586.
 (pdftex.def)             Requested size: 206.28249pt x 206.29234pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[17 <./graphics/graph-eg-1.png>] [18 <./graphics/graph-eg-2.png>] [19]
+ [18 <./graphics/graph-eg-2.png>] [19]
 Poglavlje 3.
 [20
 
@@ -1059,7 +1056,7 @@ Poglavlje 3.
 File: graphics/deviation-magnitude.png Graphic file (type png)
 
 <use graphics/deviation-magnitude.png>
-Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 71
+Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 72
 5.
 (pdftex.def)             Requested size: 371.30595pt x 295.16295pt.
  [21] [22 <./graphics/deviation-magnitude.png>] [23]
@@ -1087,13 +1084,13 @@ Poglavlje A.
 
 ] [29] [30] (./diplomski.aux) ) 
 Here is how much of TeX's memory you used:
- 8836 strings out of 493013
- 132085 string characters out of 6139317
+ 8840 strings out of 493013
+ 132129 string characters out of 6139317
  246474 words of memory out of 5000000
  11971 multiletter control sequences out of 15000+600000
- 148360 words of font info for 185 fonts, out of 8000000 for 9000
+ 148534 words of font info for 187 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,12n,42p,867b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,14n,42p,867b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.
 enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/
 fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-m
@@ -1113,7 +1110,7 @@ fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm
 /lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/
 texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (33 pages, 746887 bytes).
+Output written on diplomski.pdf (33 pages, 748664 bytes).
 PDF statistics:
  226 PDF objects out of 1000 (max. 8388607)
  150 compressed objects within 2 object streams
