@@ -17,6 +17,7 @@
 \usepackage[T1]{fontenc}
 
 \usepackage{natbib}
+\usepackage[section]{placeins}
 
 \newcommand{\matr}[1]{\mathbold{#1}}
 \newcommand{\graph}[1]{\mathcal{#1}}
@@ -100,9 +101,7 @@
   
   \section{Statistička arbitraža}
   Statistička arbitraža \engl{statistical arbitrage} je algoritam trgovanja zasnovan na statistici.
-  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje pozitivan profit s vjerojatnošću 1, dok pritom njegova početna vrijednost iznosi 0.
-  Trivijalan primjer arbitraže je situacija u kojoj bi se ista vrijednosnica nudila po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
-  Matematička definicija arbitražnih okolnosti je sljedeća:
+  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje pozitivan profit s vjerojatnošću 1, a da pritome njegova početna vrijednost iznosi 0:
   \begin{equation}
   \begin{gathered}
   \label{eq:statarb}
@@ -111,7 +110,9 @@
   \end{gathered}
   \end{equation}
   gdje $V^{\q(t\w)}$ označava vrijednost portfelja u trenutku $t$.
-
+  
+  Trivijalan primjer arbitraže je situacija u kojoj se ista vrijednosnica nudi po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
+  
   U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
   Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 100\%.
   Tako se može dogoditi da bude $V^{\q(t\w)} < 0$ za neke $t$.
@@ -247,7 +248,7 @@
   Postoji nekoliko metoda za provjeru kointegracije, najčešće korištene su Engle-Granger metoda, Johansen metoda i Phillips-Ouliaris metoda.
   Najjednostavnija od navedenih je Engle-Granger metoda, koja je opisana u nastavku.
   
-  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\q[t\w]$ koji je linearna kombinacija cijena $P_X\q[t\w]$ i $P_Y\q[t\w]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran.
+  Ideja metode Engle-Granger\citep{engle-granger} je u prvom koraku estimirati stacionaran proces $U\q[t\w]$ koji je linearna kombinacija cijena $P_X\q[t\w]$ i $P_Y\q[t\w]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran.
   Postupkom najmanjih kvadrata najprije se određuju procjene parametara $\mu$ i $\beta$, označene sa $\hat{\mu}$ i $\hat{\beta}$:
   \begin{equation}
   \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \q\{\sum_{\tau = t - T}^{t - 1} \q \lvert P_X\q[\tau\w] + \beta P_Y\q[\tau\w] -\mu \w \rvert^2\w\},
@@ -256,7 +257,9 @@
   \begin{equation}
   \hat{\varepsilon}\q[t\w] = -\hat{\mu} + P_X\q[t\w] + \hat{\beta} P_Y\q[t\w].
   \end{equation}
-  U drugom koraku provjerava se je li $\hat{\varepsilon}\q[t\w]$ zaista stacionaran proces, čime se dobiva p-vrijednost kao mjera pouzdanosti utvrđene kointegracije.
+  
+  U drugom koraku provjerava se je li $\hat{\varepsilon}\q[t\w]$ zaista stacionaran proces: za dobivenu procjenu statističkim metodama računaju se t-vrijednosti kako bi se utvrdila pouzdanost kointegracije.
+  t-vrijednost može se dobiti Dickey-Fullerovim testom\citep{dickey-fuller}.
   
   Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$ koriste se kao mjera sličnosti.
   Primjer dobivenih rezidualnih vrijednosti za iste vrijednosnice $X$ i $Y$ prikazan je na slici \ref{fig:residual}.
@@ -266,7 +269,7 @@
   
   \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
+    \includegraphics[width=1.0\linewidth]{graphics/residual.png}
     \caption{
       Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$ u slučaju vrijednosnica $X$ i $Y$.}
     \label{fig:residual}
@@ -276,7 +279,7 @@
   Jedan od nedostataka statističke arbitraže jest generalno slaba preciznost izražena kao udio broja trgovanja koji rezultira pozitivnim profitom u ukupnom broju trgovanja.
   Uzrok tome su statističke mjere na kojima se algoritam temelji, koje ne mogu dati apsolutno pouzdanu odluku samim time što je kretanje cijena slučajan proces.
   Također, problem može biti i tzv. varljiva korelacija u kojoj je kretanje cijena dviju vrijednosnica naizgled povezano, no zapravo je uzrok tome neki nepoznati vanjski faktor; tada predviđeno ponašanje može biti poprilično različito od stvarnog.
-  Isto tako statističke metode ne mogu razlikovati one devijacije u ponašanju cijena koje su svojstvene koreliranim slučajnim procesima od onih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i tome slično.
+  Isto tako, statističke metode ne mogu razlikovati one devijacije u ponašanju cijena koje su svojstvene koreliranim slučajnim procesima od onih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i tome slično.
   Pri testiranju algoritma statističke arbitraže nad testnim skupovima podataka preciznost rijetko kada prelazi 60\%, a većinom je manja od 50\%.
   No, unatoč tome što algoritam griješi u više od pola slučajeva, ukupni profit je ipak pozitivan jer pogreške donose znatno manje gubitke u odnosu na zaradu ostvarenu pogotcima.
   
@@ -361,7 +364,8 @@
   
   Konstrukcija grafa u ovom radu temelji se na metodi statističke arbitraže.
   Brid koji ide od čvora $i$ do čvora $j$ s težinom $w_{i,j}$ je prisutan u grafu ako i samo ako su se dvije pripadne vrijednosnice $i$ i $j$ ponašale slično tijekom proteklog perioda, ali su prema određenim statističkim mjerama trenutačno razdvojile.
-  Težina $w_{i,j}$ opisuje magnitudu ovog razdvajanja.
+  Težina $w_{i,j}$ opisuje magnitudu ovog razdvajanja i služi kao mjera intenziteta preferencije jedne vrijednosnice u odnosu na drugu.
+  Podrazumijeva se da je $w_{i,j} = -w_{j,i}$, odnosno negativan intenzitet preferencije označava da je jedna vrijednosnica toliko manje preferirana u odnosu na drugu.
   Detaljan opis postupka dobivanja korištenih statističkih mjera dan je u odjeljku \ref{sub:creating-graph}.
     
 %  Connections in this graph impose a preference relation among entities that are presented by the graph, in the way that an edge that goes from node $A$ to node $B$ means that $A$ is preferred over $B$.
@@ -577,7 +581,7 @@
   Rekonstrukcija grafa prikazana je na slici \ref{fig:graph-eg-2}.
   Težine u rekonstruiranom vektoru toka preferencija $\matr{f}^*$ su promijenjene u odnosu na originalni $\matr{f}$, i to je promjena veća gdje je brid uzrokovao veću nekonzistenciju u originalnom grafu --- tako je najveća promjena u težini brida $\overrightarrow{AD}$, sa $-4$ na $-1$.
   Također, pojavio se i novi brid $\overrightarrow{BC}$ koji prije nije postojao u originalnom grafu.
-  Brid $\overrightarrow{AC}$ je okrenuo smjer.
+  Smjer brida $\overrightarrow{AC}$ je preokrenut.
   Sada postoje tri puta od čvora $D$ do $A$, i duž sva tri puta zbroj težina bridova iznosi 3.
   Iz toga možemo zaključiti kako je rekonstruirani graf doista intrinzično konzistentan.
   
@@ -595,7 +599,7 @@
   
   Koeficijent obrtaja $\eta^{(t)}$ u vremenskom koraku $t$ u odnosu na $t-1$ računa se na sljedeći način.
   Neka je na raspolaganju $N$ vrijednosnica.
-  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix*}[r] \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix*}$ opisuje portfelju u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i \ge 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
+  Vektor $\matr{\alpha}^{(t)} = \begin{bmatrix*}[r] \alpha_1^{(t)} & \alpha_2^{(t)} & \cdots & \alpha_N^{(t)} \end{bmatrix*}$ opisuje portfelj u koraku $t$; $\alpha_i^{(t)}$ je udio $i$-te vrijednosnice, te vrijedi $\alpha_i \ge 0,\ \sum_{i=1}^{N} \alpha_i = 1$.
   Tada se koeficijent obrtaja $\eta^{(t)}$ računa na način:
   \begin{equation}
   \label{eq:turnover}
@@ -717,7 +721,7 @@
   w_{i,j}^{\q(t\w)} = \frac{c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}}{d_{i,j}^{\q(t\w)}},
   \end{equation}
   što odgovara udaljenosti razlike log-cijena od očekivanja, mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
-  Negativan predznak težine $w_{i,j}^{\q(t\w)}$ znači da je stvarni smjer preferencije obrnut od pretpostavljenog --- drugim riječima, brid koji ide od $j$ do $i$ s težinom $w_{j,i}^{\q(t\w)} = -w_{i,j}^{\q(t\w)} > 0$ ekvivalentan je prethodnome bridu.
+  Negativan predznak težine $w_{i,j}^{\q(t\w)}$ označava da je stvarni smjer preferencije obrnut od pretpostavljenog, odnosno brid koji ide od $j$ do $i$ s pozitivnom težinom $w_{j,i}^{\q(t\w)} = -w_{i,j}^{\q(t\w)}$ ekvivalentan je prvotno pretpostavljenom bridu.
   Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
   \begin{figure}[htb]
@@ -744,6 +748,30 @@
 %  Thus it is possible to create a graph of preference flow for each time step $t \in \q[T, T + 1, \ldots, D-1\w]$.
 %  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
 %  Setting lower values for parameter $\alpha$ yields denser graphs, and setting $\alpha = 0$ always yields complete graphs.
+
+  \section{Signal trgovanja}
+  Signal trgovanja.
+  
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/trading-signal.png}
+    \caption{Signal trgovanja $\Gamma_{X, Y}\q(t \w)$ za vrijednosnice $X$ i $Y$, dobiven korištenjem $T = 120$. Prag $\alpha$ je postavljen na 3. U trenutku $t_1 = 60$ (označeno prvom zelenom točkom) signal trgovanja prelazi zadani prag i ostaje u aktivnom području (čiji je razspon označen zelenom bojom) do trenutka $t_2 = 69$ (označeno drugom zelenom točkom). Kako je signal u aktivnom području negativan, zauzima se kratka pozicija u vrijednosnici $X$ i duga u $Y$, a po izlasku iz aktivnog područja te pozicije se zatvaraju.}
+    \label{fig:trading-signal}
+  \end{figure}
+  
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/trading-prices.png}
+    \caption{Kretanje logaritamskih cijena vrijednosnica $X$ (plavo) i $Y$ (zeleno). Crtkanim linijama označeno je područje u kojem je signal trgovanja aktivan. Uočljiva je sličnost u ponašanju kretanja cijena prije i poslije aktivnog područja signala trgovanja.}
+    \label{fig:trading-prices}
+  \end{figure}
+
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/trading-diffs.png}
+    \caption{Razlika logaritamskih cijena vrijednosnica $X$ i $Y$. Početak i kraj aktivnog područja označen je zelenim točkama. Ukupan profit jednak je razlici iznosa na kraju i iznosa na početku aktivnog područja i iznosi 0.0889 u ovom primjeru.}
+    \label{fig:trading-diffs}
+  \end{figure}
   
   \section{Konstrukcija portfelja}
 %  We obtain preference for each asset via the potential method, as described earlier in \ref{sub:potential}.
@@ -790,7 +818,7 @@
   Minimizacija: energija signala.
   
   \chapter{Rezultati}
-  Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
+  Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P 500 indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
   Razdoblje uključuje 6261 dan trgovanja, odnosno vremenskih koraka.
   Ukupno 20503 parova dionica je ispitano metodom statističke arbitraže u svakom vremenskom koraku.
   Simulirani su troškovi trgovanja u iznosu 0.10\% za svako obavljeno trgovanje.
@@ -821,12 +849,19 @@
   
   \input{results-1.tex}
   
-%  \begin{figure}
-%    \centering
-%    \includegraphics[width=\linewidth]{graphics/result1.png}
-%    \caption{}
-%    \label{fig:result1}
-%  \end{figure}
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/result1.png}
+    \caption{Rezultati simulacija trgovanja nad podskupom dionica S\&P 500 indeksa. Plavom bojom je prikazana krivulja kumulativnog profita bez uključenih troškova trgovanja, a zelenom uz troškove trgovanja od 0.10\%.}
+    \label{fig:result1}
+  \end{figure}
+
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/sharpes1.png}
+    \caption{Sharpeov omjer izražen na godišnjoj razini, na prozorima veličine $T = 60$, za simulaciju trgovanja nad podskupom dionica S\&P 500 indeksa.}
+    \label{fig:result1}
+  \end{figure}
 
   \chapter{Zaključak}
   Algorithm works on pairs of assets, looking for those deviations which are uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.

@@ -1,9 +1,23 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{3}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Engle and Granger(1987)]{engle-granger}
+Robert~F. Engle and C.~W.~J. Granger.
+\newblock Co-integration and error correction: Representation, estimation, and
+  testing.
+\newblock 1987.
+\newblock URL \url{www.jstor.org/stable/pdf/1913236.pdf}.
+
+\bibitem[Dickey and Fuller(1979)]{dickey-fuller}
+David~A. Dickey and Wayne~A. Fuller.
+\newblock Distribution of the estimators for autoregressive time series with a
+  unit root.
+\newblock 1979.
+\newblock URL \url{https://www.jstor.org/stable/pdf/2286348.pdf}.
 
 \bibitem[Čaklović(1991)]{potential}
 Lavoslav Čaklović.
