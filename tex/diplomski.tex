@@ -94,7 +94,7 @@
   
   Ideja ove metode je ostvariti generalizaciju klasičnih metoda statističke arbitraže koja će biti robusnija i ostvarivati bolje rezultate kada ima velik broj vrijednosnica na raspolaganju tako što izvlači zajedničku interakciju iz svih vrijednosnica.
   
-  Organizacija poglavlja je sljedeća: \ldots
+%  Organizacija poglavlja je sljedeća: \ldots
 
 \chapter{Metode i koncepti}
   Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu, kao i definicije korištenih osnovnih pojmova.
@@ -606,7 +606,7 @@
   \eta^{(t)} = \sum_{i=1}^{N} \q \lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \w \rvert.
   \end{equation}
   Iz (\ref{eq:turnover}) može se vidjeti da se minimum $\eta^{(t)} = 0$ doista postiže ako i samo ako je ispunjeno $\matr{\alpha}^{(t)} = \matr{\alpha}^{(t-1)}$,
-  a maksimum $\eta^{(t)} = 2$ ako i samo ako je ispunjeno $\alpha_i^{(t)} \ne 0 \Rightarrow \alpha_i^{(t - 1)} = 0$ i $\alpha_i^{(t - 1)} \ne 0 \Rightarrow \alpha_i^{(t)} = 0$, jer tada vrijedi: 
+  a maksimum $\eta^{(t)} = 2$ ako i samo ako je ispunjeno $\alpha_i^{(t)} \ne 0 \Rightarrow \alpha_i^{(t - 1)} = 0$, odnosno $\alpha_i^{(t - 1)} \ne 0 \Rightarrow \alpha_i^{(t)} = 0$, jer tada vrijedi: 
   \begin{equation*}
   \eta^{(t)} = \sum_{i=1}^{N} \q \lvert \alpha_i^{(t)} - \alpha_i^{(t-1)} \w \rvert = \sum_{i=1}^{N} \q \lvert \alpha_i^{(t)}\w \rvert + \sum_{i=1}^N \q \lvert\alpha_i^{(t-1)} \w \rvert = 1 + 1 = 2.
   \end{equation*}
@@ -643,7 +643,7 @@
   \end{equation}
   \begin{equation}
   \label{eq:deviation}
-  d_{i,j}^{\q(t\w)} = \sqrt{\frac{1}{T}\sum_{\tau=t - T}^{t - 1} \q(c_{i,j}^{(\tau)} - m_{i,j}^{\q(t\w)} \w)^2}.
+  d_{i,j}^{\q(t\w)} = \sqrt{\frac{1}{T - 1}\sum_{\tau=t - T}^{t - 1} \q(c_{i,j}^{(\tau)} - m_{i,j}^{\q(t\w)} \w)^2}.
   \end{equation}
   
   Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, stoga sumiranje ide do $t - 1$.
@@ -864,8 +864,11 @@
   \end{figure}
 
   \chapter{Zaključak}
-  Algorithm works on pairs of assets, looking for those deviations which are uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
-  It adapts to the inconsistence of preferences by picking variable number of assets into the portfolio.
+  Algoritam radi nad parovima vrijednosnica, i traži takve parove kod kojih se pojavljuju statistički značajna odstupanja.
+  U načelu, algoritam radi bolje kada je dostupno veći broj vrijednosnica, i samim time kvadratno veći broj parova vrijednosnica.
+  Prilagodba na nekonzistentnost dobivenih preferencija postignuta je u vidu diverzifikacije portfelja proporcionalno nekonzistentnosti.
+%  Algorithm works on pairs of assets, looking for those deviations which are uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
+%  It adapts to the inconsistence of preferences by picking variable number of assets into the portfolio.
   
   \bibliography{literatura}
   \bibliographystyle{unsrtnat}
@@ -925,16 +928,31 @@
   Time je ukupna vremenska složenost algoritma pala s $\bigO{DT}$ na $\bigO{D}$.
 
   \begin{sazetak}
-  Sažetak na hrvatskom jeziku.
+  U ovom radu istražene su metode za analizu financijskih vremenskih nizova, temeljene na algoritmu statističke arbitraže.
+  Rezultati istraživanja zaokruženi su u samostalan algoritam za simulaciju trgovanja vrijednosnicama temeljenu na povijesnim podacima, i trgovanje vrijednosnicama nad podacima koji dolaze uživo.
+  Ulazne podatke za algoritam čini kretanje cijena nekog broja vrijednosnica u nekom vremenskom razdoblju.
+  Na temelju njih, konstruira se kompleksna mreža koja opisuje odnos vrijednosnica u svakom vremenskom koraku.
+  Iz dobivene mreže procjenjuje se poredak vrijednosnica po preferenciji i računa se pouzdanost same procjene poretka.
+  Konačno, na temelju poretka i pouzdanosti njegove procjene konstruira se portfelj koji čine vrijednosnice s najvećom preferencijom.
+  Algoritam je simuliran nad stvarnim povijesnim podacima i polučio je uspješne rezultate.
+  Iako su istraženi specijalno financijski vremenski nizovi, matematički i statistički postupci koji su korišteni mogu potencijalno poslužiti i u druge svrhe.
 
-  \kljucnerijeci{Ključne riječi, odvojene zarezima.}
+  \kljucnerijeci{vremenski nizovi, financije, statistička arbitraža, relacija preferencije, graf toka preferencija, metoda potencijala.}
   \end{sazetak}
+  \pagebreak
 
   \engtitle{Complex network based time series analysis}
   \begin{abstract}
-  Abstract.
+  In this thesis, methods for financial time series analysis using statistical arbitrage algorithm are researched.
+  Results of the research are summed up into standalone algorithm for simulation of assets trading based on historical data, and also for real world assets trading on live data.
+  Input data for the algorithm are prices of some number of assets during some time span.
+  Next, a complex network is constructed using the input data that describes relations among the assets at the each time step.
+  Then, the ranking based on preference of assets is derived from the network and also the confidence of derived ranking is obtained.
+  Finally, portfolio is constructed from the most preferred assets, by using ranking and its confidence.
+  Simulating the algorithm on the real historical data has yielded significant results.
+  Although the research in this thesis has been done on financial time series, mathetmatical and statistical methods used can also prove useful in other applications.
 
-  \keywords{Keywords.}
+  \keywords{time series, finances, statistical arbitrage, preference relation, preference flow graph, potential method.}
   \end{abstract}
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  29 JUN 2017 03:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  29 JUN 2017 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1122,17 +1122,17 @@ Package microtype Info: Loading generic settings for font family
 Poglavlje A.
 [32
 
-] [33] [34] (./diplomski.aux)
+] [33] [34] [35] (./diplomski.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8901 strings out of 493013
- 133449 string characters out of 6139317
+ 8902 strings out of 493013
+ 133454 string characters out of 6139317
  246766 words of memory out of 5000000
- 12016 multiletter control sequences out of 15000+600000
- 148737 words of font info for 190 fonts, out of 8000000 for 9000
+ 12015 multiletter control sequences out of 15000+600000
+ 148828 words of font info for 191 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,14n,42p,867b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fo
@@ -1154,10 +1154,10 @@ type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx1
 -dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public
 /lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on diplomski.pdf (37 pages, 997304 bytes).
+Output written on diplomski.pdf (38 pages, 999582 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 161 compressed objects within 2 object streams
+ 256 PDF objects out of 1000 (max. 8388607)
+ 163 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  40524 words of extra memory for PDF output out of 42996 (max. 10000000)
 
