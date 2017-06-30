@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  29 JUN 2017 11:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  30 JUN 2017 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1056,56 +1056,56 @@ Package pdftex.def Info: graphics/graph-eg-2.png used on input line 590.
 Poglavlje 3.
 [20
 
-] <graphics/deviation-magnitude.png, id=120, 752.8125pt x 470.75874pt>
+] [21] <graphics/deviation-magnitude.png, id=123, 752.8125pt x 470.75874pt>
 File: graphics/deviation-magnitude.png Graphic file (type png)
 
 <use graphics/deviation-magnitude.png>
-Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 72
-9.
+Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 74
+1.
 (pdftex.def)             Requested size: 371.30595pt x 232.19664pt.
- [21]
-<graphics/trading-signal.png, id=124, 717.68124pt x 470.75874pt>
+ [22 <./graphics/deviation-magnitude.png>] <graphics/trading-signal.png, id=129
+, 717.68124pt x 470.75874pt>
 File: graphics/trading-signal.png Graphic file (type png)
 
 <use graphics/trading-signal.png>
-Package pdftex.def Info: graphics/trading-signal.png used on input line 757.
+Package pdftex.def Info: graphics/trading-signal.png used on input line 769.
 (pdftex.def)             Requested size: 412.56497pt x 270.62671pt.
 
-<graphics/trading-prices.png, id=125, 718.685pt x 470.75874pt>
+<graphics/trading-prices.png, id=130, 718.685pt x 470.75874pt>
 File: graphics/trading-prices.png Graphic file (type png)
 
 <use graphics/trading-prices.png>
-Package pdftex.def Info: graphics/trading-prices.png used on input line 764.
+Package pdftex.def Info: graphics/trading-prices.png used on input line 776.
 (pdftex.def)             Requested size: 412.56497pt x 270.246pt.
 
-<graphics/trading-diffs.png, id=126, 726.715pt x 470.75874pt>
+<graphics/trading-diffs.png, id=131, 726.715pt x 470.75874pt>
 File: graphics/trading-diffs.png Graphic file (type png)
 
 <use graphics/trading-diffs.png>
-Package pdftex.def Info: graphics/trading-diffs.png used on input line 771.
+Package pdftex.def Info: graphics/trading-diffs.png used on input line 783.
 (pdftex.def)             Requested size: 412.56497pt x 267.2578pt.
- [22 <./graphics/deviation-magnitude.png>]
-[23 <./graphics/trading-signal.png>] [24 <./graphics/trading-prices.png> <./gra
-phics/trading-diffs.png>] [25] [26]
+ [23] [24 <./graphics/trading-signal.png>]
+[25 <./graphics/trading-prices.png> <./graphics/trading-diffs.png>] [26]
+[27]
 Poglavlje 4.
-(./results-1.tex) <graphics/result1.png, id=148, 709.65125pt x 470.75874pt>
+(./results-1.tex) <graphics/result1.png, id=151, 709.65125pt x 470.75874pt>
 File: graphics/result1.png Graphic file (type png)
 
 <use graphics/result1.png>
-Package pdftex.def Info: graphics/result1.png used on input line 854.
+Package pdftex.def Info: graphics/result1.png used on input line 866.
 (pdftex.def)             Requested size: 412.56497pt x 273.68675pt.
 
-<graphics/sharpes1.png, id=149, 711.65875pt x 470.75874pt>
+<graphics/sharpes1.png, id=152, 711.65875pt x 470.75874pt>
 File: graphics/sharpes1.png Graphic file (type png)
 
 <use graphics/sharpes1.png>
-Package pdftex.def Info: graphics/sharpes1.png used on input line 861.
+Package pdftex.def Info: graphics/sharpes1.png used on input line 873.
 (pdftex.def)             Requested size: 412.56497pt x 272.90378pt.
- [27
+ [28
 
-] [28 <./graphics/result1.png> <./graphics/sharpes1.png>] [29]
+] [29 <./graphics/result1.png> <./graphics/sharpes1.png>] [30]
 Poglavlje 5.
-(./diplomski.bbl [30
+(./diplomski.bbl [31
 
 ]
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 13.
@@ -1116,22 +1116,22 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-) [31
+) [32
 
 ]
 Poglavlje A.
-[32
+[33
 
-] [33] [34] [35] (./diplomski.aux)
+] [34] [35] [36] (./diplomski.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 8902 strings out of 493013
- 133454 string characters out of 6139317
- 246766 words of memory out of 5000000
- 12015 multiletter control sequences out of 15000+600000
+ 8904 strings out of 493013
+ 133487 string characters out of 6139317
+ 246788 words of memory out of 5000000
+ 12017 multiletter control sequences out of 15000+600000
  148828 words of font info for 191 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,14n,42p,867b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1154,10 +1154,10 @@ type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx1
 -dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public
 /lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
 0.pfb>
-Output written on diplomski.pdf (38 pages, 999582 bytes).
+Output written on diplomski.pdf (39 pages, 1000762 bytes).
 PDF statistics:
- 256 PDF objects out of 1000 (max. 8388607)
- 163 compressed objects within 2 object streams
+ 259 PDF objects out of 1000 (max. 8388607)
+ 165 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  40524 words of extra memory for PDF output out of 42996 (max. 10000000)
 

@@ -502,7 +502,7 @@
     \item $(\matr{L})_{ii}$ je jednak broju susjeda čvora $i$,
     \item ostali elementi jednaki su $-1$.
   \end{itemize}
-  Kako je graf $\graph{G}$ potpun, odnosno broj susjeda svakog čvora jednak je $N - 1$, Laplaceova matrica grafa $\graph{G}$ ima $N - 1$ na dijagonali, a $-1$ drugdje. Tako se izraz $\q[ \matr{B}^\T \matr{B} + \matr{J} \w]^{-1} = \q[ N \matr{I} \w]^{-1}$ može pojednostavniti u $\frac{1}{N} \matr{I}$; i stoga se (\ref{eq:final}) može svesti na:
+  Kako je graf $\graph{G}$ potpun, odnosno broj susjeda svakog čvora jednak je $N - 1$, Laplaceova matrica grafa $\graph{G}$ ima $N - 1$ na dijagonali, a $-1$ drugdje. Tako se izraz $\q[ \matr{B}^\T \matr{B} + \matr{J} \w]^{-1}$ može pojednostavniti u $\q[ N \matr{I} \w]^{-1} = \frac{1}{N} \matr{I}$; i stoga se (\ref{eq:final}) može svesti na:
   \begin{equation}
   \label{eq:final2}
   \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
@@ -631,24 +631,36 @@
 %  \begin{equation} b_i^{\q(t\w)} = \log\q(a_i^{\q(t\w)}\w) \end{equation}
 %  \begin{equation} c_{i,j}^{\q(t\w)} = b_i^{\q(t\w)} - b_j^{\q(t\w)}, \end{equation}
 %  and rolling means $m_{i,j}^{\q(t\w)}$ and standard deviations $d_{i,j}^{\q(t\w)}$ of log price differences over the past time window of size $T$ are obtained as follows:
-  Neka u zadanom skupu podataka ima ukupno $N$ vrijednosnica kroz $D$ vremenskih koraka.
-  Neka je cijena vrijednosnice $i$ u vremenskom koraku $t$ jednaka $a_i^{\q(t\w)}$, za $i \in {\q[1, 2, \ldots, N\w]}$ i $t \in {\q[0, 1, \ldots, D-1\w]}$.
-  Logaritamske cijene $b_i^{\q(t\w)}$, i razlike logaritamskih cijena po parovima $c_{i,j}^{\q(t\w)}$ dobivaju se na sljedeći način:
-  \begin{equation} b_i^{\q(t\w)} = \log\q(a_i^{\q(t\w)}\w) \end{equation}
-  \begin{equation} c_{i,j}^{\q(t\w)} = b_i^{\q(t\w)} - b_j^{\q(t\w)}, \end{equation}
-  i očekivanje $m_{i,j}^{\q(t\w)}$ i standardna devijacija $d_{i,j}^{\q(t\w)}$ razlika logaritamskih cijena tijekom proteklog perioda duljine $T$ dobivaju se kako slijedi:
+  Neka u zadanom skupu podataka ima ukupno $N$ vrijednosnica označenih brojevima od $1$ do $N$, kroz $D$ vremenskih koraka.
+  Ulazni podaci za algoritam čine vremenski nizovi povijesnih cijena vrijednosnica koje su na raspolaganju.
+  Pretpostavka je da su vrijednosnice na tržištu likvidne, odnosno da se njima može trgovati u svakom vremenskom koraku.
+  Neka je sa $a_i^{\q(t\w)}$ označena cijena vrijednosnice $i$ u vremenskom koraku $t$, za $i \in {\q[1, 2, \ldots, N\w]}$, i $t \in {\q[0, 1, \ldots, D-1\w]}$.
+  
+  Logaritamska cijena $b_i^{\q(t\w)}$ vrijednosnice $i$, i razlika logaritamskih cijena $c_{i,j}^{\q(t\w)}$ para vrijednosnica $i$ i $j$ dobivaju se na sljedeći način, $\forall i, j \in \q[1, 2, \ldots, N\w]$:
+  \begin{equation}
+    \label{eq:log_price}
+  b_i^{\q(t\w)} = \log\q(a_i^{\q(t\w)}\w)
+  \end{equation}
+  \begin{equation}
+    \label{eq:log_price_diff}
+    c_{i,j}^{\q(t\w)} = b_i^{\q(t\w)} - b_j^{\q(t\w)}.
+  \end{equation}
+  Očekivanje $m_{i,j}^{\q(t\w)}$, i standardna devijacija $d_{i,j}^{\q(t\w)}$ razlika logaritamskih cijena $c_{i,j}^{\q(t\w)}$ tijekom proteklog perioda duljine $T$ procjenjuju se sljedećim izrazima:
   \begin{equation}
   \label{eq:mean}
-  m_{i,j}^{\q(t\w)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
+    m_{i,j}^{\q(t\w)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)}
   \end{equation}
   \begin{equation}
   \label{eq:deviation}
-  d_{i,j}^{\q(t\w)} = \sqrt{\frac{1}{T - 1}\sum_{\tau=t - T}^{t - 1} \q(c_{i,j}^{(\tau)} - m_{i,j}^{\q(t\w)} \w)^2}.
+    d_{i,j}^{\q(t\w)} = \sqrt{\frac{1}{T - 1}\sum_{\tau=t - T}^{t - 1} \q(c_{i,j}^{(\tau)} - m_{i,j}^{\q(t\w)} \w)^2}.
   \end{equation}
   
-  Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, stoga sumiranje ide do $t - 1$.
+  Procjena srednje vrijednosti u (\ref{eq:mean}) je nepristrana, što znači da je očekivanje od $m_{i,j}^{\q(t\w)}$ doista jednako srednjoj vrijednosti toga uzorka.
+  Procjena standardne devijacije u (\ref{eq:deviation}) nije nepristrana, jer je dobivena korjenovanjem nepristrane procjene varijance.
+  Kako je korjenovanje neliearna operacija, ono unosi pristranost u procjenu.
+  Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, zbog čega sumiranje ide do $t - 1$.
 %  Note that in summation used in (\ref{eq:mean}, \ref{eq:deviation}) time step $t$ was intentionally excluded, therefore summation goes only to $t - 1$.
-  Ovi izračuni su temelj za daljnji tijek algoritma.
+  Izračuni (\ref{eq:log_price}) -- (\ref{eq:deviation}) su temeljni za daljnji tijek algoritma.
 %  We use these calculations as basis for creating the portfolio.
 
 %  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
@@ -750,7 +762,7 @@
 %  Setting lower values for parameter $\alpha$ yields denser graphs, and setting $\alpha = 0$ always yields complete graphs.
 
   \section{Signal trgovanja}
-  Signal trgovanja.
+  Signal trgovanja je funkcija određena 
   
   \begin{figure}[p]
     \centering

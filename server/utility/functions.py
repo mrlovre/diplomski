@@ -1,6 +1,7 @@
-from typing import Iterable, Set, TypeVar
-import numpy as np
 from itertools import groupby
+from log_progress import log_progress
+
+import numpy as np
 
 
 def rolling_mean_variance(series, T, weight=1.0):
@@ -41,7 +42,7 @@ def rolling_minmax(series, T, minmax='min'):
         np_argfun = np.argmax
         np_fun = np.max
     else:
-        raise Exception('"minmax" should be either "min" or "max".')
+        raise ValueError('"minmax" should be either "min" or "max".')
 
     # non-optimal
     return np_fun(rolling_window(series.transpose(), T), axis=1).transpose()
@@ -50,7 +51,7 @@ def rolling_minmax(series, T, minmax='min'):
 def flatten_prismatic_tensor(K):
     _, N, M = K.shape
     if N != M:
-        raise Exception('Two lowest dimensions must be equal.')
+        raise ValueError('Two lowest dimensions must be equal.')
     return np.array(list(map(lambda x: x[np.triu_indices(N, 1)], K)))
 
 
@@ -113,7 +114,7 @@ def trade_pair(diffs, t, pair, inv=False):
     elif np.issubdtype(pair, np.integer):
         c = pair
     else:
-        raise Exception('"pair" should be either tuple or int.')
+        raise ValueError('"pair" should be either tuple or int.')
 
     return (1 - 2 * inv) * (diffs[t, c] - diffs[t + 1, c]) / 2
 
@@ -127,7 +128,7 @@ def trade_pairs(diffs, ts, pairs, inv=False):
     elif len(pairs.shape) == 1:
         cs = pairs
     else:
-        raise Exception('"pairs" should be one- or two-dimensional.')
+        raise ValueError('"pairs" should be one- or two-dimensional.')
 
     return np.array([trade_pair(diffs, t, c, inv) for t, c in zip(ts, cs)])
 
@@ -139,7 +140,7 @@ def select_argsort(matrix, argsort):
 
 
 def statistical_arbitrage(diffs, means, varss, p, d,
-                          method='thresh-devs', scale=True,
+                          method='thresh-devs', scale=True, p_filter_type='le',
                           return_pairs=False, return_weights=False, return_profits=True):
     T = diffs.shape[0] - means.shape[0] + 1
     P = diffs.shape[1]
@@ -154,7 +155,12 @@ def statistical_arbitrage(diffs, means, varss, p, d,
 
     if method == 'thresh-devs':
         if p is not None:
-            selected_codes = varss[:-1, :] <= p
+            if p_filter_type == 'le':
+                selected_codes = varss[:-1, :] <= p
+            elif p_filter_type == 'ge':
+                selected_codes = varss[:-1, :] >= p
+            else:
+                raise ValueError('"p_filter_type" should be "le" or "ge"')
         else:
             selected_codes = np.ones_like(varss[:-1, :], np.bool)
         ts, cs = np.nonzero(selected_codes)
@@ -199,7 +205,7 @@ def statistical_arbitrage(diffs, means, varss, p, d,
         ts_no_invs += T - 1
 
     else:
-        raise Exception('Method not supported.')
+        raise ValueError('Method not supported.')
 
     invs_profit = trade_pairs(diffs, ts_invs, invs, True)
     no_invs_profit = trade_pairs(diffs, ts_no_invs, no_invs, False)
@@ -251,7 +257,8 @@ def partition_as(days, pairs, weights=None):
         j += 1
 
 
-def calculate_preference_flow(pairs, weights=None, scale=False, fast=True, return_inconsistency=False):
+def calculate_preference_flow(pairs, weights=None, scale=False, fast=True, return_consistency=False):
+    scale = False
     nodes = set(np.ravel(pairs))
     M = len(nodes)
     P = pairs_from_N(M)
@@ -287,20 +294,22 @@ def calculate_preference_flow(pairs, weights=None, scale=False, fast=True, retur
 
     if fast:
         valids = np.where(F != 0)[0]
-        F = F[valids]
-        A = A[valids]
-        X = np.dot(A.T, F) / M
+        F1 = F[valids]
+        A1 = A[valids]
+        X = np.dot(A1.T, F1) / M
     else:
-        X = np.dot(np.linalg.inv(np.dot(A.T, A) + np.ones((M, M))), np.dot(A.T, F))
+        X = np.dot(A.T, F) / M
 
-    if scale:
-        X *= M
+    # /!\ DANGER /!\
+    # if scale:
+    #     X *= M
+    # /!\ DANGER /!\
 
     X_dict = {node: X[index, 0] for index, node in enumerate(nodes)}
 
-    if return_inconsistency:
-        inconsistency = np.linalg.norm(np.dot(A, X)) / np.linalg.norm(F)
-        return X_dict, inconsistency
+    if return_consistency:
+        consistency = np.linalg.norm(np.dot(A, X)) / np.linalg.norm(F)
+        return X_dict, consistency
     else:
         return X_dict
 
@@ -314,10 +323,7 @@ def trade_singles(log_prices, ts, iss, inv=False):
     return (1 - 2 * inv) * (log_prices[ts, iss - 1] - log_prices[ts + 1, iss - 1])
 
 
-T = TypeVar('T')
-
-
-def turnover_ratio(series: Iterable[Set[T]]):
+def turnover_ratio(series):
     turnovers = []
     S1 = set()
     for S2 in series:
@@ -340,3 +346,16 @@ def join_ts_profit(ts, profits):
         return [], []
     pprofits = partition_as(ts, profits)
     return np.array([[t, np.sum(profit, axis=0)] for t, profit in pprofits]).transpose()
+
+
+def optimized_trading_signal(log_prices, start_T=4, end_T=120, step_T=4, window_size=200):
+    D, N = log_prices.shape
+    for t in range(window_size, D + 1):
+        trading_signal_variances = np.zeros([len(range(start_T, end_T + step_T, step_T)), N])
+        for T_i, T in enumerate(range(start_T, end_T + step_T, step_T)):
+            log_price_means, log_price_vars = rolling_mean_variance(log_prices[t - window_size:t], T)
+            trading_signal = (log_prices[t - window_size + T - 1:t] - log_price_means) / np.sqrt(log_price_vars)
+            trading_signal_variances[T_i] = np.var(trading_signal, axis=0)
+        optimal_Ts = np.nanargmax(trading_signal_variances, axis=0) * step_T + start_T
+        
+
