@@ -1,29 +1,57 @@
-\begin{thebibliography}{3}
-\providecommand{\natexlab}[1]{#1}
-\providecommand{\url}[1]{\texttt{#1}}
-\expandafter\ifx\csname urlstyle\endcsname\relax
-  \providecommand{\doi}[1]{doi: #1}\else
-  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+\begin{thebibliography}{1}
+  \providebibliographyfont{name}{}%
+  \providebibliographyfont{lastname}{}%
+  \providebibliographyfont{title}{\emph}%
+  \providebibliographyfont{jtitle}{\btxtitlefont}%
+  \providebibliographyfont{etal}{\emph}%
+  \providebibliographyfont{journal}{}%
+  \providebibliographyfont{volume}{}%
+  \providebibliographyfont{ISBN}{\MakeUppercase}%
+  \providebibliographyfont{ISSN}{\MakeUppercase}%
+  \providebibliographyfont{url}{\url}%
+  \providebibliographyfont{numeral}{}%
+  \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
 
-\bibitem[Engle and Granger(1987)]{engle-granger}
-Robert~F. Engle and C.~W.~J. Granger.
-\newblock Co-integration and error correction: Representation, estimation, and
-  testing.
-\newblock 1987.
-\newblock URL \url{www.jstor.org/stable/pdf/1913236.pdf}.
+\expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
+\bibitem {finmat}
+\btxnamefont {\btxlastnamefont {Capinski}, Marek} \btxandlong {}\ \btxnamefont
+  {Tomasz \btxlastnamefont {Zastawniak}}\btxauthorcolon\ \btxtitlefont
+  {Mathematics for Finance: An Introduction to Financial Engineering}.
+\newblock \btxpublisherfont {Springer}, 2003\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {9780387142227,0-387-14222-3,1852333308}}}.
 
-\bibitem[Dickey and Fuller(1979)]{dickey-fuller}
-David~A. Dickey and Wayne~A. Fuller.
-\newblock Distribution of the estimators for autoregressive time series with a
-  unit root.
+\bibitem {engle-granger}
+\btxnamefont {\btxlastnamefont {Engle}, Robert\btxfnamespacelong F.}
+  \btxandlong {}\ \btxnamefont {C.\btxfnamespacelong W.\btxfnamespacelong J.
+  \btxlastnamefont {Granger}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {Co-integration and error correction: Representation, estimation, and
+  testing}{Co-Integration and Error Correction: Representation, Estimation, and
+  Testing}}.
+\newblock \btxjournalfont {Econometrica}, 1987.
+\newblock {\latintext
+  \btxurlfont{https://www.jstor.org/stable/pdf/1913236.pdf}}.
+
+\bibitem {dickey-fuller}
+\btxnamefont {\btxlastnamefont {Dickey}, David\btxfnamespacelong A.}
+  \btxandlong {}\ \btxnamefont {Wayne\btxfnamespacelong A. \btxlastnamefont
+  {Fuller}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Distribution of
+  the estimators for autoregressive time series with a unit root}{Distribution
+  of the Estimators for Autoregressive Time Series With a Unit Root}}.
 \newblock 1979.
-\newblock URL \url{https://www.jstor.org/stable/pdf/2286348.pdf}.
+\newblock {\latintext
+  \btxurlfont{https://www.jstor.org/stable/pdf/2286348.pdf}}.
 
-\bibitem[Čaklović(1991)]{potential}
-Lavoslav Čaklović.
-\newblock Decision making by potential method.
+\bibitem {inzeko}
+\btxnamefont {\btxlastnamefont {Sabolić}, Dubravko}\btxauthorcolon\
+  \btxtitlefont {Uvod u mikroekonomiku}.
+\newblock \btxpublisherfont {Bilješke s predavanja}, 2013.
+
+\bibitem {potential}
+\btxnamefont {\btxlastnamefont {Čaklović}, Lavoslav}\btxauthorcolon\
+  \btxjtitlefont {\btxifchangecase {Decision making by potential
+  method}{Decision Making by Potential Method}}.
 \newblock 1991.
-\newblock URL
-  \url{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.111.350}.
+\newblock {\latintext
+  \btxurlfont{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.111.350}}.
 
 \end{thebibliography}

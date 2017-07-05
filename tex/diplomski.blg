@@ -1,50 +1,51 @@
 This is BibTeX, Version 0.99d (TeX Live 2016/Arch Linux)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: diplomski.aux
-The style file: unsrtnat.bst
+The style file: babunsrt.bst
 Database file #1: literatura.bib
-Warning--empty journal in engle-granger
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Warning--empty language in finmat
 Warning--empty journal in dickey-fuller
 Warning--empty journal in potential
-You've used 3 entries,
-            2481 wiz_defined-function locations,
-            566 strings with 4906 characters,
-and the built_in function-call counts, 929 in all, are:
-= -- 78
-> -- 37
-< -- 3
-+ -- 16
-- -- 10
-* -- 53
-:= -- 158
-add.period$ -- 12
-call.type$ -- 3
-change.case$ -- 6
-chr.to.int$ -- 3
-cite$ -- 6
-duplicate$ -- 54
-empty$ -- 85
-format.name$ -- 17
-if$ -- 190
-int.to.chr$ -- 1
-int.to.str$ -- 4
-missing$ -- 3
-newline$ -- 26
-num.names$ -- 9
-pop$ -- 30
+You've used 5 entries,
+            2465 wiz_defined-function locations,
+            608 strings with 6152 characters,
+and the built_in function-call counts, 1119 in all, are:
+= -- 80
+> -- 32
+< -- 0
++ -- 13
+- -- 8
+* -- 106
+:= -- 154
+add.period$ -- 13
+call.type$ -- 5
+change.case$ -- 3
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 75
+empty$ -- 135
+format.name$ -- 22
+if$ -- 244
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 10
+newline$ -- 39
+num.names$ -- 5
+pop$ -- 33
 preamble$ -- 1
-purify$ -- 3
+purify$ -- 0
 quote$ -- 0
-skip$ -- 36
+skip$ -- 25
 stack$ -- 0
-substring$ -- 6
-swap$ -- 3
+substring$ -- 0
+swap$ -- 24
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 21
+type$ -- 0
 warning$ -- 3
-while$ -- 6
-width$ -- 0
-write$ -- 46
+while$ -- 5
+width$ -- 6
+write$ -- 65
 (There were 3 warnings)
