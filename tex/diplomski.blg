@@ -5,38 +5,37 @@ The style file: babunsrt.bst
 Database file #1: literatura.bib
 Reallocated singl_function (elt_size=8) to 100 items from 50.
 Warning--empty language in finmat
-Warning--empty journal in dickey-fuller
-Warning--empty journal in potential
-You've used 5 entries,
+Warning--empty booktitle in potential
+You've used 6 entries,
             2465 wiz_defined-function locations,
-            608 strings with 6152 characters,
-and the built_in function-call counts, 1119 in all, are:
-= -- 80
-> -- 32
+            614 strings with 6483 characters,
+and the built_in function-call counts, 1235 in all, are:
+= -- 94
+> -- 24
 < -- 0
-+ -- 13
-- -- 8
-* -- 106
-:= -- 154
-add.period$ -- 13
-call.type$ -- 5
-change.case$ -- 3
++ -- 12
+- -- 6
+* -- 99
+:= -- 175
+add.period$ -- 16
+call.type$ -- 6
+change.case$ -- 4
 chr.to.int$ -- 0
 cite$ -- 8
-duplicate$ -- 75
-empty$ -- 135
-format.name$ -- 22
-if$ -- 244
+duplicate$ -- 86
+empty$ -- 163
+format.name$ -- 12
+if$ -- 280
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 10
-newline$ -- 39
-num.names$ -- 5
-pop$ -- 33
+int.to.str$ -- 6
+missing$ -- 11
+newline$ -- 44
+num.names$ -- 6
+pop$ -- 39
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 25
+skip$ -- 27
 stack$ -- 0
 substring$ -- 0
 swap$ -- 24
@@ -44,8 +43,8 @@ text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
-while$ -- 5
-width$ -- 6
-write$ -- 65
-(There were 3 warnings)
+warning$ -- 2
+while$ -- 6
+width$ -- 7
+write$ -- 77
+(There were 2 warnings)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  5 JUL 2017 10:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  5 JUL 2017 13:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -700,6 +700,9 @@ Package: fontenc 2017/02/22 v2.0g Standard LaTeX package
 File: t1enc.def 2017/02/22 v2.0g Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
+(/usr/share/texmf-dist/tex/generic/genmisc/nth.sty
+Package: nth 2002/02/27
+)
 (/usr/share/texmf-dist/tex/latex/babelbib/babelbib.sty
 Package: babelbib 2012/01/03 v1.31 babelbib: multilingual bibliographies (HH)
 \c@btxromaniannumeral=\count121
@@ -771,19 +774,19 @@ Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 ) (./diplomski.aux)
 \openout1 = `diplomski.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 55.
-LaTeX Font Info:    ... okay on input line 55.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 55.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 64.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -885,7 +888,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 55.
+LaTeX Info: Redefining \microtypecontext on input line 64.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -909,7 +912,7 @@ babelbib extension \btxifchangecaseoff added to \extrascroatian
 babelbib: Load BibTeX extensions \bibscroatian for croatian
 babelbib: Set language for keywords in the bibliography fixed to croatian
 babelbib: Set language for keywords in the bibliography fixed to croatian
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 66.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 75.
 (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -917,35 +920,35 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 66.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 75.
 
 (/usr/share/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 66.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 75.
 
 (/usr/share/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 66.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 75.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 66.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 75.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 66.
+(Font)              <14.4> on input line 75.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 66.
+(Font)              <10> on input line 75.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 66.
-LaTeX Font Info:    Try loading font information for U+msa on input line 66.
+(Font)              <7> on input line 75.
+LaTeX Font Info:    Try loading font information for U+msa on input line 75.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -953,7 +956,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 66.
+LaTeX Font Info:    Try loading font information for U+msb on input line 75.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -961,7 +964,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 66.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 75.
 
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -996,127 +999,138 @@ Poglavlje 2.
 Poglavlje 3.
 [4
 
-] <graphics/ab-prices.png, id=41, 712.6625pt x 470.75874pt>
-File: graphics/ab-prices.png Graphic file (type png)
+] <graphics/ab-prices.pdf, id=41, 891.33pt x 588.1975pt>
+File: graphics/ab-prices.pdf Graphic file (type pdf)
 
-<use graphics/ab-prices.png>
-Package pdftex.def Info: graphics/ab-prices.png used on input line 194.
-(pdftex.def)             Requested size: 412.56497pt x 272.52307pt.
+<use graphics/ab-prices.pdf>
+Package pdftex.def Info: graphics/ab-prices.pdf used on input line 203.
+(pdftex.def)             Requested size: 412.56497pt x 272.25249pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 199.
+(Font)              <10.95> on input line 208.
 
-<graphics/ab-prices-norm.png, id=43, 711.65875pt x 470.75874pt>
-File: graphics/ab-prices-norm.png Graphic file (type png)
+<graphics/ab-prices-norm.pdf, id=42, 889.3225pt x 588.1975pt>
+File: graphics/ab-prices-norm.pdf Graphic file (type pdf)
 
-<use graphics/ab-prices-norm.png>
-Package pdftex.def Info: graphics/ab-prices-norm.png used on input line 205.
-(pdftex.def)             Requested size: 412.56497pt x 272.90378pt.
+<use graphics/ab-prices-norm.pdf>
+Package pdftex.def Info: graphics/ab-prices-norm.pdf used on input line 214.
+(pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
 
-<graphics/ab-prices-norm-diff.png, id=44, 711.65875pt x 470.75874pt>
-File: graphics/ab-prices-norm-diff.png Graphic file (type png)
+<graphics/ab-prices-norm-diff.pdf, id=43, 889.3225pt x 588.1975pt>
+File: graphics/ab-prices-norm-diff.pdf Graphic file (type pdf)
 
-<use graphics/ab-prices-norm-diff.png>
-Package pdftex.def Info: graphics/ab-prices-norm-diff.png used on input line 21
-4.
-(pdftex.def)             Requested size: 412.56497pt x 272.90378pt.
- [5] [6 <./graphics/ab-prices.png>]
-[7 <./graphics/ab-prices-norm.png> <./graphics/ab-prices-norm-diff.png>]
-<graphics/diff.png, id=62, 718.685pt x 470.75874pt>
-File: graphics/diff.png Graphic file (type png)
- <use graphics/diff.png>
-Package pdftex.def Info: graphics/diff.png used on input line 235.
-(pdftex.def)             Requested size: 412.56497pt x 270.246pt.
+<use graphics/ab-prices-norm-diff.pdf>
+Package pdftex.def Info: graphics/ab-prices-norm-diff.pdf used on input line 22
+3.
+(pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
+ [5] [6 <./graphics/ab-prices.pdf>]
+[7 <./graphics/ab-prices-norm.pdf> <./graphics/ab-prices-norm-diff.pdf
 
-<graphics/diff-norm.png, id=63, 711.65875pt x 470.75874pt>
-File: graphics/diff-norm.png Graphic file (type png)
+pdfTeX warning: /usr/bin/pdflatex (file ./graphics/ab-prices-norm-diff.pdf): PD
+F inclusion: multiple pdfs with page group included in a single page
+>] <graphics/diff.pdf, id=63, 898.35625pt x 588.1975pt>
+File: graphics/diff.pdf Graphic file (type pdf)
 
-<use graphics/diff-norm.png>
-Package pdftex.def Info: graphics/diff-norm.png used on input line 242.
-(pdftex.def)             Requested size: 412.56497pt x 272.90378pt.
- [8 <./graphics/diff.png>] [9 <./graphics/diff-norm.png>] [10] <graphics/residu
-al.png, id=77, 720.6925pt x 470.75874pt>
-File: graphics/residual.png Graphic file (type png)
+<use graphics/diff.pdf>
+Package pdftex.def Info: graphics/diff.pdf used on input line 244.
+(pdftex.def)             Requested size: 412.56497pt x 270.12537pt.
 
-<use graphics/residual.png>
-Package pdftex.def Info: graphics/residual.png used on input line 315.
-(pdftex.def)             Requested size: 412.56497pt x 269.48459pt.
- [11 <./graphics/residual.png>] [12] [13]
-<graphics/pref-flow-graph.pdf, id=89, 350.30875pt x 355.3275pt>
+<graphics/diff-norm.pdf, id=64, 889.3225pt x 588.1975pt>
+File: graphics/diff-norm.pdf Graphic file (type pdf)
+
+<use graphics/diff-norm.pdf>
+Package pdftex.def Info: graphics/diff-norm.pdf used on input line 251.
+(pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
+ [8 <./graphics/diff.pdf>] [9 <./graphics/diff-norm.pdf>] [10] <graphics/residu
+al.pdf, id=80, 900.36375pt x 588.1975pt>
+File: graphics/residual.pdf Graphic file (type pdf)
+
+<use graphics/residual.pdf>
+Package pdftex.def Info: graphics/residual.pdf used on input line 324.
+(pdftex.def)             Requested size: 412.56497pt x 269.52403pt.
+ [11 <./graphics/residual.pdf>] [12] [13]
+<graphics/pref-flow-graph.pdf, id=93, 350.30875pt x 355.3275pt>
 File: graphics/pref-flow-graph.pdf Graphic file (type pdf)
 
 <use graphics/pref-flow-graph.pdf>
-Package pdftex.def Info: graphics/pref-flow-graph.pdf used on input line 399.
+Package pdftex.def Info: graphics/pref-flow-graph.pdf used on input line 408.
 (pdftex.def)             Requested size: 268.1647pt x 272.02524pt.
  [14 <./graphics/pref-flow-graph.pdf>]
-[15] [16] [17] <graphics/graph-eg-1.png, id=120, 301.125pt x 301.125pt>
-File: graphics/graph-eg-1.png Graphic file (type png)
+[15] [16] [17] <graphics/graph-eg-1.pdf, id=124, 289.08pt x 258.9675pt>
+File: graphics/graph-eg-1.pdf Graphic file (type pdf)
 
-<use graphics/graph-eg-1.png>
-Package pdftex.def Info: graphics/graph-eg-1.png used on input line 592.
-(pdftex.def)             Requested size: 206.28249pt x 206.29234pt.
+<use graphics/graph-eg-1.pdf>
+Package pdftex.def Info: graphics/graph-eg-1.pdf used on input line 601.
+(pdftex.def)             Requested size: 206.28249pt x 184.79285pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[18] [19 <./graphics/graph-eg-1.png>]
-<graphics/graph-eg-2.png, id=128, 301.125pt x 301.125pt>
-File: graphics/graph-eg-2.png Graphic file (type png)
+[18] [19 <./graphics/graph-eg-1.pdf>]
+<graphics/graph-eg-2.pdf, id=145, 358.33875pt x 284.06125pt>
+File: graphics/graph-eg-2.pdf Graphic file (type pdf)
 
-<use graphics/graph-eg-2.png>
-Package pdftex.def Info: graphics/graph-eg-2.png used on input line 634.
-(pdftex.def)             Requested size: 206.28249pt x 206.29234pt.
- [20 <./graphics/graph-eg-2.png>] [21]
+<use graphics/graph-eg-2.pdf>
+Package pdftex.def Info: graphics/graph-eg-2.pdf used on input line 643.
+(pdftex.def)             Requested size: 255.37907pt x 202.44774pt.
+ [20 <./graphics/graph-eg-2.pdf>] [21]
 Poglavlje 4.
 [22
 
-] [23] <graphics/deviation-magnitude.png, id=143, 752.8125pt x 470.75874pt>
-File: graphics/deviation-magnitude.png Graphic file (type png)
+] [23] <graphics/deviation-magnitude.pdf, id=167, 941.5175pt x 588.1975pt>
+File: graphics/deviation-magnitude.pdf Graphic file (type pdf)
 
-<use graphics/deviation-magnitude.png>
-Package pdftex.def Info: graphics/deviation-magnitude.png used on input line 78
-5.
-(pdftex.def)             Requested size: 371.30595pt x 232.19664pt.
- [24 <./graphics/deviation-magnitude.png>] <graphics/trading-signal.png, id=148
-, 717.68124pt x 470.75874pt>
-File: graphics/trading-signal.png Graphic file (type png)
+<use graphics/deviation-magnitude.pdf>
+Package pdftex.def Info: graphics/deviation-magnitude.pdf used on input line 79
+4.
+(pdftex.def)             Requested size: 371.30595pt x 231.963pt.
+ [24 <./graphics/deviation-magnitude.pdf>] <graphics/trading-signal.pdf, id=173
+, 898.35625pt x 588.1975pt>
+File: graphics/trading-signal.pdf Graphic file (type pdf)
 
-<use graphics/trading-signal.png>
-Package pdftex.def Info: graphics/trading-signal.png used on input line 813.
-(pdftex.def)             Requested size: 412.56497pt x 270.62671pt.
+<use graphics/trading-signal.pdf>
+Package pdftex.def Info: graphics/trading-signal.pdf used on input line 822.
+(pdftex.def)             Requested size: 412.56497pt x 270.12537pt.
 
-<graphics/trading-prices.png, id=149, 718.685pt x 470.75874pt>
-File: graphics/trading-prices.png Graphic file (type png)
+<graphics/trading-prices.pdf, id=174, 897.3525pt x 588.1975pt>
+File: graphics/trading-prices.pdf Graphic file (type pdf)
 
-<use graphics/trading-prices.png>
-Package pdftex.def Info: graphics/trading-prices.png used on input line 820.
-(pdftex.def)             Requested size: 412.56497pt x 270.246pt.
+<use graphics/trading-prices.pdf>
+Package pdftex.def Info: graphics/trading-prices.pdf used on input line 829.
+(pdftex.def)             Requested size: 412.56497pt x 270.42155pt.
 
-<graphics/trading-diffs.png, id=150, 726.715pt x 470.75874pt>
-File: graphics/trading-diffs.png Graphic file (type png)
+<graphics/trading-diffs.pdf, id=175, 908.39375pt x 588.1975pt>
+File: graphics/trading-diffs.pdf Graphic file (type pdf)
 
-<use graphics/trading-diffs.png>
-Package pdftex.def Info: graphics/trading-diffs.png used on input line 827.
-(pdftex.def)             Requested size: 412.56497pt x 267.2578pt.
- [25] [26 <./graphics/trading-signal.png>]
-[27 <./graphics/trading-prices.png> <./graphics/trading-diffs.png>] [28]
-[29]
+<use graphics/trading-diffs.pdf>
+Package pdftex.def Info: graphics/trading-diffs.pdf used on input line 836.
+(pdftex.def)             Requested size: 412.56497pt x 267.14561pt.
+ [25] [26 <./graphics/trading-signal.pdf>]
+[27 <./graphics/trading-prices.pdf> <./graphics/trading-diffs.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./graphics/trading-diffs.pdf): PDF incl
+usion: multiple pdfs with page group included in a single page
+>] [28] [29]
 Poglavlje 5.
-(./results-1.tex) <graphics/result1.png, id=171, 709.65125pt x 470.75874pt>
-File: graphics/result1.png Graphic file (type png)
+(./results-1.tex) <graphics/results1.pdf, id=199, 887.315pt x 588.1975pt>
+File: graphics/results1.pdf Graphic file (type pdf)
 
-<use graphics/result1.png>
-Package pdftex.def Info: graphics/result1.png used on input line 910.
-(pdftex.def)             Requested size: 412.56497pt x 273.68675pt.
+<use graphics/results1.pdf>
+Package pdftex.def Info: graphics/results1.pdf used on input line 919.
+(pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 
-<graphics/sharpes1.png, id=172, 711.65875pt x 470.75874pt>
-File: graphics/sharpes1.png Graphic file (type png)
+<graphics/sharpe1.pdf, id=200, 889.3225pt x 588.1975pt>
+File: graphics/sharpe1.pdf Graphic file (type pdf)
 
-<use graphics/sharpes1.png>
-Package pdftex.def Info: graphics/sharpes1.png used on input line 917.
-(pdftex.def)             Requested size: 412.56497pt x 272.90378pt.
+<use graphics/sharpe1.pdf>
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 926.
+(pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
  [30
 
-] [31 <./graphics/result1.png> <./graphics/sharpes1.png>] [32]
+] [31 <./graphics/results1.pdf> <./graphics/sharpe1.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./graphics/sharpe1.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
+>] [32]
 Poglavlje 6.
 (./diplomski.bbl [33
 
@@ -1134,8 +1148,8 @@ babelbib: Using the BibTeX style's default font for `url'.
 babelbib: Using the BibTeX style's default font for `numeral'.
 
 Underfull \hbox (badness 10000) in paragraph at lines 17--22
-[]\T1/lmr/m/n/12 (+25) Capinski, Ma-rek i To-masz Zas-tawniak: \T1/lmr/m/it/12 
-(+25) Mat-he-ma-tics for Fi-
+[]\T1/lmr/m/n/12 (+25) Capinski, Ma-rek i Zas-tawniak, To-masz: \T1/lmr/m/it/12
+ (+25) Mat-he-ma-tics for Fi-
  []
 
 
@@ -1144,7 +1158,7 @@ Underfull \hbox (badness 1983) in paragraph at lines 17--22
 1/lmr/m/n/12 (+25) .  Sprin-ger, 2003,
  []
 
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 32.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 31.
 (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1152,6 +1166,18 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+
+Underfull \hbox (badness 3735) in paragraph at lines 59--65
+[]\T1/lmr/m/n/12 (+25) ƒaklovi¢, La-vos-lav: \T1/lmr/m/it/12 (+25) De-ci-sion M
+a-king by Po-ten-tial Met-hod\T1/lmr/m/n/12 (+25) .  2003.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--65
+\T1/lmtt/m/n/12 h t t p s : / / p d f s . s e m a n t i c s c h o l a r . o r g
+ /3 f 2 a /12 f 13 a 36 e f89 c 475 a b51 a
+ []
+
 ) [34
 
 ]
@@ -1160,13 +1186,13 @@ Poglavlje A.
 
 ] [36] [37] [38] (./diplomski.aux) ) 
 Here is how much of TeX's memory you used:
- 9197 strings out of 493013
- 138146 string characters out of 6139317
- 253610 words of memory out of 5000000
- 12300 multiletter control sequences out of 15000+600000
- 148957 words of font info for 192 fonts, out of 8000000 for 9000
+ 9218 strings out of 493013
+ 138476 string characters out of 6139317
+ 253868 words of memory out of 5000000
+ 12314 multiletter control sequences out of 15000+600000
+ 149127 words of font info for 194 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,14n,42p,867b,468s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 43i,14n,42p,867b,506s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/l
 m-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-
 dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm
@@ -1187,10 +1213,10 @@ m/lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/sh
 are/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/typ
 e1/public/lm/lmtt12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symb
 ols/msbm10.pfb>
-Output written on diplomski.pdf (42 pages, 1018792 bytes).
+Output written on diplomski.pdf (42 pages, 655769 bytes).
 PDF statistics:
- 281 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
+ 312 PDF objects out of 1000 (max. 8388607)
+ 219 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  40524 words of extra memory for PDF output out of 42996 (max. 10000000)
 

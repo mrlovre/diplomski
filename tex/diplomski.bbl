@@ -14,16 +14,15 @@
 
 \expandafter\btxselectlanguage\expandafter {\btxfallbacklanguage}
 \bibitem {finmat}
-\btxnamefont {\btxlastnamefont {Capinski}, Marek} \btxandlong {}\ \btxnamefont
-  {Tomasz \btxlastnamefont {Zastawniak}}\btxauthorcolon\ \btxtitlefont
-  {Mathematics for Finance: An Introduction to Financial Engineering}.
+\btxnamefont {\btxlastnamefont {Capinski},~Marek i~Zastawniak,
+  Tomasz}\btxauthorcolon\ \btxtitlefont {Mathematics for Finance: An
+  Introduction to Financial Engineering}.
 \newblock \btxpublisherfont {Springer}, 2003\ifbtxprintISBN {,
   \mbox{\btxISBN~\btxISBNfont {9780387142227,0-387-14222-3,1852333308}}}.
 
 \bibitem {engle-granger}
-\btxnamefont {\btxlastnamefont {Engle}, Robert\btxfnamespacelong F.}
-  \btxandlong {}\ \btxnamefont {C.\btxfnamespacelong W.\btxfnamespacelong J.
-  \btxlastnamefont {Granger}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+\btxnamefont {\btxlastnamefont {Engle},~R. F. i~Granger, C.\btxfnamespacelong
+  W.\btxfnamespacelong J.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
   {Co-integration and error correction: Representation, estimation, and
   testing}{Co-Integration and Error Correction: Representation, Estimation, and
   Testing}}.
@@ -32,12 +31,13 @@
   \btxurlfont{https://www.jstor.org/stable/pdf/1913236.pdf}}.
 
 \bibitem {dickey-fuller}
-\btxnamefont {\btxlastnamefont {Dickey}, David\btxfnamespacelong A.}
-  \btxandlong {}\ \btxnamefont {Wayne\btxfnamespacelong A. \btxlastnamefont
-  {Fuller}}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Distribution of
-  the estimators for autoregressive time series with a unit root}{Distribution
-  of the Estimators for Autoregressive Time Series With a Unit Root}}.
-\newblock 1979.
+\btxnamefont {\btxlastnamefont {Dickey},~David A. i~Fuller,
+  Wayne\btxfnamespacelong A.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
+  {Distribution of the estimators for autoregressive time series with a unit
+  root}{Distribution of the Estimators for Autoregressive Time Series With a
+  Unit Root}}.
+\newblock \btxjournalfont {Journal of the American Statistical Association 74,
+  no. 366}, 1979.
 \newblock {\latintext
   \btxurlfont{https://www.jstor.org/stable/pdf/2286348.pdf}}.
 
@@ -46,12 +46,21 @@
   \btxtitlefont {Uvod u mikroekonomiku}.
 \newblock \btxpublisherfont {Bilješke s predavanja}, 2013.
 
+\bibitem {metpotexact}
+\btxnamefont {\btxlastnamefont {Čaklović},~Lavoslav i~Šego,
+  Vedran}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase {Potential method
+  applied on exact data}{Potential Method Applied on Exact Data}}.
+\newblock \btxjournalfont {Proceedings of 9\textsuperscript{th} International
+  Conference on Opreational Research KOI2002, Trogir}, 2002.
+\newblock {\latintext
+  \btxurlfont{https://pdfs.semanticscholar.org/75a3/364feaf512ccb994dfe3f0775f25a31c487b.pdf}}.
+
 \bibitem {potential}
 \btxnamefont {\btxlastnamefont {Čaklović}, Lavoslav}\btxauthorcolon\
-  \btxjtitlefont {\btxifchangecase {Decision making by potential
+  \btxtitlefont {\btxifchangecase {Decision making by potential
   method}{Decision Making by Potential Method}}.
-\newblock 1991.
+\newblock 2003.
 \newblock {\latintext
-  \btxurlfont{http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.111.350}}.
+  \btxurlfont{https://pdfs.semanticscholar.org/3f2a/12f13a36ef89c475ab51ad364086ec5b415b.pdf}}.
 
 \end{thebibliography}

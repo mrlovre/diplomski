@@ -12,9 +12,18 @@
 \usepackage{float}
 \usepackage{mathtools}
 
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
+  \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
+  \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
+  \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
+  \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
+  \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
+  \do\Y\do\Z}
+
 \usepackage[croatian]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{nth}
 
 \usepackage{natbib}
 \usepackage[fixlanguage]{babelbib}
@@ -156,7 +165,7 @@
   
   Trivijalan primjer arbitraže je situacija u kojoj se ista vrijednosnica nudi po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
   
-  U statističkoj arbitraži cilj je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
+  Cilj statističke arbitraže je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
   Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 100\%.
   Tako se može dogoditi da bude $V^{\q(t\w)} < 0$ za neke $t$.
   Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\q(t\w)} > 0} \to 1$.
@@ -191,7 +200,7 @@
   
   \begin{figure}[p]
     \centering
-    \includegraphics[width=1.0\linewidth]{graphics/ab-prices.png}
+    \includegraphics[width=1.0\linewidth]{graphics/ab-prices.pdf}
     \caption{
       Prikaz kretanja cijena dviju vrijednosnica, $X$ i $Y$, u razdoblju od 500 dana.
       Plavom bojom prikazana je cijena $P_X^{(t)}$, a zelenom cijena $P_Y^{(t)}$.
@@ -202,7 +211,7 @@
 
   \begin{figure}[p]
     \centering
-    \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm.png}
+    \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm.pdf}
     \caption{
       Plavo: normalizirana cijena $\norm{P}_X^{(t)}$, zeleno: normalizirana cijena $\norm{P}_Y^{(t)}$.
     }
@@ -211,7 +220,7 @@
 
   \begin{figure}[p]
     \centering
-    \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm-diff.png}
+    \includegraphics[width=1.0\linewidth]{graphics/ab-prices-norm-diff.pdf}
     \caption{
       Razlika normaliziranih cijena, $D_{X,Y}^{\q(t\w)}$.}
     \label{fig:ab-prices-norm-diff}
@@ -232,14 +241,14 @@
   
   \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{graphics/diff.png}
+    \includegraphics[width=1.0\linewidth]{graphics/diff.pdf}
     \caption{Tamnijom bojom prikazana je razlika nenormaliziranih cijena $d_{X,Y}^{(t)}$, a svijetlijom punom linijom očekivanje i crtkanom linijom udaljenost od očekivanja za jednu devijaciju.}
     \label{fig:diff}
   \end{figure}
 
   \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{graphics/diff-norm.png}
+    \includegraphics[width=1.0\linewidth]{graphics/diff-norm.pdf}
     \caption{
       Normalizirana razlika cijena, $\norm{d}_{X,Y}^{\q(t\w)}$.}
     \label{fig:diff-norm}
@@ -312,7 +321,7 @@
   
   \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\linewidth]{graphics/residual.png}
+    \includegraphics[width=1.0\linewidth]{graphics/residual.pdf}
     \caption{
       Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$ u slučaju vrijednosnica $X$ i $Y$.}
     \label{fig:residual}
@@ -337,8 +346,6 @@
 %  Tretiranje parova dionica zasebno, nedostaje interakcija između svih dionica zajedno.
 
   \section{Relacija preferencije i funkcija korisnosti}
-  Relacija preferencije koristi se u mikroekonomici u svrhu vrednovanja dobara \citep{inzeko}.
-
 %  Let $\Omega$ be any set of entities.
   Neka je $\Omega$ skup općenitih dobara.
 %  Preference relation $\succ$ defined over $\Omega \times \Omega$ is a strict weak ordering that describes the way humans prefer some entity over another.
@@ -363,6 +370,7 @@
 %  We naturally assume this kind of relation we describe relationships among the assets.
 %  Determining that some asset is preferred over another is easier than assigning a preference rank to each asset individually, especially for a larger number of assets.
 %  However, the latter is more useful for decision making, and therefore it is desirable to find a way of sorting assets in the order of preference.
+  Relacija preferencije koristi se u mikroekonomici u svrhu vrednovanja dobara \citep{inzeko}.
   Ovakva vrsta relacije prirodno opisuje odnose među različitim vrijednosnicama, npr. dionica $A$ u nekom trenutku može biti više preferirana od dionice $B$.
   Razlog tome je što je za čovjeka lakše ocijeniti odnos (više, manje, jednako preferirano) između svakog para vrijednosnica, nego pridijeliti svakoj vrijednosnici individualnu mjeru preferencije, pogotovo ako se radi o velikom broju vrijednosnica.
   No ipak, u svrhu konstruiranja portfelja korisnije je posjedovati individualnu mjeru preferencije za svaku vrijednosnicu.
@@ -374,6 +382,7 @@
   Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, tako da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega \colon x \succ y \Leftrightarrow U\q(x\w) > U\q(y\w)$.
   Posljedično, za indiferentnost vrijedi $\forall x, y \in \Omega \colon x \sim y \Leftrightarrow U\q(x\w) = U\q(y\w)$.
   Jedno takvo preslikavanje ostvaruje se korištenjem metode potencijala koja je opisana u poglavlju \ref{sec:metpot}.
+  Ekvivalencija metode potencijala i funkcije korisnosti pokazana je u radu \citep{metpotexact}.
   Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također unosi i mjeru intenziteta preferencije prema nekoj vrijednosnici, što znači da nosi više informacija od same relacije.
 
   \section{Graf toka preferencija}
@@ -589,9 +598,9 @@
   Isto je i s putevima od $D$ do $C$: duž puta $D \rightarrow C$ zbroj težina je jednak 2, a duž puta $D \rightarrow B \rightarrow C$ zbroj težina je jednak 5, što je čak i veće nepodudaranje nego u prethodnom slučaju.
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\linewidth]{graphics/graph-eg-1.png}
+    \includegraphics[width=0.5\linewidth]{graphics/graph-eg-1.pdf}
     \caption{Primjer nekonzistentnog grafa prije izračunavanja potencijala čvorova.
-    U čvorove su upisani nazivi vrijednosnica, a na bridove su upisane težine koje opisuju tok preferencije.}
+    U čvorove su upisane oznake vrijednosnica, a na bridove su upisane težine koje opisuju tok preferencije.}
     \label{fig:graph-eg-1}
   \end{figure}
 
@@ -631,7 +640,7 @@
   
   \begin{figure}[h]
     \centering
-    \includegraphics[width=0.5\linewidth]{graphics/graph-eg-2.png}
+    \includegraphics[width=0.619\linewidth]{graphics/graph-eg-2.pdf}
     \caption{Primjer najbliže konzistentne rekonstrukcije grafa nakon izračunavanja potencijala čvorova.}
     \label{fig:graph-eg-2}
   \end{figure}
@@ -782,7 +791,7 @@
   
   \begin{figure}[htb]
     \centering
-    \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.png}
+    \includegraphics[width=0.9\columnwidth]{graphics/deviation-magnitude.pdf}
     \caption{
 %      Log price difference between a pair of assets $(i, j)$ during a period of $T + 1$ time steps, where $T = 120$.
 %      Dashed and dotted line represents mean value, and region between two dashed lines represents $\alpha$ standard deviation range from mean value, here $\alpha = 1$; both are calculated in the first $T$ time steps.
@@ -810,21 +819,21 @@
   
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/trading-signal.png}
+    \includegraphics[width=\linewidth]{graphics/trading-signal.pdf}
     \caption{Signal trgovanja $\Gamma_{X, Y}\q(t \w)$ za vrijednosnice $X$ i $Y$, dobiven korištenjem $T = 120$. Prag $\alpha$ je postavljen na 3. U trenutku $t_1 = 60$ (označeno prvom zelenom točkom) signal trgovanja prelazi zadani prag i ostaje u aktivnom području (čiji je razspon označen zelenom bojom) do trenutka $t_2 = 69$ (označeno drugom zelenom točkom). Kako je signal u aktivnom području negativan, zauzima se kratka pozicija u vrijednosnici $X$ i duga u $Y$, a po izlasku iz aktivnog područja te pozicije se zatvaraju.}
     \label{fig:trading-signal}
   \end{figure}
   
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/trading-prices.png}
+    \includegraphics[width=\linewidth]{graphics/trading-prices.pdf}
     \caption{Kretanje logaritamskih cijena vrijednosnica $X$ (plavo) i $Y$ (zeleno). Crtkanim linijama označeno je područje u kojem je signal trgovanja aktivan. Uočljiva je sličnost u ponašanju kretanja cijena prije i poslije aktivnog područja signala trgovanja.}
     \label{fig:trading-prices}
   \end{figure}
 
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/trading-diffs.png}
+    \includegraphics[width=\linewidth]{graphics/trading-diffs.pdf}
     \caption{Razlika logaritamskih cijena vrijednosnica $X$ i $Y$. Početak i kraj aktivnog područja označen je zelenim točkama. Ukupan profit jednak je razlici iznosa na kraju i iznosa na početku aktivnog područja i iznosi 0.0889 u ovom primjeru.}
     \label{fig:trading-diffs}
   \end{figure}
@@ -907,14 +916,14 @@
   
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/result1.png}
+    \includegraphics[width=\linewidth]{graphics/results1.pdf}
     \caption{Rezultati simulacija trgovanja nad podskupom dionica S\&P 500 indeksa. Plavom bojom je prikazana krivulja kumulativnog profita bez uključenih troškova trgovanja, a zelenom uz troškove trgovanja od 0.10\%.}
     \label{fig:result1}
   \end{figure}
 
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/sharpes1.png}
+    \includegraphics[width=\linewidth]{graphics/sharpe1.pdf}
     \caption{Sharpeov omjer izražen na godišnjoj razini, na prozorima veličine $T = 60$, za simulaciju trgovanja nad podskupom dionica S\&P 500 indeksa.}
     \label{fig:sharpe1}
   \end{figure}
