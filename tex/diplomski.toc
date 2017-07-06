@@ -2,7 +2,7 @@
 \contentsline {chapter}{\numberline {1}Uvod}{1}
 \contentsline {chapter}{\numberline {2}Osnovni financijski pojmovi}{2}
 \contentsline {section}{\numberline {2.1}Osnovne pretpostavke modela trgovanja}{3}
-\contentsline {section}{\numberline {2.2}Uvjeti nearbitra\IeC {\v z}e}{3}
+\contentsline {section}{\numberline {2.2}Princip nearbitra\IeC {\v z}e}{3}
 \contentsline {chapter}{\numberline {3}Metode i koncepti}{4}
 \contentsline {section}{\numberline {3.1}Statisti\IeC {\v c}ka arbitra\IeC {\v z}a}{4}
 \contentsline {subsection}{\numberline {3.1.1}Razlika normaliziranih log-cijena}{5}

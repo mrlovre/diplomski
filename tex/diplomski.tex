@@ -111,15 +111,27 @@
   Ovdje su navedeni osnovni financijski pojmovi koji su korišteni u radu, te su dane njihove definicije.
   
   \begin{description}
-    \item[Vrijednosnica] Vrijednosnica, ili vrijednosni papir \engl{financial asset} je 
-    \item[Portfelj]
-    \item[Likvidnost]
-    \item[Solventnost] 
-    \item[Indeks]
-    \item[Logaritamska cijena] dobiva se jednostavnim logaritmiranjem obične cijene.
+    \item[Vrijednosnica.] Vrijednosnica, ili vrijednosni papir \engl{financial asset} je 
+    \item[Portfelj.] 
+    \item[Likvidnost.]
+    Tržište je likvidno za neku vrijednosnicu ako je na njemu moguće trgovati gotovo svakom količinom te vrijednosnice u bilo kojem trenutku; odnosno, na njemu uvijek postoji dovoljna ponuda i potražnja za određenim vrijednosnicama.
+    \item[Divizibilnost.]
+    Divizibilnost je mogućnost da u portfelju budu prisutne količine vrijednosnica koje nisu cijeli brojevi.
+    \item[Pozicija.]
+    Pozicija označava stanje određene vrijednosnice koja je u portfelju.
+    Pozicija može biti duga \engl{long}, kratka \engl{short} i neutralna \engl{neutral}.
+    U dugoj poziciji, količina vrijednosnice u portfelju je pozitivna, odnosno investitor posjeduje određenu količinu kupljene vrijednosnice.
+    Suprotno tome, u kratkoj poziciji, količina vrijednosnice u portfelju je negativna, što znači da je investitor prodao određenu količinu vrijednosnice koju nije posjedovao, i time se obavezao na kasniju kupnju iste količine.
+    Na nekim tržištima nije dopuštena kratka pozicija u vrijednosnicama.
+    Neutralna pozicija označava da se u portfelju ne nalazi ta vrijednosnica.
+    Kada se govori o zatvaranju pozicije, radi se o prelasku u neutralnu poziciju.
+    
+    \item[Solventnost.] Solventnost označava da je vrijednost portfelja $V\q(t\w) \ge 0$ u svakom trenutku $t$. Portfelj koji zadovoljava svojstvo solventnosti je ostvariv portfelj; u suprotnom je neostvariv portfelj.
+    \item[Indeks.]
+    \item[Logaritamska cijena.] Logaritamska cijena dobiva se jednostavnim logaritmiranjem obične cijene.
       Koristi se pri računanju logaritamskog povrata zbog svojstva prebacivanja kvocijenta u razliku: $\log\q(\frac{y}{x}\w) = \log\q(y\w) - \log\q(x\w)$.
-    \item[Povrat]
-      $r\q(t_1, t_2\w)$ je udio promjene cijene između dva vremenska trenutka $t_1$ i $t_2$:
+    \item[Povrat.]    
+      Povrat $r\q(t_1, t_2\w)$ je udio promjene cijene između dva vremenska trenutka $t_1$ i $t_2$:
       \begin{equation*}
         r\q(t_1, t_2\w) = \frac{V\q(t_2\w) - V\q(t_1\w)}{V\q(t_1\w)}.
       \end{equation*}
@@ -131,7 +143,7 @@
       \begin{equation*}
         V\q(t_1\w) e^{R\q(t_1, t_2\w)} = V\q(t_2\w).
       \end{equation*}
-      Vrijedi da je $r\q(t_1, t_2\w) \approx R\q(t_1, t_2\w)$ kada je $V\q(t_1\w) \approx V\q(t_2\w)$:
+      Vrijedi da je $r\q(t_1, t_2\w) \approx R\q(t_1, t_2\w)$ kada je $V\q(t_1\w) \approx V\q(t_2\w)$ (što je čest slučaj kada se promatraju dnevne cijene):
       \begin{equation*}
         r\q(t_1, t_2\w) = \frac{V\q(t_2\w)}{V\q(t_1\w)} - 1 \approx \log\q(1 + \frac{V\q(t_2\w)}{V\q(t_1\w)} - 1\w) = \log\q(\frac{V\q(t_2\w)}{V\q(t_1\w)}\w) = R\q(t_1, t_2\w),
       \end{equation*}
@@ -144,11 +156,10 @@
     \item 
   \end{enumerate}
   
-  \section{Uvjeti nearbitraže}
+  \section{Princip nearbitraže}
   
-  \pagebreak
 
-\chapter{Metode i koncepti}
+  \chapter{Metode i koncepti}
   Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu, kao i definicije korištenih osnovnih pojmova.
   
   \section{Statistička arbitraža}
@@ -300,7 +311,7 @@
   Postoji nekoliko metoda za provjeru kointegracije, najčešće korištene su Engle-Granger metoda, Johansen metoda i Phillips-Ouliaris metoda.
   Najjednostavnija od navedenih je Engle-Granger metoda, koja je opisana u nastavku.
   
-  Ideja metode Engle-Granger\citep{engle-granger} je u prvom koraku estimirati stacionaran proces $U\q[t\w]$ koji je linearna kombinacija cijena $P_X\q[t\w]$ i $P_Y\q[t\w]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran.
+  Ideja metode Engle-Granger je u prvom koraku estimirati stacionaran proces $U\q[t\w]$ koji je linearna kombinacija cijena $P_X\q[t\w]$ i $P_Y\q[t\w]$, zatim u drugom koraku provjeriti je li estimirani proces zaista stacionaran \citep{engle-granger}.
   Postupkom najmanjih kvadrata najprije se određuju procjene parametara $\mu$ i $\beta$, označene sa $\hat{\mu}$ i $\hat{\beta}$:
   \begin{equation}
   \hat{\mu}, \hat{\beta} = \argmin_{\mu, \beta} \q\{\sum_{\tau = t - T}^{t - 1} \q \lvert P_X\q[\tau\w] + \beta P_Y\q[\tau\w] -\mu \w \rvert^2\w\},
@@ -370,7 +381,7 @@
 %  We naturally assume this kind of relation we describe relationships among the assets.
 %  Determining that some asset is preferred over another is easier than assigning a preference rank to each asset individually, especially for a larger number of assets.
 %  However, the latter is more useful for decision making, and therefore it is desirable to find a way of sorting assets in the order of preference.
-  Relacija preferencije koristi se u mikroekonomici u svrhu vrednovanja dobara \citep{inzeko}.
+  Relacija preferencije koristi se u mikroekonomici u svrhu vrednovanja međusobnog odnosa različitih dobara \citep{inzeko}.
   Ovakva vrsta relacije prirodno opisuje odnose među različitim vrijednosnicama, npr. dionica $A$ u nekom trenutku može biti više preferirana od dionice $B$.
   Razlog tome je što je za čovjeka lakše ocijeniti odnos (više, manje, jednako preferirano) između svakog para vrijednosnica, nego pridijeliti svakoj vrijednosnici individualnu mjeru preferencije, pogotovo ako se radi o velikom broju vrijednosnica.
   No ipak, u svrhu konstruiranja portfelja korisnije je posjedovati individualnu mjeru preferencije za svaku vrijednosnicu.
@@ -379,8 +390,14 @@
 %  Utility function $U\colon \Omega \to \mathbb{R}$ is mapping from entities to real numbers, in such way that order of the mapping corresponds to the preference order of the entities, i.e. $\forall x, y \in \Omega, U(x) > U(y) \Rightarrow x \succ y$.
 %  One such mapping is obtained by using potential method that is described later in this paper.
 %  In addition to ordering of the entities, utility function also provides the intensity of preference for a particular entity, hence it is more informative when it comes to the decision making.
-  Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, tako da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi $\forall x, y \in \Omega \colon x \succ y \Leftrightarrow U\q(x\w) > U\q(y\w)$.
-  Posljedično, za indiferentnost vrijedi $\forall x, y \in \Omega \colon x \sim y \Leftrightarrow U\q(x\w) = U\q(y\w)$.
+  Funkcija korisnosti \engl{utility function} $U\colon \Omega \to \mathbb{R}$ je preslikavanje iz skupa dobara u skup realnih brojeva, tako da poredak preslikanih realnih brojeva odgovara poretku dobara prema individualnoj preferenciji, tj. vrijedi:
+  \begin{equation*}
+    \forall x, y \in \Omega \colon x \succ y \Leftrightarrow U\q(x\w) > U\q(y\w).
+  \end{equation*}
+  Posljedično, za indiferentnost vrijedi:
+  \begin{equation*}
+    \forall x, y \in \Omega \colon x \sim y \Leftrightarrow U\q(x\w) = U\q(y\w).
+  \end{equation*}
   Jedno takvo preslikavanje ostvaruje se korištenjem metode potencijala koja je opisana u poglavlju \ref{sec:metpot}.
   Ekvivalencija metode potencijala i funkcije korisnosti pokazana je u radu \citep{metpotexact}.
   Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također unosi i mjeru intenziteta preferencije prema nekoj vrijednosnici, što znači da nosi više informacija od same relacije.
@@ -576,7 +593,7 @@
 %  It is now possible to define a consistency measure $\kappa$ as follows:
   Rekonstruirani graf toka preferencije $\matr{f^*}$ u odnosu na originalni $\matr{f}$ može sadržavati neke nove, pa čak i izgubiti neke stare bridove.
   Dodatno, $\matr{B}$, $\matr{\phi^*}$, i $\matr{f}$ opisuju konzistentan graf $\graph{G}^*$ koji je najbliža konzistentna rekonstrukcija grafa $\graph{G}$.
-  Intrinzična konzistentnost u rekonstruiranom grafu je posljedica djelovanja matrice incidencije $B$: ona je linearni operator preslikavanja koji potencijale čvorova preslikava u odgovarajući tok preferencija.
+  Intrinzična konzistentnost u rekonstruiranom grafu je posljedica djelovanja matrice incidencije $\matr B$: ona je linearni operator preslikavanja u čijoj slici su konzistentni tokovi preferencija.
   
   Mjera konzistentnosti $\kappa$ definira se kao:
   \begin{equation}
@@ -859,7 +876,7 @@
   Granica mjere preferencije za vrijednosnice koje će biti uključene u portfelj je proporcionalna mjeri konzistentnosti $\kappa$.
   Ovisno o prirodi skupa vrijednosnica koji je na raspolaganju, mjera konzistentnosti može se preinačiti tako da algoritam bude više ili manje sklon diverzifikaciji portfelja, na sljedeći način:
   \begin{equation}
-  \kappa^\prime = a + (1 - a)\kappa^b,
+  \kappa^\prime = a + (1 - a)\cdot \kappa^b,
   \end{equation}
   gdje je $a \in [0, 1], b \in \mathbb{R}^+$.
   Za vrijednosti $a = 0$, $b = 1$, $\kappa^\prime$ postaje jednak $\kappa$.
