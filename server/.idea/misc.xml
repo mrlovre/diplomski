@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="IpnbSettings">
+    <option name="remote" value="true" />
+    <option name="username" value="Helena" />
+    <option name="workingDirectory" value="$PROJECT_DIR$" />
+    <option name="URL" value="https://161.53.64.145" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="zesoi-145" project-jdk-type="Python SDK" />
+</project>

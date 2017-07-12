@@ -10,6 +10,7 @@
 \usepackage{caption}
 \usepackage{rotating}
 \usepackage{float}
+\usepackage{bigdelim}
 \usepackage{mathtools}
 
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
@@ -118,10 +119,10 @@
     \item[Divizibilnost.]
     Divizibilnost je mogućnost da u portfelju budu prisutne količine vrijednosnica koje nisu cijeli brojevi.
     \item[Pozicija.]
-    Pozicija označava stanje određene vrijednosnice koja je u portfelju.
+    Pozicija označava stanje određene vrijednosnice u portfelju.
     Pozicija može biti duga \engl{long}, kratka \engl{short} i neutralna \engl{neutral}.
     U dugoj poziciji, količina vrijednosnice u portfelju je pozitivna, odnosno investitor posjeduje određenu količinu kupljene vrijednosnice.
-    Suprotno tome, u kratkoj poziciji, količina vrijednosnice u portfelju je negativna, što znači da je investitor prodao određenu količinu vrijednosnice koju nije posjedovao, i time se obavezao na kasniju kupnju iste količine.
+    Suprotno tome, u kratkoj poziciji, količina vrijednosnice u portfelju je negativna, što znači da je investitor prethodno prodao određenu količinu vrijednosnice koju nije posjedovao, i time se obavezao na kasniju kupnju iste količine.
     Na nekim tržištima nije dopuštena kratka pozicija u vrijednosnicama.
     Neutralna pozicija označava da se u portfelju ne nalazi ta vrijednosnica.
     Kada se govori o zatvaranju pozicije, radi se o prelasku u neutralnu poziciju.
@@ -339,19 +340,44 @@
   \end{figure}
   
   \subsection{Nedostaci statističke arbitraže}
-  Jedan od nedostataka statističke arbitraže jest generalno slaba preciznost izražena kao udio broja trgovanja koji rezultira pozitivnim profitom u ukupnom broju trgovanja.
+  Jedan od nedostataka statističke arbitraže jest relativno niska točnost: ako se odluke o trgovanju promatraju kao klasifikacijski problem predviđanja rasta ili pada cijene vrijednosnice.
+  Može se pretpostaviti da je broj trgovanja u kojima cijena raste i pada podjednak.
+  Preciznost $\mathit{Acc}$ se računa kao:
+  \begin{equation}
+    \mathit{Acc} = \frac{\mathit{TP} + \mathit{TN}}{\mathit{TP} + \mathit{FP} + \mathit{FN} + \mathit{TN}},
+  \end{equation}
+  gdje su $\mathit{TP}$, $\mathit{FP}$, $\mathit{FN}$, i $\mathit{TN}$ odgovarajući broj pogođenih ili promašenih predviđanja pada ili rasta cijene kako je opisano na slici \ref{fig:confusion_matrix}.
+  
+  \begin{figure}[h]
+    \centering
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{>{\centering}m{-1em} >{\centering}m{-1em} >{\centering}m{0.6em} >{\centering}m{2em}>{\centering\arraybackslash}m{2em}}
+      & & & \multicolumn{2}{c}{stvarno} \\[-1.8em]
+      & & & \multicolumn{2}{c}{\downbracefill} \\[-1.8em]
+      & & & raste & pada \\[-0.4em] \cline{4-5}
+      \parbox[s]{2mm}{\multirow{2}{*}{\rotatebox[origin=c]{90}{predviđeno\hspace{0.5em}}}} & \ldelim\{{2.2}{1mm} & 
+      \parbox[s]{2mm}{\rotatebox[origin=c]{90}{\small raste}} & \multicolumn{1}{|c|}{\textbf{TP}} & \multicolumn{1}{c|}{\textbf{FP}} \\ \cline{4-5}
+      & & \parbox[s]{2mm}{\rotatebox[origin=c]{90}{\small pada}} & \multicolumn{1}{|c|}{\textbf{FN}} & \multicolumn{1}{c|}{\textbf{TN}} \\ \cline{4-5}         
+    \end{tabular}
+    \renewcommand{\arraystretch}{1}
+    \caption{Matrica zabune za predikciju kretanja cijene.}
+    \label{fig:confusion_matrix}
+  \end{figure}
+
   Uzrok tome su statističke mjere na kojima se algoritam temelji, koje ne mogu dati apsolutno pouzdanu odluku samim time što je kretanje cijena slučajan proces.
-  Također, problem može biti i tzv. varljiva korelacija u kojoj je kretanje cijena dviju vrijednosnica naizgled povezano, no zapravo je uzrok tome neki nepoznati vanjski faktor; tada predviđeno ponašanje može biti poprilično različito od stvarnog.
+  Također, uzrok može biti i varljiva korelacija u kojoj je kretanje cijena dviju vrijednosnica naizgled povezano, no zapravo je uzrok tome neki nepoznati vanjski faktor; tada predviđeno ponašanje može biti poprilično različito od stvarnog.
   Isto tako, statističke metode ne mogu razlikovati one devijacije u ponašanju cijena koje su svojstvene koreliranim slučajnim procesima od onih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i tome slično.
-  Pri testiranju algoritma statističke arbitraže nad testnim skupovima podataka preciznost rijetko kada prelazi 60\%, a većinom je manja od 50\%.
+  Pri testiranju algoritma statističke arbitraže nad testnim skupovima podataka točnost rijetko kada prelazi 60\%, a većinom je manja od 50\%.
   No, unatoč tome što algoritam griješi u više od pola slučajeva, ukupni profit je ipak pozitivan jer pogreške donose znatno manje gubitke u odnosu na zaradu ostvarenu pogotcima.
   
   Drugi nedostatak tiče se načina tretiranja vrijednosnica koje su na raspolaganju i koje se mogu uključiti u portfelj.
   Svaki par vrijednosnica gleda se zasebno i pritom je isključena dublja analiza međusobnih interakcija svih vrijednosnica zajedno.
-  Trgovanje se također odvija uvijek u parovima, odnosno jednaki broj vrijednosnica se kupuje i prodaje u svakom trenutku.
+  Trgovanje se također odvija uvijek u parovima zauzimanjem kratkih i dugih pozicija u odgovarajućim vrijednosnicama, što zahtijeva da je kratka pozicija dopuštena.
+  Također, pokazalo se da ovaj način promatranja parova zasebno rezultira jako visokim koeficijentom obrtaja\footnote{Koeficijent obrtaja opisan je u odjeljku \ref{sc:turnover}.}, odnosno dobiveni portfelj bude vrlo promjenljiv.
+  Češće mijenjanje vrijednosnica u portfelju uzrokuje i veće troškove trgovanja, pa tako i smanjuje ukupnu vrijednost portfelja.
+  
   U ovom radu istražena je metoda koja omogućuje trgovanje kupovanjem i prodajom svih vrijednosnica nezavisno, koristeći pritom metode statističke arbitraže kao opis relacije preferencije među vrijednosnicama.
   Interakcija među vrijednosnicama opisuje se grafom toka preferencija, iz čega se naposljetku izvlači poredak prema individualnoj preferenciji svih vrijednosnica.
-  
   
 %  Nedostaci klasičnih metoda statističke arbitraže su: faljivanje. Kad se uključe troškovi trgovanja...
 %  Tretiranje parova dionica zasebno, nedostaje interakcija između svih dionica zajedno.
@@ -663,6 +689,7 @@
   \end{figure}
   
   \section{Koeficijent obrtaja}
+  \label{sc:turnover}
   Koeficijent obrtaja \engl{turnover ratio} je mjera koja određuje koliki udio vrijednosnica u portfelju je promijenjen između dva vremenska koraka.
   Ova mjera može biti u rasponu od 0 do 2, gdje 0 označava da su vrijednosnice u portfelju ostale iste između dva vremenska koraka, dok 2 označava da među vrijednosnicama uključenima u portfelj u prethodnom i sadašnjem koraku nijedna nije ostala ista.
   Ova mjera je važna između ostalog jer opisuje troškove trgovanja: u svakom vremenskom koraku troškovi trgovanja su direktno proporcionalni količini vrijednosnica koje su prodane ili kupljene u tom koraku.
@@ -739,7 +766,7 @@
   Također valja primijetiti da bi izračunavanje očekivanja i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
   Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku.
   Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)}$ su idejno trodimenzionalni tenzori, dimenzija $\q[(D - T) \times N \times N\w]$.
-  Međutim, sva tri tenzora su simetrična ili antisimetrična, u smislu da vrijedi $c_{i,j}^{\q(t\w)} = -c_{j,i}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)} = -m_{j,i}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)} = d_{j,i}^{\q(t\w)}$, stoga je polovina informacije sadržane u njima redundantna.
+  Međutim, sva tri tenzora su simetrična ili antisimetrična, odnosno vrijedi $c_{i,j}^{\q(t\w)} = -c_{j,i}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)} = -m_{j,i}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)} = d_{j,i}^{\q(t\w)}$. Stoga je polovina informacije sadržane u njima redundantna.
   Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $\q[(D - T) \times \q. N\cdot(N - 1) \middle/ 2\w.\w]$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
   \begin{equation} k = N \cdot (i - 1) + j - 1 - \q. i \cdot (i + 1) \middle/ 2\w., \end{equation}
   a za dekodiranje $(i, j)$ iz $k$ izrazi:
@@ -803,7 +830,7 @@
   w_{i,j}^{\q(t\w)} = \frac{c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}}{d_{i,j}^{\q(t\w)}},
   \end{equation}
   što odgovara udaljenosti razlike log-cijena od očekivanja, mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
-  Negativan predznak težine $w_{i,j}^{\q(t\w)}$ označava da je stvarni smjer preferencije obrnut od pretpostavljenog, odnosno brid koji ide od $j$ do $i$ s pozitivnom težinom $w_{j,i}^{\q(t\w)} = -w_{i,j}^{\q(t\w)}$ ekvivalentan je prvotno pretpostavljenom bridu.
+  Negativan predznak težine $w_{i,j}^{\q(t\w)}$ označava da je stvarni smjer preferencije obrnut od pretpostavljenog, odnosno brid koji ide od $j$ do $i$ s pozitivnom težinom $w_{j,i}^{\q(t\w)} = -w_{i,j}^{\q(t\w)}$ ekvivalentan je prethodno pretpostavljenom bridu.
   Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
   \begin{figure}[htb]
@@ -817,7 +844,7 @@
 %      Weight $w_{i,j}$ describes current deviation from mean value.
        Razlika log-cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$.
        Točka-crta linija predstavlja očekivanje, a područje između dviju crtkanih linija predstavlja $\alpha$ standardnih devijacija udaljenosti od očekivanja; obje mjere su izračunate nad prvih $T$ vremenskih koraka.
-       Tijekom vremenskog koraka $T + 1$, razlika log-cijena prelazi preko $\alpha$ standardnih devijacija iznad očekivanja proteklog perioda duljine $T$.
+       Tijekom vremenskog koraka $T + 1$, razlika log-cijena prelazi $\alpha$ standardnih devijacija iznad očekivanja proteklog perioda duljine $T$.
        To znači da će vrijednosnice $i$ i $j$ biti dodane u graf toka preferencija u vremenskom koraku $T + 1$.
        Težina $w_{i,j}^{(T+1)}$ opisuje devijaciju od očekivanja.
     }
@@ -908,10 +935,10 @@
   
   Godišnji Sharpeov omjer $S$ definiran je kao omjer srednjeg godišnjeg povrata $\mu_r$ i srednje godišnje volatilnosti $\sigma_r$.
   Analizirana su zasebno trgovanja koja rezultiraju pozitivnim i negativnim profitom, njihova razlika i omjer.
-  Mjera preciznosti definirana je kao omjer broja trgovanja koja rezultiraju pozitivnim profitom u ukupnom broju trgovanja.
+  Mjera točnosti definirana je kao omjer broja trgovanja koja rezultiraju pozitivnim profitom u ukupnom broju trgovanja.
   Mjera obrtaja \engl{turnover ratio} opisuje promjenu portfelja između dva vremenska koraka.
   Ova mjera može biti u rasponu od 0 do 2, gdje vrijednost 0 znači da nema promjene, vrijednost 1 odgovara prelasku iz ili u prazan portfelj, a vrijednost 2 znači da su vrijednosnice između dva vremenska koraka potpuno različite.
-  Konačno, izračunat je ukupan profit uz uključene troškove trgovanja.
+  Na kraju je izračunat i ukupan profit uz uključene troškove trgovanja.
   
 %We test the proposed method on a set of 203 stocks that were contiguously included in S&P 500 index from Jan 1st, 1980 thru Dec 31st, 2003, which includes 6261 trading days.
 %A total of 20503 pairs of assets were probed for statistical arbitrage at each time step.
@@ -934,7 +961,7 @@
   \begin{figure}[p]
     \centering
     \includegraphics[width=\linewidth]{graphics/results1.pdf}
-    \caption{Rezultati simulacija trgovanja nad podskupom dionica S\&P 500 indeksa. Plavom bojom je prikazana krivulja kumulativnog profita bez uključenih troškova trgovanja, a zelenom uz troškove trgovanja od 0.10\%.}
+    \caption{Rezultati simulacija trgovanja nad podskupom dionica S\&P 500 indeksa. Plavom bojom je prikazana krivulja kumulativnog profita bez uključenih troškova trgovanja, a zelenom uz uključene troškove trgovanja od 0.10\% po transakciji.}
     \label{fig:result1}
   \end{figure}
 
@@ -1017,7 +1044,7 @@
   Iz dobivene mreže procjenjuje se poredak vrijednosnica po preferenciji i računa se pouzdanost same procjene poretka.
   Konačno, na temelju poretka i pouzdanosti njegove procjene konstruira se portfelj koji čine vrijednosnice s najvećom preferencijom.
   Algoritam je simuliran nad stvarnim povijesnim podacima i polučio je uspješne rezultate.
-  Iako su istraženi specijalno financijski vremenski nizovi, matematički i statistički postupci koji su korišteni mogu potencijalno poslužiti i u druge svrhe.
+  Iako su istraženi specijalno financijski vremenski nizovi, matematički i statistički postupci koji su korišteni lako mogu poslužiti i u druge svrhe.
 
   \kljucnerijeci{vremenski nizovi, financije, statistička arbitraža, relacija preferencije, graf toka preferencija, metoda potencijala.}
   \end{sazetak}
@@ -1032,7 +1059,7 @@
   Then, the ranking based on preference of assets is derived from the network and also the confidence of derived ranking is obtained.
   Finally, portfolio is constructed from the most preferred assets, by using ranking and its confidence.
   Simulating the algorithm on the real historical data has yielded significant results.
-  Although the research in this thesis has been done on financial time series, mathetmatical and statistical methods used can also prove useful in other applications.
+  Although the research in this thesis has been done on financial time series, mathetmatical and statistical methods used can easily prove useful in other applications.
 
   \keywords{time series, finances, statistical arbitrage, preference relation, preference flow graph, potential method.}
   \end{abstract}

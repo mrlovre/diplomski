@@ -1,10 +1,10 @@
 from itertools import groupby
-from log_progress import log_progress
+from utility.log_progress import log_progress
 
 import numpy as np
 
 
-def rolling_mean_variance(series, T, weight=1.0):
+def rolling_mean_variance(series, T, weight=1.0, return_stds=False):
     L, N = series.shape
     if L < T:
         return np.empty((0, N)), np.empty((0, N))
@@ -25,7 +25,7 @@ def rolling_mean_variance(series, T, weight=1.0):
         s2_prev = series[i, :] ** 2
         mean[i, :] = s1 / s0
         var[i, :] = (s0 * s2 - s1 * s1) / (s0 * (s0 - 1))
-    return mean, var
+    return (mean, var) if not return_stds else (mean, np.sqrt(var))
 
 
 def rolling_window(series, T):
@@ -141,15 +141,15 @@ def select_argsort(matrix, argsort):
 
 def statistical_arbitrage(diffs, means, varss, p, d,
                           method='thresh-devs', scale=True, p_filter_type='le',
-                          return_pairs=False, return_weights=False, return_profits=True):
+                          return_pairs=False, return_weights=False, return_profits=True,
+                          offset=0):
     T = diffs.shape[0] - means.shape[0] + 1
     P = diffs.shape[1]
-    L = means.shape[0]
     N = N_from_pairs(P)
 
     if 'thresh' not in method:
         selected_codes = np.argsort(varss, axis=1)[:-1, :p]
-        selected_diffs = select_argsort(diffs[T - 1:-1, :], selected_codes)
+        selected_diffs = select_argsort(diffs[T - 1 + offset:-1, :], selected_codes)
         selected_means = select_argsort(means[:-1, :], selected_codes)
         selected_vars = select_argsort(varss[:-1, :], selected_codes)
 
@@ -169,15 +169,12 @@ def statistical_arbitrage(diffs, means, varss, p, d,
         lower_bounds = selected_means - d * np.sqrt(selected_vars)
         upper_bounds = selected_means + d * np.sqrt(selected_vars)
         selected_diffs = diffs[T - 1:-1, :][selected_codes]
-        del (selected_means, selected_vars)
         invs = np.less(selected_diffs, lower_bounds)
         no_invs = np.greater(selected_diffs, upper_bounds)
-        del (selected_diffs, upper_bounds, lower_bounds)
-        ts_invs = ts[invs] + T - 1
-        ts_no_invs = ts[no_invs] + T - 1
+        ts_invs = ts[invs] + T - 1 + offset
+        ts_no_invs = ts[no_invs] + T - 1 + offset
         invs = cs[invs]
         no_invs = cs[no_invs]
-        del (ts, cs)
 
     elif method == 'devs':
         lower_bounds = selected_means - d * np.sqrt(selected_vars)
@@ -190,9 +187,8 @@ def statistical_arbitrage(diffs, means, varss, p, d,
         ts_no_invs += T - 1
 
     elif method == 'max-abs-devs':
-        max_abs_devs = select_argsort(
-            np.max(np.abs(rolling_window(diffs.T, T).T - means), axis=0)[:-1, :],
-            selected_codes)
+        max_abs_devs = select_argsort(np.max(
+            np.abs(rolling_window(diffs.T, T).T - means), axis=0)[:-1, :], selected_codes)
         lower_bounds = selected_means - d * max_abs_devs
         upper_bounds = selected_means + d * max_abs_devs
         ts_invs, invs = np.nonzero(np.less(selected_diffs[1:, :], lower_bounds[:-1, :]))
@@ -207,23 +203,25 @@ def statistical_arbitrage(diffs, means, varss, p, d,
     else:
         raise ValueError('Method not supported.')
 
-    invs_profit = trade_pairs(diffs, ts_invs, invs, True)
-    no_invs_profit = trade_pairs(diffs, ts_no_invs, no_invs, False)
+    if return_profits:
+        invs_profit = trade_pairs(diffs, ts_invs, invs, True)
+        no_invs_profit = trade_pairs(diffs, ts_no_invs, no_invs, False)
     ts_total = np.append(ts_invs, ts_no_invs)
     ts_order = np.argsort(ts_total)
-    profit = np.append(invs_profit, no_invs_profit)[ts_order]
+    if return_profits:
+        profit = np.append(invs_profit, no_invs_profit)[ts_order]
     ts_total = ts_total[ts_order]
 
     if return_pairs:
         pairs = np.vstack((decode_pairs(invs, N, inv=True),
                            decode_pairs(no_invs, N, inv=False)))[ts_order, ...]
         if return_weights:
-            weights = np.abs(np.hstack(((diffs[ts_invs, invs] - means[ts_invs - T + 1, invs])
-                                        / np.sqrt(varss[ts_invs - T + 1, invs]),
-                                        (diffs[ts_no_invs, no_invs] - means[ts_no_invs - T + 1, no_invs])
-                                        / np.sqrt(varss[ts_no_invs - T + 1, no_invs])))[ts_order, ...]) - d
+            weights = np.abs(np.hstack(((diffs[ts_invs, invs] - means[ts_invs - (T - 1 + offset), invs])
+                                        / np.sqrt(varss[ts_invs - (T - 1 + offset), invs]),
+                                        (diffs[ts_no_invs, no_invs] - means[ts_no_invs - (T - 1 + offset), no_invs])
+                                        / np.sqrt(varss[ts_no_invs - (T - 1 + offset), no_invs])))[ts_order, ...]) - d
 
-    if scale:
+    if return_profits and scale:
         scales = [len(list(it)) for _, it in groupby(ts_total)]
         last_ts = None
         j = -1
@@ -257,8 +255,7 @@ def partition_as(days, pairs, weights=None):
         j += 1
 
 
-def calculate_preference_flow(pairs, weights=None, scale=False, fast=True, return_consistency=False):
-    scale = False
+def calculate_preference_flow(pairs, weights=None, fast=True, return_consistency=False):
     nodes = set(np.ravel(pairs))
     M = len(nodes)
     P = pairs_from_N(M)
@@ -320,13 +317,15 @@ def trade_single(log_prices, t, i, inv=False):
 
 
 def trade_singles(log_prices, ts, iss, inv=False):
+    if len(iss) == 0:
+        return np.empty([0])
     return (1 - 2 * inv) * (log_prices[ts, iss - 1] - log_prices[ts + 1, iss - 1])
 
 
 def turnover_ratio(series):
     turnovers = []
     S1 = set()
-    for S2 in series:
+    for S2 in (set(s) for s in series):
         lS1 = len(S1)
         lS2 = len(S2)
         turnover = 0
@@ -338,6 +337,7 @@ def turnover_ratio(series):
             turnover += len(S1 & S2) * abs(1 / lS1 - 1 / lS2)
         turnovers += [turnover]
         S1 = S2
+
     return np.array(turnovers)
 
 
@@ -348,14 +348,65 @@ def join_ts_profit(ts, profits):
     return np.array([[t, np.sum(profit, axis=0)] for t, profit in pprofits]).transpose()
 
 
-def optimized_trading_signal(log_prices, start_T=4, end_T=120, step_T=4, window_size=200):
+def optimize_trading_signal(log_prices, start_T=4, end_T=120, step_T=4,
+                            window_size=200, optimization_step=100, method='var'):
+    def get_measure():
+        if method == 'var':
+            return lambda signal: np.var(signal, axis=0)
+        elif method == 'L1':
+            return lambda signal: np.mean(np.abs(signal), axis=0)
+        else:
+            raise ValueError('Method "{}" unsupported.'.format(method))
+
+    def get_extreme():
+        if method == 'var':
+            return lambda signal: np.nanargmax(signal, axis=0)
+        elif method == 'L1':
+            return lambda signal: np.nanargmin(signal, axis=0)
+        else:
+            raise ValueError('Method "{}" unsupported.'.format(method))
+
+    measure = get_measure()
+    extreme = get_extreme()
+
     D, N = log_prices.shape
-    for t in range(window_size, D + 1):
-        trading_signal_variances = np.zeros([len(range(start_T, end_T + step_T, step_T)), N])
+    optimized_trading_signal = np.zeros([D - window_size, N])
+    for t_i, t in log_progress(list(enumerate(range(window_size, D, optimization_step)))):
+        trading_signal_measures = np.zeros([len(range(start_T, end_T + step_T, step_T)), N])
         for T_i, T in enumerate(range(start_T, end_T + step_T, step_T)):
             log_price_means, log_price_vars = rolling_mean_variance(log_prices[t - window_size:t], T)
             trading_signal = (log_prices[t - window_size + T - 1:t] - log_price_means) / np.sqrt(log_price_vars)
-            trading_signal_variances[T_i] = np.var(trading_signal, axis=0)
-        optimal_Ts = np.nanargmax(trading_signal_variances, axis=0) * step_T + start_T
-        
+            trading_signal_measures[T_i] = measure(trading_signal)
 
+        optimal_Ts = extreme(trading_signal_measures) * step_T + start_T
+        for i in range(N):
+            past_window = log_prices[t - optimal_Ts[i]:t + optimization_step - 1, i, np.newaxis]
+            past_window_mean, past_window_var = rolling_mean_variance(past_window, optimal_Ts[i])
+            optimized_trading_signal[t_i * optimization_step:(t_i + 1) * optimization_step, i] = np.squeeze(
+                (log_prices[t:t + optimization_step, i, np.newaxis] - past_window_mean)
+                / np.sqrt(past_window_var))
+
+    return optimized_trading_signal
+
+
+def stat_arb(log_prices, T, d='filtered', return_trading_signal=False):
+    N = log_prices.shape[1]
+    log_pairs = calculate_pairwise_diffs(log_prices)
+    _, std_prices = rolling_mean_variance(log_pairs, T, return_stds=True)
+    mean_pairs, std_pairs = rolling_mean_variance(log_pairs, T, return_stds=True)
+    trading_signal = (log_pairs[T:] - mean_pairs[:-1]) / std_pairs[:-1]
+    import numbers
+    if d == 'filtered':
+        trading_threshold = np.array(
+            [np.sqrt(std_prices[:-1, i] ** 2 + std_prices[:-1, j] ** 2) for i in range(N) for j in range(i + 1, N)]).transpose()
+        ts, codes = np.where(std_pairs[:-1] <= trading_threshold)
+    elif isinstance(d, numbers.Number):
+        ts, codes = np.where(np.abs(trading_signal) >= d)
+    else:
+        raise ValueError('d must be "filtered" or number.')
+    weights = trading_signal[ts, codes]
+    ts += T
+    return_values = (ts, codes, weights)
+    if return_trading_signal:
+        return_values += (trading_signal,)
+    return return_values
