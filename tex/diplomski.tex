@@ -112,26 +112,41 @@
   Ovdje su navedeni osnovni financijski pojmovi koji su korišteni u radu, te su dane njihove definicije.
   
   \begin{description}
-    \item[Vrijednosnica.] Vrijednosnica, ili vrijednosni papir \engl{financial asset} je 
-    \item[Portfelj.] 
+    \item[Vrijednosnica.] Vrijednosnica, ili vrijednosni papir \engl{security} je u širem smislu oblik imovine kojim se može trgovati.
+    Postupci u ovom radu prvenstveno su namijenjeni trgovanju dionicama, iako bi se trgovanje moglo generalizirati i na druge vrijednosnice, kao što su obveznice, opcije, ili \textit{futuresi}.
+    
+    \item[Portfelj.] Pod pojmom portfelja misli se na količine vrijednosnica koje investitor posjeduje, ili je dužan ako se radi o negativnoj količini.
+    Formalno, ako je na tržištu dostupno $N$ različitih vrijednosnica, portfelj se može predstaviti vektorom $\matr{\alpha} = \begin{bmatrix} \alpha_1 & \alpha_2 & \cdots & \alpha_N \end{bmatrix}$, gdje je $\alpha_i$ količina $i$-te vrijednosnice.
+    
     \item[Likvidnost.]
     Tržište je likvidno za neku vrijednosnicu ako je na njemu moguće trgovati gotovo svakom količinom te vrijednosnice u bilo kojem trenutku; odnosno, na njemu uvijek postoji dovoljna ponuda i potražnja za određenim vrijednosnicama.
+    Likvidnost je neizbježna pretpostavka svih algoritama optimizacije portfelja kod kojih je trgovanje visokofrekventno.
+    
     \item[Divizibilnost.]
-    Divizibilnost je mogućnost da u portfelju budu prisutne količine vrijednosnica koje nisu cijeli brojevi.
+    Divizibilnost je pretpostavka da su u portfelj uključene količine vrijednosnica koje nisu cijeli brojevi.
+    U matematičkim modelima trgovanja često se pretpostavlja divizibilnost radi fleksibilnosti u izračunima, odnosno dopušta se $\alpha_i \in \mathbb{R}$ ili $\alpha_i \in \mathbb{Q}$.
+    Na primjer, novac je divizibilan financijski instrument, dok dionice nisu; međutim, u praktične svrhe smatra se da je vrijednosnica divizibilna ako je njezina raspoloživa količina na tržištu puno veća od njezine cijene.
+    
     \item[Pozicija.]
     Pozicija označava stanje određene vrijednosnice u portfelju.
     Pozicija može biti duga \engl{long}, kratka \engl{short} i neutralna \engl{neutral}.
-    U dugoj poziciji, količina vrijednosnice u portfelju je pozitivna, odnosno investitor posjeduje određenu količinu kupljene vrijednosnice.
-    Suprotno tome, u kratkoj poziciji, količina vrijednosnice u portfelju je negativna, što znači da je investitor prethodno prodao određenu količinu vrijednosnice koju nije posjedovao, i time se obavezao na kasniju kupnju iste količine.
+    U dugoj poziciji, količina $i$-te vrijednosnice u portfelju $\alpha_i$ je pozitivna, odnosno investitor posjeduje određenu količinu kupljene vrijednosnice.
+    Suprotno tome, u kratkoj poziciji, količina vrijednosnice $\alpha_i$ u portfelju je negativna, što znači da je investitor prethodno prodao određenu količinu vrijednosnice koju nije posjedovao, i time se obavezao na kasniju kupnju iste količine.
     Na nekim tržištima nije dopuštena kratka pozicija u vrijednosnicama.
-    Neutralna pozicija označava da se u portfelju ne nalazi ta vrijednosnica.
+    Neutralna pozicija $\alpha_i = 0$ označava da se u portfelju ne nalazi ta vrijednosnica.
     Kada se govori o zatvaranju pozicije, radi se o prelasku u neutralnu poziciju.
     
-    \item[Solventnost.] Solventnost označava da je vrijednost portfelja $V\q(t\w) \ge 0$ u svakom trenutku $t$. Portfelj koji zadovoljava svojstvo solventnosti je ostvariv portfelj; u suprotnom je neostvariv portfelj.
-    \item[Indeks.]
+    \item[Solventnost.] Solventnost označava da je vrijednost portfelja $V\q(t\w) \ge 0$ u svakom trenutku $t$.
+    Portfelj koji zadovoljava svojstvo solventnosti je ostvariv portfelj; u suprotnom je neostvariv portfelj.
+    
+    \item[Indeks.] Indeks je ukupna mjera rasta nekog tržišta.
+    Računa se kao težinski zbroj trenutnih vrijednosti odabranih vrijednosnica, a težine pritom mogu biti određene na nekoliko načina, a najčešće uniformno --- sve težine su jednake, prema cijeni --- svaka vrijednosnica doprinosi indeksu proporcionalno svojoj trenutnoj vrijednosti, ili prema kapitalu --- uz trenutnu vrijednost se uzima u obzir i količina vrijednosnica koja je u opticaju.
+    Primjer značajnijeg indeksa na hrvatskom tržištu dionica je CROBEX, a na američkom tržištu dionica je Standard \& Poor's 500 (S\&P 500).
+    
     \item[Logaritamska cijena.] Logaritamska cijena dobiva se jednostavnim logaritmiranjem obične cijene.
       Koristi se pri računanju logaritamskog povrata zbog svojstva prebacivanja kvocijenta u razliku: $\log\q(\frac{y}{x}\w) = \log\q(y\w) - \log\q(x\w)$.
-    \item[Povrat.]    
+      
+    \item[Povrat.]
       Povrat $r\q(t_1, t_2\w)$ je udio promjene cijene između dva vremenska trenutka $t_1$ i $t_2$:
       \begin{equation*}
         r\q(t_1, t_2\w) = \frac{V\q(t_2\w) - V\q(t_1\w)}{V\q(t_1\w)}.
@@ -144,7 +159,7 @@
       \begin{equation*}
         V\q(t_1\w) e^{R\q(t_1, t_2\w)} = V\q(t_2\w).
       \end{equation*}
-      Vrijedi da je $r\q(t_1, t_2\w) \approx R\q(t_1, t_2\w)$ kada je $V\q(t_1\w) \approx V\q(t_2\w)$ (što je čest slučaj kada se promatraju dnevne cijene):
+      Vrijedi da je $r\q(t_1, t_2\w) \approx R\q(t_1, t_2\w)$ kada je $V\q(t_1\w) \approx V\q(t_2\w)$, što je čest slučaj kada se promatraju dnevne cijene:
       \begin{equation*}
         r\q(t_1, t_2\w) = \frac{V\q(t_2\w)}{V\q(t_1\w)} - 1 \approx \log\q(1 + \frac{V\q(t_2\w)}{V\q(t_1\w)} - 1\w) = \log\q(\frac{V\q(t_2\w)}{V\q(t_1\w)}\w) = R\q(t_1, t_2\w),
       \end{equation*}
@@ -893,7 +908,7 @@
 %  When picking the assets for the portfolio we take into consideration the consistency measure $\kappa$ as well.
 %  Lower values of $\kappa$ suggest that we should diversify our portfolio by including some more assets in the order of preference, while higher values suggest that it is safe to do trading with smaller number of assets.
 %  Portfolio diversification might be seen as a strategy for protection from fundamental risks, e.g. risk of asset default.
-  Neka je $\matr{\phi}^{\q(t\w)} = \begin{bmatrix*}[r] \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \ldots & \phi_N^{\q(t\w)} \end{bmatrix*}$ vektor individualnih preferenci vrijednosnica u vremenskom koraku $t$, te $\phi_i^{\q(t\w)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
+  Neka je $\matr{\phi}^{\q(t\w)} = \begin{bmatrix*}[r] \phi_1^{\q(t\w)} & \phi_2^{\q(t\w)} & \cdots & \phi_N^{\q(t\w)} \end{bmatrix*}$ vektor individualnih preferencija vrijednosnica u vremenskom koraku $t$, te je $\phi_i^{\q(t\w)}$ individualna preferencija vrijednosnice $i$ u vremenskom koraku $t$.
   Pri odabiru vrijednosnica za portfelj, u obzir se također uzima i mjera konzistentnosti $\kappa$.
   Uključivanje mjere konzistentnosti pri odabiru omogućuje zaštitu od fundamentalnog rizika (propadanja neke dionice) putem diverzifikacije portfelja.
   Interpretacija mjere konzistentnosti je sljedeća: niska mjera konzistentnosti sugerira da procjena u sadašnjem vremenskom koraku nije pouzdana, stoga je bolje diverzificirati portfelj uzimanjem većeg broja vrijednosnica, dok visoka vrijednost mjere konzistentnosti sugerira da je sigurno trgovati s manjim brojem vrijednosnica.
