@@ -182,31 +182,42 @@
   \end{enumerate}
   
   \section{Teorem o nearbitraži}
-  Uz navedene pretpostavke osnovnog modela trgovanja, jedan od osnovnih teorema u trgovanju je teorem o nearbitraži koji tvrdi da nije moguće ostvariti nikakav profit bez preuzimanja rizika.
+  Uz navedene pretpostavke osnovnog modela trgovanja, jedan od osnovnih teorema u trgovanju je teorem o nearbitraži koji tvrdi da nije moguće ostvariti pozitivan profit bez preuzimanja rizika.
   Drugim riječima, ako je vrijednost portfelja u trenutku 0, $V\q(0\w) = 0$, onda je vjerojatnost $\prob{V\q(t\w) > 0} = 0$ u svakom trenutku $t > 0$.
   
-  Teorem o arbitraži također se može iskazati na malo složeniji način (prema \citep{ross2011elementary}), koji omogućuje bolje shvaćanje na koji način se situacije u kojima nearbitražni uvjeti ne vrijede mogu iskoristiti.
-  Neka je na tržištu raspoloživo $N$ vrijednosnica označenih brojevima od 1 do $N$, te je za svaku od njih moguće $M$ različitih ishoda (kretanja cijene) u sljedećem vremenskom razdoblju.
+  Teorem o arbitraži također se može iskazati na malo složeniji način (prema \citep{ross2011elementary}), koji omogućuje bolje shvaćanje načina na koji se situacije u kojima nearbitražni uvjeti ne vrijede mogu iskoristiti.
+  Neka je na tržištu raspoloživo $N$ vrijednosnica označenih brojevima od 1 do $N$, te je za svaku od njih moguće $M$ različitih ishoda (kretanja cijene) u sljedećem razdoblju.
   Neka je s $r_i\q[j\w]$ označen iznos koji se dobije od jediničnog ulaganja u $i$-tu vrijednosnicu ako je ostvaren $j$-ti ishod.
   Portfelj $\matr{\alpha} = \begin{bmatrix} \alpha_1 & \alpha_2 & \cdots & \alpha_N
-  \end{bmatrix}$ bi tako u slučaju ostvarivanja $j$-tog ishoda donosio dobitak $R\q[j\w]$ kako slijedi:
-  \begin{equation*}
-    R\q[j\w] = \sum_{i=1}^{N} \alpha_i r_i \q[j\w].
-  \end{equation*}
+  \end{bmatrix}$ tako u slučaju ostvarivanja $j$-tog ishoda donosi ukupni dobitak $R\q[j\w] = \sum_{i=1}^{N} \alpha_i r_i \q[j\w]$.
   
   Neka slučajna varijabla $X$ opisuje razdiobu mogućih $M$ ishoda:
   \begin{equation*}
     X \sim \begin{pmatrix} 1 & 2 & \cdots & M \\ p_1 & p_2 & \cdots & p_M \end{pmatrix}.
   \end{equation*}
-  U nearbitražnim uvjetima tada bi vrijedilo da je očekivanje dobitka 
-
+  U nearbitražnim uvjetima tada bi vrijedilo da je očekivanje dobitka od $i$-te vrijednosnice:
+  \begin{equation}
+  \label{eq:non-arbitrage}
+  \E{r_i\q[X\w]} = \sum_{j=1}^{M} p_i r_i\q[j\w] = 0,
+  \end{equation}
+  za sve $i \in \q[1, 2, \ldots, N\w]$.
+  No, ponekad se za proizvoljno postavljene dobitke $r_i\q[j\w]$ ne može odrediti vjerojatnosni vektor $\matr{p} = \begin{bmatrix} p_1 & p_2 & \cdots & p_M \end{bmatrix}$ koji bi ispunjavao (\ref{eq:non-arbitrage}).
+  Teorem o nearbitraži tvrdi da je moguće samo jedno od sljedećeg:
+  \begin{itemize}
+    \item ili postoji vjerojatnosni vektor $\matr p$ koji ispunjava (\ref{eq:non-arbitrage}),
+    \item ili je moguće konstruirati portfelj $\matr \alpha$ tako da uvijek vrijedi:
+    \begin{equation}
+      R\q[j\w] = \sum_{i = 1}^{N} \alpha_i r_i\q[j\w] > 0,
+    \end{equation}
+    za sve $j \in \q[1, 2, \ldots, M\w]$.
+  \end{itemize}
 
   \chapter{Metode i koncepti}
   Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu, kao i definicije korištenih osnovnih pojmova.
   
   \section{Statistička arbitraža}
   Statistička arbitraža \engl{statistical arbitrage} je algoritam trgovanja zasnovan na statistici.
-  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje pozitivan profit s vjerojatnošću 1, a da pritome njegova početna vrijednost iznosi 0:
+  Pojam arbitraža u kontekstu financija označava okolnosti pod kojima se može konstruirati portfelj koji ostvaruje pozitivan profit s vjerojatnošću 1, a da pritom njegova početna vrijednost iznosi 0:
   \begin{equation}
   \begin{gathered}
   \label{eq:statarb}
@@ -804,7 +815,7 @@
   
   Procjena srednje vrijednosti u (\ref{eq:mean}) je nepristrana, što znači da je očekivanje od $m_{i,j}^{\q(t\w)}$ doista jednako srednjoj vrijednosti toga uzorka.
   Procjena standardne devijacije u (\ref{eq:deviation}) nije nepristrana, jer je dobivena korjenovanjem nepristrane procjene varijance.
-  Kako je korjenovanje neliearna operacija, ono unosi pristranost u procjenu te je ona nešto manja od veličine koju procjenjuje.
+  Kako je korjenovanje nelinearna operacija, ono unosi pristranost u procjenu te je ona nešto manja od veličine koju procjenjuje.
   Međutim, pristranost je manja što je broj uzoraka veći i postaje zanemariva za $T \ge 10$.
   Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, zbog čega sumiranje ide do $t - 1$.
 %  Note that in summation used in (\ref{eq:mean}, \ref{eq:deviation}) time step $t$ was intentionally excluded, therefore summation goes only to $t - 1$.
@@ -1130,7 +1141,7 @@
   \begin{sazetak}
   U ovom radu istražene su metode za analizu financijskih vremenskih nizova, temeljene na algoritmu statističke arbitraže.
   Rezultati istraživanja zaokruženi su u samostalan algoritam za simulaciju trgovanja vrijednosnicama temeljenu na povijesnim podacima, i trgovanje vrijednosnicama nad podacima koji dolaze uživo.
-  Ulazne podatke za algoritam čini kretanje cijena nekog broja vrijednosnica u nekom vremenskom razdoblju.
+  Ulazne podatke za algoritam čini kretanje cijena nekog broja vrijednosnica u nekom razdoblju.
   Na temelju njih, konstruira se kompleksna mreža koja opisuje odnos vrijednosnica u svakom vremenskom koraku.
   Iz dobivene mreže procjenjuje se poredak vrijednosnica po preferenciji i računa se pouzdanost same procjene poretka.
   Konačno, na temelju poretka i pouzdanosti njegove procjene konstruira se portfelj koji čine vrijednosnice s najvećom preferencijom.
@@ -1150,7 +1161,7 @@
   Then, the ranking based on preference of assets is derived from the network and also the confidence of derived ranking is obtained.
   Finally, portfolio is constructed from the most preferred assets, by using ranking and its confidence.
   Simulating the algorithm on the real historical data has yielded significant results.
-  Although the research in this thesis has been done on financial time series, mathetmatical and statistical methods used can easily prove useful in other applications.
+  Although the research in this thesis has been done on financial time series, mathematical and statistical methods used can easily prove useful in other applications.
 
   \keywords{time series, finances, statistical arbitrage, preference relation, preference flow graph, potential method.}
   \end{abstract}
