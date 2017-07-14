@@ -43,7 +43,7 @@
 \newcommand{\Esqfromto}[2]{\operatorname{\mathbf{E}^2}\q[#1\, \middle\vert\, #2\w]}
 \newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\q[#1\, \middle\vert\, #2\w]}
 \newcommand{\norm}[1]{\bar{#1}}
-\newcommand{\prob}[1]{\operatorname{P}\q(#1\w)}
+\newcommand{\prob}[1]{\operatorname{\mathbf{P}}\q(#1\w)}
 \newcommand{\R}[2]{\operatorname{\mathbf{R}}_{#1}\q[#2\w]}
 \newcommand{\I}[1]{\operatorname{\mathrm{I}}\q(#1\w)}
 \newcommand{\diff}{\operatorname{\mathrm{\Delta}}}
@@ -104,7 +104,7 @@
 %  Idući korak je konstruiranje grafova temeljenih na prethodno dobivenim relacijama, kako bi se mogla proučiti međusobna interakcija svih vrijednosnica koje su na raspolaganju.
   Konačno, za svaku vrijednosnicu izračunava se individualna mjera preferencije, na temelju čega se donosi odluka o sastavljanju portfelja.
   
-  Ideja ove metode je ostvariti generalizaciju klasičnih metoda statističke arbitraže koja će biti robusnija i ostvarivati bolje rezultate kada ima velik broj vrijednosnica na raspolaganju tako što izvlači zajedničku interakciju iz svih vrijednosnica.
+  Ideja ove metode je ostvariti generalizaciju klasičnih metoda statističke arbitraže koja će biti robusnija i ostvarivati bolje rezultate kada ima velik broj vrijednosnica na raspolaganju time što izvlači zajedničku interakciju iz svih vrijednosnica.
   
 %  Organizacija poglavlja je sljedeća: \ldots
 
@@ -115,15 +115,15 @@
     \item[Vrijednosnica.] Vrijednosnica, ili vrijednosni papir \engl{security} je u širem smislu oblik imovine kojim se može trgovati.
     Postupci u ovom radu prvenstveno su namijenjeni trgovanju dionicama, iako bi se trgovanje moglo generalizirati i na druge vrijednosnice, kao što su obveznice, opcije, ili \textit{futuresi}.
     
-    \item[Portfelj.] Pod pojmom portfelja misli se na količine vrijednosnica koje investitor posjeduje, ili je dužan ako se radi o negativnoj količini.
+    \item[Portfelj.] Pod pojmom portfelja misli se na količine vrijednosnica koje investitor posjeduje, ili je dužan kupiti ako se radi o negativnoj količini.
     Formalno, ako je na tržištu dostupno $N$ različitih vrijednosnica, portfelj se može predstaviti vektorom $\matr{\alpha} = \begin{bmatrix} \alpha_1 & \alpha_2 & \cdots & \alpha_N \end{bmatrix}$, gdje je $\alpha_i$ količina $i$-te vrijednosnice.
     
     \item[Likvidnost.]
     Tržište je likvidno za neku vrijednosnicu ako je na njemu moguće trgovati gotovo svakom količinom te vrijednosnice u bilo kojem trenutku; odnosno, na njemu uvijek postoji dovoljna ponuda i potražnja za određenim vrijednosnicama.
-    Likvidnost je neizbježna pretpostavka svih algoritama optimizacije portfelja kod kojih je trgovanje visokofrekventno.
+    Likvidnost je neizbježna pretpostavka svih algoritama optimizacije portfelja kod kojih se odvija visokofrekventno trgovanje, kao što je i algoritam statističke arbitraže.
     
     \item[Divizibilnost.]
-    Divizibilnost je pretpostavka da su u portfelj uključene količine vrijednosnica koje nisu cijeli brojevi.
+    Divizibilnost je pretpostavka da količine vrijednosnica prisutnih u portfelju nisu nužno cijeli brojevi.
     U matematičkim modelima trgovanja često se pretpostavlja divizibilnost radi fleksibilnosti u izračunima, odnosno dopušta se $\alpha_i \in \mathbb{R}$ ili $\alpha_i \in \mathbb{Q}$.
     Na primjer, novac je divizibilan financijski instrument, dok dionice nisu; međutim, u praktične svrhe smatra se da je vrijednosnica divizibilna ako je njezina raspoloživa količina na tržištu puno veća od njezine cijene.
     
@@ -136,11 +136,11 @@
     Neutralna pozicija $\alpha_i = 0$ označava da se u portfelju ne nalazi ta vrijednosnica.
     Kada se govori o zatvaranju pozicije, radi se o prelasku u neutralnu poziciju.
     
-    \item[Solventnost.] Solventnost označava da je vrijednost portfelja $V\q(t\w) \ge 0$ u svakom trenutku $t$.
+    \item[Solventnost.] Solventnost označava da je vrijednost portfelja $V{\q(t\w)} \ge 0$ u svakom trenutku $t$.
     Portfelj koji zadovoljava svojstvo solventnosti je ostvariv portfelj; u suprotnom je neostvariv portfelj.
     
     \item[Indeks.] Indeks je ukupna mjera rasta nekog tržišta.
-    Računa se kao težinski zbroj trenutnih vrijednosti odabranih vrijednosnica, a težine pritom mogu biti određene na nekoliko načina, a najčešće uniformno --- sve težine su jednake, prema cijeni --- svaka vrijednosnica doprinosi indeksu proporcionalno svojoj trenutnoj vrijednosti, ili prema kapitalu --- uz trenutnu vrijednost se uzima u obzir i količina vrijednosnica koja je u opticaju.
+    Računa se kao težinski zbroj trenutnih vrijednosti odabranih vrijednosnica, a težine pritom mogu biti određene na nekoliko načina, a najčešće uniformno --- sve težine su jednake; prema cijeni --- svaka vrijednosnica doprinosi indeksu proporcionalno svojoj trenutnoj vrijednosti; ili prema kapitalu --- uz trenutnu vrijednost se uzima u obzir i količina vrijednosnica koja je u opticaju.
     Primjer značajnijeg indeksa na hrvatskom tržištu dionica je CROBEX, a na američkom tržištu dionica je Standard \& Poor's 500 (S\&P 500).
     
     \item[Logaritamska cijena.] Logaritamska cijena dobiva se jednostavnim logaritmiranjem obične cijene.
@@ -149,15 +149,15 @@
     \item[Povrat.]
       Povrat $r\q(t_1, t_2\w)$ je udio promjene cijene između dva vremenska trenutka $t_1$ i $t_2$:
       \begin{equation*}
-        r\q(t_1, t_2\w) = \frac{V\q(t_2\w) - V\q(t_1\w)}{V\q(t_1\w)}.
+        r\q(t_1, t_2\w) = \frac{V{\q(t_2\w)} - V{\q(t_1\w)}}{V{\q(t_1\w)}}.
       \end{equation*}
       No, u praksi se češće koristi logaritamski povrat $R\q(t_1, t_2\w)$ radi lakšeg računanja, definiran kao razlika logaritamskih cijena:
       \begin{equation*}
-        R\q(t_1, t_2\w) = \log\q(V\q(t_2\w)\w) - \log\q(V\q(t_1\w)\w).
+        R\q(t_1, t_2\w) = \log\q(V{\q(t_2\w)}\w) - \log\q(V{\q(t_1\w)}\w).
       \end{equation*}
       Logaritamski povrat odgovara godišnjoj kontinuiranoj kamatnoj stopi uz koju bi se vrijednost iz $V\q(t_1\w)$ promijenila u $V\q(t_2\w)$ nakon godine dana:
       \begin{equation*}
-        V\q(t_1\w) e^{R\q(t_1, t_2\w)} = V\q(t_2\w).
+        V{\q(t_1\w)} \cdot \exp\q(R\q(t_1, t_2\w)\w) = V{\q(t_2\w)}.
       \end{equation*}
       Vrijedi da je $r\q(t_1, t_2\w) \approx R\q(t_1, t_2\w)$ kada je $V\q(t_1\w) \approx V\q(t_2\w)$, što je čest slučaj kada se promatraju dnevne cijene:
       \begin{equation*}
@@ -166,14 +166,40 @@
       uz korištenje procjene $x \approx \log\q(1 + x\w)$ kada je $x \approx 0$.
   \end{description}
   
-  \section{Osnovne pretpostavke modela trgovanja}
-  Kod modela trgovanja pretpostavlja se sljedeće (prema \citep{finmat}):
+  \section{Pretpostavke osnovnog modela trgovanja}
+  Kod osnovnog modela trgovanja pretpostavlja se sljedeće (prema \citep{finmat}):
   \begin{enumerate}
-    \item 
+    \item Portfelj se sastoji od rizične i nerizične imovine: cijena rizične imovine u svakom trenutku je diskretna slučajna varijabla s barem dvije moguće različite vrijednosti, a cijena nerizične imovine je iznos koji je poznat u svakom trenutku.
+    
+    \item Vrijednosti rizične i nerizične imovine su uvijek pozitivni brojevi.
+    
+    \item Trgovanje je likvidno, divizibilno, te je dopuštena kratka pozicija.
+    Ovom pretpostavkom dopušta se da udjeli imovine u portfelju budu elementi iz skupa realnih brojeva.
+    
+    \item Portfelj mora biti solventan, odnosno njegova vrijednost mora biti u svakom trenutku pozitivna; u suprotnom bi to značilo da je investitor bankrotirao.
+    
+    \item Cijene rizične imovine mogu u svakom trenutku poprimiti samo konačno mnogo različitih vrijednosti.
   \end{enumerate}
   
-  \section{Princip nearbitraže}
+  \section{Teorem o nearbitraži}
+  Uz navedene pretpostavke osnovnog modela trgovanja, jedan od osnovnih teorema u trgovanju je teorem o nearbitraži koji tvrdi da nije moguće ostvariti nikakav profit bez preuzimanja rizika.
+  Drugim riječima, ako je vrijednost portfelja u trenutku 0, $V\q(0\w) = 0$, onda je vjerojatnost $\prob{V\q(t\w) > 0} = 0$ u svakom trenutku $t > 0$.
   
+  Teorem o arbitraži također se može iskazati na malo složeniji način (prema \citep{ross2011elementary}), koji omogućuje bolje shvaćanje na koji način se situacije u kojima nearbitražni uvjeti ne vrijede mogu iskoristiti.
+  Neka je na tržištu raspoloživo $N$ vrijednosnica označenih brojevima od 1 do $N$, te je za svaku od njih moguće $M$ različitih ishoda (kretanja cijene) u sljedećem vremenskom razdoblju.
+  Neka je s $r_i\q[j\w]$ označen iznos koji se dobije od jediničnog ulaganja u $i$-tu vrijednosnicu ako je ostvaren $j$-ti ishod.
+  Portfelj $\matr{\alpha} = \begin{bmatrix} \alpha_1 & \alpha_2 & \cdots & \alpha_N
+  \end{bmatrix}$ bi tako u slučaju ostvarivanja $j$-tog ishoda donosio dobitak $R\q[j\w]$ kako slijedi:
+  \begin{equation*}
+    R\q[j\w] = \sum_{i=1}^{N} \alpha_i r_i \q[j\w].
+  \end{equation*}
+  
+  Neka slučajna varijabla $X$ opisuje razdiobu mogućih $M$ ishoda:
+  \begin{equation*}
+    X \sim \begin{pmatrix} 1 & 2 & \cdots & M \\ p_1 & p_2 & \cdots & p_M \end{pmatrix}.
+  \end{equation*}
+  U nearbitražnim uvjetima tada bi vrijedilo da je očekivanje dobitka 
+
 
   \chapter{Metode i koncepti}
   Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu, kao i definicije korištenih osnovnih pojmova.
@@ -184,19 +210,19 @@
   \begin{equation}
   \begin{gathered}
   \label{eq:statarb}
-  V^{(0)} = 0\\
-  \quad \prob{V^{\q(t\w)} > 0} = 1,
+  V\q(0\w) = 0\\
+  \quad \prob{V\q(t\w) > 0} = 1,
   \end{gathered}
   \end{equation}
-  gdje $V^{\q(t\w)}$ označava vrijednost portfelja u trenutku $t$.
+  gdje $V\q(t\w)$ označava vrijednost portfelja u trenutku $t$.
   
   Trivijalan primjer arbitraže je situacija u kojoj se ista vrijednosnica nudi po različitoj cijeni na dva različita tržišta, i tada je arbitražu moguće ostvariti kupovanjem vrijednosnice po nižoj cijeni na jednom tržištu i prodavanjem po višoj na drugom.
   
   Cilj statističke arbitraže je eksploatirati statističke zakonitosti koje vrijede među parovima vrijednosnica kako bi se ostvario profit.  
   Valja napomenuti da, iako nosi naziv arbitraža, statistička arbitraža zapravo ne zadovoljava nužno (\ref{eq:statarb}), jer korištene statističke mjere imaju određeni interval pouzdanosti koji je manji od 100\%.
-  Tako se može dogoditi da bude $V^{\q(t\w)} < 0$ za neke $t$.
-  Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V^{\q(t\w)} > 0} \to 1$.
-  U praksi, potrebno je osigurati dovoljno velik početni iznos $V^{(0)}$ kako bi se izbjegla mogućnost \textit{defaulta}.
+  Tako se može dogoditi da bude $V\q(t\w) < 0$ za neke $t$.
+  Ipak, uz pretpostavku dovoljne likvidnosti tržišta, kako $t \to +\infty$, tako vjerojatnost $\prob{V\q(t\w) > 0} \to 1$.
+  U praksi, potrebno je osigurati dovoljno velik početni iznos $V(0)$ kako bi se izbjegla mogućnost \textit{defaulta}.
   
   Algoritam statističke arbitraže u svakom vremenskom trenutku najčešće čine sljedeći koraci:
   \begin{enumerate}
@@ -212,7 +238,7 @@
   \subsection{Razlika normaliziranih log-cijena}
   Neka je sa $P_X^{\q(t\w)}$ označena log-cijena vrijednosnice $X$ u trenutku $t$, i neka se koristi period od $T$ vremenskih koraka.
   Neka je ukupno $M$ vremenskih koraka, tj. $t \in \q[0, 1, \ldots, M - 1\w]$.
-  Za svaku vrijednosnicu $X$ u trenutcima $t \ge T$ izračunaju se normalizirane log-cijene $\norm{P}_X^{\q(t\w)}$:
+  Za svaku vrijednosnicu $X$ u trenucima $t \ge T$ izračunaju se normalizirane log-cijene $\norm{P}_X^{\q(t\w)}$:
   \begin{equation}
   \norm{P}_X^{\q(t\w)} = \frac{P_X^{\q(t\w)} - \Efromto{P_X^{(\tau)}}{t-T \le \tau < t}}{\sqrt{\Varfromto{P_X^{(\tau)}}{t-T \le \tau < t}}}.
   \end{equation}
@@ -308,7 +334,7 @@
   &= \sum_{n = 0}^{d} \binom{d}{n} \q(-1\w)^n W\q[t - n\w]
   \end{align}
   stacionaran proces.
-  U (\ref{eq:red1}) i (\ref{eq:redn}) korišten je operator kašnjenja $\lag$ sa značenjem $\lag U\q[t\w] = U\q[t - 1\w]$.
+  U (\ref{eq:red1}) i (\ref{eq:redn}) korišten je operator kašnjenja $\lag$ koji djeluje na sljedeći način: $\lag U\q[t\w] = U\q[t - 1\w]$.
   
   Trivijalno je provjeriti da linearna kombinacija dvaju slučajnih procesa koji su $\I{0}$ jest također $\I{0}$, kao i da linearna kombinacija dvaju slučajnih procesa od kojih je jedan $\I{0}$, a drugi $\I{1}$ jest $\I{1}$.
   Malo je teže odrediti kojeg je reda integracije linearna kombinacija dvaju slučajnih procesa koji su $\I{1}$: to može biti $\I{1}$, ali u posebnim slučajevima može biti i $\I{0}$.
@@ -337,13 +363,13 @@
   \hat{\varepsilon}\q[t\w] = -\hat{\mu} + P_X\q[t\w] + \hat{\beta} P_Y\q[t\w].
   \end{equation}
   
-  U drugom koraku provjerava se je li $\hat{\varepsilon}\q[t\w]$ zaista stacionaran proces: za dobivenu procjenu statističkim metodama računaju se t-vrijednosti kako bi se utvrdila pouzdanost kointegracije.
-  t-vrijednost može se dobiti Dickey-Fullerovim testom\citep{dickey-fuller}.
+  U drugom koraku provjerava se je li $\hat{\varepsilon}\q[t\w]$ zaista stacionaran proces: za dobivenu procjenu statističkim metodama računaju se $t$-vrijednosti kako bi se utvrdila pouzdanost kointegracije.
+  $t$-vrijednost može se dobiti Dickey-Fullerovim testom \citep{dickey-fuller}.
   
   Procijenjene rezidualne vrijednosti $\hat{\varepsilon}\q[t\w]$ koriste se kao mjera sličnosti.
   Primjer dobivenih rezidualnih vrijednosti za iste vrijednosnice $X$ i $Y$ prikazan je na slici \ref{fig:residual}.
-  U odnosu na prethodne dvije mjere, ova mjera je rezultat dublje statističke analize, zbog čega je i računski zahtjevnija, što je ujedno prednost i nedostatak.
-  Kada se radi o velikom broju parova vrijednosnica, kointegracije se može pokazati nepraktičnom za računanje, stoga je bolje koristiti neku od dvije prethodno navedene mjere sličnosti.
+  U odnosu na prethodne dvije mjere, ova mjera je rezultat dublje statističke analize, zbog čega je i računski zahtjevnija, što je ujedno i prednost i nedostatak.
+  Kada se radi o velikom broju parova vrijednosnica, mjera kointegracije se može pokazati nepraktičnom za računanje, stoga je bolje koristiti neku od dvije prethodno navedene mjere sličnosti.
   U ovom radu korištena je normalizirana razlika log-cijena.
   
   \begin{figure}[H]
@@ -355,19 +381,17 @@
   \end{figure}
   
   \subsection{Nedostaci statističke arbitraže}
-  Jedan od nedostataka statističke arbitraže jest relativno niska točnost: ako se odluke o trgovanju promatraju kao klasifikacijski problem predviđanja rasta ili pada cijene vrijednosnice.
-  Može se pretpostaviti da je broj trgovanja u kojima cijena raste i pada podjednak.
-  Preciznost $\mathit{Acc}$ se računa kao:
+  Jedan od nedostataka statističke arbitraže jest relativno niska točnost u predviđanju kretanja cijene, ako se odluke o trgovanju promatraju kao klasifikacijski problem predviđanja rasta ili pada cijene vrijednosnice.
+  Točnost $\mathit{Acc}$ se računa kao:
   \begin{equation}
     \mathit{Acc} = \frac{\mathit{TP} + \mathit{TN}}{\mathit{TP} + \mathit{FP} + \mathit{FN} + \mathit{TN}},
   \end{equation}
-  gdje su $\mathit{TP}$, $\mathit{FP}$, $\mathit{FN}$, i $\mathit{TN}$ odgovarajući broj pogođenih ili promašenih predviđanja pada ili rasta cijene kako je opisano na slici \ref{fig:confusion_matrix}.
-  
+  gdje su $\mathit{TP}$ \engl{true positive}, $\mathit{FP}$ \engl{false positive}, $\mathit{FN}$ \engl{false negative}, i $\mathit{TN}$ \engl{true negative} odgovarajući brojevi pogođenih ili promašenih predviđanja pada ili rasta cijene kako je opisano na slici \ref{fig:confusion_matrix}.
   \begin{figure}[h]
     \centering
     \renewcommand{\arraystretch}{1.4}
     \begin{tabular}{>{\centering}m{-1em} >{\centering}m{-1em} >{\centering}m{0.6em} >{\centering}m{2em}>{\centering\arraybackslash}m{2em}}
-      & & & \multicolumn{2}{c}{stvarno} \\[-1.8em]
+      & & & \multicolumn{2}{c}{ostvareno} \\[-1.8em]
       & & & \multicolumn{2}{c}{\downbracefill} \\[-1.8em]
       & & & raste & pada \\[-0.4em] \cline{4-5}
       \parbox[s]{2mm}{\multirow{2}{*}{\rotatebox[origin=c]{90}{predviđeno\hspace{0.5em}}}} & \ldelim\{{2.2}{1mm} & 
@@ -375,23 +399,26 @@
       & & \parbox[s]{2mm}{\rotatebox[origin=c]{90}{\small pada}} & \multicolumn{1}{|c|}{\textbf{FN}} & \multicolumn{1}{c|}{\textbf{TN}} \\ \cline{4-5}         
     \end{tabular}
     \renewcommand{\arraystretch}{1}
-    \caption{Matrica zabune za predikciju kretanja cijene.}
+    \caption{Moguće kombinacije predviđenih i ostvarenih kretanja cijene.}
     \label{fig:confusion_matrix}
   \end{figure}
-
-  Uzrok tome su statističke mjere na kojima se algoritam temelji, koje ne mogu dati apsolutno pouzdanu odluku samim time što je kretanje cijena slučajan proces.
-  Također, uzrok može biti i varljiva korelacija u kojoj je kretanje cijena dviju vrijednosnica naizgled povezano, no zapravo je uzrok tome neki nepoznati vanjski faktor; tada predviđeno ponašanje može biti poprilično različito od stvarnog.
-  Isto tako, statističke metode ne mogu razlikovati one devijacije u ponašanju cijena koje su svojstvene koreliranim slučajnim procesima od onih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i tome slično.
+  Može se pretpostaviti da je broj trgovanja u kojima cijena stvarno raste i pada podjednak.
   Pri testiranju algoritma statističke arbitraže nad testnim skupovima podataka točnost rijetko kada prelazi 60\%, a većinom je manja od 50\%.
-  No, unatoč tome što algoritam griješi u više od pola slučajeva, ukupni profit je ipak pozitivan jer pogreške donose znatno manje gubitke u odnosu na zaradu ostvarenu pogotcima.
+  Jedan od razloga slabe točnosti predviđanja je što je samo kretanje cijena slučajan proces čije je ponašanje teško predvidjeti.
+  Korištene metode u algoritmu pokušavaju na temelju statističkih zakonitosti utvrditi vjerojatnosti kretanja cijena.
+  Također, uzrok može biti i prividna korelacija \engl{spurious correlation} u kojoj kretanje cijena dviju vrijednosnica izgleda povezano, no zapravo je uzrok tome neki nepoznati vanjski faktor.
+  Prividna korelacija na tržištima opisana je u \citep{spurious}.
+  Na primjer, ako se dogodi da na tržištu istovremeno raste potražnja za sladoledom i rashladnim uređajima, moglo bi se zaključiti kako postoji povezanost među njima, ali je vjerojatnije povećanje potražnje uzrokovao faktor koji nije bio uzet u obzir, primjerice visoka temperatura.
+  Tada predviđeno ponašanje može biti poprilično različito od ostvarenog, budući da vanjski faktor može prestati utjecati u bilo kojem trenutku, a time se i gubi prividna korelacija.
+  Isto tako, statističke metode ne mogu razlikovati prirodne devijacije u ponašanju cijena koje su karakteristične za slučajne procese od onih prisilnih za koje stvarno postoji fundamentalan uzrok, kao što je npr. značajna promjena u načinu poslovanja neke firme, promjena vlasništva i tome slično.
+  No, unatoč tome što algoritam griješi u više od pola slučajeva, ukupni profit je ipak pozitivan, jer pogreške donose znatno manje gubitke u odnosu na zaradu ostvarenu pogocima.
   
-  Drugi nedostatak tiče se načina tretiranja vrijednosnica koje su na raspolaganju i koje se mogu uključiti u portfelj.
+  Drugi nedostatak tiče se načina na koji se vrijednosnice koje su na raspolaganju uzimaju u obzir.
   Svaki par vrijednosnica gleda se zasebno i pritom je isključena dublja analiza međusobnih interakcija svih vrijednosnica zajedno.
-  Trgovanje se također odvija uvijek u parovima zauzimanjem kratkih i dugih pozicija u odgovarajućim vrijednosnicama, što zahtijeva da je kratka pozicija dopuštena.
-  Također, pokazalo se da ovaj način promatranja parova zasebno rezultira jako visokim koeficijentom obrtaja\footnote{Koeficijent obrtaja opisan je u odjeljku \ref{sc:turnover}.}, odnosno dobiveni portfelj bude vrlo promjenljiv.
-  Češće mijenjanje vrijednosnica u portfelju uzrokuje i veće troškove trgovanja, pa tako i smanjuje ukupnu vrijednost portfelja.
-  
-  U ovom radu istražena je metoda koja omogućuje trgovanje kupovanjem i prodajom svih vrijednosnica nezavisno, koristeći pritom metode statističke arbitraže kao opis relacije preferencije među vrijednosnicama.
+  Trgovanje se također odvija uvijek u parovima, zauzimanjem kratke pozicije u jednoj i duge drugoj, a to zahtijeva da je kratka pozicija dopuštena na tržištu, što nekada i nije slučaj.
+  Također, pokazalo se da ovaj način promatranja parova zasebno rezultira jako visokim koeficijentom obrtaja\footnote{Koeficijent obrtaja opisan je u odjeljku \ref{sc:turnover}.}, odnosno portfelj dobiven isključivo metodom statističke arbitraže je vrlo promjenljiv.
+  Češće mijenjanje vrijednosnica u portfelju uzrokuje i veće troškove trgovanja, što u konačnici smanjuje i ukupnu vrijednost portfelja.
+  U ovom radu istražena je metoda koja omogućuje trgovanje kupovanjem i prodajom svih vrijednosnica neovisno o parovima, koristeći pritom metode statističke arbitraže za opisivanje relacije preferencije među vrijednosnicama.
   Interakcija među vrijednosnicama opisuje se grafom toka preferencija, iz čega se naposljetku izvlači poredak prema individualnoj preferenciji svih vrijednosnica.
   
 %  Nedostaci klasičnih metoda statističke arbitraže su: faljivanje. Kad se uključe troškovi trgovanja...
@@ -414,9 +441,9 @@
 %    \item \textit{asymmetrical}: if $x$ is preferrable over some $y$, then $y$ is not preferrable over $x$, %($x \succ y \Rightarrow \neg \q( y \succ x \w)$),
     \item \textit{asimetrična}: $\forall x, y \in \Omega\colon x \succ y \Rightarrow \neg \q( y \succ x \w)$ --- ako je $x$ više preferirano od $y$, onda $y$ nije više preferirano od $x$,
 %    \item \textit{transitive}: if $x$ is preferrable over $y$, and $y$ is preferrable over $z$, then $x$ is also preferrable over $z$, %($x \succ y \wedge y \succ z \Rightarrow x \succ z$),
-    \item \textit{tranzitivna}: $\forall x, y, z \in \Omega\colon x \succ y \wedge y \succ z \Rightarrow x \succ z$ --- ako je $x$ više preferirano od $y$, te $y$ više preferirano od $z$, tada je i $x$ više preferirano od $z$,
+    \item \textit{tranzitivna}: $\forall x, y, z \in \Omega\colon x \succ y \wedge y \succ z \Rightarrow x \succ z$ --- ako je $x$ više preferirano od $y$, i $y$ više preferirano od $z$, tada je i $x$ više preferirano od $z$,
 %    \item \textit{transitive in incomparability} (noting that $x$ and $y$ may be \textit{incomparable}, i.e. neither $x$ is preferrable over $y$, nor $y$ is preferrable over $x$): if $x$ is incomparable with $y$, and $y$ is incomparable with $z$, then $x$ is also incomparable with $z$.
-    \item \textit{tranzitivna po indiferentnosti}: $\forall x, y, z \in \Omega\colon x \sim y \wedge y \sim z \Rightarrow x \sim z$ --- ako je $x$ podjednako preferirano kao i $y$, te $y$ podjednako preferirano kao i $z$, tada je i $x$ podjednako preferirano kao i $z$.
+    \item \textit{tranzitivna po indiferentnosti}: $\forall x, y, z \in \Omega\colon x \sim y \wedge y \sim z \Rightarrow x \sim z$ --- ako je $x$ podjednako preferirano kao i $y$, i $y$ podjednako preferirano kao i $z$, tada je i $x$ podjednako preferirano kao i $z$.
   \end{itemize}
   
 %  We naturally assume this kind of relation we describe relationships among the assets.
@@ -441,7 +468,7 @@
   \end{equation*}
   Jedno takvo preslikavanje ostvaruje se korištenjem metode potencijala koja je opisana u poglavlju \ref{sec:metpot}.
   Ekvivalencija metode potencijala i funkcije korisnosti pokazana je u radu \citep{metpotexact}.
-  Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također unosi i mjeru intenziteta preferencije prema nekoj vrijednosnici, što znači da nosi više informacija od same relacije.
+  Uz to što određuje poredak dobara prema individualnoj preferenciji, funkcija korisnosti također kvantificira preferenciju tako što unosi intenzitet preferencije jedne vrijednosnice u odnosu na drugu; stoga funkcija korisnosti nosi više informacija od same relacije.
 
   \section{Graf toka preferencija}
   Graf toka preferencija je pomoćna struktura koja služi pri prevođenju toka preferencija među čvorovima u individualne mjere preferencije svakog čvora.
@@ -515,7 +542,7 @@
 %  The potential of a node corresponds to difference in amount of flow going in and out of the node.
   Iz prethodno dobivenog grafa moguće je utvrditi u kojem paru vrijednosnica je tok preferencije najveći.
   Ipak, još uvijek nije moguće izravno utvrditi koja konkretna vrijednosnica je najviše ili najmanje poželjna, ili odrediti individualne mjere preferencije za svaku vrijednosnicu.
-  Kako bi to bilo moguće korištena je metoda potencijala\citep{potential} koja je opisana u nastavku.
+  Kako bi to bilo moguće korištena je metoda potencijala opisana u radu \citep{potential}.
   
   %  A concise summary of the method is as follows:
   %  \begin{enumerate}
@@ -589,7 +616,7 @@
   Stoga se dodaje sljedeće ograničenje:
   \begin{equation}
   \label{eq:sumiszero}
-  \matr{j}^\T \matr{\phi^*} = 0
+  \matr{j}^\T \matr{\phi^*} = 0,
   \end{equation}
   gdje je $\matr{j}$ vektor jedinica istih dimenzija kao i $\matr{\phi^*}$.
   Jednadžba (\ref{eq:sumiszero}) osigurava jedinstveno rješenje u kojem je ukupan zbroj potencijala svih čvorova jednak nuli.
@@ -613,7 +640,7 @@
     \item $(\matr{L})_{ii}$ je jednak broju susjeda čvora $i$,
     \item ostali elementi jednaki su $-1$.
   \end{itemize}
-  Kako je graf $\graph{G}$ potpun, odnosno broj susjeda svakog čvora jednak je $N - 1$, Laplaceova matrica grafa $\graph{G}$ ima $N - 1$ na dijagonali, a $-1$ drugdje. Tako se izraz $\q[ \matr{B}^\T \matr{B} + \matr{J} \w]^{-1}$ može pojednostavniti u $\q[ N \matr{I} \w]^{-1} = \frac{1}{N} \matr{I}$; i stoga se (\ref{eq:final}) može svesti na:
+  Kako je graf $\graph{G}$ potpun, odnosno broj susjeda svakog čvora jednak je $N - 1$, to znači da njegova Laplaceova matrica ima $N - 1$ na dijagonali, a $-1$ drugdje. Tako se izraz $\q[ \matr{B}^\T \matr{B} + \matr{J} \w]^{-1}$ može svesti na $\q[ N \matr{I} \w]^{-1} = \frac{1}{N} \matr{I}$; i stoga se (\ref{eq:final}) može pojednostavniti u:
   \begin{equation}
   \label{eq:final2}
   \matr{\phi^*} = \frac{1}{N} \matr{B}^\T \matr{f},
@@ -645,23 +672,25 @@
 %  Consistency measure $\kappa$ tells us how consistent graph $\graph{G}$ was, compared to the $\graph{G}^*$.
 %  $\kappa$ ranges from 0 to 1, with 0 meaning full inconsistency (virtually unreachable), and 1 meaning full consistency.
   Jednadžba (\ref{eq:consistency}) predstavlja kosinus kuta između $\matr{f}$ i $\matr{f^*}$ u prostoru određenom vektor stupcima matrice incidencije $\matr{B}$.
-  Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (u praktičnoj primjeni nedostižno), a 1 potpunu konzistentnost.
+  Mjera konzistentnosti $\kappa$ opisuje koliko je sličan graf $\graph{G}$ s grafom $\graph{G}^*$, te je u rasponu od 0 do 1, gdje 0 znači potpunu nekonzistentnost (u praktičnoj primjeni se ne događa), a 1 potpunu konzistentnost.
   
   \subsection{Primjer korištenja metode potencijala}
   Na sljedećem primjeru demonstrirana je metoda potencijala čvorova za određivanje individualnih preferencija čvorova u grafu.
   Na raspolaganju su četiri vrijednosnice, $A$, $B$, $C$ i $D$.
   Metodom statističke arbitraže dobivene su preferencije među vrijednosnicama s intenzitetima prikazanim na grafu na slici \ref{fig:graph-eg-1}.
-  Taj graf nije konzistentan s relacijom preferencije koju predstavlja: prema njemu $B$ nije izravno usporediva sa $C$, ali kako je $B \succ A$ i $A \succ C$, po tranzitivnosti bi trebalo biti i $B \succ C$, što u grafu nije slučaj.
-  Također, postoje dva puta od $D$ prema $A$: to su $D \rightarrow A$ i $D \rightarrow B \rightarrow A$, te je duž prvog puta zbroj težina jednak 4, a duž drugog je jednak 3, pa graf nije niti intrinzično konzistentan.
-  Isto je i s putevima od $D$ do $C$: duž puta $D \rightarrow C$ zbroj težina je jednak 2, a duž puta $D \rightarrow B \rightarrow C$ zbroj težina je jednak 5, što je čak i veće nepodudaranje nego u prethodnom slučaju.
+  
   \begin{figure}[h]
     \centering
     \includegraphics[width=0.5\linewidth]{graphics/graph-eg-1.pdf}
     \caption{Primjer nekonzistentnog grafa prije izračunavanja potencijala čvorova.
-    U čvorove su upisane oznake vrijednosnica, a na bridove su upisane težine koje opisuju tok preferencije.}
+      U čvorove su upisane oznake vrijednosnica, a na bridove su upisane težine koje opisuju tok preferencije.}
     \label{fig:graph-eg-1}
   \end{figure}
-
+  
+  Taj graf nije konzistentan s relacijom preferencije koju predstavlja: prema njemu $B$ nije izravno usporediva sa $C$, ali kako je $B \succ A$ i $A \succ C$, po tranzitivnosti bi trebalo biti i $B \succ C$, dok je prema grafu $B \sim C$.
+  Također, postoje dva puta od $D$ prema $A$: to su $D \rightarrow A$ i $D \rightarrow B \rightarrow A$, te je duž prvog puta zbroj težina jednak 4, a duž drugog je jednak 3, pa graf nije intrinzično konzistentan.
+  Isto je i s putevima od $D$ do $C$: duž puta $D \rightarrow C$ zbroj težina je jednak 2, a duž puta $D \rightarrow B \rightarrow C$ zbroj težina je jednak 5, što je čak i veće nepodudaranje nego u prethodnom slučaju.
+  
   Matrica incidencije $\matr{B}$ i vektor toka preferencije $\matr{f}$ grafa sa slike \ref{fig:graph-eg-1} su sljedeći:
   \begin{equation*}
   \matr{B} = \begin{bmatrix*}[r]
@@ -676,9 +705,10 @@
   -2 \\ 1 \\ -4 \\ 0 \\ -1 \\ -2
   \end{bmatrix*}
   \end{equation*}
-  Matrica incidencije $\matr{B}$ konstruirana je tako da redci odgovaraju redom bridovima $\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$, $\overrightarrow{BC}$, $\overrightarrow{BD}$, i $\overrightarrow{CD}$, a stupci redom čvorovima $A$, $B$, $C$ i $D$.
+  Matrica incidencije $\matr{B}$ konstruirana je tako da redci odgovaraju leksikografskom poretku bridova: $\overrightarrow{AB}$, $\overrightarrow{AC}$, $\overrightarrow{AD}$, $\overrightarrow{BC}$, $\overrightarrow{BD}$, i $\overrightarrow{CD}$; a stupci prirodnom poretku čvorova: $A$, $B$, $C$ i $D$.
   Istim redoslijedom su i težine bridova upisane u vektor $\matr{f}$.
-  Neke težine su negativne jer se smjer brida u matrici incidencije ne podudara sa smjerom brida u grafu.
+  Neke težine su negativne jer se nametnuti smjer brida u matrici incidencije ne podudara sa stvarnim smjerom brida u grafu.
+  
   Računanjem prema metodi potencijala $\matr{\phi^*} = \frac{1}{N}\matr{B}^\T \matr{f}$ i $\matr{f^*} = \matr{B} \matr{\phi^*}$, dobivaju se:
   \begin{equation*}
   \matr{\phi}^* = \begin{bmatrix*}[r]
@@ -688,13 +718,18 @@
   -1.5 \\ -0.5 \\ -1 \\ 1 \\ -1.5 \\ -2.5
   \end{bmatrix*}
   \end{equation*}
-  Prema dobivenom potencijalu čvorova $\matr{\phi}^*$ može se zaključiti kako je najviše preferiran čvor $D$, zatim $B$, zatim $C$, i naposljetku $A$.
+  Prema dobivenim potencijalima čvorova $\matr{\phi}^*$ može se zaključiti kako je najviše preferiran čvor $D$, zatim $B$, zatim $C$, i naposljetku $A$.
   Rekonstrukcija grafa prikazana je na slici \ref{fig:graph-eg-2}.
   Težine u rekonstruiranom vektoru toka preferencija $\matr{f}^*$ su promijenjene u odnosu na originalni $\matr{f}$, i to je promjena veća gdje je brid uzrokovao veću nekonzistenciju u originalnom grafu --- tako je najveća promjena u težini brida $\overrightarrow{AD}$, sa $-4$ na $-1$.
   Također, pojavio se i novi brid $\overrightarrow{BC}$ koji prije nije postojao u originalnom grafu.
   Smjer brida $\overrightarrow{AC}$ je preokrenut.
   Sada postoje tri puta od čvora $D$ do $A$, i duž sva tri puta zbroj težina bridova iznosi 3.
-  Iz toga možemo zaključiti kako je rekonstruirani graf doista intrinzično konzistentan.
+  Iz toga se vidi da je rekonstruirani graf doista intrinzično konzistentan.
+  
+  Konzistentnost grafa na slici \ref{fig:graph-eg-1} računa se po formuli (\ref{eq:consistency}):
+  \begin{equation*}
+    \kappa = \frac{\q \lVert \matr{f^*} \w \rVert}{\q \lVert \matr{f} \w \rVert} = \frac{\sqrt{13}}{\sqrt{26}} \approx 0.70711.
+  \end{equation*}
   
   \begin{figure}[h]
     \centering
@@ -745,8 +780,8 @@
 %  and rolling means $m_{i,j}^{\q(t\w)}$ and standard deviations $d_{i,j}^{\q(t\w)}$ of log price differences over the past time window of size $T$ are obtained as follows:
   Neka u zadanom skupu podataka ima ukupno $N$ vrijednosnica označenih brojevima od $1$ do $N$, kroz $D$ vremenskih koraka.
   Ulazni podaci za algoritam čine vremenski nizovi povijesnih cijena vrijednosnica koje su na raspolaganju.
-  Pretpostavka je da su vrijednosnice na tržištu likvidne, odnosno da se njima može trgovati u svakom vremenskom koraku.
-  Neka je sa $a_i^{\q(t\w)}$ označena cijena vrijednosnice $i$ u vremenskom koraku $t$, za $i \in {\q[1, 2, \ldots, N\w]}$, i $t \in {\q[0, 1, \ldots, D-1\w]}$.
+  Pretpostavka je da su vrijednosnice na tržištu likvidne, odnosno da se njima može trgovati u svakom vremenskom koraku u proizvoljnim količinama.
+  Neka je s $a_i^{\q(t\w)}$ označena cijena vrijednosnice $i$ u vremenskom koraku $t$, za $i \in {\q[1, 2, \ldots, N\w]}$, i $t \in {\q[0, 1, \ldots, D-1\w]}$.
   
   Logaritamska cijena $b_i^{\q(t\w)}$ vrijednosnice $i$, i razlika logaritamskih cijena $c_{i,j}^{\q(t\w)}$ para vrijednosnica $i$ i $j$ dobivaju se na sljedeći način, $\forall i, j \in \q[1, 2, \ldots, N\w]$:
   \begin{equation}
@@ -769,7 +804,8 @@
   
   Procjena srednje vrijednosti u (\ref{eq:mean}) je nepristrana, što znači da je očekivanje od $m_{i,j}^{\q(t\w)}$ doista jednako srednjoj vrijednosti toga uzorka.
   Procjena standardne devijacije u (\ref{eq:deviation}) nije nepristrana, jer je dobivena korjenovanjem nepristrane procjene varijance.
-  Kako je korjenovanje neliearna operacija, ono unosi pristranost u procjenu.
+  Kako je korjenovanje neliearna operacija, ono unosi pristranost u procjenu te je ona nešto manja od veličine koju procjenjuje.
+  Međutim, pristranost je manja što je broj uzoraka veći i postaje zanemariva za $T \ge 10$.
   Valja primijetiti kako je u izrazima sumiranja u (\ref{eq:mean}) i (\ref{eq:deviation}) vremenski korak $t$ namjerno izostavljen jer se radi nad proteklim periodom trajanja $T$, zbog čega sumiranje ide do $t - 1$.
 %  Note that in summation used in (\ref{eq:mean}, \ref{eq:deviation}) time step $t$ was intentionally excluded, therefore summation goes only to $t - 1$.
   Izračuni (\ref{eq:log_price}) -- (\ref{eq:deviation}) su temeljni za daljnji tijek algoritma.
@@ -778,8 +814,8 @@
 %  Also note that calculating them separately for each time step $t$ is rather computationally inefficient when dealing with rolling windows of data.
 %  Therefore, it is advisable to use a rolling algorithm as described in the appendix.
 %  On that note, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, and $d_{i,j}^{\q(t\w)}$ may be more efficiently stored if stored contiguously in memory as a matrix, using following coding scheme: a pair $(i, j)$, where $i < j$, should be encoded to $k$ as:
-  Također valja primijetiti da bi izračunavanje očekivanja i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kad se radi o velikom skupu podataka.
-  Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku.
+  Također valja primijetiti da bi izračunavanje očekivanja i standardnih devijacija zasebno za svaki vremenski korak bilo računski jako neefikasno, pogotovo kada se radi o velikom skupu podataka.
+  Stoga je preporučljivo koristiti algoritam za računanje s pomičnim prozorima, koji je opisan u dodatku \ref{appendix}.
   Što se tiče redukcije memorijske potrošnje, $c_{i,j}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)}$ su idejno trodimenzionalni tenzori, dimenzija $\q[(D - T) \times N \times N\w]$.
   Međutim, sva tri tenzora su simetrična ili antisimetrična, odnosno vrijedi $c_{i,j}^{\q(t\w)} = -c_{j,i}^{\q(t\w)}$, $m_{i,j}^{\q(t\w)} = -m_{j,i}^{\q(t\w)}$, i $d_{i,j}^{\q(t\w)} = d_{j,i}^{\q(t\w)}$. Stoga je polovina informacije sadržane u njima redundantna.
   Imajući to u vidu, ti tenzori se mogu gusto upakirati u matrice dimenzija $\q[(D - T) \times \q. N\cdot(N - 1) \middle/ 2\w.\w]$, koristeći sljedeće preslikavanje --- za kodiranje para $(i,j)$ u kod $k$ koristi se izraz:
@@ -896,6 +932,9 @@
     \caption{Razlika logaritamskih cijena vrijednosnica $X$ i $Y$. Početak i kraj aktivnog područja označen je zelenim točkama. Ukupan profit jednak je razlici iznosa na kraju i iznosa na početku aktivnog područja i iznosi 0.0889 u ovom primjeru.}
     \label{fig:trading-diffs}
   \end{figure}
+
+  \section{Minimizacija koeficijenta obrtaja} 
+  Minimizacija: energija signala.
   
   \section{Konstrukcija portfelja}
 %  We obtain preference for each asset via the potential method, as described earlier in \ref{sub:potential}.
@@ -938,9 +977,6 @@
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
   
-  \section{Minimizacija koeficijenta obrtaja} 
-  Minimizacija: energija signala.
-  
   \chapter{Rezultati}
   Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P 500 indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
   Razdoblje uključuje 6261 dan trgovanja, odnosno vremenskih koraka.
@@ -971,8 +1007,6 @@
 %The method is shown to produce rational turnover ratios, and the fact that the obtained Sharpe ratios remain high despite transaction costs additionally affirms the validity of the approach
 %These findings suggest that the proposed method produces consistent returns and may be feasible in a live market setting.
   
-  \input{results-1.tex}
-  
   \begin{figure}[p]
     \centering
     \includegraphics[width=\linewidth]{graphics/results1.pdf}
@@ -987,6 +1021,47 @@
     \label{fig:sharpe1}
   \end{figure}
 
+  \input{results-1.tex}
+  \pagebreak
+
+  Rezultati testiranja nad punim S\&P indeksom
+
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/results2.pdf}
+    \caption{}
+    \label{fig:results2}
+  \end{figure}
+
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/sharpe1.pdf}
+    \caption{Sharpeov omjer izražen na godišnjoj razini, na prozorima veličine $T = 60$, za simulaciju trgovanja nad podskupom dionica S\&P 500 indeksa.}
+    \label{fig:sharpe2}
+  \end{figure}
+
+  \input{results-1.tex}
+  \pagebreak
+
+  Rezultati testiranja nad CROBEX-om
+    \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/results2.pdf}
+    \caption{}
+    \label{fig:results3}
+  \end{figure}
+  
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/sharpe1.pdf}
+    \caption{Sharpeov omjer izražen na godišnjoj razini, na prozorima veličine $T = 60$, za simulaciju trgovanja nad podskupom dionica S\&P 500 indeksa.}
+    \label{fig:sharpe3}
+  \end{figure}
+  
+  \input{results-1.tex}
+  \pagebreak
+  
+
   \chapter{Zaključak}
   Algoritam radi nad parovima vrijednosnica, i traži takve parove kod kojih se pojavljuju statistički značajna odstupanja.
   U načelu, algoritam radi bolje kada je dostupno veći broj vrijednosnica, i samim time kvadratno veći broj parova vrijednosnica.
@@ -999,6 +1074,7 @@
 
   \appendix
   \chapter{Računanje momenata vremenskog niza na pomičnom prozoru}
+  \label{appendix}
   Pri izračunavanju momenata (očekivanje, varijanca) vremenskih nizova nad prozorima konačne duljine, pokazalo se neefikasnim izračunavati svaki prozor zasebno u svakom koraku, jer se većina uzoraka između dva susjedna prozora ponavlja.
   Neka vremenski niz traje ukupno $D$ vremenskih koraka, te neka je veličina vremenskog prozora $T$.
   Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\bigO{\q(D - T + 1\w)\cdot T}$, odnosno približno $\bigO{DT}$, kako je $D \gg T$.

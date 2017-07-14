@@ -20,6 +20,14 @@
 \newblock \btxpublisherfont {Springer}, 2003\ifbtxprintISBN {,
   \mbox{\btxISBN~\btxISBNfont {9780387142227,0-387-14222-3,1852333308}}}.
 
+\bibitem {ross2011elementary}
+\btxnamefont {\btxlastnamefont {Ross}, S.M.}\btxauthorcolon\ \btxtitlefont {An
+  Elementary Introduction to Mathematical Finance}.
+\newblock \btxpublisherfont {Cambridge University Press}, 2011\ifbtxprintISBN
+  {, \mbox{\btxISBN~\btxISBNfont {9781139498036}}}.
+\newblock {\latintext
+  \btxurlfont{https://books.google.hr/books?id=roYOpM96m5sC}}.
+
 \bibitem {engle-granger}
 \btxnamefont {\btxlastnamefont {Engle},~R. F. i~Granger, C.\btxfnamespacelong
   W.\btxfnamespacelong J.}\btxauthorcolon\ \btxjtitlefont {\btxifchangecase
@@ -40,6 +48,13 @@
   no. 366}, 1979.
 \newblock {\latintext
   \btxurlfont{https://www.jstor.org/stable/pdf/2286348.pdf}}.
+
+\bibitem {spurious}
+\btxnamefont {\btxlastnamefont {Banerjee}, Anindya}\btxauthorcolon\
+  \btxtitlefont {Co-integration, Error Correction, and the Econometric Analysis
+  of Non-stationary Data}.
+\newblock \btxpublisherfont {Oxford}, 2003\ifbtxprintISBN {,
+  \mbox{\btxISBN~\btxISBNfont {0-19-828810-7}}}.
 
 \bibitem {inzeko}
 \btxnamefont {\btxlastnamefont {Sabolić}, Dubravko}\btxauthorcolon\
