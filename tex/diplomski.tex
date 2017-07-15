@@ -167,11 +167,13 @@
   \end{description}
   
   \section{Pretpostavke osnovnog modela trgovanja}
+  S ciljem pojednostavljivanja i boljeg opisivanja trgovanja u stvarnom svijetu, osmišljeni su različiti modeli trgovanja.
+  Model trgovanja je matematička idealizacija koja obuhvaća vrstu imovine, kretanje cijena, pravila trgovanja i ostalo.
   Kod osnovnog modela trgovanja pretpostavlja se sljedeće (prema \citep{finmat}):
   \begin{enumerate}
     \item Portfelj se sastoji od rizične i nerizične imovine: cijena rizične imovine u svakom trenutku je diskretna slučajna varijabla s barem dvije moguće različite vrijednosti, a cijena nerizične imovine je iznos koji je poznat u svakom trenutku.
     
-    \item Vrijednosti rizične i nerizične imovine su uvijek pozitivni brojevi.
+    \item Vrijednosti rizične i nerizične imovine su uvijek pozitivni realni brojevi.
     
     \item Trgovanje je likvidno, divizibilno, te je dopuštena kratka pozicija.
     Ovom pretpostavkom dopušta se da udjeli imovine u portfelju budu elementi iz skupa realnih brojeva.
@@ -185,9 +187,9 @@
   Uz navedene pretpostavke osnovnog modela trgovanja, jedan od osnovnih teorema u trgovanju je teorem o nearbitraži koji tvrdi da nije moguće ostvariti pozitivan profit bez preuzimanja rizika.
   Drugim riječima, ako je vrijednost portfelja u trenutku 0, $V\q(0\w) = 0$, onda je vjerojatnost $\prob{V\q(t\w) > 0} = 0$ u svakom trenutku $t > 0$.
   
-  Teorem o arbitraži također se može iskazati na malo složeniji način (prema \citep{ross2011elementary}), koji omogućuje bolje shvaćanje načina na koji se situacije u kojima nearbitražni uvjeti ne vrijede mogu iskoristiti.
+  Teorem o nearbitraži također se može iskazati na malo složeniji način (prema \citep{ross2011elementary}), koji omogućuje bolje shvaćanje kada je arbitraža moguća, te kako se situacije u kojima nearbitražni uvjeti ne vrijede mogu iskoristiti.
   Neka je na tržištu raspoloživo $N$ vrijednosnica označenih brojevima od 1 do $N$, te je za svaku od njih moguće $M$ različitih ishoda (kretanja cijene) u sljedećem razdoblju.
-  Neka je s $r_i\q[j\w]$ označen iznos koji se dobije od jediničnog ulaganja u $i$-tu vrijednosnicu ako je ostvaren $j$-ti ishod.
+  Neka je sa $r_i\q[j\w]$ označen iznos koji se dobije od jediničnog ulaganja u $i$-tu vrijednosnicu ako je ostvaren $j$-ti ishod.
   Portfelj $\matr{\alpha} = \begin{bmatrix} \alpha_1 & \alpha_2 & \cdots & \alpha_N
   \end{bmatrix}$ tako u slučaju ostvarivanja $j$-tog ishoda donosi ukupni dobitak $R\q[j\w] = \sum_{i=1}^{N} \alpha_i r_i \q[j\w]$.
   
@@ -195,7 +197,7 @@
   \begin{equation*}
     X \sim \begin{pmatrix} 1 & 2 & \cdots & M \\ p_1 & p_2 & \cdots & p_M \end{pmatrix}.
   \end{equation*}
-  U nearbitražnim uvjetima tada bi vrijedilo da je očekivanje dobitka od $i$-te vrijednosnice:
+  U nearbitražnim uvjetima tada mora vrijediti da je očekivanje dobitka od $i$-te vrijednosnice:
   \begin{equation}
   \label{eq:non-arbitrage}
   \E{r_i\q[X\w]} = \sum_{j=1}^{M} p_i r_i\q[j\w] = 0,
@@ -207,10 +209,28 @@
     \item ili postoji vjerojatnosni vektor $\matr p$ koji ispunjava (\ref{eq:non-arbitrage}),
     \item ili je moguće konstruirati portfelj $\matr \alpha$ tako da uvijek vrijedi:
     \begin{equation}
+      \label{eq:dual-arbitrage}
       R\q[j\w] = \sum_{i = 1}^{N} \alpha_i r_i\q[j\w] > 0,
     \end{equation}
     za sve $j \in \q[1, 2, \ldots, M\w]$.
   \end{itemize}
+
+  Teorem o nearbitraži iskazan na ovaj način proizlazi iz rješavanja problema linearnog programiranja (optimizacije).
+  Problemi linearnog programiranja su optimizacijski problemi kod kojih je potrebno maksimizirati linearnu funkciju cilja uz zadana ograničenja nejednakosti na argument funkcije.
+  Osnovna formulacija optimizacijskog problema jest primarni problem, koji se može preinačiti u dualni problem u kojem je cilj minimizirati dualnu funkciju cilja, uz dualna ograničenja jednakosti na argument dualne funkcije.
+  Za primarnu i dualnu formulaciju problema vrijedi načelo dualnosti koje tvrdi da, ako je bilo koji od ta dva problema riješiv, onda je maksimum primarnog jednak minimumu dualnog problema; no ako jedan od dvaju problema nije riješiv, onda za onaj drugi ne postoji jedinstveno rješenje.
+  
+  U teoremu o nearbitraži primarni problem predstavlja situaciju u kojoj je moguća arbitraža.
+  Potrebno je maksimizirati ukupne dobitke $R\q[j\w]$, za sve $j \in \q[1, 2, \ldots, M\w]$.
+  Neka je donja granica tih dobitaka označena sa $\rho$.
+  Ograničenja nejednakosti u primarnom problemu su $\sum_{i = 1}^{N} \alpha_i r_i\q[j\w] \ge 0$, koja se razlikuju od (\ref{eq:dual-arbitrage}) u tome što dopuštaju jednakost.
+  U njegovom pripadnom dualnom problemu, ciljna funkcija koju treba minimizirati je konstantna i iznosi 0.
+  Ograničenja jednakosti u dualnom problemu odgavaraju izrazu (\ref{eq:non-arbitrage}).
+  Posljedica ovog odnosa dualnosti između izraza (\ref{eq:non-arbitrage}) i (\ref{eq:dual-arbitrage}) jest sljedeća: ako postoji vjerojatnosni vektor $\matr{p}$ koji ispunjava (\ref{eq:non-arbitrage}), tada je dualni problem riješiv i njegov minimum 0 je ispunjen, a prema načelu dualnosti to je ujedno i maksimum primarnog problema, $\rho = 0$.
+  No, ograničenja nejednakosti primarnog problema mogu biti zadovoljena samo ako su $\alpha_1 = \alpha_2 = \ldots = \alpha_N = 0$.
+  Takav portfelj ne donosi nikakav profit, što potvrđuje da je ispunjeno svojstvo nearbitraže.
+  S druge strane, nepostojanje vjerojatnosnog vektora $\matr p$ koji ispunjava (\ref{eq:non-arbitrage}) znači da 0 nije ostvariv minimum dualnog problema.
+  Tada rješenje $\rho > 0$ primarnog problema nije jedinstveno i moguće je sastaviti portfelj $\matr \alpha$ koji će zadovoljiti (\ref{eq:dual-arbitrage}).
 
   \chapter{Metode i koncepti}
   Ovdje su opisane matematičke metode i koncepti koji su korišteni u radu, kao i definicije korištenih osnovnih pojmova.
@@ -923,21 +943,24 @@
   \section{Signal trgovanja}
   Signal trgovanja je funkcija određena 
   
-  \begin{figure}[p]
+  \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{graphics/trading-signal.pdf}
-    \caption{Signal trgovanja $\Gamma_{X, Y}\q(t \w)$ za vrijednosnice $X$ i $Y$, dobiven korištenjem $T = 120$. Prag $\alpha$ je postavljen na 3. U trenutku $t_1 = 60$ (označeno prvom zelenom točkom) signal trgovanja prelazi zadani prag i ostaje u aktivnom području (čiji je razspon označen zelenom bojom) do trenutka $t_2 = 69$ (označeno drugom zelenom točkom). Kako je signal u aktivnom području negativan, zauzima se kratka pozicija u vrijednosnici $X$ i duga u $Y$, a po izlasku iz aktivnog područja te pozicije se zatvaraju.}
+    \caption{
+      Kretanje logaritamskih cijena vrijednosnica $X$ (plavo) i $Y$ (zeleno). Crtkanim linijama označeno je područje u kojem je signal trgovanja aktivan. Uočljiva je sličnost u ponašanju kretanja cijena prije i poslije aktivnog područja signala trgovanja.}
     \label{fig:trading-signal}
   \end{figure}
   
-  \begin{figure}[p]
+  \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{graphics/trading-prices.pdf}
-    \caption{Kretanje logaritamskih cijena vrijednosnica $X$ (plavo) i $Y$ (zeleno). Crtkanim linijama označeno je područje u kojem je signal trgovanja aktivan. Uočljiva je sličnost u ponašanju kretanja cijena prije i poslije aktivnog područja signala trgovanja.}
+    \caption{
+      Signal trgovanja $\Gamma_{X, Y}\q(t \w)$ za vrijednosnice $X$ i $Y$, dobiven uz korištenje $T = 120$. Prag $\alpha$ je postavljen na 3. U trenutku $t_1 = 60$ (označeno prvom zelenom točkom) signal trgovanja prelazi zadani prag i ostaje u aktivnom području (čiji je razspon označen zelenom bojom) do trenutka $t_2 = 69$ (označeno drugom zelenom točkom). Kako je signal u aktivnom području negativan, zauzima se kratka pozicija u vrijednosnici $X$ i duga u $Y$, a po izlasku iz aktivnog područja te pozicije se zatvaraju.
+    }
     \label{fig:trading-prices}
   \end{figure}
 
-  \begin{figure}[p]
+  \begin{figure}[!ht]
     \centering
     \includegraphics[width=\linewidth]{graphics/trading-diffs.pdf}
     \caption{Razlika logaritamskih cijena vrijednosnica $X$ i $Y$. Početak i kraj aktivnog područja označen je zelenim točkama. Ukupan profit jednak je razlici iznosa na kraju i iznosa na početku aktivnog područja i iznosi 0.0889 u ovom primjeru.}
@@ -987,6 +1010,8 @@
   \end{equation*}
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
+
+  \section{Testiranje}
   
   \chapter{Rezultati}
   Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P 500 indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.

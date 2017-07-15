@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  14 JUL 2017 22:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  16 JUL 2017 00:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1004,251 +1004,249 @@ Poglavlje 1.
 Poglavlje 2.
 [2
 
-] [3] [4] [5]
+] [3] [4] [5] [6]
 Poglavlje 3.
-[6
+[7
 
-] <graphics/ab-prices.pdf, id=49, 891.33pt x 588.1975pt>
+] <graphics/ab-prices.pdf, id=52, 891.33pt x 588.1975pt>
 File: graphics/ab-prices.pdf Graphic file (type pdf)
 
 <use graphics/ab-prices.pdf>
-Package pdftex.def Info: graphics/ab-prices.pdf used on input line 267.
+Package pdftex.def Info: graphics/ab-prices.pdf used on input line 287.
 (pdftex.def)             Requested size: 412.56497pt x 272.25249pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 272.
+(Font)              <10.95> on input line 292.
 
-<graphics/ab-prices-norm.pdf, id=50, 889.3225pt x 588.1975pt>
+<graphics/ab-prices-norm.pdf, id=53, 889.3225pt x 588.1975pt>
 File: graphics/ab-prices-norm.pdf Graphic file (type pdf)
 
 <use graphics/ab-prices-norm.pdf>
-Package pdftex.def Info: graphics/ab-prices-norm.pdf used on input line 278.
+Package pdftex.def Info: graphics/ab-prices-norm.pdf used on input line 298.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
 
-<graphics/ab-prices-norm-diff.pdf, id=51, 889.3225pt x 588.1975pt>
+<graphics/ab-prices-norm-diff.pdf, id=54, 889.3225pt x 588.1975pt>
 File: graphics/ab-prices-norm-diff.pdf Graphic file (type pdf)
 
 <use graphics/ab-prices-norm-diff.pdf>
-Package pdftex.def Info: graphics/ab-prices-norm-diff.pdf used on input line 28
+Package pdftex.def Info: graphics/ab-prices-norm-diff.pdf used on input line 30
 7.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- [7] [8 <./graphics/ab-prices.pdf>]
-[9 <./graphics/ab-prices-norm.pdf> <./graphics/ab-prices-norm-diff.pdf
+ [8] [9 <./graphics/ab-prices.pdf>]
+[10 <./graphics/ab-prices-norm.pdf> <./graphics/ab-prices-norm-diff.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./graphics/ab-prices-norm-diff.pdf): PD
 F inclusion: multiple pdfs with page group included in a single page
->] <graphics/diff.pdf, id=71, 898.35625pt x 588.1975pt>
+>] <graphics/diff.pdf, id=74, 898.35625pt x 588.1975pt>
 File: graphics/diff.pdf Graphic file (type pdf)
 
 <use graphics/diff.pdf>
-Package pdftex.def Info: graphics/diff.pdf used on input line 308.
+Package pdftex.def Info: graphics/diff.pdf used on input line 328.
 (pdftex.def)             Requested size: 412.56497pt x 270.12537pt.
 
-<graphics/diff-norm.pdf, id=72, 889.3225pt x 588.1975pt>
+<graphics/diff-norm.pdf, id=75, 889.3225pt x 588.1975pt>
 File: graphics/diff-norm.pdf Graphic file (type pdf)
 
 <use graphics/diff-norm.pdf>
-Package pdftex.def Info: graphics/diff-norm.pdf used on input line 315.
+Package pdftex.def Info: graphics/diff-norm.pdf used on input line 335.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- [10 <./graphics/diff.pdf>] [11 <./graphics/diff-norm.pdf>] [12] <graphics/resi
-dual.pdf, id=87, 900.36375pt x 588.1975pt>
+ [11 <./graphics/diff.pdf>] [12 <./graphics/diff-norm.pdf>] [13] <graphics/resi
+dual.pdf, id=90, 900.36375pt x 588.1975pt>
 File: graphics/residual.pdf Graphic file (type pdf)
 
 <use graphics/residual.pdf>
-Package pdftex.def Info: graphics/residual.pdf used on input line 388.
+Package pdftex.def Info: graphics/residual.pdf used on input line 408.
 (pdftex.def)             Requested size: 412.56497pt x 269.52403pt.
- [13 <./graphics/residual.pdf>]
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 405--405
+ [14 <./graphics/residual.pdf>]
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 425--425
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 405--405
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 425--425
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 406--406
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 426--426
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 406--406
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 426--426
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 407--407
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 427--427
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 407--407
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 427--427
  []|| 
  []
 
 
-Overfull \hbox (0.9976pt too wide) in paragraph at lines 407--407
+Overfull \hbox (0.9976pt too wide) in paragraph at lines 427--427
  []|\T1/lmr/m/n/12 (-15) raste| 
  []
 
 
-Overfull \hbox (0.9342pt too wide) in paragraph at lines 407--407
+Overfull \hbox (0.9342pt too wide) in paragraph at lines 427--427
  []|\T1/lmr/m/n/12 (-15) pada| 
  []
 
 
-Overfull \vbox (9.56085pt too high) detected at line 408
+Overfull \vbox (9.56085pt too high) detected at line 428
  []
 
 
-Overfull \hbox (4.90926pt too wide) in paragraph at lines 408--408
+Overfull \hbox (4.90926pt too wide) in paragraph at lines 428--428
 [][] 
  []
 
 
-Overfull \hbox (17.44037pt too wide) in paragraph at lines 408--408
+Overfull \hbox (17.44037pt too wide) in paragraph at lines 428--428
  []|$[]$| 
  []
 
 
-Overfull \hbox (7.24364pt too wide) in paragraph at lines 408--408
+Overfull \hbox (7.24364pt too wide) in paragraph at lines 428--428
 []|$[]$|  
  []
 
 
-Overfull \hbox (14.5951pt too wide) in paragraph at lines 408--408
+Overfull \hbox (14.5951pt too wide) in paragraph at lines 428--428
  []|[]| 
  []
 
 
-Overfull \hbox (1.20494pt too wide) in paragraph at lines 409--409
+Overfull \hbox (1.20494pt too wide) in paragraph at lines 429--429
 [][] 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 410--410
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 430--430
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 410--410
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 430--430
  []|| 
  []
 
 
-Overfull \hbox (3.98177pt too wide) in paragraph at lines 410--410
+Overfull \hbox (3.98177pt too wide) in paragraph at lines 430--430
 [][] 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 430.
-[14] [15] [16]
-<graphics/pref-flow-graph.pdf, id=106, 350.30875pt x 355.3275pt>
+(Font)              <5> on input line 450.
+[15] [16] [17]
+<graphics/pref-flow-graph.pdf, id=109, 350.30875pt x 355.3275pt>
 File: graphics/pref-flow-graph.pdf Graphic file (type pdf)
 
 <use graphics/pref-flow-graph.pdf>
-Package pdftex.def Info: graphics/pref-flow-graph.pdf used on input line 504.
+Package pdftex.def Info: graphics/pref-flow-graph.pdf used on input line 524.
 (pdftex.def)             Requested size: 268.1647pt x 272.02524pt.
- [17 <./graphics/pref-flow-graph.pdf>]
-[18] [19] [20] <graphics/graph-eg-1.pdf, id=135, 289.08pt x 258.9675pt>
+ [18 <./graphics/pref-flow-graph.pdf>]
+[19] [20] [21] <graphics/graph-eg-1.pdf, id=139, 289.08pt x 258.9675pt>
 File: graphics/graph-eg-1.pdf Graphic file (type pdf)
 
 <use graphics/graph-eg-1.pdf>
-Package pdftex.def Info: graphics/graph-eg-1.pdf used on input line 695.
+Package pdftex.def Info: graphics/graph-eg-1.pdf used on input line 715.
 (pdftex.def)             Requested size: 206.28249pt x 184.79285pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21] [22 <./graphics/graph-eg-1.pdf>]
-<graphics/graph-eg-2.pdf, id=157, 358.33875pt x 284.06125pt>
+[22] [23 <./graphics/graph-eg-1.pdf>]
+<graphics/graph-eg-2.pdf, id=160, 358.33875pt x 284.06125pt>
 File: graphics/graph-eg-2.pdf Graphic file (type pdf)
 
 <use graphics/graph-eg-2.pdf>
-Package pdftex.def Info: graphics/graph-eg-2.pdf used on input line 747.
+Package pdftex.def Info: graphics/graph-eg-2.pdf used on input line 767.
 (pdftex.def)             Requested size: 255.37907pt x 202.44774pt.
- [23 <./graphics/graph-eg-2.pdf>] [24]
+ [24 <./graphics/graph-eg-2.pdf>] [25]
 Poglavlje 4.
-[25
+[26
 
-] [26] <graphics/deviation-magnitude.pdf, id=178, 941.5175pt x 588.1975pt>
+] [27] <graphics/deviation-magnitude.pdf, id=182, 941.5175pt x 588.1975pt>
 File: graphics/deviation-magnitude.pdf Graphic file (type pdf)
 
 <use graphics/deviation-magnitude.pdf>
-Package pdftex.def Info: graphics/deviation-magnitude.pdf used on input line 90
+Package pdftex.def Info: graphics/deviation-magnitude.pdf used on input line 92
 0.
 (pdftex.def)             Requested size: 371.30595pt x 231.963pt.
- [27 <./graphics/deviation-magnitude.pdf>] <graphics/trading-signal.pdf, id=186
+ [28 <./graphics/deviation-magnitude.pdf>] <graphics/trading-signal.pdf, id=189
 , 898.35625pt x 588.1975pt>
 File: graphics/trading-signal.pdf Graphic file (type pdf)
 
 <use graphics/trading-signal.pdf>
-Package pdftex.def Info: graphics/trading-signal.pdf used on input line 928.
+Package pdftex.def Info: graphics/trading-signal.pdf used on input line 948.
 (pdftex.def)             Requested size: 412.56497pt x 270.12537pt.
 
-<graphics/trading-prices.pdf, id=187, 897.3525pt x 588.1975pt>
+<graphics/trading-prices.pdf, id=190, 897.3525pt x 588.1975pt>
 File: graphics/trading-prices.pdf Graphic file (type pdf)
 
 <use graphics/trading-prices.pdf>
-Package pdftex.def Info: graphics/trading-prices.pdf used on input line 935.
+Package pdftex.def Info: graphics/trading-prices.pdf used on input line 956.
 (pdftex.def)             Requested size: 412.56497pt x 270.42155pt.
 
-<graphics/trading-diffs.pdf, id=188, 908.39375pt x 588.1975pt>
+<graphics/trading-diffs.pdf, id=191, 908.39375pt x 588.1975pt>
 File: graphics/trading-diffs.pdf Graphic file (type pdf)
 
 <use graphics/trading-diffs.pdf>
-Package pdftex.def Info: graphics/trading-diffs.pdf used on input line 942.
+Package pdftex.def Info: graphics/trading-diffs.pdf used on input line 965.
 (pdftex.def)             Requested size: 412.56497pt x 267.14561pt.
- [28] [29 <./graphics/trading-signal.pdf>]
-[30 <./graphics/trading-prices.pdf> <./graphics/trading-diffs.pdf
+ [29 <./graphics/trading-signal.pdf>] [30 <./graphics/trading-prices.pdf>] [31 
+<./graphics/trading-diffs.pdf>] [32
 
-pdfTeX warning: /usr/bin/pdflatex (file ./graphics/trading-diffs.pdf): PDF incl
-usion: multiple pdfs with page group included in a single page
->] [31] [32]
+] [33]
 Poglavlje 5.
-<graphics/results1.pdf, id=210, 887.315pt x 588.1975pt>
+<graphics/results1.pdf, id=215, 887.315pt x 588.1975pt>
 File: graphics/results1.pdf Graphic file (type pdf)
 
 <use graphics/results1.pdf>
-Package pdftex.def Info: graphics/results1.pdf used on input line 1023.
+Package pdftex.def Info: graphics/results1.pdf used on input line 1048.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 
-<graphics/sharpe1.pdf, id=211, 889.3225pt x 588.1975pt>
+<graphics/sharpe1.pdf, id=216, 889.3225pt x 588.1975pt>
 File: graphics/sharpe1.pdf Graphic file (type pdf)
 
 <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1030.
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1055.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- (./results-1.tex) [33
+ (./results-1.tex) [34
 
-] [34 <./graphics/results1.pdf> <./graphics/sharpe1.pdf
+] [35 <./graphics/results1.pdf> <./graphics/sharpe1.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./graphics/sharpe1.pdf): PDF inclusion:
  multiple pdfs with page group included in a single page
->] [35] <graphics/results2.pdf, id=225, 887.315pt x 588.1975pt>
+>] [36] <graphics/results2.pdf, id=229, 887.315pt x 588.1975pt>
 File: graphics/results2.pdf Graphic file (type pdf)
 
 <use graphics/results2.pdf>
-Package pdftex.def Info: graphics/results2.pdf used on input line 1042.
+Package pdftex.def Info: graphics/results2.pdf used on input line 1067.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 File: graphics/sharpe1.pdf Graphic file (type pdf)
  <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1049.
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1074.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
  (./results-1.tex)
-[36] [37 <./graphics/results2.pdf>] [38]
+[37] [38 <./graphics/results2.pdf>] [39]
 File: graphics/results2.pdf Graphic file (type pdf)
  <use graphics/results2.pdf>
-Package pdftex.def Info: graphics/results2.pdf used on input line 1060.
+Package pdftex.def Info: graphics/results2.pdf used on input line 1085.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 File: graphics/sharpe1.pdf Graphic file (type pdf)
 
 <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1067.
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1092.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- (./results-1.tex) [39] [40] [41]
+ (./results-1.tex) [40] [41] [42]
 Poglavlje 6.
-(./diplomski.bbl [42
+(./diplomski.bbl [43
 
 ]
 babelbib: Using the BibTeX style's default font for `name'.
@@ -1294,23 +1292,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--80
  /3 f 2 a /12 f 13 a 36 e f89 c 475 a b51 a
  []
 
-) [43
+) [44
 
 ]
 Poglavlje A.
-[44
+[45
 
-] [45] [46] [47] (./diplomski.aux)
+] [46] [47] [48] (./diplomski.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9316 strings out of 493013
- 139983 string characters out of 6139317
- 255302 words of memory out of 5000000
- 12377 multiletter control sequences out of 15000+600000
- 177427 words of font info for 219 fonts, out of 8000000 for 9000
+ 9319 strings out of 493013
+ 140024 string characters out of 6139317
+ 255314 words of memory out of 5000000
+ 12378 multiletter control sequences out of 15000+600000
+ 177514 words of font info for 220 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,19n,42p,861b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fo
@@ -1332,10 +1330,10 @@ b></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf-d
 ist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/
 lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/shar
 e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (51 pages, 728326 bytes).
+Output written on diplomski.pdf (52 pages, 731688 bytes).
 PDF statistics:
- 346 PDF objects out of 1000 (max. 8388607)
- 243 compressed objects within 3 object streams
+ 350 PDF objects out of 1000 (max. 8388607)
+ 246 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  47185 words of extra memory for PDF output out of 51595 (max. 10000000)
 
