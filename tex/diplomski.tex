@@ -2,7 +2,7 @@
 \usepackage{booktabs}
 
 %\usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1500,stretch=10,shrink=10]{microtype}
-\usepackage[final, stretch=25, shrink=15]{microtype}
+\usepackage[final, stretch=50, shrink=10]{microtype}
 \microtypecontext{spacing=nonfrench}
 \usepackage{indentfirst}
 \usepackage{booktabs}
@@ -12,6 +12,7 @@
 \usepackage{float}
 \usepackage{bigdelim}
 \usepackage{mathtools}
+\usepackage{afterpage}
 
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
   \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
@@ -30,6 +31,8 @@
 \usepackage[fixlanguage]{babelbib}
 \selectbiblanguage{croatian}
 \usepackage[section]{placeins}
+
+\newcommand{\todo}{\textbf{TODO: }}
 
 \newcommand{\matr}[1]{\mathbold{#1}}
 \newcommand{\graph}[1]{\mathcal{#1}}
@@ -215,7 +218,7 @@
     za sve $j \in \q[1, 2, \ldots, M\w]$.
   \end{itemize}
 
-  Teorem o nearbitraži iskazan na ovaj način proizlazi iz rješavanja problema linearnog programiranja (optimizacije).
+  Teorem o nearbitraži iskazan na ovaj način proizlazi iz rješavanja problema linearnog programiranja (linearne optimizacije).
   Problemi linearnog programiranja su optimizacijski problemi kod kojih je potrebno maksimizirati linearnu funkciju cilja uz zadana ograničenja nejednakosti na argument funkcije.
   Osnovna formulacija optimizacijskog problema jest primarni problem, koji se može preinačiti u dualni problem u kojem je cilj minimizirati dualnu funkciju cilja, uz dualna ograničenja jednakosti na argument dualne funkcije.
   Za primarnu i dualnu formulaciju problema vrijedi načelo dualnosti koje tvrdi da, ako je bilo koji od ta dva problema riješiv, onda je maksimum primarnog jednak minimumu dualnog problema; no ako jedan od dvaju problema nije riješiv, onda za onaj drugi ne postoji jedinstveno rješenje.
@@ -533,7 +536,7 @@
   
   Konstrukcija grafa u ovom radu temelji se na metodi statističke arbitraže.
   Brid koji ide od čvora $i$ do čvora $j$ s težinom $w_{i,j}$ je prisutan u grafu ako i samo ako su se dvije pripadne vrijednosnice $i$ i $j$ ponašale slično tijekom proteklog perioda, ali su prema određenim statističkim mjerama trenutačno razdvojile.
-  Težina $w_{i,j}$ opisuje magnitudu ovog razdvajanja i služi kao mjera intenziteta preferencije jedne vrijednosnice u odnosu na drugu.
+  Težina $w_{i,j}$ opisuje intenzitet ovog razdvajanja i služi kao mjera intenziteta preferencije jedne vrijednosnice u odnosu na drugu.
   Podrazumijeva se da je $w_{i,j} = -w_{j,i}$, odnosno negativan intenzitet preferencije označava da je jedna vrijednosnica toliko manje preferirana u odnosu na drugu.
   Detaljan opis postupka dobivanja korištenih statističkih mjera dan je u odjeljku \ref{sub:creating-graph}.
     
@@ -757,10 +760,11 @@
   Sada postoje tri puta od čvora $D$ do $A$, i duž sva tri puta zbroj težina bridova iznosi 3.
   Iz toga se vidi da je rekonstruirani graf doista intrinzično konzistentan.
   
-  Konzistentnost grafa na slici \ref{fig:graph-eg-1} računa se po formuli (\ref{eq:consistency}):
+  Mjera konzistentnosti grafa na slici \ref{fig:graph-eg-1} računa se po formuli (\ref{eq:consistency}):
   \begin{equation*}
     \kappa = \frac{\q \lVert \matr{f^*} \w \rVert}{\q \lVert \matr{f} \w \rVert} = \frac{\sqrt{13}}{\sqrt{26}} \approx 0.70711.
   \end{equation*}
+  Dobivena mjera konzistentnosti je manja od 1 što potvrđuje da početni graf nije bio intrinzično konzistentan.
   
   \begin{figure}[h]
     \centering
@@ -898,9 +902,10 @@
   Promatrajući fiksni vremenski korak $t$, izdvajaju se svi parovi vrijednosnica $(i,j)$ za koje vrijedi:
   \begin{equation}
   \label{eq:thresh}
-  \q\lvert c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)} \w\rvert > \alpha \cdot d_{i,j}^{\q(t\w)},
+  \q\lvert c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)} \w\rvert > \beta \cdot d_{i,j}^{\q(t\w)},
   \end{equation}
-  tj. trenutna apsolutna vrijednost razlike log-cijena para vrijednosnica $(i,j)$ je barem za $\alpha$ standardnih devijacija udaljena od očekivanja, izmjerenih u proteklom periodu.
+  tj. trenutna apsolutna vrijednost razlike log-cijena para vrijednosnica $(i,j)$ je barem za $\beta$ standardnih devijacija udaljena od očekivanja, izmjerenih u proteklom periodu.
+  Veličina $\beta$ je parametar algoritma koji se zove prag trgovanja.
   %  Parameter $\alpha$ determines how many pairs of assets should constitute the graph at current time step.
 %  Afterwards, for each observed pair $(i,j)$ that exceeds the threshold we add into graph vertices $i$ and $j$, with a weighed edge of weight $w_{i,j}^{\q(t\w)}$ going from $i$ to $j$.
 %  Weight $w_{i,j}^{\q(t\w)}$ is obtained as:
@@ -911,7 +916,7 @@
 %  w_{i,j}^{\q(t\w)} = \q. \q(c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}\w) \middle/ d_{i,j}^{\q(t\w)} \w.,
   w_{i,j}^{\q(t\w)} = \frac{c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}}{d_{i,j}^{\q(t\w)}},
   \end{equation}
-  što odgovara udaljenosti razlike log-cijena od očekivanja, mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\alpha$.
+  što odgovara udaljenosti razlike log-cijena od očekivanja, mjerene u standardnim devijacijama, i po apsolutnoj vrijednosti je veća od $\beta$.
   Negativan predznak težine $w_{i,j}^{\q(t\w)}$ označava da je stvarni smjer preferencije obrnut od pretpostavljenog, odnosno brid koji ide od $j$ do $i$ s pozitivnom težinom $w_{j,i}^{\q(t\w)} = -w_{i,j}^{\q(t\w)}$ ekvivalentan je prethodno pretpostavljenom bridu.
   Ilustracija ove mjere prikazana je na slici \ref{fig:devmag}.
   
@@ -925,8 +930,8 @@
 %      This would mean that two of the assets $i$ and $j$ would be added to the graph of preference flow at the time step $T + 1$.
 %      Weight $w_{i,j}$ describes current deviation from mean value.
        Razlika log-cijena u paru vrijednosnica $(i,j)$ tijekom perioda od $T + 1$ vremenskih koraka, uz $T = 120$.
-       Točka-crta linija predstavlja očekivanje, a područje između dviju crtkanih linija predstavlja $\alpha$ standardnih devijacija udaljenosti od očekivanja; obje mjere su izračunate nad prvih $T$ vremenskih koraka.
-       Tijekom vremenskog koraka $T + 1$, razlika log-cijena prelazi $\alpha$ standardnih devijacija iznad očekivanja proteklog perioda duljine $T$.
+       Točka-crta linija predstavlja očekivanje, a područje između dviju crtkanih linija predstavlja $\beta$ standardnih devijacija udaljenosti od očekivanja; obje mjere su izračunate nad prvih $T$ vremenskih koraka.
+       Tijekom vremenskog koraka $T + 1$, razlika log-cijena prelazi $\beta$ standardnih devijacija iznad očekivanja proteklog perioda duljine $T$.
        To znači da će vrijednosnice $i$ i $j$ biti dodane u graf toka preferencija u vremenskom koraku $T + 1$.
        Težina $w_{i,j}^{(T+1)}$ opisuje devijaciju od očekivanja.
     }
@@ -935,40 +940,78 @@
   
   Tako je moguće konstruirati graf toka preferencija za bilo koji vremenski korak $t \in \q[T, T + 1, \ldots, D-1\w]$.
   U nekim vremenskim koracima moguće je da dobiveni graf bude prazan, ako nijedan par vrijednosnica $(i,j)$ ne zadovoljava (\ref{eq:thresh}).
-  Postavljanjem nižih vrijednosti za $\alpha$ dobivaju se gušći grafovi i manje često se događa da je graf prazan, dok se postavljanjem $\alpha = 0$ uvijek dobivaju potpuni grafovi.
+  Postavljanjem nižih vrijednosti za $\beta$ dobivaju se gušći grafovi i manje često se događa da je graf prazan, dok se postavljanjem $\beta = 0$ uvijek dobivaju potpuni grafovi.
 %  Thus it is possible to create a graph of preference flow for each time step $t \in \q[T, T + 1, \ldots, D-1\w]$.
 %  At some time steps it is possible that the graph could be empty, if it is the case that no pair $(i,j)$ satisfies (\ref{eq:thresh}).
 %  Setting lower values for parameter $\alpha$ yields denser graphs, and setting $\alpha = 0$ always yields complete graphs.
 
   \section{Signal trgovanja}
-  Signal trgovanja je funkcija određena 
-  
-  \begin{figure}[!ht]
+  Signal trgovanja $\Gamma_{X, Y}^{(t)}$ između vrijednosnica $X$ i $Y$ u trenutku $t$ je funkcija koja određuje težine bridova kako je opisano u prethodnom odjeljku.
+  Dobiva se na isti način kao i težine bridova:
+  \begin{equation}
+    \Gamma_{X, Y}^{(t)} = \frac{c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}}{d_{i,j}^{\q(t\w)}},
+  \end{equation}
+  s bitnom razlikom da težine bridova postoje samo ako je prethodno zadovoljen prag $\beta$, a signal trgovanja je vremenski kontinuirana funkcija koja je podložna daljnjoj analizi.
+  Signal trgovanja $\Gamma_{X, Y}^{(t)}$, kao što mu i ime sugerira, opisuje željenu odluku o trgovanju vrijednosnicama $X$ i $Y$ u trenutku $t$ na način opisan tablicom \ref{table:trading-signal}.
+  U područjima I i III signal je aktivan, odnosno potiče trgovanje, dok je u području II inaktivan, jer ne dopušta trgovanje.
+  \begin{table}[h]
     \centering
-    \includegraphics[width=\linewidth]{graphics/trading-signal.pdf}
-    \caption{
-      Kretanje logaritamskih cijena vrijednosnica $X$ (plavo) i $Y$ (zeleno). Crtkanim linijama označeno je područje u kojem je signal trgovanja aktivan. Uočljiva je sličnost u ponašanju kretanja cijena prije i poslije aktivnog područja signala trgovanja.}
-    \label{fig:trading-signal}
-  \end{figure}
-  
-  \begin{figure}[!ht]
+    \caption{Opis akcija kod signala trgovanja.}
+    \label{table:trading-signal}
+    \begin{tabular}{cr@{}c@{}ll}
+      \toprule
+      područje & \multicolumn{3}{c}{uvjet} & odluka \\
+      \midrule
+      I & $-\infty <$ & $\,\Gamma_{X, Y}^{(t)}\,$ & $< -\beta$ & duga pozicija u $X$, kratka u $Y$ \\
+      II & $-\beta \le$ & $\,\Gamma_{X, Y}^{(t)}\,$ & $\le \beta $ & nema akcije \\
+      III & $\beta <$ & $\,\Gamma_{X, Y}^{(t)}\,$ & $< \infty$ & kratka pozicija u $X$, duga u $Y$ \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  Na slici \ref{fig:trading-signal} prikazano je kretanje logaritamskih cijena vrijednosnica koje se slično ponašaju, te je vidljiv trenutak u kojem slično ponašanje prestaje, a to je trenutak kada se signal trgovanja mora aktivirati.
+  Na slici \ref{fig:trading-prices} prikazan je pripadni signal trgovanja tih dviju dionica tijekom istog razdoblja s označenim aktivnim područjem.
+  Naposljetku, na slici \ref{fig:trading-diffs} prikazana je razlika logaritamskih cijena tijekom istog razdoblja kako bi se lakše mogao pratiti profit ostvaren trgovanjem u skladu sa signalom trgovanja.
+  \pagebreak
+  \afterpage{
+    
+   \begin{figure}[p]
     \centering
     \includegraphics[width=\linewidth]{graphics/trading-prices.pdf}
     \caption{
-      Signal trgovanja $\Gamma_{X, Y}\q(t \w)$ za vrijednosnice $X$ i $Y$, dobiven uz korištenje $T = 120$. Prag $\alpha$ je postavljen na 3. U trenutku $t_1 = 60$ (označeno prvom zelenom točkom) signal trgovanja prelazi zadani prag i ostaje u aktivnom području (čiji je razspon označen zelenom bojom) do trenutka $t_2 = 69$ (označeno drugom zelenom točkom). Kako je signal u aktivnom području negativan, zauzima se kratka pozicija u vrijednosnici $X$ i duga u $Y$, a po izlasku iz aktivnog područja te pozicije se zatvaraju.
-    }
+      Signal trgovanja $\Gamma_{X, Y}^{(t)}$ za vrijednosnice $X$ i $Y$, dobiven uz korištenje $T = 120$. Prag $\beta$ je postavljen na 3. U trenutku $t_1 = 60$ (označeno prvom zelenom točkom) signal trgovanja prelazi zadani prag i ostaje u aktivnom području (čiji je razspon označen zelenom bojom) do trenutka $t_2 = 69$ (označeno drugom zelenom točkom). Kako je signal u aktivnom području manji od $-\beta$, zauzima se kratka pozicija u vrijednosnici $X$ i duga u $Y$, a po izlasku iz aktivnog područja te pozicije se zatvaraju.
+      }
     \label{fig:trading-prices}
   \end{figure}
+  
+  \begin{figure}[p]
+    \centering
+    \includegraphics[width=\linewidth]{graphics/trading-signal.pdf}
+    \caption{
+      Kretanje logaritamskih cijena vrijednosnica $X$ (plavo) i $Y$ (zeleno).
+      Između crtkanih linija nalazi se podruje u kojem je signal trgovanja aktivan. Uočljiva je sličnost u kretanju logaritamskih cijena prije i poslije aktivnog područja signala trgovanja.}
+    \label{fig:trading-signal}
+  \end{figure}
 
-  \begin{figure}[!ht]
+  \begin{figure}[p]
     \centering
     \includegraphics[width=\linewidth]{graphics/trading-diffs.pdf}
     \caption{Razlika logaritamskih cijena vrijednosnica $X$ i $Y$. Početak i kraj aktivnog područja označen je zelenim točkama. Ukupan profit jednak je razlici iznosa na kraju i iznosa na početku aktivnog područja i iznosi 0.0889 u ovom primjeru.}
     \label{fig:trading-diffs}
   \end{figure}
+  \clearpage
+  } 
 
-  \section{Minimizacija koeficijenta obrtaja} 
-  Minimizacija: energija signala.
+  Signal trgovanja ovisi o odabranoj veličini vremenskom prozora $T$, a odluka koju donosi dodatno ovisi o odabranom iznosu praga trgovanja $\beta$.
+  Unutar iduća dva pododjeljka opisane su metode za biranje pogodnih vrijednosti za parametre $T$ i $\beta$.
+  
+  \subsection{Selekcija parova odabirom praga trgovanja}
+  \todo
+  Prag $\beta$ postaviti tako da je za odabrane vrijednosnice varijanca njihove razlike manja od zbroja njihovih varijanci, iz čega slijedi da kovarijanca cijena mora biti pozitivna.
+
+  \subsection{Minimizacija koeficijenta obrtaja} 
+  \todo
+  Putem minimizacije energije signala ili maksimizacija varijance (bolje).
   
   \section{Konstrukcija portfelja}
 %  We obtain preference for each asset via the potential method, as described earlier in \ref{sub:potential}.
@@ -1012,6 +1055,8 @@
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
 
   \section{Testiranje}
+  \todo
+  Mjesto za Python kod.
   
   \chapter{Rezultati}
   Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P 500 indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
@@ -1060,7 +1105,9 @@
   \input{results-1.tex}
   \pagebreak
 
-  Rezultati testiranja nad punim S\&P indeksom
+  \todo
+  Rezultati testiranja nad punim S\&P indeksom. \\
+  slike i tablica.
 
   \begin{figure}[p]
     \centering
@@ -1079,8 +1126,11 @@
   \input{results-1.tex}
   \pagebreak
 
-  Rezultati testiranja nad CROBEX-om
-    \begin{figure}[p]
+  \todo
+  Rezultati testiranja nad CROBEX-om \\
+  slike i tablica.
+
+  \begin{figure}[p]
     \centering
     \includegraphics[width=\linewidth]{graphics/results2.pdf}
     \caption{}

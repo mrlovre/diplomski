@@ -19,9 +19,10 @@
 \contentsline {chapter}{\numberline {4}Algoritam}{26}
 \contentsline {section}{\numberline {4.1}Konstrukcija grafa toka preferencija}{27}
 \contentsline {section}{\numberline {4.2}Signal trgovanja}{29}
-\contentsline {section}{\numberline {4.3}Minimizacija koeficijenta obrtaja}{32}
-\contentsline {section}{\numberline {4.4}Konstrukcija portfelja}{32}
-\contentsline {section}{\numberline {4.5}Testiranje}{33}
+\contentsline {subsection}{\numberline {4.2.1}Selekcija parova odabirom praga trgovanja}{32}
+\contentsline {subsection}{\numberline {4.2.2}Minimizacija koeficijenta obrtaja}{32}
+\contentsline {section}{\numberline {4.3}Konstrukcija portfelja}{32}
+\contentsline {section}{\numberline {4.4}Testiranje}{33}
 \contentsline {chapter}{\numberline {5}Rezultati}{34}
 \contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{43}
 \contentsline {chapter}{Literatura}{44}
