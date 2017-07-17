@@ -87,7 +87,7 @@
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
 %\zahvala{Zahvaljujem se dopredsjednici Hrvatskog sabora dr. sc. Vesni-Ani Škaro i Miloradu Pupovcu.}
-\zahvala{Zahvaljujem svojoj obitelji, svim dragim prijateljima, i profesorima Fakulteta elektrotehnike i računarstva.}
+\zahvala{Zahvaljujem svojoj obitelji, svim dragim prijateljima i profesorima na Fakultetu elektrotehnike i računarstva, na višegodišnjoj potpori i pružanju novih znanja i vještina bez kojih ovaj rad ne bi mogao nastati.}
 
 \tableofcontents
 
@@ -1278,8 +1278,10 @@
     
   \chapter{Rezultati}
   \label{ch:rezultati}
+  Ovdje su prikazani rezultati testiranja razvijenog algoritma trgovanja vrijednosnicama na američkom (S\&P 500 index), i hrvatskom tržištu (CROBEX).
+  
   \section{S\&P 203}
-  Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P 500 indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
+  Ovaj skup podataka sadrži odabrane 203 od 500 dionica koje su bile kontinuirano uključene u S\&P 500 indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
   Razdoblje uključuje 6261 dan trgovanja, odnosno vremenskih koraka.
   Ukupno 20503 parova dionica je ispitano metodom statističke arbitraže u svakom vremenskom koraku.
   Simulirani su troškovi trgovanja u iznosu 0.10\% za svako obavljeno trgovanje.
@@ -1326,47 +1328,93 @@
   \pagebreak
   
   \section{S\&P 500}
-  \todo
-  Rezultati testiranja nad punim S\&P indeksom. \\
-  slike i tablica.
+  Rezultati testiranja nad punim S\&P 500 indeksom.
+  Za razliku od prethodne situacije gdje su sve dionice ostale ``žive'' tokom cijelog razdoblja, u ovom skupu postoje dionice koje propadaju, odnosno njihova vrijednost padne na nulu.
+  Pokazalo se da algoritam ne može predvidjeti propadanje dionice, između ostalog jer ne raspolaže mjerodavnim podacima iz kojih bi se takvo što moglo zaključiti.
+  Stoga trpi gubitke u određenim trenucima.
+  Kao nadomjesna mjera mogućnosti propadanja dionice koristi se volatilnost cijena.
+  Prilikom testiranja izbačeno je 20\% najvolatilnijih dionica.
+  Rezultati su prikazani u tablici \ref{table:spfull2} i na slikama \ref{fig:results2} i \ref{fig:sharpe2}.
+  
+  \begin{table}[h]
+    \centering
+    \caption{Rezultati testiranja nad CROBEX skupom.}
+    \label{table:spfull2}
+    \begin{tabular}{lr}
+      \toprule
+      Rezultati: & \\
+      \midrule
+      bez troškova trgovanja: & \\
+      ukupni profit & 18.09261 \\
+      Sharpeov omjer & 0.87507 \\
+      \midrule
+      {uz uključene troškove trgovanja od 0.10\%:} & \\
+      ukupni profit & 11.03961 \\
+      Sharpeov omjer & 0.53382 \\
+      \midrule
+      prosječni koeficijent obrtaja & 1.04088 \\
+      prosječna konzistentnost & 0.55817 \\
+      prosječna preciznost & 0.52642 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
 
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/results2.pdf}
-    \caption{}
+    \includegraphics[width=\linewidth]{graphics/sp500full-profits.pdf}
+    \caption{Rezultati simulacija trgovanja nad punim skupom dionica S\&P 500 indeksa. Plavom bojom je prikazana krivulja kumulativnog profita bez uključenih troškova trgovanja, a zelenom uz uključene troškove trgovanja od 0.10\% po transakciji.}
     \label{fig:results2}
   \end{figure}
 
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/sharpe1.pdf}
-    \caption{Sharpeov omjer izražen na godišnjoj razini, na prozorima veličine $T = 60$, za simulaciju trgovanja nad podskupom dionica S\&P 500 indeksa.}
+    \includegraphics[width=\linewidth]{graphics/sp500full-cons.pdf}
+    \caption{Prikaz dobivenih mjera konzistentnosti za simulaciju trgovanja nad punim skupom dionica S\&P 500 indeksa.}
     \label{fig:sharpe2}
   \end{figure}
-
-  \input{results-1.tex}
   \pagebreak
 
   \section{CROBEX}
-  \todo
-  Rezultati testiranja nad CROBEX-om \\
-  slike i tablica.
+  Algoritam je testiran i nad skupom dionica na hrvatskom tržištu koje su uključene u CROBEX indeks.
+  Razlika u odnosu na prethodna dva testiranja je što u ovom slučaju nije bila dopuštena kratka pozicija.
+  Rezultati su prikazani u tablici \ref{table:crobex-results} i na slikama \ref{fig:results3} i \ref{fig:sharpe3}
+  
+  \begin{table}[h]
+    \centering
+    \caption{Rezultati testiranja nad CROBEX skupom.}
+    \label{table:crobex-results}
+    \begin{tabular}{lr}
+      \toprule
+      Rezultati: & \\
+      \midrule
+      bez troškova trgovanja: & \\
+      ukupni profit & 24.32031 \\
+      Sharpeov omjer &  2.16176 \\
+      \midrule
+      {uz uključene troškove trgovanja od 0.10\%:} & \\
+      ukupni profit & 20.77131 \\
+      Sharpeov omjer & 1.84749 \\
+      \midrule
+      prosječni koeficijent obrtaja & 0.68041\\
+      prosječna konzistentnost & 0.81656 \\
+      prosječna preciznost & 0.43558 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
 
   \begin{figure}[p]
     \centering
     \includegraphics[width=\linewidth]{graphics/results2.pdf}
-    \caption{}
+    \caption{Rezultati simulacija trgovanja nad punim skupom dionica CROBEX indeksa. Plavom bojom je prikazana krivulja kumulativnog profita bez uključenih troškova trgovanja, a zelenom uz uključene troškove trgovanja od 0.10\% po transakciji.}
     \label{fig:results3}
   \end{figure}
   
   \begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{graphics/sharpe1.pdf}
-    \caption{Sharpeov omjer izražen na godišnjoj razini, na prozorima veličine $T = 60$, za simulaciju trgovanja nad podskupom dionica S\&P 500 indeksa.}
+    \includegraphics[width=\linewidth]{graphics/crobex-cons.pdf}
+    \caption{Prikaz dobivenih mjera konzistentnosti za simulaciju trgovanja nad punim skupom dionica CROBEX indeksa.}
     \label{fig:sharpe3}
   \end{figure}
-  
-  \input{results-1.tex}
   \pagebreak
   
 

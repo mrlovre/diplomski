@@ -26,11 +26,11 @@
 \contentsline {chapter}{\numberline {5}Rezultati}{40}
 \contentsline {section}{\numberline {5.1}S\&P 203}{40}
 \contentsline {section}{\numberline {5.2}S\&P 500}{43}
-\contentsline {section}{\numberline {5.3}CROBEX}{46}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{49}
-\contentsline {chapter}{Literatura}{50}
+\contentsline {section}{\numberline {5.3}CROBEX}{45}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{47}
+\contentsline {chapter}{Literatura}{48}
 \select@language {croatian}
 \select@language {croatian}
 \select@language {croatian}
 \select@language {croatian}
-\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{52}
+\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{50}

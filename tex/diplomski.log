@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  17 JUL 2017 15:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  17 JUL 2017 15:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -978,14 +978,7 @@ LaTeX Info: Redefining \bm on input line 207.
 (/usr/share/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
 Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 \symrsfs=\mathgroup9
-) (./diplomski.aux
-
-LaTeX Warning: Label `table:results-1' multiply defined.
-
-
-LaTeX Warning: Label `table:results-1' multiply defined.
-
-)
+) (./diplomski.aux)
 \openout1 = `diplomski.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
@@ -1002,7 +995,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
 LaTeX Font Info:    ... okay on input line 72.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 72.
- (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
+
+(/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 72.
@@ -1498,14 +1492,14 @@ Poglavlje 5.
 File: graphics/results1.pdf Graphic file (type pdf)
 
 <use graphics/results1.pdf>
-Package pdftex.def Info: graphics/results1.pdf used on input line 1313.
+Package pdftex.def Info: graphics/results1.pdf used on input line 1315.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 
 <graphics/sharpe1.pdf, id=237, 889.3225pt x 588.1975pt>
 File: graphics/sharpe1.pdf Graphic file (type pdf)
 
 <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1320.
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1322.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
  (./results-1.tex) [40
 
@@ -1513,30 +1507,44 @@ Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1320.
 
 pdfTeX warning: /usr/bin/pdflatex (file ./graphics/sharpe1.pdf): PDF inclusion:
  multiple pdfs with page group included in a single page
->] [42] <graphics/results2.pdf, id=250, 887.315pt x 588.1975pt>
+>] [42] <graphics/sp500full-profits.pdf, id=250, 898.35625pt x 568.1225pt>
+File: graphics/sp500full-profits.pdf Graphic file (type pdf)
+
+<use graphics/sp500full-profits.pdf>
+Package pdftex.def Info: graphics/sp500full-profits.pdf used on input line 1364
+.
+(pdftex.def)             Requested size: 412.56497pt x 260.90607pt.
+
+<graphics/sp500full-cons.pdf, id=251, 891.33pt x 588.1975pt>
+File: graphics/sp500full-cons.pdf Graphic file (type pdf)
+
+<use graphics/sp500full-cons.pdf>
+Package pdftex.def Info: graphics/sp500full-cons.pdf used on input line 1371.
+(pdftex.def)             Requested size: 412.56497pt x 272.25249pt.
+ [43] [44 <./graphics/sp500full-profits.pdf> <./graphics/sp500full-cons.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./graphics/sp500full-cons.pdf): PDF inc
+lusion: multiple pdfs with page group included in a single page
+>] <graphics/results2.pdf, id=261, 887.315pt x 588.1975pt>
 File: graphics/results2.pdf Graphic file (type pdf)
 
 <use graphics/results2.pdf>
-Package pdftex.def Info: graphics/results2.pdf used on input line 1335.
+Package pdftex.def Info: graphics/results2.pdf used on input line 1407.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
-File: graphics/sharpe1.pdf Graphic file (type pdf)
- <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1342.
-(pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- (./results-1.tex)
-[43] [44 <./graphics/results2.pdf>] [45]
-File: graphics/results2.pdf Graphic file (type pdf)
- <use graphics/results2.pdf>
-Package pdftex.def Info: graphics/results2.pdf used on input line 1357.
-(pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
-File: graphics/sharpe1.pdf Graphic file (type pdf)
 
-<use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1364.
-(pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- (./results-1.tex) [46] [47] [48]
+<graphics/crobex-cons.pdf, id=262, 891.33pt x 588.1975pt>
+File: graphics/crobex-cons.pdf Graphic file (type pdf)
+
+<use graphics/crobex-cons.pdf>
+Package pdftex.def Info: graphics/crobex-cons.pdf used on input line 1414.
+(pdftex.def)             Requested size: 412.56497pt x 272.25249pt.
+ [45] [46 <./graphics/results2.pdf> <./graphics/crobex-cons.pdf
+
+pdfTeX warning: /usr/bin/pdflatex (file ./graphics/crobex-cons.pdf): PDF inclus
+ion: multiple pdfs with page group included in a single page
+>]
 Poglavlje 6.
-(./diplomski.bbl [49
+(./diplomski.bbl [47
 
 ]
 babelbib: Using the BibTeX style's default font for `name'.
@@ -1576,25 +1584,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--80
 /3 f 2 a /12 f 13 a 36 e f89 c 475 a b51 a
  []
 
+[48
+
+]) [49]
+Poglavlje A.
 [50
 
-]) [51]
-Poglavlje A.
-[52
-
-] [53] [54] [55] [56] (./diplomski.aux)
+] [51] [52] [53] [54] (./diplomski.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 12040 strings out of 493013
- 176627 string characters out of 6139317
- 319862 words of memory out of 5000000
- 14975 multiletter control sequences out of 15000+600000
+ 12051 strings out of 493013
+ 177033 string characters out of 6139317
+ 319837 words of memory out of 5000000
+ 14987 multiletter control sequences out of 15000+600000
  185866 words of font info for 260 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  43i,19n,77p,859b,1868s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1620,10 +1625,10 @@ t/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts/type1/public/lm
 /lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (60 pages, 786575 bytes).
+Output written on diplomski.pdf (58 pages, 934901 bytes).
 PDF statistics:
- 383 PDF objects out of 1000 (max. 8388607)
+ 384 PDF objects out of 1000 (max. 8388607)
  269 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 48721 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 48736 words of extra memory for PDF output out of 51595 (max. 10000000)
 
