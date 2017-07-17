@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  17 JUL 2017 15:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  17 JUL 2017 18:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1590,7 +1590,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 74--80
 Poglavlje A.
 [50
 
-] [51] [52] [53] [54] (./diplomski.aux)
+] [51] [52] [53] (./diplomski.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
@@ -1625,10 +1625,10 @@ t/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts/type1/public/lm
 /lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/sha
 re/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type
 1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (58 pages, 934901 bytes).
+Output written on diplomski.pdf (57 pages, 934637 bytes).
 PDF statistics:
- 384 PDF objects out of 1000 (max. 8388607)
- 269 compressed objects within 3 object streams
+ 381 PDF objects out of 1000 (max. 8388607)
+ 267 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  48736 words of extra memory for PDF output out of 51595 (max. 10000000)
 
