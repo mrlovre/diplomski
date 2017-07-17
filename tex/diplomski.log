@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  17 JUL 2017 07:16
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2017.4.19)  17 JUL 2017 15:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -709,6 +709,204 @@ Package: afterpage 2014/10/28 v1.08 After-Page Package (DPC)
 \AP@partial=\box32
 \AP@footins=\box33
 )
+(/usr/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count122
+\lst@gtempboxa=\box34
+\lst@token=\toks32
+\lst@length=\count123
+\lst@currlwidth=\dimen163
+\lst@column=\count124
+\lst@pos=\count125
+\lst@lostspace=\dimen164
+\lst@width=\dimen165
+\lst@newlines=\count126
+\lst@lineno=\count127
+\lst@maxwidth=\dimen166
+
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
+\c@lstnumber=\count128
+\lst@skipnumbers=\count129
+\lst@framebox=\box35
+)
+(/usr/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2015/06/04 1.6 listings configuration
+))
+Package: listings 2015/06/04 1.6 (Carsten Heinz)
+
+(/usr/share/texmf-dist/tex/latex/inconsolata/inconsolata.sty
+Package: inconsolata 2017/01/04 v1.112
+
+`inconsolata-zi4' v1.112, 2017/01/04 Text macros for Inconsolata (msharpe)
+(/usr/share/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2017/02/22 v2.0g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+
+(/usr/share/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+Now handling font encoding TS1 ...
+... processing UTF-8 mapping file for font encoding TS1
+
+(/usr/share/texmf-dist/tex/latex/base/ts1enc.dfu
+File: ts1enc.dfu 2017/01/28 v1.1t UTF-8 support for inputenc
+   defining Unicode char U+00A2 (decimal 162)
+   defining Unicode char U+00A3 (decimal 163)
+   defining Unicode char U+00A4 (decimal 164)
+   defining Unicode char U+00A5 (decimal 165)
+   defining Unicode char U+00A6 (decimal 166)
+   defining Unicode char U+00A7 (decimal 167)
+   defining Unicode char U+00A8 (decimal 168)
+   defining Unicode char U+00A9 (decimal 169)
+   defining Unicode char U+00AA (decimal 170)
+   defining Unicode char U+00AC (decimal 172)
+   defining Unicode char U+00AE (decimal 174)
+   defining Unicode char U+00AF (decimal 175)
+   defining Unicode char U+00B0 (decimal 176)
+   defining Unicode char U+00B1 (decimal 177)
+   defining Unicode char U+00B2 (decimal 178)
+   defining Unicode char U+00B3 (decimal 179)
+   defining Unicode char U+00B4 (decimal 180)
+   defining Unicode char U+00B5 (decimal 181)
+   defining Unicode char U+00B6 (decimal 182)
+   defining Unicode char U+00B7 (decimal 183)
+   defining Unicode char U+00B9 (decimal 185)
+   defining Unicode char U+00BA (decimal 186)
+   defining Unicode char U+00BC (decimal 188)
+   defining Unicode char U+00BD (decimal 189)
+   defining Unicode char U+00BE (decimal 190)
+   defining Unicode char U+00D7 (decimal 215)
+   defining Unicode char U+00F7 (decimal 247)
+   defining Unicode char U+0192 (decimal 402)
+   defining Unicode char U+02C7 (decimal 711)
+   defining Unicode char U+02D8 (decimal 728)
+   defining Unicode char U+02DD (decimal 733)
+   defining Unicode char U+0E3F (decimal 3647)
+   defining Unicode char U+2016 (decimal 8214)
+   defining Unicode char U+2020 (decimal 8224)
+   defining Unicode char U+2021 (decimal 8225)
+   defining Unicode char U+2022 (decimal 8226)
+   defining Unicode char U+2030 (decimal 8240)
+   defining Unicode char U+2031 (decimal 8241)
+   defining Unicode char U+203B (decimal 8251)
+   defining Unicode char U+203D (decimal 8253)
+   defining Unicode char U+2044 (decimal 8260)
+   defining Unicode char U+204E (decimal 8270)
+   defining Unicode char U+2052 (decimal 8274)
+   defining Unicode char U+20A1 (decimal 8353)
+   defining Unicode char U+20A4 (decimal 8356)
+   defining Unicode char U+20A6 (decimal 8358)
+   defining Unicode char U+20A9 (decimal 8361)
+   defining Unicode char U+20AB (decimal 8363)
+   defining Unicode char U+20AC (decimal 8364)
+   defining Unicode char U+20B1 (decimal 8369)
+   defining Unicode char U+2103 (decimal 8451)
+   defining Unicode char U+2116 (decimal 8470)
+   defining Unicode char U+2117 (decimal 8471)
+   defining Unicode char U+211E (decimal 8478)
+   defining Unicode char U+2120 (decimal 8480)
+   defining Unicode char U+2122 (decimal 8482)
+   defining Unicode char U+2126 (decimal 8486)
+   defining Unicode char U+2127 (decimal 8487)
+   defining Unicode char U+212E (decimal 8494)
+   defining Unicode char U+2190 (decimal 8592)
+   defining Unicode char U+2191 (decimal 8593)
+   defining Unicode char U+2192 (decimal 8594)
+   defining Unicode char U+2193 (decimal 8595)
+   defining Unicode char U+2329 (decimal 9001)
+   defining Unicode char U+232A (decimal 9002)
+   defining Unicode char U+2422 (decimal 9250)
+   defining Unicode char U+25E6 (decimal 9702)
+   defining Unicode char U+25EF (decimal 9711)
+   defining Unicode char U+266A (decimal 9834)
+))
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+)
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
+
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks33
+\XKV@tempa@toks=\toks34
+)
+\XKV@depth=\count130
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+\zifour@ocount=\count131
+)
 (/usr/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2017/02/22 v2.0g Standard LaTeX package
 
@@ -721,7 +919,7 @@ Package: nth 2002/02/27
 )
 (/usr/share/texmf-dist/tex/latex/babelbib/babelbib.sty
 Package: babelbib 2012/01/03 v1.31 babelbib: multilingual bibliographies (HH)
-\c@btxromaniannumeral=\count122
+\c@btxromaniannumeral=\count132
 )
 (/usr/share/texmf-dist/tex/latex/placeins/placeins.sty
 Package: placeins 2005/04/18  v 2.2
@@ -790,20 +988,27 @@ LaTeX Warning: Label `table:results-1' multiply defined.
 )
 \openout1 = `diplomski.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
-LaTeX Font Info:    ... okay on input line 68.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 68.
- (/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 72.
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 72.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 72.
+ (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 72.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 72.
+
+(/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 *geometry* driver: auto-detecting
@@ -842,17 +1047,17 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count123
-\scratchdimen=\dimen163
-\scratchbox=\box34
-\nofMPsegments=\count124
-\nofMParguments=\count125
-\everyMPshowfont=\toks32
-\MPscratchCnt=\count126
-\MPscratchDim=\dimen164
-\MPnumerator=\count127
-\makeMPintoPDFobject=\count128
-\everyMPtoPDFconversion=\toks33
+\scratchcounter=\count133
+\scratchdimen=\dimen167
+\scratchbox=\box36
+\nofMPsegments=\count134
+\nofMParguments=\count135
+\everyMPshowfont=\toks35
+\MPscratchCnt=\count136
+\MPscratchDim=\dimen168
+\MPnumerator=\count137
+\makeMPintoPDFobject=\count138
+\everyMPtoPDFconversion=\toks36
 ) (/usr/share/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2017/03/19 v0.25 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -901,9 +1106,10 @@ e
 ))
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
+Package caption Info: listings package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 68.
+LaTeX Info: Redefining \microtypecontext on input line 72.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -918,6 +1124,12 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
+\c@lstlisting=\count139
+
+(/usr/share/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
+tim
+)
 babelbib: Set bibliography fall-back language to croatian
 (/usr/share/texmf-dist/tex/latex/babelbib/croatian.bdf
 File: croatian.bdf 2012/01/03 v1.31 babelbib: multilingual bibliographies (HH)
@@ -927,7 +1139,7 @@ babelbib extension \btxifchangecaseoff added to \extrascroatian
 babelbib: Load BibTeX extensions \bibscroatian for croatian
 babelbib: Set language for keywords in the bibliography fixed to croatian
 babelbib: Set language for keywords in the bibliography fixed to croatian
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 79.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 83.
 (/usr/share/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -935,35 +1147,35 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `lmss' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 79.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 83.
 
 (/usr/share/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 79.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 83.
 
 (/usr/share/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 79.
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 83.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 79.
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 83.
 
 
 (/usr/share/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 79.
+(Font)              <14.4> on input line 83.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 79.
+(Font)              <10> on input line 83.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 79.
-LaTeX Font Info:    Try loading font information for U+msa on input line 79.
+(Font)              <7> on input line 83.
+LaTeX Font Info:    Try loading font information for U+msa on input line 83.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -971,7 +1183,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 79.
+LaTeX Font Info:    Try loading font information for U+msb on input line 83.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -979,7 +1191,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (/usr/share/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 79.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 83.
 
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
@@ -1018,24 +1230,24 @@ Poglavlje 3.
 File: graphics/ab-prices.pdf Graphic file (type pdf)
 
 <use graphics/ab-prices.pdf>
-Package pdftex.def Info: graphics/ab-prices.pdf used on input line 290.
+Package pdftex.def Info: graphics/ab-prices.pdf used on input line 302.
 (pdftex.def)             Requested size: 412.56497pt x 272.25249pt.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 295.
+(Font)              <10.95> on input line 307.
 
 <graphics/ab-prices-norm.pdf, id=53, 889.3225pt x 588.1975pt>
 File: graphics/ab-prices-norm.pdf Graphic file (type pdf)
 
 <use graphics/ab-prices-norm.pdf>
-Package pdftex.def Info: graphics/ab-prices-norm.pdf used on input line 301.
+Package pdftex.def Info: graphics/ab-prices-norm.pdf used on input line 313.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
 
 <graphics/ab-prices-norm-diff.pdf, id=54, 889.3225pt x 588.1975pt>
 File: graphics/ab-prices-norm-diff.pdf Graphic file (type pdf)
 
 <use graphics/ab-prices-norm-diff.pdf>
-Package pdftex.def Info: graphics/ab-prices-norm-diff.pdf used on input line 31
-0.
+Package pdftex.def Info: graphics/ab-prices-norm-diff.pdf used on input line 32
+2.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
  [8] [9 <./graphics/ab-prices.pdf>]
 [10 <./graphics/ab-prices-norm.pdf> <./graphics/ab-prices-norm-diff.pdf
@@ -1046,121 +1258,121 @@ F inclusion: multiple pdfs with page group included in a single page
 File: graphics/diff.pdf Graphic file (type pdf)
 
 <use graphics/diff.pdf>
-Package pdftex.def Info: graphics/diff.pdf used on input line 331.
+Package pdftex.def Info: graphics/diff.pdf used on input line 343.
 (pdftex.def)             Requested size: 412.56497pt x 270.12537pt.
 
 <graphics/diff-norm.pdf, id=75, 889.3225pt x 588.1975pt>
 File: graphics/diff-norm.pdf Graphic file (type pdf)
 
 <use graphics/diff-norm.pdf>
-Package pdftex.def Info: graphics/diff-norm.pdf used on input line 338.
+Package pdftex.def Info: graphics/diff-norm.pdf used on input line 350.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
  [11 <./graphics/diff.pdf>] [12 <./graphics/diff-norm.pdf>] [13] <graphics/resi
 dual.pdf, id=90, 900.36375pt x 588.1975pt>
 File: graphics/residual.pdf Graphic file (type pdf)
 
 <use graphics/residual.pdf>
-Package pdftex.def Info: graphics/residual.pdf used on input line 411.
+Package pdftex.def Info: graphics/residual.pdf used on input line 423.
 (pdftex.def)             Requested size: 412.56497pt x 269.52403pt.
  [14 <./graphics/residual.pdf>]
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 428--428
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 440--440
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 428--428
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 440--440
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 429--429
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 441--441
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 429--429
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 441--441
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 430--430
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 442--442
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 430--430
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 442--442
  []|| 
  []
 
 
-Overfull \hbox (1.12195pt too wide) in paragraph at lines 430--430
+Overfull \hbox (1.12195pt too wide) in paragraph at lines 442--442
  []|\T1/lmr/m/n/12 (-10) raste| 
  []
 
 
-Overfull \hbox (1.05823pt too wide) in paragraph at lines 430--430
+Overfull \hbox (1.05823pt too wide) in paragraph at lines 442--442
  []|\T1/lmr/m/n/12 (-10) pada| 
  []
 
 
-Overfull \vbox (9.56085pt too high) detected at line 431
+Overfull \vbox (9.56085pt too high) detected at line 443
  []
 
 
-Overfull \hbox (4.90926pt too wide) in paragraph at lines 431--431
+Overfull \hbox (4.90926pt too wide) in paragraph at lines 443--443
 [][] 
  []
 
 
-Overfull \hbox (17.44037pt too wide) in paragraph at lines 431--431
+Overfull \hbox (17.44037pt too wide) in paragraph at lines 443--443
  []|$[]$| 
  []
 
 
-Overfull \hbox (7.24364pt too wide) in paragraph at lines 431--431
+Overfull \hbox (7.24364pt too wide) in paragraph at lines 443--443
 []|$[]$|  
  []
 
 
-Overfull \hbox (14.5951pt too wide) in paragraph at lines 431--431
+Overfull \hbox (14.5951pt too wide) in paragraph at lines 443--443
  []|[]| 
  []
 
 
-Overfull \hbox (1.20494pt too wide) in paragraph at lines 432--432
+Overfull \hbox (1.20494pt too wide) in paragraph at lines 444--444
 [][] 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 433--433
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 445--445
  []|| 
  []
 
 
-Overfull \hbox (11.74983pt too wide) in paragraph at lines 433--433
+Overfull \hbox (11.74983pt too wide) in paragraph at lines 445--445
  []|| 
  []
 
 
-Overfull \hbox (3.98177pt too wide) in paragraph at lines 433--433
+Overfull \hbox (3.98177pt too wide) in paragraph at lines 445--445
 [][] 
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 453.
+(Font)              <5> on input line 465.
 [15] [16] [17]
 <graphics/pref-flow-graph.pdf, id=109, 350.30875pt x 355.3275pt>
 File: graphics/pref-flow-graph.pdf Graphic file (type pdf)
 
 <use graphics/pref-flow-graph.pdf>
-Package pdftex.def Info: graphics/pref-flow-graph.pdf used on input line 527.
+Package pdftex.def Info: graphics/pref-flow-graph.pdf used on input line 539.
 (pdftex.def)             Requested size: 268.1647pt x 272.02524pt.
  [18 <./graphics/pref-flow-graph.pdf>]
 [19] [20] [21] <graphics/graph-eg-1.pdf, id=139, 289.08pt x 258.9675pt>
 File: graphics/graph-eg-1.pdf Graphic file (type pdf)
 
 <use graphics/graph-eg-1.pdf>
-Package pdftex.def Info: graphics/graph-eg-1.pdf used on input line 719.
+Package pdftex.def Info: graphics/graph-eg-1.pdf used on input line 731.
 (pdftex.def)             Requested size: 206.28249pt x 184.79285pt.
 
 
@@ -1171,7 +1383,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 File: graphics/graph-eg-2.pdf Graphic file (type pdf)
 
 <use graphics/graph-eg-2.pdf>
-Package pdftex.def Info: graphics/graph-eg-2.pdf used on input line 773.
+Package pdftex.def Info: graphics/graph-eg-2.pdf used on input line 785.
 (pdftex.def)             Requested size: 255.37907pt x 202.44774pt.
  [24 <./graphics/graph-eg-2.pdf>] [25]
 Poglavlje 4.
@@ -1181,82 +1393,150 @@ Poglavlje 4.
 File: graphics/deviation-magnitude.pdf Graphic file (type pdf)
 
 <use graphics/deviation-magnitude.pdf>
-Package pdftex.def Info: graphics/deviation-magnitude.pdf used on input line 92
-7.
+Package pdftex.def Info: graphics/deviation-magnitude.pdf used on input line 93
+9.
 (pdftex.def)             Requested size: 371.30595pt x 231.963pt.
- [28 <./graphics/deviation-magnitude.pdf>] [29] <graphics/trading-prices.pdf, i
-d=192, 897.3525pt x 588.1975pt>
+ [28]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[29 <./graphics/deviation-magnitude.pdf>] [30]
+<graphics/trading-prices.pdf, id=195, 897.3525pt x 588.1975pt>
 File: graphics/trading-prices.pdf Graphic file (type pdf)
 
 <use graphics/trading-prices.pdf>
-Package pdftex.def Info: graphics/trading-prices.pdf used on input line 1006.
+Package pdftex.def Info: graphics/trading-prices.pdf used on input line 1018.
 (pdftex.def)             Requested size: 412.56497pt x 270.42155pt.
 
-<graphics/trading-signal.pdf, id=193, 898.35625pt x 588.1975pt>
+<graphics/trading-signal.pdf, id=196, 898.35625pt x 588.1975pt>
 File: graphics/trading-signal.pdf Graphic file (type pdf)
 
 <use graphics/trading-signal.pdf>
-Package pdftex.def Info: graphics/trading-signal.pdf used on input line 1006.
+Package pdftex.def Info: graphics/trading-signal.pdf used on input line 1018.
 (pdftex.def)             Requested size: 412.56497pt x 270.12537pt.
 
-<graphics/trading-diffs.pdf, id=194, 908.39375pt x 588.1975pt>
+<graphics/trading-diffs.pdf, id=197, 908.39375pt x 588.1975pt>
 File: graphics/trading-diffs.pdf Graphic file (type pdf)
 
 <use graphics/trading-diffs.pdf>
-Package pdftex.def Info: graphics/trading-diffs.pdf used on input line 1006.
+Package pdftex.def Info: graphics/trading-diffs.pdf used on input line 1018.
 (pdftex.def)             Requested size: 412.56497pt x 267.14561pt.
- [30 <./graphics/trading-prices.pdf>] [31 <./graphics/trading-signal.pdf> <./gr
+ [31 <./graphics/trading-prices.pdf>] [32 <./graphics/trading-signal.pdf> <./gr
 aphics/trading-diffs.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./graphics/trading-diffs.pdf): PDF incl
 usion: multiple pdfs with page group included in a single page
->] [32
+>] [33
 
-] [33]
+] [34] [35] (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2015/06/04 1.6 listings language file
+)
+LaTeX Font Info:    Try loading font information for T1+zi4 on input line 1149.
+
+
+(/usr/share/texmf-dist/tex/latex/inconsolata/t1zi4.fd
+File: t1zi4.fd 2016/12/29 T1/zi4 (Inconsolata)
+)
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 10.0pt on input line 1149.
+Package microtype Info: Loading generic settings for font family
+(microtype)             `zi4' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `T1/zi4/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `T1/zi4/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Font shape `T1/zi4/bx/n' in size <10> not available
+(Font)              Font shape `T1/zi4/b/n' tried instead on input line 1150.
+LaTeX Font Info:    Font shape `T1/zi4/b/n' will be
+(Font)              scaled to size 10.0pt on input line 1150.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `T1/zi4/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `T1/zi4/b/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+
+
+LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
+(Font)              using `T1/zi4/m/n' instead on input line 1152.
+
+LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
+(Font)              scaled to size 10.0pt on input line 1152.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `T1/zi4/m/it/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `T1/zi4/m/it/10'.
+(microtype)             Ignoring protrusion settings for this character.
+[36] [37]
+Overfull \hbox (1.43924pt too wide) in paragraph at lines 1227--1228
+[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (7.4393pt too wide) in paragraph at lines 1250--1251
+[][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (1.43924pt too wide) in paragraph at lines 1252--1253
+[][][][][][][][][][][][][][][][][][][] 
+ []
+
+[38]
+Overfull \hbox (1.43924pt too wide) in paragraph at lines 1260--1261
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[39]
 Poglavlje 5.
-<graphics/results1.pdf, id=214, 887.315pt x 588.1975pt>
+<graphics/results1.pdf, id=236, 887.315pt x 588.1975pt>
 File: graphics/results1.pdf Graphic file (type pdf)
 
 <use graphics/results1.pdf>
-Package pdftex.def Info: graphics/results1.pdf used on input line 1096.
+Package pdftex.def Info: graphics/results1.pdf used on input line 1313.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 
-<graphics/sharpe1.pdf, id=215, 889.3225pt x 588.1975pt>
+<graphics/sharpe1.pdf, id=237, 889.3225pt x 588.1975pt>
 File: graphics/sharpe1.pdf Graphic file (type pdf)
 
 <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1103.
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1320.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- (./results-1.tex) [34
+ (./results-1.tex) [40
 
-] [35 <./graphics/results1.pdf> <./graphics/sharpe1.pdf
+] [41 <./graphics/results1.pdf> <./graphics/sharpe1.pdf
 
 pdfTeX warning: /usr/bin/pdflatex (file ./graphics/sharpe1.pdf): PDF inclusion:
  multiple pdfs with page group included in a single page
->] [36] <graphics/results2.pdf, id=228, 887.315pt x 588.1975pt>
+>] [42] <graphics/results2.pdf, id=250, 887.315pt x 588.1975pt>
 File: graphics/results2.pdf Graphic file (type pdf)
 
 <use graphics/results2.pdf>
-Package pdftex.def Info: graphics/results2.pdf used on input line 1118.
+Package pdftex.def Info: graphics/results2.pdf used on input line 1335.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 File: graphics/sharpe1.pdf Graphic file (type pdf)
  <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1125.
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1342.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
  (./results-1.tex)
-[37] [38 <./graphics/results2.pdf>] [39]
+[43] [44 <./graphics/results2.pdf>] [45]
 File: graphics/results2.pdf Graphic file (type pdf)
  <use graphics/results2.pdf>
-Package pdftex.def Info: graphics/results2.pdf used on input line 1140.
+Package pdftex.def Info: graphics/results2.pdf used on input line 1357.
 (pdftex.def)             Requested size: 412.56497pt x 273.48209pt.
 File: graphics/sharpe1.pdf Graphic file (type pdf)
 
 <use graphics/sharpe1.pdf>
-Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1147.
+Package pdftex.def Info: graphics/sharpe1.pdf used on input line 1364.
 (pdftex.def)             Requested size: 412.56497pt x 272.87177pt.
- (./results-1.tex) [40] [41] [42]
+ (./results-1.tex) [46] [47] [48]
 Poglavlje 6.
-(./diplomski.bbl [43
+(./diplomski.bbl [49
 
 ]
 babelbib: Using the BibTeX style's default font for `name'.
@@ -1276,74 +1556,74 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--22
  (+50) Mat-he-ma-tics for Fi-
  []
 
+LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
+(Font)              scaled to size 12.0pt on input line 29.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `T1/zi4/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `T1/zi4/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
 
-Underfull \hbox (badness 1221) in paragraph at lines 17--22
-\T1/lmr/m/it/12 (+50) nance: An In-tro-duc-tion to Fi-nan-cial En-gi-ne-ering\T
-1/lmr/m/n/12 (+50) .  Sprin-ger, 2003,
- []
-
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 29.
-(/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic settings for font family
-(microtype)             `lmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-
-Underfull \hbox (badness 2460) in paragraph at lines 74--80
+Underfull \hbox (badness 1701) in paragraph at lines 74--80
 []\T1/lmr/m/n/12 (+50) ƒaklovi¢, La-vos-lav: \T1/lmr/m/it/12 (+50) De-ci-sion M
 a-king by Po-ten-tial Met-hod\T1/lmr/m/n/12 (+50) .  2003.
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 74--80
-\T1/lmtt/m/n/12 h t t p s : / / p d f s . s e m a n t i c s c h o l a r . o r g
- /3 f 2 a /12 f 13 a 36 e f89 c 475 a b51 a
+\T1/zi4/m/n/12 h t t p s : / / p d f s . s e m a n t i c s c h o l a r . o r g 
+/3 f 2 a /12 f 13 a 36 e f89 c 475 a b51 a
  []
 
-) [44
+[50
 
-]
+]) [51]
 Poglavlje A.
-[45
+[52
 
-] [46] [47] [48] (./diplomski.aux)
+] [53] [54] [55] [56] (./diplomski.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9410 strings out of 493013
- 141105 string characters out of 6139317
- 255827 words of memory out of 5000000
- 12396 multiletter control sequences out of 15000+600000
- 180753 words of font info for 255 fonts, out of 8000000 for 9000
+ 12040 strings out of 493013
+ 176627 string characters out of 6139317
+ 319862 words of memory out of 5000000
+ 14975 multiletter control sequences out of 15000+600000
+ 185866 words of font info for 260 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 43i,19n,42p,859b,504s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fo
-nts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.
-enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf-d
-ist/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmib10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmex
-tra/cmmib8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/sh
-are/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/lm/lmcsc10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmex10.p
-fb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf-di
-st/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/l
-m/lmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/
-texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf-dist/fonts/type1/p
-ublic/lm/lmr7.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/s
-hare/texmf-dist/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf-dist/fonts/t
-ype1/public/lm/lmri8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmss12.pf
-b></usr/share/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/share/texmf-d
-ist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/
-lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on diplomski.pdf (52 pages, 736269 bytes).
+ 43i,19n,77p,859b,1868s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}{/usr/share/te
+xmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm
+/lm-rm.enc}{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/
+texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf-dist/fonts/enc/dv
+ips/lm/lm-mathex.enc}</usr/share/texmf-dist/fonts/type1/public/inconsolata/Inco
+nsolata-zi4b.pfb></usr/share/texmf-dist/fonts/type1/public/inconsolata/Inconsol
+ata-zi4r.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb>
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmbxi10.pf
+b></usr/share/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb></usr/share/texmf-di
+st/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf-dist/fonts/type1/public/l
+m/lmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf-dist/fonts/type1
+/public/lm/lmr10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr12.pfb></u
+sr/share/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texmf-dist/fonts
+/type1/public/lm/lmr8.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmri12.p
+fb></usr/share/texmf-dist/fonts/type1/public/lm/lmri8.pfb></usr/share/texmf-dis
+t/fonts/type1/public/lm/lmss12.pfb></usr/share/texmf-dist/fonts/type1/public/lm
+/lmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf-dist/fonts/type
+1/public/amsfonts/symbols/msbm10.pfb>
+Output written on diplomski.pdf (60 pages, 786575 bytes).
 PDF statistics:
- 349 PDF objects out of 1000 (max. 8388607)
- 245 compressed objects within 3 object streams
+ 383 PDF objects out of 1000 (max. 8388607)
+ 269 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
- 47185 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 48721 words of extra memory for PDF output out of 51595 (max. 10000000)
 

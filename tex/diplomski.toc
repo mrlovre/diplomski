@@ -16,21 +16,21 @@
 \contentsline {subsection}{\numberline {3.4.2}Konzistentna rekonstrukcija grafa}{22}
 \contentsline {subsection}{\numberline {3.4.3}Primjer kori\IeC {\v s}tenja metode potencijala}{22}
 \contentsline {section}{\numberline {3.5}Koeficijent obrtaja}{24}
-\contentsline {chapter}{\numberline {4}Algoritam}{26}
+\contentsline {chapter}{\numberline {4}Prakti\IeC {\v c}no ostvarenje algoritma trgovanja}{26}
 \contentsline {section}{\numberline {4.1}Konstrukcija grafa toka preferencija}{27}
 \contentsline {section}{\numberline {4.2}Signal trgovanja}{29}
-\contentsline {subsection}{\numberline {4.2.1}Odabir parova optimalnim pragom trgovanja}{32}
-\contentsline {subsection}{\numberline {4.2.2}Minimizacija koeficijenta obrtaja}{32}
-\contentsline {section}{\numberline {4.3}Konstrukcija portfelja}{32}
-\contentsline {section}{\numberline {4.4}Testiranje}{33}
-\contentsline {chapter}{\numberline {5}Rezultati}{34}
-\contentsline {section}{\numberline {5.1}S\&P 203}{34}
-\contentsline {section}{\numberline {5.2}S\&P 500}{37}
-\contentsline {section}{\numberline {5.3}CROBEX}{40}
-\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{43}
-\contentsline {chapter}{Literatura}{44}
+\contentsline {subsection}{\numberline {4.2.1}Optimiranje praga trgovanja}{33}
+\contentsline {subsection}{\numberline {4.2.2}Optimiranje veli\IeC {\v c}ine vremenskog prozora}{33}
+\contentsline {section}{\numberline {4.3}Konstrukcija portfelja}{34}
+\contentsline {section}{\numberline {4.4}Testiranje}{36}
+\contentsline {chapter}{\numberline {5}Rezultati}{40}
+\contentsline {section}{\numberline {5.1}S\&P 203}{40}
+\contentsline {section}{\numberline {5.2}S\&P 500}{43}
+\contentsline {section}{\numberline {5.3}CROBEX}{46}
+\contentsline {chapter}{\numberline {6}Zaklju\IeC {\v c}ak}{49}
+\contentsline {chapter}{Literatura}{50}
 \select@language {croatian}
 \select@language {croatian}
 \select@language {croatian}
 \select@language {croatian}
-\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{45}
+\contentsline {chapter}{\numberline {A}Ra\IeC {\v c}unanje momenata vremenskog niza na pomi\IeC {\v c}nom prozoru}{52}

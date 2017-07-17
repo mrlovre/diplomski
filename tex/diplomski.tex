@@ -13,6 +13,8 @@
 \usepackage{bigdelim}
 \usepackage{mathtools}
 \usepackage{afterpage}
+\usepackage{listings}
+\usepackage{inconsolata}
 
 \expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks%  save the current one
   \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
@@ -45,6 +47,7 @@
 \newcommand{\Efromto}[2]{\operatorname{\mathbf{E}}\q[#1\, \middle\vert\, #2\w]}
 \newcommand{\Esqfromto}[2]{\operatorname{\mathbf{E}^2}\q[#1\, \middle\vert\, #2\w]}
 \newcommand{\Varfromto}[2]{\operatorname{\mathbf{Var}}\q[#1\, \middle\vert\, #2\w]}
+\newcommand{\Covfromto}[2]{\operatorname{\mathbf{Cov}}\q[#1\, \middle\vert\, #2\w]}
 \newcommand{\norm}[1]{\bar{#1}}
 \newcommand{\prob}[1]{\operatorname{\mathbf{P}}\q(#1\w)}
 \newcommand{\R}[2]{\operatorname{\mathbf{R}}_{#1}\q[#2\w]}
@@ -57,6 +60,7 @@
 \newcommand{\w}{\right}
 
 \DeclareMathOperator*{\argmin}{arg\min}
+\DeclareMathOperator*{\absmax}{abs\max}
 \usepackage{fixmath}
 \usepackage{array}
 \usepackage{multirow}
@@ -83,7 +87,7 @@
 
 % Dodavanje zahvale ili prazne stranice. Ako ne želite dodati zahvalu, naredbu ostavite radi prazne stranice.
 %\zahvala{Zahvaljujem se dopredsjednici Hrvatskog sabora dr. sc. Vesni-Ani Škaro i Miloradu Pupovcu.}
-\zahvala{Zahvaljujem.}
+\zahvala{Zahvaljujem svojoj obitelji, svim dragim prijateljima, i profesorima Fakulteta elektrotehnike i računarstva.}
 
 \tableofcontents
 
@@ -93,7 +97,7 @@
 %  When such opportunities present themselves, we can take advantage by predicting that prices will return once again to the confident range in the next time step, and do the trading in accordance with this prediction.
   Klasične metode statističke arbitraže uzimaju u obzir parove vrijednosnica čije cijene se ponašaju slično tijekom određenog razdoblja.
   Sličnost se mjeri kointegracijom, korelacijom, ili nekom drugom mjerom, s ciljem pronalaska trenutka kada te cijene izlaze izvan statistički utvrđeno visoko pouzdanog intervala.
-  Takve prilike mogu se iskoristiti predviđanjem da će se cijene u idućem trenutku ponovno vratiti unutar visoko pouzdanog intervala te se u skladu s tim predviđanjem može provesti trgovanje.
+  Takve prilike mogu se iskoristiti predviđanjem da će se cijene u idućem trenutku ponovno vratiti unutar intervala visoke razine pouzdanosti te se u skladu s tim predviđanjem može provesti trgovanje.
   
 %  In this paper, we propose a new method based on those predictions that are obtained by the statistical arbitrage method, using statistical measures as a proxy for describing the preference relations between pairs of assets.
 %  Next, a graph is formed based on those relations, so that mutual interaction of assets might be analyzed.
@@ -109,9 +113,16 @@
   
   Ideja ove metode je ostvariti generalizaciju klasičnih metoda statističke arbitraže koja će biti robusnija i ostvarivati bolje rezultate kada na raspolaganju ima velik broj vrijednosnica tako što će izvlačiti zajedničku interakciju iz svih vrijednosnica.
   
+  Organizacija poglavlja je sljedeća: u poglavlju \ref{ch:osnovni-financijski-pojmovi} dan je uvod u osnovne pojmove iz svijeta financija koji su bitni za razumijevanje teme rada.
+  U poglavlju \ref{ch:metode} dana je teorijska podloga temeljena na matematici koja je također bitna za razumijevanje rada, a opisani su i novi koncepti koji su razvijeni u radu.
+  Praktično ostvarenje zadatka i zapažanja opisani su u poglavlju \ref{ch:algoritam}.
+  Sustavni prikaz rezultata dan je u poglavlju \ref{ch:rezultati}.
+  Naposljetku, sam zaključak rada dan je u poglavlju \ref{ch:zakljucak}.
+  
 %  Organizacija poglavlja je sljedeća: \ldots
 
   \chapter{Osnovni financijski pojmovi}
+  \label{ch:osnovni-financijski-pojmovi}
   Ovdje su navedeni osnovni financijski pojmovi koji su korišteni u radu, te su dane njihove definicije.
   
   \begin{description}
@@ -236,6 +247,7 @@
   Tada rješenje $\rho > 0$ primarnog problema nije jedinstveno i moguće je sastaviti portfelj $\matr \alpha$ koji će zadovoljiti (\ref{eq:dual-arbitrage}).
 
   \chapter{Metode i koncepti}
+  \label{ch:metode}
   Ovdje su opisane matematičke metode i koncepti korišteni u radu, kao i definicije korištenih osnovnih pojmova.
   
   \section{Statistička arbitraža}
@@ -807,8 +819,8 @@
 %    \item[Povrat] description
 %  \end{description} 
   
-\chapter{Algoritam}
-
+\chapter{Praktično ostvarenje algoritma trgovanja}
+\label{ch:algoritam}
 %  Let there be total of $N$ assets in $D$ days.
 %  Let price of asset $i$ at the time step $t$ be $a_i^{\q(t\w)}$, for $i \in {\q[1, 2, \ldots, N\w]}$ and $t \in {\q[0, 1, \ldots, D-1\w]}$.
 %  The log prices $b_i^{\q(t\w)}$, and log price differences $c_{i,j}^{\q(t\w)}$ between assets $i$ and $j$ are obtained as follows:
@@ -951,7 +963,7 @@
   Signal trgovanja $\Gamma_{X, Y}^{(t)}$ između vrijednosnica $X$ i $Y$ u trenutku $t$ je funkcija koja određuje težine bridova kako je opisano u prethodnom odjeljku.
   Dobiva se na isti način kao i težine bridova:
   \begin{equation}
-    \Gamma_{X, Y}^{(t)} = \frac{c_{i,j}^{\q(t\w)} - m_{i,j}^{\q(t\w)}}{d_{i,j}^{\q(t\w)}},
+    \Gamma_{X, Y}^{(t)} = \frac{c_{X,Y}^{\q(t\w)} - m_{X,Y}^{\q(t\w)}}{d_{X,Y}^{\q(t\w)}},
   \end{equation}
   s bitnom razlikom da težine bridova postoje samo ako je prethodno zadovoljen prag $\beta$, a signal trgovanja je vremenski kontinuirana funkcija podložna daljnjoj analizi.
   Signal trgovanja $\Gamma_{X, Y}^{(t)}$, kao što mu i ime sugerira, opisuje željenu odluku o trgovanju vrijednosnicama $X$ i $Y$ u trenutku $t$ na način opisan tablicom \ref{table:trading-signal}.
@@ -1007,13 +1019,55 @@
   Signal trgovanja ovisi o odabranoj veličini vremenskom prozora $T$, a odluka koju donosi dodatno ovisi o odabranom iznosu praga trgovanja $\beta$.
   Unutar iduća dva pododjeljka opisane su metode za biranje pogodnih vrijednosti za parametre $T$ i $\beta$.
   
-  \subsection{Odabir parova optimalnim pragom trgovanja}
-  \todo
-  Prag $\beta$ postaviti tako da je za odabrane vrijednosnice varijanca njihove razlike manja od zbroja njihovih varijanci, iz čega slijedi da kovarijanca cijena mora biti pozitivna.
+  \subsection{Optimiranje praga trgovanja}
+  U slučaju kada se trgovanje radi nad 10 ili više vrijednosnica, značajna poboljšanja mogu se postići ako se selekcija parova radi na sljedeći način.
+  Za svaki par vrijednosnica $X$ i $Y$ s pripadnim cijenama $P_X^{(t)}$ i $P_Y^{(t)}$ u trenutku $t$, zahtijeva se da varijanca razlike cijena u proteklom periodu duljine $T$ bude manja od zbroja varijanci cijena pojedinačno:
+  \begin{align}
+  \Varfromto{\q(P_X^{(\tau)} - P_Y^{(\tau)}\w)}{t - T < \tau \le t} & <
+  \Varfromto{P_X^{(\tau)}}{t - T < \tau \le t} \nonumber \\
+  \label{eq:beta-cond}
+  & + \Varfromto{P_Y^{(\tau)}}{t - T < \tau \le t}.
+  \end{align}
+  Uvjet (\ref{eq:beta-cond}) ekvivalentan je uvjetu $\Covfromto{P_X^{(\tau)},  P_Y^{(\tau)}}{t - T < \tau \le t} > 0$, jer je:
+  \begin{align*}
+  \Varfromto{\q(P_X^{(\tau)} - P_Y^{(\tau)}\w)}{t - T < \tau \le t} & =  \Varfromto{P_X^{(\tau)}}{t - T < \tau \le t} \\
+  & + \Varfromto{P_Y^{(\tau)}}{t - T < \tau \le t} \\
+  & - 2 \Covfromto{P_X^{(\tau)},  P_Y^{(\tau)}}{t - T < \tau \le t},
+  \end{align*}
+  ali je (\ref{eq:beta-cond}) računalno optimalniji budući da su navedene varijance već izračunate.
 
-  \subsection{Minimizacija koeficijenta obrtaja} 
-  \todo
-  Putem minimizacije energije signala ili maksimizacija varijance (bolje).
+  \subsection{Optimiranje veličine vremenskog prozora} 
+  Jedan način optimiranja veličine vremenskog prozora $T$ može se postići jednostavnom pretragom prostora vrijednosti za $T$ testiranjem nad povijesnim podacima (npr. prethodnih 1000 dana) kako bi se pronašla vrijednost $T$ koja daje najbolje kriterije (ukupan profit, ili Sharpeov omjer).
+  Smislene vrijednosti parametra $T$ koje vrijedi ispitati uglavnom su veće od 30 i manje od 250 dana.
+  No, kao i u prethodnom slučaju, bolji rezultati mogu se postići optimiranjem veličine prozora za svaki par vrijednosnica zasebno.
+  Ispitivanje svih mogućih veličina prozora za svaki par nije izvedivo u praktičnom vremenu, stoga se mora posegnuti za nekom bržom metodom optimiranja.
+  
+  Testiranjem nad povijesnim podacima, prilikom trgovanja s 10 ili više vrijednosnica, empirijski je utvrđen način za poboljšanje dobivenih rezultata.
+  Promatrajući signal trgovanja $\Gamma_{X, Y}$ za vrijednosnice $X$ i $Y$ određuje se vrijednost parametra $T$ koja maksimizira varijancu signala trgovanja.
+  U tablici \ref{table:opt-results} prikazani su rezultati prije i poslije optimizacije praga trgovanja i veličine vremenskog prozora.
+  
+  \begin{table}[h]
+    \centering
+    \caption{Rezultati prije i poslije optimizacije parametara $T$ i $\beta$.}
+    \label{table:opt-results}
+    \begin{tabular}{lrr}
+      \toprule
+      & prije optimizacije & poslije optimizacije \\
+      \midrule
+      bez troškova trgovanja: & & \\
+      ukupni profit & 0.32509 & 0.48489 \\
+      Sharpeov omjer & 2.28115 & 3.36565 \\
+      \midrule
+      \multicolumn{3}{l}{uz uključene troškove trgovanja od 0.10\%:} \\
+      ukupni profit & 0.17093 & 0.30617 \\
+      Sharpeov omjer & 1.19602 & 2.12594 \\
+      \midrule
+      prosječni koeficijent obrtaja & 0.77078 & 0.89355 \\
+      prosječna konzistentnost & 0.94716 & 0.67343 \\
+      prosječna preciznost & 0.51500 & 0.60500 \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
   
   \section{Konstrukcija portfelja}
 %  We obtain preference for each asset via the potential method, as described earlier in \ref{sub:potential}.
@@ -1044,23 +1098,186 @@
   S druge strane, parametar $b$ regulira diverzifikaciju portfelja: kada je $0 < b < 1$, algoritam je manje privržen diverzifikaciji čak i kada je konzistentnost mala, a kada je $b > 1$, algoritam je više privržen diverzifikaciji čak i kada je mjera konzistentnosti velika.
   
 %  For determining the assets that should be held in the portfolio at time step $t$, we find such assets $i$ for which holds:
-  Za odabir vrijednosnica koje će ući u portfelj u vremenskom koraku $t$, pronalaze se sve vrijednosnice $i$ za koje u trenutku $t$ vrijedi:
+  Duga pozicija zauzima se u vrijednosnicama $i$ za koje u vremenskom koraku $t$ vrijedi:
   \begin{equation*}
-  \phi_i^{\q(t\w)} \ge \kappa^\prime \cdot \Phi_\mathit{max},
+  \phi_i^{\q(t\w)} \ge \kappa^\prime \cdot \Phi_\mathit{max}^{(t)},
   \end{equation*}
-  gdje je $\Phi_\mathit{max} = \max_j \q\{ \q\lvert \phi_j \w\rvert \w\}$.
-  Isto tako, za prodaju se biraju vrijednosnice $i$, za koje u trenutku $t$ vrijedi:
+  gdje je $\Phi_\mathit{max}^{(t)} = \max_j \q\{ \q\lvert \phi_j^{(t)} \w\rvert \w\}$, maksimum po apsolutnoj vrijednosti.
+  Isto tako, kratka pozicija zauzima se u onim vrijednosnicama $i$ za koje u vremenskom koraku $t$ vrijedi:
   \begin{equation*}
-  \phi_i^{\q(t\w)} \le -\kappa^\prime \cdot \Phi_\mathit{max}.
+  \phi_i^{\q(t\w)} \le -\kappa^\prime \cdot \Phi_\mathit{max}^{(t)}.
   \end{equation*}
+  
+  Ponekad je poželjno koristiti alternativnu strategiju za odabir vrijednosnica koja u svakom trenutku koristi fiksan broj vrijednosnica u portfelju.
+  Neka je željeni broj vrijednosnica označen sa $q > 0$.
+  Prag $\Phi_q^{(t)}$ određuje se kao $q$-ta po apsolutnoj vrijednosti najveća mjera preferencije u vektoru $\matr{\phi^{(t)}}$:
+  \begin{gather*}
+  \Phi_q^{(t)} = \begin{cases}
+  \Phi_\mathit{max}^{(t)}, & q = 1, \\
+  \absmax \q\{ \matr{\phi^{(t)}}\, \middle\backslash\, \q\{ \q. \Phi_i^{(t)} \middle| 1 \le i < q \w. \w\} \w\}, & q > 1,
+  \end{cases}
+  \end{gather*}
+  gdje je $\absmax \q\{ \cdot \w\}$ maksimum po apsolutnoj vrijednosti.
+  Duga pozicija zauzima se u vrijednosnicama $i$ za koje u vremenskom koraku $t$ vrijedi:
+  \begin{equation*}
+  \phi_i^{\q(t\w)} \ge \Phi_q^{(t)},
+  \end{equation*}
+  i kratka pozicija u vrijednosnicama $i$ za koje u vremenskom koraku $t$ vrijedi:
+  \begin{equation*}
+  \phi_i^{\q(t\w)} \le -\Phi_q^{(t)}.
+  \end{equation*}
+  
 %  For $a = 0$ diversification completely depends on consistency $\kappa$, while for $a = 1$ only the most preferred asset is held in the portfolio (no diversification).
 %  On the other hand, when $0 < b < 1$, algorithm is less inclined to diversification even when consistency is low, and when $b > 1$, algorithm is more inclined to diversification even when consistency is high.
 
   \section{Testiranje}
-  \todo
-  Mjesto za Python kod.
-  
+  Simulacija algoritma trgovanja implementirana je u programskom jeziku \textit{Python 3} uz korištenje standardnog paketa znanstvenih računalnih alata za \textit{Python}, \textit{SciPy} \citep{scipy}.
+  Ključne komponente tog paketa uključuju:
+  \begin{description}
+    \item[\textit{NumPy}] Standardna biblioteka za računanje, koja je optimirana za efikasno računanje nad matricama i vektorima.
+    \item[\textit{pandas}] Nadogradnja nad \textit{NumPy} biblioteku koja donosi naprednije podatkovne strukture, te mogućnost čitanja i pisanja u raznovrsne datotečne formate.
+    \item[\textit{SciPy}] Kolekcija efikasnih algoritama iz linearne algebre, statistike, obrade signala, optimizacije i ostaloga, koji koriste \textit{NumPy}.
+    \item[\textit{Matplotlib}] Biblioteka koja pruža podršku za prikazivanje podataka u obliku raznih vrsta grafova.
+  \end{description}
+  Uz navedene komponente korišten je i \textit{Jupyter} poslužitelj koji pruža mogućnost rada u zasebnim bilježnicama u kojima je moguće interaktivno pokretati napisani kod i pregledavati dobivene rezultate.
+  Svi korišteni alati su otvorenog koda.
+  U svrhu testiranja rada algoritma implementirane su dolje navedene pomoćne funkcije.
+
+  \begin{description}
+    \item[Računanje srednje vrijednosti i varijance na pomičnom prozoru]
+  \end{description}
+  \begin{lstlisting}[language=Python, basicstyle=\footnotesize\ttfamily]
+  def rolling_mean_variance(series, T, weight=1.0,
+                            return_stds=False):
+    """
+    Calculates mean and variance of time series on rolling windows.
+    :param series: 2D matrix of multiple time series packed in
+    columns.
+    :param T: size of rolling window.
+    :param weight: (optional) for exponential mean and average.
+    :param return_stds: return standard deviation instead of 
+    variance.
+    :return: a tuple consisting of mean and variance.
+    """
+    L, N = series.shape
+    if L < T:
+      return np.empty((0, N)), np.empty((0, N))
+      
+    init_ws = np.tile(np.array([[weight ** i
+                                 for i in range(T - 2, -1, -1)]]
+                               ).transpose(), [1, N])
+    mean = np.zeros((L - T + 1, N))
+    var = np.zeros((L - T + 1, N))
+    s0 = ((np.sum(init_ws[:, 0]) + weight ** (T - 1)) 
+          * np.ones((1, N)))
+    s1 = np.sum(series[:T - 1, :] * init_ws, axis=0,
+                keepdims=True)
+    s2 = np.sum(series[:T - 1, :] ** 2 * init_ws, axis=0,
+                keepdims=True)
+    s1_prev = np.zeros((1, N))
+    s2_prev = np.zeros((1, N))
+    for i in range(L - T + 1):
+      s1 *= weight
+      s2 *= weight
+      s1 += series[i + T - 1, :] - s1_prev * weight ** T
+      s2 += series[i + T - 1, :] ** 2 - s2_prev * weight ** T
+      s1_prev = series[i, :]
+      s2_prev = series[i, :] ** 2
+      mean[i, :] = s1 / s0
+      var[i, :] = (s0 * s2 - s1 * s1) / (s0 * (s0 - 1))
+    return (mean, var) if not return_stds else (mean, np.sqrt(var))
+  \end{lstlisting}
+  \begin{description}
+    \item[Računanje koeficijenata obrtaja]
+  \end{description}
+  \begin{lstlisting}[language=Python, basicstyle=\footnotesize\ttfamily]
+  def turnover_ratio(series):
+    """
+    Calculates turnover ratio.
+    :param series: list of sets of assets
+    :return: list of turnover ratios
+    """
+    turnovers = []
+    S1 = set()
+    for S2 in (set(s) for s in series):
+      lS1 = len(S1)
+      lS2 = len(S2)
+      turnover = 0
+      if lS1:
+        turnover += len(S1 - S2) / lS1
+      if lS2:
+        turnover += len(S2 - S1) / lS2
+      if lS1 and lS2:
+        turnover += len(S1 & S2) * abs(1 / lS1 - 1 / lS2)
+      turnovers += [turnover]
+      S1 = S2
+    return np.array(turnovers)
+  \end{lstlisting}
+  \begin{description}
+    \item[Algoritam statističke arbitraže]
+  \end{description}
+  \begin{lstlisting}[language=Python, basicstyle=\footnotesize\ttfamily]
+  def stat_arb(log_prices, T, d='filtered',
+               return_trading_signal=False, v=0.0,
+               trading_signal=None):
+    """
+    Statistical arbitrage algorithm. 
+    :param log_prices: assets log price series
+    :param T: windows size
+    :param d: selection threshold, real number or 'filtered' if using
+    selection based on change of variance 
+    :param return_trading_signal: (optional) include return trading
+    signal in returned values
+    :param v: (optional) portion of most volatile assets that should
+    be discarded 
+    :param trading_signal: supply precalculated trading signal 
+    :return: triple containing list of timestamps, list of coded
+    pairs and list of weights
+    """
+    N = log_prices.shape[1]
+    log_pairs = calculate_pairwise_diffs(log_prices)
+    _, std_prices = rolling_mean_variance(log_prices, T,
+                                          return_stds=True)
+    mean_pairs, std_pairs = rolling_mean_variance(log_pairs, T,
+                                                  return_stds=True)
+    if trading_signal is None:
+      trading_signal = ((log_pairs[T:] - mean_pairs[:-1])
+                        / std_pairs[:-1])
+
+    cond = None
+    if d == 'filtered':
+      trading_threshold = np.array([np.sqrt(std_prices[:-1, i] ** 2
+                                            + std_prices[:-1, j] ** 2)
+                                            for i in range(N)
+                                            for j in range(i + 1, N)]
+                                   ).transpose()
+      cond = std_pairs[:-1] <= trading_threshold
+    elif isinstance(d, numbers.Number):
+      cond = np.abs(trading_signal) >= d
+    else:
+      raise ValueError('d must be "filtered" or number.')
+    if v != 0.0:
+      most_volatile = np.argsort(std_prices, axis=1)[:, -int(v * N):]
+      make_pairs = lambda row: [encode_pair(i + 1, j + 1, N)
+                                for ii, i in enumerate(row)
+                                for j in row[ii + 1:]]
+      most_volatile_pairs = np.apply_along_axis(make_pairs, 1,
+                                                most_volatile)
+      if most_volatile_pairs.shape[1] != 0:
+        cond[:, most_volatile_pairs] = False
+        
+    cond[std_pairs[:-1] == 0] = False
+    ts, codes = np.where(cond)
+    weights = trading_signal[ts, codes]
+    ts += T
+    return_values = (ts, codes, weights)
+    if return_trading_signal:
+      return_values += (trading_signal,)
+    return return_values
+  \end{lstlisting}
+    
   \chapter{Rezultati}
+  \label{ch:rezultati}
   \section{S\&P 203}
   Skup podataka nad kojim je algoritam testiran je podskup koji sadrži 203 od 500 dionica koje su bile kontinuirano uključene u S\&P 500 indeks u razdoblju od 1. siječnja 1980. do 31. prosinca 2003.
   Razdoblje uključuje 6261 dan trgovanja, odnosno vremenskih koraka.
@@ -1154,9 +1371,18 @@
   
 
   \chapter{Zaključak}
-  Algoritam radi nad parovima vrijednosnica, i traži takve parove kod kojih se pojavljuju statistički značajna odstupanja.
-  U načelu, algoritam radi bolje kada je dostupno veći broj vrijednosnica, i samim time kvadratno veći broj parova vrijednosnica.
+  \label{ch:zakljucak}
+  Razvijeni algoritam trgovanja temelji se na metodi statističke arbitraže koja radi nad parovima vrijednosnica, i traži takve parove kod kojih se pojavljuju statistički značajna odstupanja, predviđajući pritom da su ona privremena i da će se vratiti u normalno stanje u kratkom periodu.
+  Glavni nedostatak metode statističke arbitraže leži u činjenici da ne dolazi do izražaja ukupna interakcija svih raspoloživih vrijednosnica, već se primjećuju samo statistička odstupanja na razini parova.
+  To za posljedicu ima jako promjenljiv portfelj i uzrokuje značajne troškove trgovanja, što čini algoritam statističke arbitraže neostvarivim na dugi rok.
+  U ovom radu ostvareno je poboljšanje uvođenjem kompleksnih mreža koje omogućuju modeliranje cjelokupne interakcije raspoloživih vrijednosnica, čime je smanjena promjenjljivost portfelja.
+  Kao posljedica toga, niži su i troškovi trgovanja te se pokazalo u simulacijama nad povijesnim podacima da je novi algoritam trgovanja ostvariv i donosi dobre rezultate.
+  
+  U načelu, algoritam radi bolje kada je dostupan veći broj vrijednosnica, i samim time kvadratno veći broj parova vrijednosnica.
   Prilagodba na nekonzistentnost dobivenih preferencija postignuta je u vidu diverzifikacije portfelja proporcionalno nekonzistentnosti.
+  Sama mjera nekonzistentnosti služi kao informacija o smislenosti odluka o trgovanju dobivenih algoritmom, te je poželjno da ona bude što veća.
+  Unatoč tome, do sada nisu poznate metode za izravnu optimizaciju mjere konzistentnosti, ali su empirijski utvrđene metode za optimizaciju parametara algoritma koje neizravno poboljšavaju performanse algoritma u određenim uvjetima.
+  Mogući prostor za napredak ovog algoritma je u korištenju metoda dubokog učenja kojima bi se iz velikih količina podataka o kretanju cijena vrijednosnica mogli naučiti parametri algoritma trgovanja.
 %  Algorithm works on pairs of assets, looking for those deviations which are uncommon, so generally it is expected to perform better where there is larger number of assets as more deviations will be discovered.
 %  It adapts to the inconsistence of preferences by picking variable number of assets into the portfolio.
   
@@ -1170,6 +1396,7 @@
   Neka vremenski niz traje ukupno $D$ vremenskih koraka, i neka je veličina vremenskog prozora $T$.
   Momenti se računaju u ukupno $D - T + 1$ vremenskih koraka, svaki put preko prozora veličine $T$, tako da je vremenska složenost nerekurzivne metode računanja momenata $\bigO{\q(D - T + 1\w)\cdot T}$, odnosno približno $\bigO{DT}$, kako je $D \gg T$.
   Stoga se isplati potražiti rekurzivne izraze za očekivanje i varijancu kako bi se izračun mogao obaviti na učinkovitiji način.
+  Jedan izvod rekurzivnim izraza dan je u radu \citep{stats}.
   
   Neka je $a\q[t\w]$ vremenski niz, za $t \in \q[0, 1, \ldots, D - 1\w]$.
   Nenormirani momenti $n$-tog reda $S_n$ niza $a\q[t\w]$ nad vremenskim prozorom duljine $T$ definirani su na sljedeći način:

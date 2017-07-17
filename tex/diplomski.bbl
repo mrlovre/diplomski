@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
   \providebibliographyfont{name}{}%
   \providebibliographyfont{lastname}{}%
   \providebibliographyfont{title}{\emph}%
@@ -77,5 +77,21 @@
 \newblock 2003.
 \newblock {\latintext
   \btxurlfont{https://pdfs.semanticscholar.org/3f2a/12f13a36ef89c475ab51ad364086ec5b415b.pdf}}.
+
+\bibitem {scipy}
+\btxnamefont {\btxlastnamefont {Jones},~Eric i~Oliphant,
+  Travis\btxfnamespacelong i\btxfnamespacelong Peterson\btxfnamespacelong
+  Pearu\btxfnamespacelong i\btxfnamespacelong ostali}\btxauthorcolon\
+  \btxtitlefont {\btxifchangecase {{SciPy}: Open source scientific tools for
+  {Python}}{{SciPy}: Open source scientific tools for {Python}}}, 2001.
+\newblock {\latintext \btxurlfont{http://www.scipy.org/}}.
+
+\bibitem {stats}
+\btxnamefont {\btxlastnamefont {Finch}, Tony}\btxauthorcolon\ \btxjtitlefont
+  {\btxifchangecase {Incremental calculation of weighted mean and
+  variance}{Incremental calculation of weighted mean and variance}}.
+\newblock 2009.
+\newblock {\latintext
+  \btxurlfont{http://people.ds.cam.ac.uk/fanf2/hermes/doc/antiforgery/stats.pdf}}.
 
 \end{thebibliography}
