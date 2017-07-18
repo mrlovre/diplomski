@@ -8,6 +8,7 @@
 \usepackage{graphicx}
 \usepackage{fixmath}
 \usepackage{booktabs}
+\usepackage{caption}
 %\usecolortheme[snowy]{owl}
 \usetheme{metropolis}
 
@@ -72,12 +73,44 @@
   \section{Statistička arbitraža}
   \begin{frame}
     \frametitle{Metoda}
+    \only<1>{
     Okvir postupka statističke arbitraže:
     \begin{enumerate}
       \item identificirati parove vrijednosnica čije cijene se \emph{slično ponašaju}
       \item među tim parovima izdvojiti one kod kojih je utvrđeno \emph{statistički značajno odstupanje}
       \item svaki izdvojeni par \emph{uvrstiti u portfelj}, odnosno zauzeti \alert{kratku} i \alert{dugu} poziciju; jednom kada odstupanje prestane, \emph{zatvoriti otvorene pozicije}
-    \end{enumerate}
+    \end{enumerate}}
+    \only<2>{
+     \begin{figure}
+       \centering
+       \includegraphics[width=\textwidth]{graphics/trading-signal.pdf}
+       \caption*{Kretanje cijena dviju vrijednosnica.}
+     \end{figure}}
+     \only<3>{
+       \begin{figure}
+         \centering
+         \includegraphics[width=\textwidth]{graphics/trading-diffs.pdf}
+         \caption*{Razlika cijena istih dviju vrijednosnica.}
+     \end{figure}}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Signal trgovanja}
+    \only<1>{
+      \begin{gather*}
+      c_{i,j} \text{ --- razlika logaritamskih cijena vrijednosnica } i \text{ i } j \\
+      m_{i,j}^{\q(t\w)} = \frac{1}{T}\sum_{\tau = t - T}^{t - 1} c_{i,j}^{(\tau)} \\
+      d_{i,j}^{\q(t\w)} = \sqrt{\frac{1}{T - 1}\sum_{\tau=t - T}^{t - 1} \q(c_{i,j}^{(\tau)} - m_{i,j}^{\q(t\w)} \w)^2} \\
+      \Gamma_{X, Y}^{(t)} = \frac{c_{X,Y}^{
+          \q(t\w)} - m_{X,Y}^{\q(t\w)}}{d_{X,Y}^{\q(t\w)}}
+      \end{gather*}
+    }
+    \only<2>{
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{graphics/trading-prices.pdf}
+      \caption*{Signal trgovanja dobiven iz istih dviju vrijednosnica.}
+    \end{figure}}
   \end{frame}
 
   \begin{frame}
@@ -115,24 +148,31 @@
         \begin{minipage}{0.45\textwidth}
           \centering
           \includegraphics[width=0.808\textwidth]{graphics/graph-eg-1.pdf}
-          \caption{Nekonzistentan graf}
+          \caption*{Nekonzistentan graf.}
         \end{minipage}
         \hfill
         \begin{minipage}{0.45\textwidth}
           \centering
           \includegraphics[width=\textwidth]{graphics/graph-eg-2.pdf}
-          \caption{Konzistentan graf}
+          \caption*{Konzistentan graf.}
         \end{minipage}
       \end{figure}}
   \end{frame}
 
   \begin{frame}
     \frametitle{Metoda potencijala}
+    \only<1>{
     \begin{itemize}
       \item ni \alert{graf toka preferencija} ne definira \emph{poredak} dobara
       \item \alert{metoda potencijala} definira \emph{poredak} dobara na temelju grafa, i daje \alert{mjeru konzistentnosti} grafa, u rasponu $\q[0, 1\w]$
       \item \alert{mjera konzistentnosti} opisuje koliko je odluka donesena na temelju grafa \emph{pouzdana}
-    \end{itemize}
+    \end{itemize}}
+    \only<2>{
+      \begin{figure}
+        \centering
+        \includegraphics[width=0.6\textwidth]{graphics/pref-flow-graph.pdf}
+        \caption*{Rezultat korištenja metode potencijala.}
+      \end{figure}}
   \end{frame}
 
   \begin{frame}
@@ -149,6 +189,7 @@
     \frametitle{Implementacija}
     \begin{itemize}
       \item \alert{\textit{Python}} (\emph{NumPy}, \emph{pandas}, \emph{SciPy}, \emph{Matplotlib})
+      \item \alert{\textit{Jupyter} bilježnica}
       \item \emph{open source} alati
       \item metoda statističke arbitraže i metoda potencijala
       \item skripte za simuliranje trgovanja
@@ -161,12 +202,12 @@
     \begin{figure}
       \centering
       \includegraphics[width=\textwidth]{graphics/result1.png}
-      \caption{Rezultati simulacije na podskupu od 203 dionice iz S\&P 500.}
+      \caption*{Rezultati simulacije na podskupu od 203 dionice iz S\&P 500.}
     \end{figure}}
     \only<2>{
       \begin{table}
         \centering
-        \caption{Rezultati simulacije na podskupu od 203 dionice iz S\&P 500.}
+        \caption*{Rezultati simulacije na podskupu od 203 dionice iz S\&P 500.}
         \resizebox{\textwidth}{!}{\begin{tabular}{lrrr}
           \toprule
           \textbf{Metoda} & `Buy \& Hold' & Statistička arbitraža & Tok preferencija \\
@@ -188,12 +229,12 @@
       \begin{figure}
         \centering
         \includegraphics[width=\textwidth]{graphics/sp500full-profits.pdf}
-        \caption{Rezultati simulacije na punom skupu dionica iz S\&P 500.}
+        \caption*{Rezultati simulacije na punom skupu dionica iz S\&P 500.}
     \end{figure}}
     \only<2>{
       \begin{table}
         \centering
-        \caption{Rezultati simulacije na punom skupu dionica iz S\&P 500.}
+        \caption*{Rezultati simulacije na punom skupu dionica iz S\&P 500.}
         \resizebox{0.8\textwidth}{!}{\begin{tabular}{lr}
             \toprule
             Rezultati: & \\
@@ -220,12 +261,12 @@
       \begin{figure}
         \centering
         \includegraphics[width=\textwidth]{graphics/results2.pdf}
-        \caption{Rezultati simulacije na punom skupu dionica iz CROBEX-a.}
+        \caption*{Rezultati simulacije na punom skupu dionica iz CROBEX-a.}
     \end{figure}}
     \only<2>{
       \begin{table}
         \centering
-        \caption{Rezultati simulacije na punom skupu dionica iz CROBEX-a.}
+        \caption*{Rezultati simulacije na punom skupu dionica iz CROBEX-a.}
         \resizebox{0.8\textwidth}{!}{\begin{tabular}{lr}
             \toprule
             Rezultati: & \\
