@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{graphicx}
 \usepackage{fixmath}
+\usepackage{booktabs}
 %\usecolortheme[snowy]{owl}
 \usetheme{metropolis}
 
@@ -104,21 +105,22 @@
     \only<1>{
     \begin{itemize}
       \item \alert{relacija preferencije} ne definira \emph{poredak} dobara, nema \emph{intenzitete} preferencije
-      \item \alert{graf toka preferencija} uvodi intenzitete preferencije, modelira \emph{interakciju} vrijednosnica
+      \item \alert{graf toka preferencija} uvodi \emph{intenzitete} preferencije, modelira \emph{interakciju} vrijednosnica
       \item pomoćna struktura
       \item ne mora biti \alert{konzistentan}
     \end{itemize}}
     \only<2>{
       \begin{figure}
-        \begin{minipage}{0.45\linewidth}
+        \centering
+        \begin{minipage}{0.45\textwidth}
           \centering
-          \includegraphics[width = \linewidth]{graphics/graph-eg-1.pdf}
+          \includegraphics[width=0.808\textwidth]{graphics/graph-eg-1.pdf}
           \caption{Nekonzistentan graf}
         \end{minipage}
         \hfill
-        \begin{minipage}{0.45\linewidth}
+        \begin{minipage}{0.45\textwidth}
           \centering
-          \includegraphics[width = 1.238\linewidth]{graphics/graph-eg-2.pdf}
+          \includegraphics[width=\textwidth]{graphics/graph-eg-2.pdf}
           \caption{Konzistentan graf}
         \end{minipage}
       \end{figure}}
@@ -128,26 +130,131 @@
     \frametitle{Metoda potencijala}
     \begin{itemize}
       \item ni \alert{graf toka preferencija} ne definira \emph{poredak} dobara
-      \item \alert{metoda potencijala} definira \emph{poredak} dobara, i daje \alert{mjeru konzistentnosti} grafa
+      \item \alert{metoda potencijala} definira \emph{poredak} dobara na temelju grafa, i daje \alert{mjeru konzistentnosti} grafa, u rasponu $\q[0, 1\w]$
       \item \alert{mjera konzistentnosti} opisuje koliko je odluka donesena na temelju grafa \emph{pouzdana}
     \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Cjelokupni algoritam trgovanja}
+    \begin{enumerate}
+      \item pomoću \emph{metode} \alert{statističke arbitraže} dobiju se \emph{opisi} \alert{toka preferencija} u grafu
+      \item iz \alert{grafa toka preferencija} korištenjem \alert{metode potencijala} određuje se poredak vrijednosnica \emph{prema preferenciji}
+      \item u vrijednosnicama s \textbf{najvećom} preferencijom zauzima se \textbf{duga} pozicija, a u onima s \textbf{najmanjom kratka} (ako je to dopušteno)
+    \end{enumerate}
   \end{frame}
 
   \section{Praktični dio}
   \begin{frame}
     \frametitle{Implementacija}
     \begin{itemize}
-      \item \alert{\textit{Python}}
+      \item \alert{\textit{Python}} (\emph{NumPy}, \emph{pandas}, \emph{SciPy}, \emph{Matplotlib})
+      \item \emph{open source} alati
+      \item metoda statističke arbitraže i metoda potencijala
+      \item skripte za simuliranje trgovanja
     \end{itemize}
   \end{frame}
 
   \begin{frame}
-    \frametitle{Rezultati simulacije}
+    \frametitle{Rezultati simulacija - S\&P 203}
+    \only<1>{
+    \begin{figure}
+      \centering
+      \includegraphics[width=\textwidth]{graphics/result1.png}
+      \caption{Rezultati simulacije na podskupu od 203 dionice iz S\&P 500.}
+    \end{figure}}
+    \only<2>{
+      \begin{table}
+        \centering
+        \caption{Rezultati simulacije na podskupu od 203 dionice iz S\&P 500.}
+        \resizebox{\textwidth}{!}{\begin{tabular}{lrrr}
+          \toprule
+          \textbf{Metoda} & `Buy \& Hold' & Statistička arbitraža & Tok preferencija \\
+          \midrule
+          \textbf{Godišnji povrat} & 0.07622 & 0.63033 & \textbf{1.28000} \\
+          \textbf{Volatilnost} & \textbf{0.15069} & 0.33532 & 0.78373 \\
+          \textbf{Sharpeov omjer} & 0.50582 & \textbf{1.87981} & 1.63322 \\
+          \textbf{Prosječni turnover} & / & 1.473211 & \textbf{0.55112} \\
+          \midrule
+          \textbf{Profit uz troškove trgovanja 0.10\%} & 5.49572 & $-2.74051$ & 24.66204 \\
+          \bottomrule
+        \end{tabular}}
+      \end{table}}
+\end{frame}
+
+  \begin{frame}
+    \frametitle{Rezultati simulacija - S\&P 500}
+    \only<1>{
+      \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/sp500full-profits.pdf}
+        \caption{Rezultati simulacije na punom skupu dionica iz S\&P 500.}
+    \end{figure}}
+    \only<2>{
+      \begin{table}
+        \centering
+        \caption{Rezultati simulacije na punom skupu dionica iz S\&P 500.}
+        \resizebox{0.8\textwidth}{!}{\begin{tabular}{lr}
+            \toprule
+            Rezultati: & \\
+            \midrule
+            bez troškova trgovanja: & \\
+            ukupni profit & 18.09261 \\
+            Sharpeov omjer & 0.87507 \\
+            \midrule
+            {uz uključene troškove trgovanja od 0.10\%:} & \\
+            ukupni profit & 11.03961 \\
+            Sharpeov omjer & 0.53382 \\
+            \midrule
+            prosječni koeficijent obrtaja & 1.04088 \\
+            prosječna konzistentnost & 0.55817 \\
+            prosječna preciznost & 0.52642 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}}
   \end{frame}
+
+  \begin{frame}
+    \frametitle{Rezultati simulacija - CROBEX}
+    \only<1>{
+      \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{graphics/results2.pdf}
+        \caption{Rezultati simulacije na punom skupu dionica iz CROBEX-a.}
+    \end{figure}}
+    \only<2>{
+      \begin{table}
+        \centering
+        \caption{Rezultati simulacije na punom skupu dionica iz CROBEX-a.}
+        \resizebox{0.8\textwidth}{!}{\begin{tabular}{lr}
+            \toprule
+            Rezultati: & \\
+            \midrule
+            bez troškova trgovanja: & \\
+            ukupni profit & 24.32031 \\
+            Sharpeov omjer &  2.16176 \\
+            \midrule
+            {uz uključene troškove trgovanja od 0.10\%:} & \\
+            ukupni profit & 20.77131 \\
+            Sharpeov omjer & 1.84749 \\
+            \midrule
+            prosječni koeficijent obrtaja & 0.68041\\
+            prosječna konzistentnost & 0.81656 \\
+            prosječna preciznost & 0.43558 \\
+            \bottomrule
+        \end{tabular}}
+    \end{table}}
+\end{frame}
 
   \section{Zaključak}
   \begin{frame}
     \frametitle{Zaključak}
+    \begin{itemize}
+      \item \textbf{poboljšanje} postojećih metoda statističke arbitraže
+      \item algoritam radi \textbf{bolje} što je \textbf{više} vrijednosnica na raspolaganju
+      \item algoritam radi \textbf{dobro} i uz isključenu mogućnost \emph{kratke pozicije}
+      \item \textbf{nije otporan} na \emph{fundamentalni rizik}
+    \end{itemize}
   \end{frame}
 
   \begin{frame}
