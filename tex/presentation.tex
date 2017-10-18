@@ -46,7 +46,7 @@
   \begin{frame}
     \frametitle{Introduction}
     \begin{itemize}
-    \item portfolio optimization
+    \item \alert{portfolio optimization}
     \item enhancement of present methods of \alert{statistical arbitrage}
     \item modeling \emph{asset interactions} using \alert{preference flow graph}
     \end{itemize}
@@ -123,7 +123,7 @@
       \item low precision (in the sense of predicting price rise/fall): in most simulations \textbf{less than 50\%}
 %      \item trading always done in pairs (\emph{short} and \emph{long} positions); requires possibility of \alert{short position} on the market
       \item doesn't expand well to more pairs
-      \item frequent changes of the portfolio, resulting in \alert{significant transaction costs}
+      \item frequent changes of the portfolio result in \alert{significant transaction costs}
     \end{itemize}
   \end{frame}
 
@@ -131,10 +131,10 @@
   \begin{frame}
     \frametitle{Preference relation}
     \begin{itemize}
-      \item \textbf{binary relation:} $a \succ b$ --- $a$ is \emph{more preferred} than $b$
-      \item \emph{incomparability} of entities: $a \sim b$ --- $a$ \emph{is not comparable} to $b$
+      \item \textbf{binary relation:} $a \succ b$ %($a$ is \emph{more preferred} than $b$)
+      \item \emph{incomparability} of entities: $a \sim b$ %($a$ \emph{is not comparable} to $b$)
       \item a more \emph{natural} way of comparing entities
-      \item it is \emph{irreflexive}, \emph{asymmetric}, \emph{transitive}, and \emph{transitive of incomparability} 
+      \item it is \emph{irreflexive}, \emph{asymmetric}, \emph{transitive}, and \emph{transitive in incomparability} 
     \end{itemize}
   \end{frame}
 
@@ -212,7 +212,7 @@
     \only<2>{
       \begin{table}
         \centering
-        \caption*{Simulation results on a subset of 203 assets from S\&P 500 index. Blue}
+        \caption*{Simulation results on a subset of 203 assets from S\&P 500 index.}
         \resizebox{\textwidth}{!}{\begin{tabular}{lrrr}
           \toprule
           \textbf{Method} & Buy \& Hold & Statistical arbitrage & Preference flow \\
@@ -261,6 +261,13 @@
 %  \end{frame}
 
   \section{Conclusion}
+  {
+  \setbeamertemplate{footline}{
+  	\begin{center}
+	  	\tiny{This work has been supported in part by the Croatian Science Foundation under the project 5349.} \\
+  		\includegraphics[height=0.5cm]{graphics/HRZZ.jpg}
+    \end{center}
+  }
   \begin{frame}
     \frametitle{Conclusion}
     \begin{itemize}
@@ -269,9 +276,7 @@
       \item algorithm works \textbf{well} even if \emph{short position} is not allowed
 %      \item algorithm doesn't take \textbf{systemic risk} into account
     \end{itemize}
-	\vfill
-    \tiny{This work has been supported in part by the Croatian Science Foundation under the project 5349.}
-    \includegraphics[height=1cm]{graphics/HRZZ.jpg}
+    
   \end{frame}
-
+  }
 \end{document}
